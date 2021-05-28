@@ -5,7 +5,8 @@
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "client.DeathScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
