@@ -1,4 +1,210 @@
 {
+    "1.6.4-1.5.2": {
+        "remove": [
+            "options.texture.pack",
+            "texturePack.openFolder",
+            "texturePack.title",
+            "texturePack.folderInfo",
+            "stat.createWorld",
+
+            "translation.test.none",
+            "translation.test.complex",
+            "translation.test.escape",
+            "translation.test.invalid",
+            "translation.test.invalid2",
+            "translation.test.args",
+            "translation.test.world",
+
+            "multiplayer.player.joined",
+            "multiplayer.player.left",
+
+            "chat.cannotSend",
+            "chat.type.text",
+            "chat.type.emote",
+            "chat.type.announcement",
+            "chat.type.admin",
+
+            "tile.hayBlock.name",
+
+            "tile.blockCoal.name",
+
+            "tile.woolCarpet.black.name",
+            "tile.woolCarpet.red.name",
+            "tile.woolCarpet.green.name",
+            "tile.woolCarpet.brown.name",
+            "tile.woolCarpet.blue.name",
+            "tile.woolCarpet.purple.name",
+            "tile.woolCarpet.cyan.name",
+            "tile.woolCarpet.silver.name",
+            "tile.woolCarpet.gray.name",
+            "tile.woolCarpet.pink.name",
+            "tile.woolCarpet.lime.name",
+            "tile.woolCarpet.yellow.name",
+            "tile.woolCarpet.lightBlue.name",
+            "tile.woolCarpet.magenta.name",
+            "tile.woolCarpet.orange.name",
+            "tile.woolCarpet.white.name",
+
+            "tile.clayHardenedStained.black.name",
+            "tile.clayHardenedStained.red.name",
+            "tile.clayHardenedStained.green.name",
+            "tile.clayHardenedStained.brown.name",
+            "tile.clayHardenedStained.blue.name",
+            "tile.clayHardenedStained.purple.name",
+            "tile.clayHardenedStained.cyan.name",
+            "tile.clayHardenedStained.silver.name",
+            "tile.clayHardenedStained.gray.name",
+            "tile.clayHardenedStained.pink.name",
+            "tile.clayHardenedStained.lime.name",
+            "tile.clayHardenedStained.yellow.name",
+            "tile.clayHardenedStained.lightBlue.name",
+            "tile.clayHardenedStained.magenta.name",
+            "tile.clayHardenedStained.orange.name",
+            "tile.clayHardenedStained.white.name",
+            "tile.clayHardened.name",
+
+            "item.nameTag.name",
+            "item.leash.name",
+
+            "item.horsearmormetal.name",
+            "item.horsearmorgold.name",
+            "item.horsearmordiamond.name",
+
+            "entity.EntityHorse.name",
+            "entity.horse.name",
+            "entity.donkey.name",
+            "entity.mule.name",
+            "entity.skeletonhorse.name",
+            "entity.zombiehorse.name",
+
+            "potion.effects.whenDrank",
+
+            "potion.healthBoost",
+            "potion.absorption",
+            "potion.saturation",
+
+            "potion.healthBoost.postfix",
+            "potion.absorption.postfix",
+            "potion.saturation.postfix",
+
+            "commands.generic.permission",
+
+            "commands.generic.boolean.invalid",
+
+            "commands.setidletimeout.usage",
+            "commands.setidletimeout.success",
+
+            "commands.playsound.usage",
+            "commands.playsound.success",
+            "commands.playsound.playerTooFar",
+
+            "commands.effect.success.removed.all",
+
+            "commands.effect.failure.notActive.all",
+
+            "commands.downfall.usage",
+
+            "commands.players.usage",
+
+            "commands.kill.usage",
+            "commands.kill.success",
+
+            "commands.save.usage",
+            "commands.save-on.alreadyOn",
+            "commands.save-on.usage",
+            "commands.save-off.alreadyOff",
+            "commands.save-off.usage",
+
+            "commands.stop.usage",
+
+            "commands.publish.usage",
+
+            "commands.seed.usage",
+            "commands.seed.success",
+            "commands.spreadplayers.usage",
+            "commands.spreadplayers.spreading.teams",
+            "commands.spreadplayers.spreading.players",
+            "commands.spreadplayers.success.teams",
+            "commands.spreadplayers.success.players",
+            "commands.spreadplayers.info.teams",
+            "commands.spreadplayers.info.players",
+            "commands.spreadplayers.failure.teams",
+            "commands.spreadplayers.failure.players",
+
+            "advMode.setCommand.success",
+
+            "mount.onboard",
+
+            "mco.selectServer.play",
+
+            "mco.selectServer.leave",
+
+            "mco.selectServer.expired",
+            "mco.selectServer.open",
+            "mco.selectServer.closed",
+
+            "mco.selectServer.expires.days",
+            "mco.selectServer.expires.day",
+            "mco.selectServer.expires.soon",
+
+            "mco.configure.world.buttons.backup",
+
+            "mco.configure.world.status",
+
+            "mco.configure.world.leave.question.line1",
+            "mco.configure.world.leave.question.line2",
+
+            "mco.configure.world.reset.question.line1",
+            "mco.configure.world.reset.question.line2",
+
+            "mco.configure.world.restore.question.line1",
+            "mco.configure.world.restore.question.line2",
+
+            "mco.client.outdated.title",
+            "mco.client.outdated.msg",
+
+            "mco.backup.title",
+            "mco.backup.button.restore",
+            "mco.backup.restoring",
+
+            "mco.template.title",
+            "mco.template.button.select",
+            "mco.template.default.name",
+            "mco.template.name",
+
+            "mco.invites.button.accept",
+            "mco.invites.button.reject",
+            "mco.invites.title",
+            "mco.invites.pending",
+
+            "build.tooHigh",
+
+            "attribute.modifier.plus.0",
+            "attribute.modifier.plus.1",
+            "attribute.modifier.plus.2",
+            "attribute.modifier.take.0",
+            "attribute.modifier.take.1",
+            "attribute.modifier.take.2",
+
+            "attribute.name.horse.jumpStrength",
+            "attribute.name.zombie.spawnReinforcements",
+            "attribute.name.generic.maxHealth",
+            "attribute.name.generic.followRange",
+            "attribute.name.generic.knockbackResistance",
+            "attribute.name.generic.movementSpeed",
+            "attribute.name.generic.attackDamage"
+        ],
+        "change": {
+            "mco.create.world.seed": "mco.configure.world.seed"
+        },
+        "new": [
+            "options.texture.pack",
+            "texturePack.openFolder",
+            "texturePack.title",
+            "texturePack.folderInfo",
+            "stat.createWorld"
+        ]
+    },
     "1.5.2-1.4.7": {
         "remove": [
             "gui.back",
