@@ -1,4 +1,414 @@
 {
+    "1.7.10-1.6.4": {
+        "remove": [
+            "menu.game",
+
+            "generator.amplified",
+
+            "generator.amplified.info",
+
+            "addServer.resourcePack",
+            "addServer.resourcePack.enabled",
+            "addServer.resourcePack.disabled",
+            "addServer.resourcePack.prompt",
+
+            "multiplayer.downloadingStats",
+
+            "multiplayer.player.joined.renamed",
+
+            "chat.type.achievement",
+
+            "chat.stream.text",
+            "chat.stream.emote",
+
+            "disconnect.loginFailedInfo.serversUnavailable",
+            "disconnect.loginFailedInfo.invalidSession",
+
+            "soundCategory.master",
+            "soundCategory.music",
+            "soundCategory.record",
+            "soundCategory.weather",
+            "soundCategory.hostile",
+            "soundCategory.neutral",
+            "soundCategory.player",
+            "soundCategory.block",
+            "soundCategory.ambient",
+
+            "record.nowPlaying",
+
+            "options.stream",
+            "options.sounds",
+            "options.sounds.title",
+
+            "options.saturation",
+
+            "options.framerateLimit.max",
+
+            "options.fboEnable",
+            "options.postProcessEnable",
+            "options.aoDesc0",
+            "options.aoDesc1",
+            "options.framerateLimitDesc0",
+            "options.framerateLimitDesc1",
+            "options.viewBobbingDesc0",
+            "options.viewBobbingDesc1",
+            "options.renderCloudsDesc0",
+            "options.renderCloudsDesc1",
+            "options.graphicsDesc0",
+            "options.graphicsDesc1",
+            "options.renderDistanceDesc0",
+            "options.renderDistanceDesc1",
+            "options.particlesDesc0",
+            "options.particlesDesc1",
+            "options.advancedOpenglDesc0",
+            "options.advancedOpenglDesc1",
+            "options.fboEnableDesc0",
+            "options.fboEnableDesc1",
+            "options.postProcessEnableDesc0",
+            "options.postProcessEnableDesc1",
+
+            "options.qualityButton",
+            "options.qualityVideoTitle",
+            "options.performanceButton",
+            "options.performanceVideoTitle",
+            "options.advancedButton",
+            "options.advancedVideoTitle",
+            "options.postButton",
+            "options.postVideoTitle",
+
+            "options.mipmapLevels",
+            "options.anisotropicFiltering",
+
+            "options.stream.title",
+            "options.stream.bytesPerPixel",
+            "options.stream.micVolumne",
+            "options.stream.micToggleBehavior",
+            "options.stream.mic_toggle.mute",
+            "options.stream.mic_toggle.talk",
+            "options.stream.systemVolume",
+            "options.stream.kbps",
+            "options.stream.fps",
+            "options.stream.sendMetadata",
+            "options.stream.compression",
+            "options.stream.compression.low",
+            "options.stream.compression.medium",
+            "options.stream.compression.high",
+            "options.stream.estimation",
+            "options.stream.changes",
+            "options.stream.ingestSelection",
+            "options.stream.ingest.title",
+            "options.stream.ingest.reset",
+            "options.stream.chat.title",
+            "options.stream.chat.enabled",
+            "options.stream.chat.enabled.streaming",
+            "options.stream.chat.enabled.always",
+            "options.stream.chat.enabled.never",
+            "options.stream.chat.userFilter",
+            "options.stream.chat.userFilter.all",
+            "options.stream.chat.userFilter.subs",
+            "options.stream.chat.userFilter.mods",
+
+            "title.oldgl1",
+            "title.oldgl2",
+
+            "controls.reset",
+            "controls.resetAll",
+
+            "key.sprint",
+
+            "key.screenshot",
+            "key.togglePerspective",
+            "key.smoothCamera",
+            "key.fullscreen",
+            "key.hotbar.1",
+            "key.hotbar.2",
+            "key.hotbar.3",
+            "key.hotbar.4",
+            "key.hotbar.5",
+            "key.hotbar.6",
+            "key.hotbar.7",
+            "key.hotbar.8",
+            "key.hotbar.9",
+            "key.streamStartStop",
+            "key.streamPauseUnpause",
+            "key.streamCommercial",
+            "key.streamToggleMic",
+
+            "key.categories.movement",
+            "key.categories.misc",
+            "key.categories.multiplayer",
+            "key.categories.gameplay",
+            "key.categories.ui",
+            "key.categories.inventory",
+            "key.categories.stream",
+
+            "resourcePack.available.title",
+            "resourcePack.selected.title",
+
+            "sign.edit",
+
+            "tile.dirt.podzol.name",
+
+            "tile.wood.acacia.name",
+            "tile.wood.big_oak.name",
+
+            "tile.sapling.acacia.name",
+            "tile.sapling.roofed_oak.name",
+
+            "tile.sand.red.name",
+
+            "tile.log.acacia.name",
+            "tile.log.big_oak.name",
+
+            "tile.leaves.acacia.name",
+            "tile.leaves.big_oak.name",
+
+            "tile.stainedGlass.black.name",
+            "tile.stainedGlass.red.name",
+            "tile.stainedGlass.green.name",
+            "tile.stainedGlass.brown.name",
+            "tile.stainedGlass.blue.name",
+            "tile.stainedGlass.purple.name",
+            "tile.stainedGlass.cyan.name",
+            "tile.stainedGlass.silver.name",
+            "tile.stainedGlass.gray.name",
+            "tile.stainedGlass.pink.name",
+            "tile.stainedGlass.lime.name",
+            "tile.stainedGlass.yellow.name",
+            "tile.stainedGlass.lightBlue.name",
+            "tile.stainedGlass.magenta.name",
+            "tile.stainedGlass.orange.name",
+            "tile.stainedGlass.white.name",
+            "tile.thinStainedGlass.black.name",
+            "tile.thinStainedGlass.red.name",
+            "tile.thinStainedGlass.green.name",
+            "tile.thinStainedGlass.brown.name",
+            "tile.thinStainedGlass.blue.name",
+            "tile.thinStainedGlass.purple.name",
+            "tile.thinStainedGlass.cyan.name",
+            "tile.thinStainedGlass.silver.name",
+            "tile.thinStainedGlass.gray.name",
+            "tile.thinStainedGlass.pink.name",
+            "tile.thinStainedGlass.lime.name",
+            "tile.thinStainedGlass.yellow.name",
+            "tile.thinStainedGlass.lightBlue.name",
+            "tile.thinStainedGlass.magenta.name",
+            "tile.thinStainedGlass.orange.name",
+            "tile.thinStainedGlass.white.name",
+
+            "tile.flower2.blueOrchid.name",
+            "tile.flower2.allium.name",
+            "tile.flower2.houstonia.name",
+            "tile.flower2.tulipRed.name",
+            "tile.flower2.tulipOrange.name",
+            "tile.flower2.tulipWhite.name",
+            "tile.flower2.tulipPink.name",
+            "tile.flower2.oxeyeDaisy.name",
+            "tile.doublePlant.sunflower.name",
+            "tile.doublePlant.syringa.name",
+            "tile.doublePlant.grass.name",
+            "tile.doublePlant.fern.name",
+            "tile.doublePlant.rose.name",
+            "tile.doublePlant.paeonia.name",
+
+            "tile.woodSlab.acacia.name",
+            "tile.woodSlab.big_oak.name",
+
+            "tile.stairsWoodAcacia.name",
+            "tile.stairsWoodDarkOak.name",
+
+            "tile.icePacked.name",
+
+            "tile.monsterStoneEgg.mossybrick.name",
+            "tile.monsterStoneEgg.crackedbrick.name",
+            "tile.monsterStoneEgg.chiseledbrick.name",
+
+            "item.minecartCommandBlock.name",
+
+            "item.fish.salmon.raw.name",
+            "item.fish.pufferfish.raw.name",
+            "item.fish.clownfish.raw.name",
+
+            "item.fish.salmon.cooked.name",
+
+            "item.record.13.desc",
+            "item.record.cat.desc",
+            "item.record.blocks.desc",
+            "item.record.chirp.desc",
+            "item.record.far.desc",
+            "item.record.mall.desc",
+            "item.record.mellohi.desc",
+            "item.record.stal.desc",
+            "item.record.strad.desc",
+            "item.record.ward.desc",
+            "item.record.11.desc",
+            "item.record.wait.desc",
+
+            "item.unbreakable",
+
+            "deathScreen.quit.confirm",
+
+            "enchantment.lootBonusFishing",
+            "enchantment.fishingSpeed",
+
+            "stats.tooltip.type.achievement",
+            "stats.tooltip.type.statistic",
+
+            "stat.mobsButton",
+
+            "stat.entityKills",
+            "stat.entityKilledBy",
+            "stat.entityKills.none",
+            "stat.entityKilledBy.none",
+
+            "stat.horseOneCm",
+
+            "stat.animalsBred",
+
+            "stat.treasureFished",
+            "stat.junkFished",
+
+            "achievement.unknown",
+
+            "achievement.breedCow",
+            "achievement.breedCow.desc",
+
+            "achievement.diamondsToYou",
+            "achievement.diamondsToYou.desc",
+
+            "achievement.spawnWither",
+            "achievement.spawnWither.desc",
+            "achievement.killWither",
+            "achievement.killWither.desc",
+            "achievement.fullBeacon",
+            "achievement.fullBeacon.desc",
+            "achievement.exploreAllBiomes",
+            "achievement.exploreAllBiomes.desc",
+
+            "commands.generic.deprecatedId",
+
+            "commands.give.tagError",
+            "commands.summon.usage",
+            "commands.summon.success",
+            "commands.summon.failed",
+            "commands.summon.tagError",
+            "commands.summon.outOfWorld",
+            "commands.testforblock.usage",
+            "commands.testforblock.failed.tile",
+            "commands.testforblock.failed.data",
+            "commands.testforblock.failed.nbt",
+            "commands.testforblock.failed.tileEntity",
+            "commands.testforblock.success",
+            "commands.testforblock.outOfWorld",
+            "commands.setblock.usage",
+            "commands.setblock.success",
+            "commands.setblock.failed",
+            "commands.setblock.tagError",
+            "commands.setblock.outOfWorld",
+            "commands.setblock.notFound",
+            "commands.setblock.noChange",
+
+            "commands.op.failed",
+
+            "commands.deop.failed",
+
+            "commands.ban.failed",
+
+            "commands.unban.failed",
+
+            "commands.whitelist.add.failed",
+
+            "commands.whitelist.remove.failed",
+
+            "commands.scoreboard.players.list.usage",
+
+            "commands.tellraw.usage",
+            "commands.tellraw.jsonException",
+
+            "commands.setworldspawn.usage",
+            "commands.setworldspawn.success",
+
+            "commands.achievement.usage",
+            "commands.achievement.unknownAchievement",
+            "commands.achievement.give.success.all",
+            "commands.achievement.give.success.one",
+            "commands.achievement.statTooLow",
+
+            "advMode.previousOutput",
+
+            "screenshot.success",
+            "screenshot.failure",
+
+            "stream.user.mode.moderator",
+            "stream.user.mode.moderator.self",
+            "stream.user.mode.moderator.other",
+            "stream.user.mode.broadcaster",
+            "stream.user.mode.broadcaster.self",
+            "stream.user.mode.broadcaster.other",
+            "stream.user.mode.administrator",
+            "stream.user.mode.staff",
+            "stream.user.mode.banned",
+            "stream.user.mode.banned.self",
+            "stream.user.mode.banned.other",
+            "stream.user.subscription.subscriber",
+            "stream.user.subscription.subscriber.self",
+            "stream.user.subscription.subscriber.other",
+            "stream.user.subscription.turbo",
+
+            "stream.unavailable.title",
+            "stream.unavailable.report_to_mojang",
+
+            "stream.confirm_start",
+
+            "stream.unavailable.account_not_bound",
+            "stream.unavailable.account_not_bound.okay",
+            "stream.unavailable.account_not_migrated",
+            "stream.unavailable.account_not_migrated.okay",
+
+            "stream.unavailable.failed_auth",
+            "stream.unavailable.failed_auth.okay",
+            "stream.unavailable.failed_auth_error",
+
+            "stream.unavailable.account_not_bound",
+            "stream.unavailable.account_not_bound.okay",
+            "stream.unavailable.initialization_failure",
+            "stream.unavailable.initialization_failure.extra",
+            "stream.unavailable.library_arch_mismatch",
+            "stream.unavailable.library_failure",
+            "stream.unavailable.no_fbo",
+            "stream.unavailable.no_fbo.version",
+            "stream.unavailable.no_fbo.blend",
+            "stream.unavailable.no_fbo.arb",
+            "stream.unavailable.no_fbo.ext",
+            "stream.unavailable.not_supported.windows",
+            "stream.unavailable.not_supported.mac",
+            "stream.unavailable.not_supported.mac.okay",
+            "stream.unavailable.not_supported.other",
+            "stream.unavailable.unknown",
+            "stream.unavailable.unknown.chat",
+
+            "stream.unavailable.soundflower.chat",
+            "stream.unavailable.soundflower.chat.link",
+
+            "stream.userinfo.chatTooltip",
+            "stream.userinfo.timeout",
+            "stream.userinfo.ban",
+            "stream.userinfo.unban",
+            "stream.userinfo.mod",
+            "stream.userinfo.unmod"
+        ],
+        "change": {
+            "tile.dirt.default.name": "tile.dirt.name",
+            "tile.sand.default.name": "tile.sand.name",
+            "tile.flower1.dandelion.name": "tile.flower.name",
+            "tile.flower2.poppy.name": "tile.rose.name",
+            "item.fish.cod.raw.name": "item.fishRaw.name",
+            "item.fish.cod.cooked.name": "item.fishCooked.name"
+        },
+        "new": [
+            "key.fog"
+        ]
+    },
     "1.6.4-1.5.2": {
         "remove": [
             "translation.test.none",
