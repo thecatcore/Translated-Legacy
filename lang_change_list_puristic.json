@@ -1,6 +1,10 @@
 {
     "1.3.2-1.2.5": {
         "remove": [
+            "menu.switchingLevel",
+            "menu.generatingLevel",
+            "menu.loadingLevel",
+
             "menu.convertingLevel",
             "menu.shareToLan",
 
@@ -77,6 +81,7 @@
             "tile.wood.birch.name",
             "tile.wood.jungle.name",
 
+            "tile.sapling.oak.name",
             "tile.sapling.spruce.name",
             "tile.sapling.birch.name",
             "tile.sapling.jungle.name",
@@ -100,6 +105,7 @@
             "tile.woodSlab.birch.name",
             "tile.woodSlab.jungle.name",
 
+            "tile.stairsWood.name",
             "tile.stairsWoodSpruce.name",
             "tile.stairsWoodBirch.name",
             "tile.stairsWoodJungle.name",
@@ -230,7 +236,14 @@
         "change": {
             "tile.sapling.oak.name": "tile.sapling.name",
             "item.diamond.name": "item.emerald.name"
-        }
+        },
+        "new": [
+            "menu.switchingLevel",
+            "menu.generatingLevel",
+            "menu.loadingLevel",
+            "tile.sapling.name",
+            "tile.stairsWood.name"
+        ]
     },
     "1.2.5-1.1": {
         "remove": [
@@ -256,6 +269,8 @@
     },
     "1.1-b1.7.3": {
         "remove": [
+            "menu.mods",
+
             "gameMode.survival",
             "gameMode.creative",
             "gameMode.hardcore",
@@ -588,6 +603,9 @@
             "generator.default": "generator.minecraft.default", // Cursed Legacy API support
             "tile.tallgrass.name": "tile.grass.name",
             "deathScreen.title.hardcore": "deathScreen.title"
-        }
+        },
+        "new": [
+            "menu.mods"
+        ]
     }
 }

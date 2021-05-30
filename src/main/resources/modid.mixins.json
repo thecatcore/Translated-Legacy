@@ -3,6 +3,10 @@
   "package": "io.github.minecraftcursedlegacy.example.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "inventory.ChestMixin",
+    "inventory.DoubleInventoryMixin",
+    "inventory.MinecartMixin",
+    "inventory.PlayerInventoryMixin"
   ],
   "client": [
     "ExampleMixin",
