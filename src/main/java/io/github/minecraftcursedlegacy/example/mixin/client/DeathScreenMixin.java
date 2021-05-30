@@ -36,7 +36,7 @@ public class DeathScreenMixin extends Screen {
         this.fillGradient(0, 0, this.width, this.height, 1615855616, -1602211792);
         GL11.glPushMatrix();
         GL11.glScalef(2.0F, 2.0F, 2.0F);
-        this.drawTextWithShadowCentred(this.textManager, translationStorage.translate("deathScreen.title.hardcore"), this.width / 2 / 2, 30, 16777215);
+        this.drawTextWithShadowCentred(this.textManager, translationStorage.translate("deathScreen.title"), this.width / 2 / 2, 30, 16777215);
         GL11.glPopMatrix();
         this.drawTextWithShadowCentred(this.textManager, translationStorage.translate("deathScreen.score") + ": " + this.minecraft.player.method_481(), this.width / 2, 100, 16777215);
         super.render(i, j, f);
