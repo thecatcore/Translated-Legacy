@@ -1,4 +1,425 @@
 {
+    "1.5.2-1.4.7": {
+        "remove": [
+            "gui.back",
+
+            "menu.online",
+
+            "mcoServer.title",
+
+            "chat.link.confirmTrusted",
+
+            "chat.link.open",
+
+            "options.ao.off",
+            "options.ao.min",
+            "options.ao.max",
+
+            "options.chat.scale",
+            "options.chat.width",
+            "options.chat.height.focused",
+            "options.chat.height.unfocused",
+
+            "texturePack.incompatible",
+
+            "tile.stoneSlab.quartz.name",
+
+            "tile.chestTrap.name",
+
+            "tile.activatorRail.name",
+
+            "tile.weightedPlate_light.name",
+            "tile.weightedPlate_heavy.name",
+
+            "tile.dropper.name",
+
+            "tile.blockRedstone.name",
+
+            "tile.daylightDetector.name",
+            "tile.netherquartz.name",
+            "tile.hopper.name",
+            "tile.quartzBlock.default.name",
+            "tile.quartzBlock.chiseled.name",
+            "tile.quartzBlock.lines.name",
+            "tile.stairsQuartz.name",
+
+            "item.minecartTnt.name",
+            "item.minecartHopper.name",
+
+            "item.comparator.name",
+
+            "item.netherbrick.name",
+            "item.netherquartz.name",
+
+            "container.hopper",
+
+            "container.dropper",
+
+            "entity.SmallFireball.name",
+            "entity.Fireball.name",
+
+            "death.fell.accident.ladder",
+            "death.fell.accident.vines",
+            "death.fell.accident.water",
+            "death.fell.accident.generic",
+            "death.fell.killer",
+            "death.fell.assist",
+            "death.fell.assist.item",
+            "death.fell.finish",
+            "death.fell.finish.item",
+
+            "death.attack.inFire.player",
+
+            "death.attack.onFire.player",
+
+            "death.attack.lava.player",
+
+            "death.attack.drown.player",
+
+            "death.attack.cactus.player",
+
+            "death.attack.explosion.player",
+
+            "death.attack.player.item",
+
+            "death.attack.arrow.item",
+
+            "death.attack.fireball.item",
+
+            "death.attack.thrown.item",
+
+            "death.attack.indirectMagic.item",
+
+            "commands.effect.usage",
+            "commands.effect.notFound",
+            "commands.effect.success",
+            "commands.effect.success.removed",
+            "commands.effect.failure.notActive",
+
+            "commands.clear.failure",
+
+            "commands.save.flushStart",
+            "commands.save.flushEnd",
+
+            "commands.scoreboard.usage",
+            "commands.scoreboard.teamNotFound",
+            "commands.scoreboard.objectiveNotFound",
+            "commands.scoreboard.objectiveReadOnly",
+            "commands.scoreboard.objectives.usage",
+            "commands.scoreboard.objectives.setdisplay.usage",
+            "commands.scoreboard.objectives.setdisplay.invalidSlot",
+            "commands.scoreboard.objectives.setdisplay.successCleared",
+            "commands.scoreboard.objectives.setdisplay.successSet",
+            "commands.scoreboard.objectives.add.usage",
+            "commands.scoreboard.objectives.add.wrongType",
+            "commands.scoreboard.objectives.add.alreadyExists",
+            "commands.scoreboard.objectives.add.tooLong",
+            "commands.scoreboard.objectives.add.displayTooLong",
+            "commands.scoreboard.objectives.add.success",
+            "commands.scoreboard.objectives.remove.usage",
+            "commands.scoreboard.objectives.remove.success",
+            "commands.scoreboard.objectives.list.count",
+            "commands.scoreboard.objectives.list.entry",
+            "commands.scoreboard.objectives.list.empty",
+            "commands.scoreboard.players.usage",
+            "commands.scoreboard.players.set.success",
+            "commands.scoreboard.players.set.usage",
+            "commands.scoreboard.players.add.usage",
+            "commands.scoreboard.players.remove.usage",
+            "commands.scoreboard.players.reset.usage",
+            "commands.scoreboard.players.reset.success",
+            "commands.scoreboard.players.list.count",
+            "commands.scoreboard.players.list.empty",
+            "commands.scoreboard.players.list.player.count",
+            "commands.scoreboard.players.list.player.entry",
+            "commands.scoreboard.players.list.player.empty",
+            "commands.scoreboard.teams.usage",
+            "commands.scoreboard.teams.add.usage",
+            "commands.scoreboard.teams.add.alreadyExists",
+            "commands.scoreboard.teams.add.tooLong",
+            "commands.scoreboard.teams.add.displayTooLong",
+            "commands.scoreboard.teams.add.success",
+            "commands.scoreboard.teams.list.usage",
+            "commands.scoreboard.teams.list.count",
+            "commands.scoreboard.teams.list.entry",
+            "commands.scoreboard.teams.list.empty",
+            "commands.scoreboard.teams.list.player.count",
+            "commands.scoreboard.teams.list.player.entry",
+            "commands.scoreboard.teams.list.player.empty",
+            "commands.scoreboard.teams.empty.usage",
+            "commands.scoreboard.teams.empty.alreadyEmpty",
+            "commands.scoreboard.teams.empty.success",
+            "commands.scoreboard.teams.remove.usage",
+            "commands.scoreboard.teams.remove.success",
+            "commands.scoreboard.teams.join.usage",
+            "commands.scoreboard.teams.join.success",
+            "commands.scoreboard.teams.join.failure",
+            "commands.scoreboard.teams.leave.usage",
+            "commands.scoreboard.teams.leave.success",
+            "commands.scoreboard.teams.leave.failure",
+            "commands.scoreboard.teams.leave.noTeam",
+            "commands.scoreboard.teams.option.usage",
+            "commands.scoreboard.teams.option.noValue",
+            "commands.scoreboard.teams.option.success",
+
+            "commands.testfor.usage",
+            "commands.testfor.failed",
+
+            "mco.title",
+            "mco.selectServer.select",
+            "mco.selectServer.configure",
+            "mco.selectServer.create",
+            "mco.selectServer.moreinfo",
+
+            "mco.configure.world.edit.title",
+
+            "mco.configure.world.title",
+            "mco.configure.world.name",
+            "mco.configure.world.seed",
+            "mco.configure.world.description",
+            "mco.configure.world.owner",
+            "mco.configure.world.status",
+            "mco.configure.world.location",
+            "mco.configure.world.invited",
+            "mco.configure.world.buttons.edit",
+            "mco.configure.world.buttons.reset",
+            "mco.configure.world.buttons.done",
+            "mco.configure.world.buttons.delete",
+            "mco.configure.world.buttons.open",
+            "mco.configure.world.buttons.close",
+            "mco.configure.world.buttons.invite",
+            "mco.configure.world.buttons.uninvite",
+            "mco.configure.world.buttons.subscription",
+            "mco.configure.world.buttons.save",
+            "mco.configure.world.buttons.settings",
+            "mco.configure.world.invite.profile.name",
+            "mco.configure.world.uninvite.question",
+
+            "mco.configure.world.settings.title",
+
+            "mco.configure.world.subscription.title",
+            "mco.configure.world.subscription.daysleft",
+            "mco.configure.world.subscription.start",
+            "mco.configure.world.subscription.extend",
+
+            "mco.create.world.location.title",
+            "mco.create.world.location.warning",
+            "mco.create.world.wait",
+
+            "mco.reset.world.title",
+            "mco.reset.world.warning",
+            "mco.reset.world.seed",
+            "mco.reset.world.resetting.screen.title",
+
+            "mco.configure.world.close.question.line1",
+            "mco.configure.world.close.question.line2",
+
+            "mco.connect.connecting",
+            "mco.connect.authorizing",
+            "mco.connect.failed",
+
+            "mco.create.world",
+
+            "mco.gameMode",
+            "mco.gameMode.survival",
+            "mco.gameMode.survival.line1",
+            "mco.gameMode.survival.line2",
+            "mco.gameMode.creative",
+            "mco.gameMode.creative.line1",
+            "mco.gameMode.creative.line2",
+            "mco.gameMode.adventure",
+            "mco.gameMode.adventure.line1",
+            "mco.gameMode.adventure.line2"
+        ],
+        "change": {
+            "options.texture.pack": "menu.mods",
+            "death.attack.inFire": "death.inFire",
+            "death.attack.onFire": "death.onFire",
+            "death.attack.lava": "death.lava",
+            "death.attack.inWall": "death.inWall",
+            "death.attack.drown": "death.drown",
+            "death.attack.starve": "death.starve",
+            "death.attack.cactus": "death.attack.cactus",
+            "death.attack.generic": "death.generic",
+            "death.attack.explosion": "death.explosion",
+            "death.attack.magic": "death.magic",
+            "death.attack.wither": "death.wither",
+            "death.attack.anvil": "death.anvil",
+            "death.attack.fallingBlock": "death.fallingBlock",
+            "death.attack.mob": "death.mob",
+            "death.attack.player": "death.player",
+            "death.attack.arrow": "death.arrow",
+            "death.attack.fireball": "death.fireball",
+            "death.attack.thrown": "death.thrown",
+            "death.attack.indirectMagic": "death.indirectMagic",
+            "death.attack.thorns": "death.thorns",
+            "death.attack.fall": "death.fall",
+            "death.attack.outOfWorld": "death.outOfWorld"
+        }
+    },
+    "1.4.7-1.3.2": {
+        "remove": [
+            "selectWorld.recreate",
+            "selectWorld.newWorld.copyOf",
+            "selectWorld.customizeType",
+
+            "createWorld.customize.presets",
+            "createWorld.customize.presets.title",
+            "createWorld.customize.presets.select",
+            "createWorld.customize.presets.share",
+            "createWorld.customize.presets.list",
+            "createWorld.customize.flat.title",
+            "createWorld.customize.flat.tile",
+            "createWorld.customize.flat.height",
+            "createWorld.customize.flat.addLayer",
+            "createWorld.customize.flat.editLayer",
+            "createWorld.customize.flat.removeLayer",
+            "createWorld.customize.flat.layer.top",
+            "createWorld.customize.flat.layer",
+            "createWorld.customize.flat.layer.bottom",
+
+            "selectServer.hiddenAddress",
+
+            "addServer.hideAddress",
+
+            "options.multiplayer.title",
+
+            "options.showCape",
+
+            "options.touchscreen",
+
+            "tile.stoneSlab.netherBrick.name",
+
+            "tile.anvil.name",
+            "tile.anvil.intact.name",
+            "tile.anvil.slightlyDamaged.name",
+            "tile.anvil.veryDamaged.name",
+
+            "tile.commandBlock.name",
+            "tile.beacon.name",
+            "tile.beacon.primary",
+            "tile.beacon.secondary",
+            "tile.cobbleWall.normal.name",
+            "tile.cobbleWall.mossy.name",
+            "tile.carrots.name",
+            "tile.potatoes.name",
+
+            "item.frame.name",
+
+            "item.flowerPot.name",
+            "item.emptyMap.name",
+            "item.carrots.name",
+            "item.carrotGolden.name",
+            "item.potato.name",
+            "item.potatoBaked.name",
+            "item.potatoPoisonous.name",
+            "item.skull.skeleton.name",
+            "item.skull.wither.name",
+            "item.skull.zombie.name",
+            "item.skull.char.name",
+            "item.skull.player.name",
+            "item.skull.creeper.name",
+            "item.carrotOnAStick.name",
+            "item.netherStar.name",
+            "item.pumpkinPie.name",
+            "item.enchantedBook.name",
+            "item.fireworks.name",
+            "item.fireworks.flight",
+            "item.fireworksCharge.name",
+            "item.fireworksCharge.black",
+            "item.fireworksCharge.red",
+            "item.fireworksCharge.green",
+            "item.fireworksCharge.brown",
+            "item.fireworksCharge.blue",
+            "item.fireworksCharge.purple",
+            "item.fireworksCharge.cyan",
+            "item.fireworksCharge.silver",
+            "item.fireworksCharge.gray",
+            "item.fireworksCharge.pink",
+            "item.fireworksCharge.lime",
+            "item.fireworksCharge.yellow",
+            "item.fireworksCharge.lightBlue",
+            "item.fireworksCharge.magenta",
+            "item.fireworksCharge.orange",
+            "item.fireworksCharge.white",
+            "item.fireworksCharge.customColor",
+            "item.fireworksCharge.fadeTo",
+            "item.fireworksCharge.flicker",
+            "item.fireworksCharge.trail",
+            "item.fireworksCharge.type.0",
+            "item.fireworksCharge.type.1",
+            "item.fireworksCharge.type.2",
+            "item.fireworksCharge.type.3",
+            "item.fireworksCharge.type.4",
+            "item.fireworksCharge.type",
+
+            "container.repair",
+            "container.repair.cost",
+            "container.repair.expensive",
+
+            "item.dyed",
+
+            "entity.WitherBoss.name",
+            "entity.Witch.name",
+
+            "entity.Bat.name",
+
+            "death.wither",
+            "death.anvil",
+            "death.fallingBlock",
+
+            "death.thorns",
+
+            "potion.wither",
+
+            "potion.wither.postfix",
+
+            "enchantment.thorns",
+
+            "commands.generic.double.tooSmall",
+            "commands.generic.double.tooBig",
+
+            "commands.xp.failure.widthdrawXp",
+
+            "commands.xp.success.levels",
+            "commands.xp.success.negative.levels",
+
+            "commands.enchant.usage",
+            "commands.enchant.notFound",
+            "commands.enchant.noItem",
+            "commands.enchant.cantEnchant",
+            "commands.enchant.cantCombine",
+            "commands.enchant.success",
+            "commands.clear.usage",
+            "commands.clear.success",
+
+            "commands.tp.notSameDimension",
+
+            "commands.difficulty.usage",
+            "commands.difficulty.success",
+            "commands.spawnpoint.usage",
+            "commands.spawnpoint.success",
+            "commands.gamerule.usage",
+            "commands.gamerule.success",
+            "commands.gamerule.norule",
+            "commands.weather.usage",
+            "commands.weather.clear",
+            "commands.weather.rain",
+            "commands.weather.thunder",
+
+            "advMode.setCommand",
+            "advMode.command",
+            "advMode.nearestPlayer",
+            "advMode.randomPlayer",
+            "advMode.allPlayers",
+
+            "advMode.notEnabled",
+            "advMode.notAllowed"
+        ],
+        "change": {
+            "commands.tp.success.coordinates": "commands.tp.coordinates"
+        }
+    },
     "1.3.2-1.2.5": {
         "remove": [
             "menu.convertingLevel",
