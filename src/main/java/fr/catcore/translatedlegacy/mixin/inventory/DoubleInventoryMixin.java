@@ -1,4 +1,4 @@
-package io.github.minecraftcursedlegacy.example.mixin.inventory;
+package fr.catcore.translatedlegacy.mixin.inventory;
 
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.inventory.DoubleInventory;

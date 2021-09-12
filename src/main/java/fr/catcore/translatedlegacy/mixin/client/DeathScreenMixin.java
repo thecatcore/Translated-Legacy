@@ -1,4 +1,4 @@
-package io.github.minecraftcursedlegacy.example.mixin.client;
+package fr.catcore.translatedlegacy.mixin.client;
 
 import net.minecraft.client.gui.Screen;
 import net.minecraft.client.gui.screen.DeathScreen;

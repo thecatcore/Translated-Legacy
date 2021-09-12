@@ -1,4 +1,4 @@
-package io.github.minecraftcursedlegacy.example.mixin.client;
+package fr.catcore.translatedlegacy.mixin.client;
 
 import net.minecraft.client.ClientInteractionManager;
 import net.minecraft.client.Minecraft;

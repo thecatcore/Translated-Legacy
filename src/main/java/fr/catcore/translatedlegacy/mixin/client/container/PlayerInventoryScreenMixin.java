@@ -1,4 +1,4 @@
-package io.github.minecraftcursedlegacy.example.mixin.client.container;
+package fr.catcore.translatedlegacy.mixin.client.container;
 
 import net.minecraft.client.gui.screen.container.ContainerScreen;
 import net.minecraft.client.gui.screen.container.PlayerInventoryScreen;

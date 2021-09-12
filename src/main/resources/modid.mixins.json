@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "io.github.minecraftcursedlegacy.example.mixin",
+  "package": "fr.catcore.translatedlegacy.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "inventory.ChestMixin",
@@ -9,8 +9,8 @@
     "inventory.PlayerInventoryMixin"
   ],
   "client": [
-    "ExampleMixin",
-    "client.DeathScreenMixin"
+    "client.DeathScreenMixin",
+    "client.font.TextRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

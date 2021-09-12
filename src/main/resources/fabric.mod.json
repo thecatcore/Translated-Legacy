@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "init": [
-      "io.github.minecraftcursedlegacy.example.ExampleMod"
+      "fr.catcore.translatedlegacy.ExampleMod"
     ]
   },
   "mixins": [
