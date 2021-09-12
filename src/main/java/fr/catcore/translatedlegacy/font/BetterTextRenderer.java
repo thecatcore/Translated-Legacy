@@ -113,7 +113,7 @@ public class BetterTextRenderer {
 
             tessellator.draw();
 
-            GL11.glTranslatef((float)this.CHARS_WIDTH_ASCII[unicodeId], 0.0F, 0.0F);
+            GL11.glTranslatef(this.getCharWidth(unicodeId), 0.0F, 0.0F);
             GL11.glEndList();
         }
 
@@ -181,19 +181,19 @@ public class BetterTextRenderer {
             GL11.glTranslatef((float)x, (float)y, 0.0F);
 
             for(int var12 = 0; var12 < string.length(); ++var12) {
-//                for(; string.length() > var12 + 1 && string.charAt(var12) == 167; var12 += 2) {
-//                    int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(var12 + 1));
-//                    if (var13 < 0 || var13 > 15) {
-//                        var13 = 15;
-//                    }
-//
-//                    this.intBuffer.put(this.anInt + 256 + var13 + (flag ? 16 : 0));
-//                    if (this.intBuffer.remaining() == 0) {
-//                        ((Buffer)this.intBuffer).flip();
-//                        GL11.glCallLists(this.intBuffer);
-//                        ((Buffer)this.intBuffer).clear();
-//                    }
-//                }
+                for(; string.length() > var12 + 1 && string.charAt(var12) == 167; var12 += 2) {
+                    int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(var12 + 1));
+                    if (var13 < 0 || var13 > 15) {
+                        var13 = 15;
+                    }
+
+                    this.intBuffer.put(this.anInt + 256 + var13 + (flag ? 16 : 0));
+                    if (this.intBuffer.remaining() == 0) {
+                        ((Buffer)this.intBuffer).flip();
+                        GL11.glCallLists(this.intBuffer);
+                        ((Buffer)this.intBuffer).clear();
+                    }
+                }
 
                 if (var12 < string.length()) {
                     int var14 = BetterCharacterUtils.getId(string.charAt(var12));
@@ -220,7 +220,7 @@ public class BetterTextRenderer {
             int width = 0;
 
             for(int pos = 0; pos < string.length(); ++pos) {
-                if (string.charAt(pos) == 32) {
+                if (string.charAt(pos) == 167) {
                     ++pos;
                 } else {
                     int index = BetterCharacterUtils.getId(string.charAt(pos));
