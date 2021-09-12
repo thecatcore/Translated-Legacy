@@ -57,7 +57,7 @@ public class TextRendererMixin {
      */
     @Overwrite
     public void method_1904(String string, int i, int j, int k, int i1) {
-        ExampleMod.TEXT_RENDERER.method_1904(string, i, j, k, i1);
+        ExampleMod.TEXT_RENDERER.drawText(string, i, j, k, i1);
     }
 
     /**
@@ -65,6 +65,6 @@ public class TextRendererMixin {
      */
     @Overwrite
     public int method_1902(String string, int i) {
-        return ExampleMod.TEXT_RENDERER.method_1902(string, i);
+        return ExampleMod.TEXT_RENDERER.getLineWidth(string, i);
     }
 }
