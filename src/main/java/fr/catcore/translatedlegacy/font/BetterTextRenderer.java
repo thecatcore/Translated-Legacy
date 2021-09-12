@@ -15,21 +15,35 @@ import java.nio.IntBuffer;
 
 public class BetterTextRenderer {
     private int[] CHARS_WIDTH_ASCII = new int[65536];
-    public int imageInt = 0;
-    private int anInt;
+    public int[] imageInt = new int[256];
+    private int[] anInt = new int[256];
     private IntBuffer intBuffer = class_214.method_745(1024);
 
     private static final int GLYPH_HEIGHT = 8;
     private static final int GLYPH_WIDTH = 8;
     private byte[] CHARS_WIDTH = new byte[65536];
+    private static final String str = "0123456789abcdef";
+    private static final String str1 = "0123456789abcdef";
 
-    public BetterTextRenderer(GameOptions arg, TextureManager arg1) {
-        this.loadGlyphSizes();
+    private void loadFonts(GameOptions arg, TextureManager arg1) {
+        String a = str;
+
+        for (int a1 = 0; a1 < a.length(); a1++) {
+            for (int a2 = 0; a2 < str1.length(); a2++) {
+                loadFont(arg, arg1, a.charAt(a1), str1.charAt(a2));
+            }
+        }
+    }
+
+    private void loadFont(GameOptions arg, TextureManager arg1, char a, char b) {
+        String aString = str;
         BufferedImage fontImage;
         try {
-            fontImage = ImageIO.read(BetterTextRenderer.class.getResourceAsStream("/assets/modid/font/unicode_page_00 (copie).png"));
+            fontImage = ImageIO.read(BetterTextRenderer.class.getResourceAsStream("/assets/modid/font/unicode_page_" + a + b + ".png"));
         } catch (IOException var18) {
             throw new RuntimeException(var18);
+        } catch (IllegalArgumentException e) {
+            return;
         }
 
         int imageWidth = fontImage.getWidth();
@@ -37,6 +51,7 @@ public class BetterTextRenderer {
         int[] pixels = new int[imageWidth * imageHeight];
         fontImage.getRGB(0, 0, imageWidth, imageHeight, pixels, 0, imageWidth);
 
+        int fontBlock = ((aString.indexOf(a) * 16) + str1.indexOf(b)) * 256;
         for(int unicodeId = 0; unicodeId < 256; ++unicodeId) {
             int euclidean = unicodeId % GLYPH_HEIGHT;
             int nonEuclidean = unicodeId / GLYPH_WIDTH;
@@ -59,19 +74,21 @@ public class BetterTextRenderer {
                 }
             }
 
-            if (unicodeId == 32) {
+            int unicode = unicodeId + fontBlock;
+            if (unicode == 32) {
                 charWidth = 2;
             }
 
-            this.CHARS_WIDTH_ASCII[unicodeId] = charWidth + 2;
+            this.CHARS_WIDTH_ASCII[unicode] = charWidth + 2;
         }
 
-        this.imageInt = arg1.glLoadImage(fontImage);
-        this.anInt = class_214.method_741(288);
+        int fontBlockIndex = (aString.indexOf(a) * 16) + str1.indexOf(b);
+        this.imageInt[fontBlockIndex] = arg1.glLoadImage(fontImage);
+        this.anInt[fontBlockIndex] = class_214.method_741(288 + fontBlockIndex);
         Tessellator tessellator = Tessellator.INSTANCE;
 
         for(int unicodeId = 0; unicodeId < 256; ++unicodeId) {
-            GL11.glNewList(this.anInt + unicodeId, 4864);
+            GL11.glNewList(this.anInt[fontBlockIndex] + unicodeId + fontBlock, 4864);
             tessellator.start();
             int height = unicodeId % 16 * GLYPH_HEIGHT;
             int width = unicodeId / 16 * GLYPH_WIDTH;
@@ -113,7 +130,7 @@ public class BetterTextRenderer {
 
             tessellator.draw();
 
-            GL11.glTranslatef(this.getCharWidth(unicodeId), 0.0F, 0.0F);
+            GL11.glTranslatef(this.getCharWidth(unicodeId + fontBlock), 0.0F, 0.0F);
             GL11.glEndList();
         }
 
@@ -142,11 +159,15 @@ public class BetterTextRenderer {
                 blue /= 4;
             }
 
-            GL11.glNewList(this.anInt + 256 + var21, 4864);
+            GL11.glNewList(this.anInt[fontBlockIndex] + 256 + var21, 4864);
             GL11.glColor3f((float)red / 255.0F, (float)green / 255.0F, (float)blue / 255.0F);
             GL11.glEndList();
         }
+    }
 
+    public BetterTextRenderer(GameOptions arg, TextureManager arg1) {
+        this.loadGlyphSizes();
+        this.loadFonts(arg, arg1);
     }
 
     public void drawTextWithShadow(String string, int x, int y, int z) {
@@ -166,7 +187,6 @@ public class BetterTextRenderer {
                 z = z + var6;
             }
 
-            GL11.glBindTexture(3553, this.imageInt);
             float red = (float)(z >> 16 & 255) / 255.0F;
             float green = (float)(z >> 8 & 255) / 255.0F;
             float blue = (float)(z & 255) / 255.0F;
@@ -176,28 +196,50 @@ public class BetterTextRenderer {
             }
 
             GL11.glColor4f(red, green, blue, alpha);
-            ((Buffer)this.intBuffer).clear();
             GL11.glPushMatrix();
             GL11.glTranslatef((float)x, (float)y, 0.0F);
-
             for(int var12 = 0; var12 < string.length(); ++var12) {
-                for(; string.length() > var12 + 1 && string.charAt(var12) == 167; var12 += 2) {
-                    int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(var12 + 1));
-                    if (var13 < 0 || var13 > 15) {
-                        var13 = 15;
+                ((Buffer)this.intBuffer).clear();
+                int var141 = BetterCharacterUtils.getId(string.charAt(var12));
+                for (int a1 = 0; a1 < str.length(); a1++) {
+                    boolean breack = false;
+                    for (int a2 = 0; a2 < str1.length(); a2++) {
+                        if ((var141 - ((a1*16) + a2)*256) <= 256) {
+                            GL11.glBindTexture(3553, this.imageInt[((a1*16) + a2)]);
+                            breack = true;
+                            break;
+                        }
                     }
-
-                    this.intBuffer.put(this.anInt + 256 + var13 + (flag ? 16 : 0));
-                    if (this.intBuffer.remaining() == 0) {
-                        ((Buffer)this.intBuffer).flip();
-                        GL11.glCallLists(this.intBuffer);
-                        ((Buffer)this.intBuffer).clear();
-                    }
+                    if (breack) break;
                 }
+
+//                for(; string.length() > var12 + 1 && string.charAt(var12) == 167; var12 += 2) {
+//                    int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(var12 + 1));
+//                    if (var13 < 0 || var13 > 15) {
+//                        var13 = 15;
+//                    }
+//
+//                    this.intBuffer.put(this.anInt[0] + 256 + var13 + (flag ? 16 : 0));
+//                    if (this.intBuffer.remaining() == 0) {
+//                        ((Buffer)this.intBuffer).flip();
+//                        GL11.glCallLists(this.intBuffer);
+//                        ((Buffer)this.intBuffer).clear();
+//                    }
+//                }
 
                 if (var12 < string.length()) {
                     int var14 = BetterCharacterUtils.getId(string.charAt(var12));
-                    this.intBuffer.put(this.anInt + var14);
+                    for (int a1 = 0; a1 < str.length(); a1++) {
+                        boolean breack = false;
+                        for (int a2 = 0; a2 < str1.length(); a2++) {
+                            if ((var14 - ((a1*16) + a2)*256) <= 256) {
+                                this.intBuffer.put(this.anInt[((a1*16) + a2)] + var14);
+                                breack = true;
+                                break;
+                            }
+                        }
+                        if (breack) break;
+                    }
                 }
 
                 if (this.intBuffer.remaining() == 0) {
@@ -205,10 +247,9 @@ public class BetterTextRenderer {
                     GL11.glCallLists(this.intBuffer);
                     ((Buffer)this.intBuffer).clear();
                 }
+                ((Buffer)this.intBuffer).flip();
+                GL11.glCallLists(this.intBuffer);
             }
-
-            ((Buffer)this.intBuffer).flip();
-            GL11.glCallLists(this.intBuffer);
             GL11.glPopMatrix();
         }
     }

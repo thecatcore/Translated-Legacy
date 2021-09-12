@@ -3,11 +3,11 @@ package fr.catcore.translatedlegacy;
 import java.io.IOException;
 
 import fr.catcore.translatedlegacy.font.BetterTextRenderer;
-import io.github.minecraftcursedlegacy.api.config.Configs;
-import io.github.minecraftcursedlegacy.api.registry.Id;
+//import io.github.minecraftcursedlegacy.api.config.Configs;
+//import io.github.minecraftcursedlegacy.api.registry.Id;
 import net.fabricmc.api.ModInitializer;
-import tk.valoeghese.zoesteriaconfig.api.container.WritableConfig;
-import tk.valoeghese.zoesteriaconfig.api.template.ConfigTemplate;
+//import tk.valoeghese.zoesteriaconfig.api.container.WritableConfig;
+//import tk.valoeghese.zoesteriaconfig.api.template.ConfigTemplate;
 
 public class ExampleMod implements ModInitializer {
 

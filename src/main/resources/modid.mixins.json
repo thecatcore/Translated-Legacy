@@ -3,6 +3,7 @@
   "package": "fr.catcore.translatedlegacy.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "client.gui.widget.TextboxMixin",
     "inventory.ChestMixin",
     "inventory.DoubleInventoryMixin",
     "inventory.MinecartMixin",
