@@ -1,0 +1,30 @@
+{
+    "change": {},
+    "same": {
+        "item.bootsGold.name": "u",
+        "item.bucketLava.name": "u",
+        "entity.PigZombie.name": "u"
+    },
+    "remove": {
+        "chat.link.confirm": "r",
+        "chat.link.warning": "r",
+        "chat.copy": "r",
+        "tile.redstoneLight.name": "r",
+        "item.expBottle.name": "r",
+        "item.fireball.name": "r",
+        "container.inventory": "s",
+        "container.crafting": "s",
+        "container.dispenser": "s",
+        "container.furnace": "s",
+        "container.enchant": "r",
+        "container.creative": "r",
+        "container.brewing": "r",
+        "container.chest": "s",
+        "container.minecart": "s",
+        "entity.VillagerGolem.name": "r",
+        "entity.SnowMan.name": "r",
+        "entity.Ozelot.name": "r",
+        "entity.Cat.name": "r",
+        "potion.potency.0": "r"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "name": "lenigma",
+    "dependencies": {
+        "node-fetch": "^3.0.0"
+    },
+    "type": "module"
+}
