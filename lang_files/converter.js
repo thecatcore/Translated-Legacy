@@ -18,6 +18,8 @@ const order = [
     {version:"b1.7.3", inJar: true}
 ]
 
+let languageList = {};
+
 const assetsURL = "https://resources.download.minecraft.net/{0}/{1}";
 
 async function loadManifest(version) {
@@ -26,6 +28,12 @@ async function loadManifest(version) {
         return array[index].id == version.version
     }).url;
     let versionManifest = (await(await fetch(versionURL)).json())
+
+    try {
+        fs.mkdirSync(`./${version.version}`)
+    } catch (e) {
+
+    }
     
     if (version.inJar) {
 
@@ -33,8 +41,56 @@ async function loadManifest(version) {
         let assetIndexURL = versionManifest.assetIndex.url;
         let assetIndex = (await(await fetch(assetIndexURL)).json()).objects
 
-        let mcmetaURL = hashToURL(assetIndex["pack.mcmeta"].hash)
-        console.log(mcmetaURL)
+        if (!languageList["en_us"]) {
+            let mcmetaURL = hashToURL(assetIndex["pack.mcmeta"].hash)
+            languageList = (await (await fetch(mcmetaURL)).json()).language
+        }
+
+        let codeToURL = {}
+
+        for (let code in languageList) {
+            for (let key in assetIndex) {
+                if (key.toLowerCase().includes(code)) {
+                    codeToURL[code] = hashToURL(assetIndex[key].hash)
+                    break
+                }
+            }
+        }
+
+        for (let code in codeToURL) {
+            let url = codeToURL[code];
+            
+            let content = await (await fetch(url)).text();
+
+            fs.writeFileSync(`./${version.version}/${code.toLowerCase()}.lang`, content)
+        }
+    }
+}
+
+async function downloadLangFiles() {
+    for (let i in order) {
+        console.log("Downloading " + order[i].version + " lang files")
+        await loadManifest(order[i]);
+
+        if (i > 0) {
+            try {
+                fs.mkdirSync(`./${order[i].version}-new`)
+            } catch (e) {
+
+            }
+        }
+    }
+
+    for (let i in order) {
+        console.log("Converting " + order[i].version + " lang files")
+        let newI = (Number.parseInt(i)+1);
+
+        if (newI < order.length) {
+            for (let code in languageList) {
+                console.log("Converting " + code)
+                await convert(order[i].version, order[newI].version, code);
+            }
+        }
     }
 }
 
@@ -44,12 +100,36 @@ function hashToURL(hash) {
     return assetsURL.replace("{0}", small).replace("{1}", hash)
 }
 
-async function convert(name_old, name_new) {
-    let diffFile = JSON.parse(fs.readFileSync(`./diff-${name_old}-${name_new}.json`))
+async function convert(name_old, name_new, code) {
+    let diffFile = JSON.parse(fs.readFileSync(`./diff-${name_new}-${name_old}.json`))
 
-    let lFile = fs.readFileSync(`./en_US_${name_new}.lang`);
+    let lFile = fs.readFileSync(`./${name_old}-new/${code}.lang`);
 
-    let lines = lFile.toString().split("\n")
+    let nFile;
+
+    try {
+        nFile = fs.readFileSync(`./${name_new}-new/${code}.lang`)
+    } catch (e) {
+        nFile = fs.readFileSync(`./en_US_${name_new}.lang`)
+    }
+
+    let map = await readLangFile(lFile);
+    
+    let newMap = await readLangFile(nFile);
+
+    map = await transform(diffFile["change"], map)
+    map = await sameKey(diffFile["same"], map)
+    map = await removeKey(diffFile["remove"], map)
+
+    if (diffFile["new"]) {
+        map = await addKey(diffFile["new"], map, newMap)
+    }
+
+    fs.writeFileSync(`./${name_new}-new/${code}.lang`, toLangFormat(map))
+}
+
+async function readLangFile(file) {
+    let lines = file.toString().split("\n")
 
     let map = {}
 
@@ -59,11 +139,18 @@ async function convert(name_old, name_new) {
         map[line[0]] = line[1]
     }
 
-    map = await transform(diffFile["change"], map)
-    map = await sameKey(diffFile["same"], map)
-    map = await removeKey(diffFile["remove"], map)
+    return map;
+}
 
-    fs.writeFileSync(`./en_US_${name_old}_new.lang`, toLangFormat(map))
+async function addKey(diffFileNew, map, newMap) {
+    for (let key in diffFileNew) {
+        if (diffFileNew[key] == "s") continue
+
+        map[key] = newMap[key];
+    }
+
+
+    return map;
 }
 
 async function transform(diffFileChange, map) {
@@ -116,5 +203,4 @@ function toLangFormat(map) {
     return str
 }
 
-// convert("1.1", "1.2.5")
-loadManifest(order[6])
+downloadLangFiles()
