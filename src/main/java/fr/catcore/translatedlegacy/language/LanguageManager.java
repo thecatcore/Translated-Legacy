@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class LanguageManager {
 
-    private static final String DEFAULT_LANGUAGE = "de_de";
+    private static final String DEFAULT_LANGUAGE = "en_us";
     private static final Map<String, OldTranslationStorage> CODE_TO_STORAGE = new HashMap<>();
 
     private static final Gson GSON = new GsonBuilder().create();
