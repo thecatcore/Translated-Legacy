@@ -18,7 +18,7 @@ public abstract class FurnaceScreenMixin extends ContainerScreen {
      * @author CatCore
      */
     @Overwrite
-    protected void renderForeground() {
+    public void renderForeground() {
         TranslationStorage translationStorage = TranslationStorage.getInstance();
 
         this.textManager.drawText(translationStorage.translate("container.furnace"), 60, 6, 4210752);

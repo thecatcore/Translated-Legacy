@@ -18,7 +18,7 @@ public abstract class CraftingScreenMixin extends ContainerScreen {
      * @author CatCore
      */
     @Overwrite
-    protected void renderForeground() {
+    public void renderForeground() {
         TranslationStorage translationStorage = TranslationStorage.getInstance();
 
         this.textManager.drawText(translationStorage.translate("container.crafting"), 28, 6, 4210752);

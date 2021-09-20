@@ -3,7 +3,7 @@
   "id": "modid",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Translated Legacy",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "Me!"
@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "init": [
-      "fr.catcore.translatedlegacy.ExampleMod"
+      "fr.catcore.translatedlegacy.TranslatedLegacy"
     ]
   },
   "mixins": [

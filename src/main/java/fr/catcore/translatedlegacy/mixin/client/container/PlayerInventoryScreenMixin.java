@@ -18,7 +18,7 @@ public abstract class PlayerInventoryScreenMixin extends ContainerScreen {
      * @author CatCore
      */
     @Overwrite
-    protected void renderForeground() {
+    public void renderForeground() {
         this.textManager.drawText(I18n.translate("container.crafting"), 86, 16, 4210752);
     }
 }
