@@ -108,9 +108,11 @@ async function convert(name_old, name_new, code) {
     let nFile;
 
     try {
-        nFile = fs.readFileSync(`./${name_new}-new/${code}.lang`)
+        nFile = fs.readFileSync(`./${name_new}/${code}.lang`)
     } catch (e) {
-        nFile = fs.readFileSync(`./en_US_${name_new}.lang`)
+        if (e) {
+            nFile = fs.readFileSync(`./en_US_${name_new}.lang`)
+        }
     }
 
     let map = await readLangFile(lFile);
@@ -120,10 +122,7 @@ async function convert(name_old, name_new, code) {
     map = await transform(diffFile["change"], map)
     map = await sameKey(diffFile["same"], map)
     map = await removeKey(diffFile["remove"], map)
-
-    if (diffFile["new"]) {
-        map = await addKey(diffFile["new"], map, newMap)
-    }
+    map = await addKey(diffFile["add"], map, newMap)
 
     fs.writeFileSync(`./${name_new}-new/${code}.lang`, toLangFormat(map))
 }
@@ -143,6 +142,8 @@ async function readLangFile(file) {
 }
 
 async function addKey(diffFileNew, map, newMap) {
+    if (diffFileNew == undefined) return map
+    
     for (let key in diffFileNew) {
         if (diffFileNew[key] == "s") continue
 
