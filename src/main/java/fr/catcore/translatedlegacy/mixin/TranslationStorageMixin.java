@@ -23,7 +23,7 @@ public class TranslationStorageMixin {
      */
     @Overwrite
     public String translate(String key, Object... arg) {
-        return LanguageManager.CURRENT_LANGUAGE.translate(key, key);
+        return LanguageManager.CURRENT_LANGUAGE.translate(key, arg);
     }
 
     /**
