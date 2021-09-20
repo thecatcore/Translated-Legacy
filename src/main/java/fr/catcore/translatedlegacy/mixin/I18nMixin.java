@@ -20,6 +20,6 @@ public class I18nMixin {
      */
     @Overwrite
     public static String translate(String key, Object... arg) {
-        return LanguageManager.CURRENT_LANGUAGE.translate(key, key);
+        return LanguageManager.CURRENT_LANGUAGE.translate(key, arg);
     }
 }
