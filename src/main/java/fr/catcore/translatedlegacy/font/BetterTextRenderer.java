@@ -36,10 +36,9 @@ public class BetterTextRenderer {
     }
 
     private void loadFont(GameOptions arg, TextureManager arg1, char a, char b) {
-        String aString = str;
         BufferedImage fontImage;
         try {
-            fontImage = ImageIO.read(BetterTextRenderer.class.getResourceAsStream("/assets/modid/font/unicode_page_" + a + b + ".png"));
+            fontImage = ImageIO.read(BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/font/unicode_page_" + a + b + ".png"));
         } catch (IOException var18) {
             throw new RuntimeException(var18);
         } catch (IllegalArgumentException e) {
@@ -51,7 +50,8 @@ public class BetterTextRenderer {
         int[] pixels = new int[imageWidth * imageHeight];
         fontImage.getRGB(0, 0, imageWidth, imageHeight, pixels, 0, imageWidth);
 
-        int fontBlock = ((aString.indexOf(a) * 16) + str1.indexOf(b)) * 256;
+        int fontBlockIndex = (str.indexOf(a) * 16) + str1.indexOf(b);
+        int fontBlock = fontBlockIndex * 256;
         for(int unicodeId = 0; unicodeId < 256; ++unicodeId) {
             int euclidean = unicodeId % GLYPH_HEIGHT;
             int nonEuclidean = unicodeId / GLYPH_WIDTH;
@@ -61,11 +61,12 @@ public class BetterTextRenderer {
                 int var12 = euclidean * 8 + charWidth;
                 boolean wipLine = true;
 
-                for(int charHeight = 0; charHeight < 8 && wipLine; ++charHeight) {
+                for(int charHeight = 0; charHeight < 8; ++charHeight) {
                     int var15 = (nonEuclidean * 8 + charHeight) * imageWidth;
                     int outOfBound = pixels[var12 + var15] & 255;
                     if (outOfBound > 0) {
                         wipLine = false;
+                        break;
                     }
                 }
 
@@ -82,7 +83,6 @@ public class BetterTextRenderer {
             this.CHARS_WIDTH_ASCII[unicode] = charWidth + 2;
         }
 
-        int fontBlockIndex = (aString.indexOf(a) * 16) + str1.indexOf(b);
         this.imageInt[fontBlockIndex] = arg1.glLoadImage(fontImage);
         this.anInt[fontBlockIndex] = class_214.method_741(288 + fontBlockIndex);
         Tessellator tessellator = Tessellator.INSTANCE;
@@ -98,34 +98,34 @@ public class BetterTextRenderer {
 
             tessellator.vertex(
                     0.0D,
-                    (double)(0.0F + var26),
+                    0.0F + var26,
                     0.0D,
-                    (double)((float)height / 128.0F + var28),
-                    (double)(((float)width + var26) / 128.0F + var30)
+                    (float)height / 128.0F + var28,
+                    ((float)width + var26) / 128.0F + var30
             );
 
             tessellator.vertex(
-                    (double)(0.0F + var26),
-                    (double)(0.0F + var26),
+                    0.0F + var26,
+                    0.0F + var26,
                     0.0D,
-                    (double)(((float)height + var26) / 128.0F + var28),
-                    (double)(((float)width + var26) / 128.0F + var30)
+                    ((float)height + var26) / 128.0F + var28,
+                    ((float)width + var26) / 128.0F + var30
             );
 
             tessellator.vertex(
-                    (double)(0.0F + var26),
+                    0.0F + var26,
                     0.0D,
                     0.0D,
-                    (double)(((float)height + var26) / 128.0F + var28),
-                    (double)((float)width / 128.0F + var30)
+                    ((float)height + var26) / 128.0F + var28,
+                    (float)width / 128.0F + var30
             );
 
             tessellator.vertex(
                     0.0D,
                     0.0D,
                     0.0D,
-                    (double)((float)height / 128.0F + var28),
-                    (double)((float)width / 128.0F + var30)
+                    (float)height / 128.0F + var28,
+                    (float)width / 128.0F + var30
             );
 
             tessellator.draw();
@@ -138,7 +138,7 @@ public class BetterTextRenderer {
             int var23 = (var21 >> 3 & 1) * 85;
             int red = (var21 >> 2 & 1) * 170 + var23;
             int green = (var21 >> 1 & 1) * 170 + var23;
-            int blue = (var21 >> 0 & 1) * 170 + var23;
+            int blue = (var21 & 1) * 170 + var23;
             if (var21 == 6) {
                 red += 85;
             }
@@ -291,7 +291,7 @@ public class BetterTextRenderer {
         InputStream inputStream = null;
 
         try {
-            inputStream = BetterTextRenderer.class.getResourceAsStream("/assets/modid/font/glyph_sizes.bin");
+            inputStream = BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/font/glyph_sizes.bin");
             inputStream.read(this.CHARS_WIDTH);
         } catch (IOException var6) {
             throw new RuntimeException(var6);
@@ -308,9 +308,9 @@ public class BetterTextRenderer {
     public void drawText(String string, int x, int y, int z, int z1) {
         String[] lines = string.split("\n");
         if (lines.length > 1) {
-            for(int lineIndex = 0; lineIndex < lines.length; ++lineIndex) {
-                this.drawText(lines[lineIndex], x, y, z, z1);
-                y += this.getLineWidth(lines[lineIndex], z);
+            for (String line : lines) {
+                this.drawText(line, x, y, z, z1);
+                y += this.getLineWidth(line, z);
             }
 
         } else {
@@ -349,8 +349,8 @@ public class BetterTextRenderer {
         if (lines.length > 1) {
             int var9 = 0;
 
-            for(int lineIndex = 0; lineIndex < lines.length; ++lineIndex) {
-                var9 += this.getLineWidth(lines[lineIndex], z);
+            for (String line : lines) {
+                var9 += this.getLineWidth(line, z);
             }
 
             return var9;

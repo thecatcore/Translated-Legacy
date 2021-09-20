@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "translatedlegacy",
   "version": "${version}",
 
   "name": "Translated Legacy",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "",
   "authors": [
-    "Me!"
+    "Cat Core"
   ],
   "contact": {
     "issues": "https://github.com/minecraft-cursed-legacy/Example-Mod/issues",
@@ -14,7 +14,7 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/translatedlegacy/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -23,14 +23,11 @@
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "translatedlegacy.mixins.json"
   ],
 
   "depends": {
     "fabricloader": "*",
     "minecraft": "1.0.0-beta.7.3"
-  },
-  "suggests": {
-    "flamingo": "*"
   }
 }

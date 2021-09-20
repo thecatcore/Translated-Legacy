@@ -26,7 +26,7 @@ public class LanguageManager {
             JsonObject languageEntry = jsonObject.getAsJsonObject(code);
             CODE_TO_STORAGE.put(code, new OldTranslationStorage(languageEntry.get("name").getAsString(), languageEntry.get("region").getAsString()));
             try {
-                CODE_TO_STORAGE.get(code).load(LanguageManager.class.getResourceAsStream("/assets/modid/lang_default/" + code + ".lang"));
+                CODE_TO_STORAGE.get(code).load(LanguageManager.class.getResourceAsStream("/assets/minecraft/lang_default/" + code + ".lang"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

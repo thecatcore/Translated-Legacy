@@ -3,15 +3,16 @@ package fr.catcore.translatedlegacy.language;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class OldTranslationStorage {
 
-//    private final Properties translations = new Properties();
     private final Map<String, String> translations = new HashMap<>();
     public final String name;
     public final String region;
