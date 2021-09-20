@@ -68,7 +68,7 @@ public class LanguageScreen extends Screen {
 
         @Override
         protected void method_1267(int i, boolean flag) {
-            LanguageManager.CURRENT_LANGUAGE = (OldTranslationStorage) LanguageManager.CODE_TO_STORAGE.values().toArray()[i];
+            LanguageManager.switchLanguage((OldTranslationStorage) LanguageManager.CODE_TO_STORAGE.values().toArray()[i]);
             LanguageScreen.this.minecraft.textureManager.method_1096();
             for (Object object : LanguageScreen.this.buttons) {
                 if (object instanceof Button) {

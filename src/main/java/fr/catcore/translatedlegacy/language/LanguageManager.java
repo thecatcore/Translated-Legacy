@@ -6,9 +6,7 @@ import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class LanguageManager {
 
@@ -18,6 +16,8 @@ public class LanguageManager {
     private static final Gson GSON = new GsonBuilder().create();
 
     public static OldTranslationStorage CURRENT_LANGUAGE = init();
+
+    private static final List<LanguageSwitchCallback> CALLBACKS = new ArrayList<>();
 
     public static OldTranslationStorage init() {
         JsonObject jsonObject = GSON.fromJson(new InputStreamReader(LanguageManager.class.getResourceAsStream("/pack.mcmeta")), JsonObject.class).getAsJsonObject("language");
@@ -33,5 +33,20 @@ public class LanguageManager {
         }
 
         return CODE_TO_STORAGE.get(DEFAULT_LANGUAGE);
+    }
+
+    public static void switchLanguage(OldTranslationStorage newL) {
+        CURRENT_LANGUAGE = newL;
+        for (LanguageSwitchCallback languageSwitchCallback : CALLBACKS) {
+            languageSwitchCallback.changed(newL.name);
+        }
+    }
+
+    public static void registerCallback(LanguageSwitchCallback callback) {
+        CALLBACKS.add(callback);
+    }
+
+    public interface LanguageSwitchCallback {
+        void changed(String code);
     }
 }

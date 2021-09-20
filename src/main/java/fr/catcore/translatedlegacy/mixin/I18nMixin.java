@@ -12,7 +12,7 @@ public class I18nMixin {
      */
     @Overwrite
     public static String translate(String key) {
-        return LanguageManager.CURRENT_LANGUAGE.translate(key);
+        return key.startsWith("stat.") ? key.replace("stat.", "") : LanguageManager.CURRENT_LANGUAGE.translate(key);
     }
 
     /**

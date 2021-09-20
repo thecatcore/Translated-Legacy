@@ -3,7 +3,9 @@
   "package": "fr.catcore.translatedlegacy.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "AchievementMixin",
     "I18nMixin",
+    "StatMixin",
     "TranslationStorageMixin",
     "client.EditSignScreenMixin",
     "client.LevelSaveConflictScreenMixin",
