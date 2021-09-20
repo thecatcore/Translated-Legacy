@@ -8,6 +8,7 @@
     "client.EditSignScreenMixin",
     "client.LevelSaveConflictScreenMixin",
     "client.MinecraftMixin",
+    "client.OptionsScreenMixin",
     "client.PauseScreenMixin",
     "client.container.CraftingScreenMixin",
     "client.container.DispenserScreenMixin",
