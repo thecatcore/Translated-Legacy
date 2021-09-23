@@ -34,17 +34,30 @@ public class OldTranslationStorage {
         }
     }
 
+    private boolean isDefaultLanguage() {
+        return this == LanguageManager.CODE_TO_STORAGE.get(LanguageManager.DEFAULT_LANGUAGE);
+    }
+
     public String translate(String key) {
-        return this.translations.getOrDefault(key, key);
+        String defaultValue = isDefaultLanguage() ? key : LanguageManager.CODE_TO_STORAGE
+                .get(LanguageManager.DEFAULT_LANGUAGE)
+                .translate(key);
+        return this.translations.getOrDefault(key, defaultValue);
     }
 
     public String translate(String key, Object... arg) {
-        String var3 = this.translations.getOrDefault(key, key);
+        String defaultValue = isDefaultLanguage() ? key : LanguageManager.CODE_TO_STORAGE
+                .get(LanguageManager.DEFAULT_LANGUAGE)
+                .translate(key);
+        String var3 = this.translations.getOrDefault(key, defaultValue);
         return String.format(var3, arg);
     }
 
     @Environment(EnvType.CLIENT)
     public String method_995(String string) {
-        return this.translations.getOrDefault(string + ".name", "");
+        String defaultValue = isDefaultLanguage() ? "" : LanguageManager.CODE_TO_STORAGE
+                .get(LanguageManager.DEFAULT_LANGUAGE)
+                .method_995(string);
+        return this.translations.getOrDefault(string + ".name", defaultValue);
     }
 }

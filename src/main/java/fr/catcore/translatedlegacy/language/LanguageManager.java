@@ -10,7 +10,7 @@ import java.util.*;
 
 public class LanguageManager {
 
-    private static final String DEFAULT_LANGUAGE = "en_us";
+    public static final String DEFAULT_LANGUAGE = "en_us";
     public static final Map<String, OldTranslationStorage> CODE_TO_STORAGE = new TreeMap<>();
 
     private static final Gson GSON = new GsonBuilder().create();
