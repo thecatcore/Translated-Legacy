@@ -170,32 +170,33 @@ public class BetterTextRenderer {
         this.loadFonts(arg, arg1);
     }
 
-    public void drawTextWithShadow(String string, int x, int y, int z) {
-        this.drawText(string, x + 1, y + 1, z, true);
-        this.drawText(string, x, y, z);
+    public void drawTextWithShadow(String string, int x, int y, int color) {
+        this.drawText(string, x + 1, y + 1, color, true);
+        this.drawText(string, x, y, color);
     }
 
-    public void drawText(String string, int x, int y, int z) {
-        this.drawText(string, x, y, z, false);
+    public void drawText(String string, int x, int y, int color) {
+        this.drawText(string, x, y, color, false);
     }
 
-    public void drawText(String string, int x, int y, int z, boolean flag) {
+    public void drawText(String string, int x, int y, int color, boolean flag) {
         if (string != null) {
             if (flag) {
-                int var6 = z & -16777216;
-                z = (z & 16579836) >> 2;
-                z = z + var6;
+                int var6 = color & -16777216;
+                color = (color & 16579836) >> 2;
+                color = color + var6;
             }
 
-            float red = (float)(z >> 16 & 255) / 255.0F;
-            float green = (float)(z >> 8 & 255) / 255.0F;
-            float blue = (float)(z & 255) / 255.0F;
-            float alpha = (float)(z >> 24 & 255) / 255.0F;
+            float red = (float)(color >> 16 & 255) / 255.0F;
+            float green = (float)(color >> 8 & 255) / 255.0F;
+            float blue = (float)(color & 255) / 255.0F;
+            float alpha = (float)(color >> 24 & 255) / 255.0F;
             if (alpha == 0.0F) {
                 alpha = 1.0F;
             }
 
             GL11.glColor4f(red, green, blue, alpha);
+
             GL11.glPushMatrix();
             GL11.glTranslatef((float)x, (float)y, 0.0F);
             for(int var12 = 0; var12 < string.length(); ++var12) {
@@ -213,19 +214,19 @@ public class BetterTextRenderer {
                     if (breack) break;
                 }
 
-//                for(; string.length() > var12 + 1 && string.charAt(var12) == 167; var12 += 2) {
-//                    int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(var12 + 1));
-//                    if (var13 < 0 || var13 > 15) {
-//                        var13 = 15;
-//                    }
-//
-//                    this.intBuffer.put(this.anInt[0] + 256 + var13 + (flag ? 16 : 0));
-//                    if (this.intBuffer.remaining() == 0) {
-//                        ((Buffer)this.intBuffer).flip();
-//                        GL11.glCallLists(this.intBuffer);
-//                        ((Buffer)this.intBuffer).clear();
-//                    }
-//                }
+                for(; string.length() > var12 + 1 && string.charAt(var12) == 167; var12 += 2) {
+                    int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(var12 + 1));
+                    if (var13 < 0 || var13 > 15) {
+                        var13 = 15;
+                    }
+
+                    this.intBuffer.put(this.anInt[0] + 256 + var13 + (flag ? 16 : 0));
+                    if (this.intBuffer.remaining() == 0) {
+                        ((Buffer)this.intBuffer).flip();
+                        GL11.glCallLists(this.intBuffer);
+                        ((Buffer)this.intBuffer).clear();
+                    }
+                }
 
                 if (var12 < string.length()) {
                     int var14 = BetterCharacterUtils.getId(string.charAt(var12));
@@ -305,12 +306,12 @@ public class BetterTextRenderer {
 
     }
 
-    public void drawText(String string, int x, int y, int z, int z1) {
+    public void drawText(String string, int x, int y, int width, int color) {
         String[] lines = string.split("\n");
         if (lines.length > 1) {
             for (String line : lines) {
-                this.drawText(line, x, y, z, z1);
-                y += this.getLineWidth(line, z);
+                this.drawText(line, x, y, width, color);
+                y += this.getLineWidth(line, width);
             }
 
         } else {
@@ -320,23 +321,23 @@ public class BetterTextRenderer {
             while(wordIndex < words.length) {
                 String word;
                 for(word = words[wordIndex++] + " ";
-                    wordIndex < words.length && this.getTextWidth(word + words[wordIndex]) < z;
+                    wordIndex < words.length && this.getTextWidth(word + words[wordIndex]) < width;
                     word = word + words[wordIndex++] + " ") {
                 }
 
                 int var10;
-                for(; this.getTextWidth(word) > z; word = word.substring(var10)) {
-                    for(var10 = 0; this.getTextWidth(word.substring(0, var10 + 1)) <= z; ++var10) {
+                for(; this.getTextWidth(word) > width; word = word.substring(var10)) {
+                    for(var10 = 0; this.getTextWidth(word.substring(0, var10 + 1)) <= width; ++var10) {
                     }
 
                     if (word.substring(0, var10).trim().length() > 0) {
-                        this.drawText(word.substring(0, var10), x, y, z1);
+                        this.drawText(word.substring(0, var10), x, y, color);
                         y += 8;
                     }
                 }
 
                 if (word.trim().length() > 0) {
-                    this.drawText(word, x, y, z1);
+                    this.drawText(word, x, y, color);
                     y += 8;
                 }
             }
