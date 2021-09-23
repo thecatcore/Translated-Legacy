@@ -3,7 +3,6 @@ package fr.catcore.translatedlegacy.mixin.client.gui.widget;
 import fr.catcore.translatedlegacy.font.BetterCharacterUtils;
 import net.minecraft.client.gui.Screen;
 import net.minecraft.client.gui.widgets.Textbox;
-import net.minecraft.util.CharacterUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;

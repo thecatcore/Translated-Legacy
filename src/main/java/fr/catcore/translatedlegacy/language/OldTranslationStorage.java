@@ -16,10 +16,12 @@ public class OldTranslationStorage {
     private final Map<String, String> translations = new HashMap<>();
     public final String name;
     public final String region;
+    public final String code;
 
-    public OldTranslationStorage(String name, String region) {
+    public OldTranslationStorage(String name, String region, String code) {
         this.name = name;
         this.region = region;
+        this.code = code;
     }
 
     protected void load(InputStream inputStream) throws IOException {
@@ -32,6 +34,10 @@ public class OldTranslationStorage {
                 translations.put(parts[0], parts[1]);
             }
         }
+    }
+
+    protected void clear() {
+        this.translations.clear();
     }
 
     private boolean isDefaultLanguage() {

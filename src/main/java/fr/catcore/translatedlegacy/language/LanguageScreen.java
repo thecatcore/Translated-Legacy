@@ -7,6 +7,8 @@ import net.minecraft.client.gui.widgets.OptionButton;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.resource.language.TranslationStorage;
 
+import java.util.Objects;
+
 public class LanguageScreen extends Screen {
     protected Screen parent;
     protected LanguageList list;
@@ -68,7 +70,7 @@ public class LanguageScreen extends Screen {
 
         @Override
         protected void method_1267(int i, boolean flag) {
-            LanguageManager.switchLanguage((OldTranslationStorage) LanguageManager.CODE_TO_STORAGE.values().toArray()[i]);
+            LanguageManager.switchLanguage(((OldTranslationStorage) LanguageManager.CODE_TO_STORAGE.values().toArray()[i]).code);
             LanguageScreen.this.minecraft.textureManager.method_1096();
             for (Object object : LanguageScreen.this.buttons) {
                 if (object instanceof Button) {
@@ -80,7 +82,7 @@ public class LanguageScreen extends Screen {
 
         @Override
         protected boolean method_1270(int i) {
-            return (OldTranslationStorage) LanguageManager.CODE_TO_STORAGE.values().toArray()[i] == LanguageManager.CURRENT_LANGUAGE;
+            return Objects.equals(((OldTranslationStorage) LanguageManager.CODE_TO_STORAGE.values().toArray()[i]).code, LanguageManager.CURRENT_LANGUAGE.code);
         }
 
         protected int method_1268() {
