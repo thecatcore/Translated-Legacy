@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "translatedlegacy",
+  "id": "translatedbeta",
   "version": "${version}",
 
   "name": "Translated Legacy",
@@ -9,12 +9,12 @@
     "Cat Core"
   ],
   "contact": {
-    "issues": "https://github.com/minecraft-cursed-legacy/Example-Mod/issues",
-    "sources": "https://github.com/minecraft-cursed-legacy/Example-Mod"
+    "issues": "https://github.com/arthurbambou/Translated-Legacy/issues",
+    "sources": "https://github.com/arthurbambou/Translated-Legacy"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/translatedlegacy/icon.png",
+  "icon": "assets/translatedbeta/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -23,7 +23,8 @@
     ]
   },
   "mixins": [
-    "translatedlegacy.mixins.json"
+    "translatedlegacy.mixins.json",
+    "translatedlegacy-cursedlegacyapi.mixins.json"
   ],
 
   "depends": {

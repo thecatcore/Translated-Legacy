@@ -3,10 +3,17 @@
   "package": "fr.catcore.translatedlegacy.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AchievementMixin",
     "I18nMixin",
     "StatMixin",
     "TranslationStorageMixin",
+    "inventory.ChestMixin",
+    "inventory.DoubleInventoryMixin",
+    "inventory.MinecartMixin",
+    "inventory.PlayerInventoryMixin"
+  ],
+  "client": [
+    "client.DeathScreenMixin",
+    "client.font.TextRendererMixin",
     "client.EditSignScreenMixin",
     "client.LevelSaveConflictScreenMixin",
     "client.MinecraftMixin",
@@ -17,14 +24,7 @@
     "client.container.FurnaceScreenMixin",
     "client.container.PlayerInventoryScreenMixin",
     "client.gui.widget.TextboxMixin",
-    "inventory.ChestMixin",
-    "inventory.DoubleInventoryMixin",
-    "inventory.MinecartMixin",
-    "inventory.PlayerInventoryMixin"
-  ],
-  "client": [
-    "client.DeathScreenMixin",
-    "client.font.TextRendererMixin"
+    "AchievementMixin"
   ],
   "injectors": {
     "defaultRequire": 1

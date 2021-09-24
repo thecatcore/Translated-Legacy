@@ -9,7 +9,6 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.zip.ZipFile;
 
 public class LanguageManager {
 
@@ -100,13 +99,25 @@ public class LanguageManager {
 
                 if (langFile != null) {
                     try {
-                        CODE_TO_STORAGE.get(code).load(langFile);
+                        CODE_TO_STORAGE.get(code).load(modId, langFile);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
         }
+    }
+
+    public static void loadFile(String code, InputStream fileStream) throws IOException {
+        CODE_TO_STORAGE.get(code).load(fileStream);
+    }
+
+    public static void loadFile(String code, Reader fileStream) throws IOException {
+        CODE_TO_STORAGE.get(code).load(fileStream);
+    }
+
+    public static void addTranslation(String code, String key, String value) {
+        CODE_TO_STORAGE.get(code).add(key, value);
     }
 
     public static void switchLanguage(String newCode) {

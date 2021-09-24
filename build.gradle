@@ -37,6 +37,10 @@ repositories {
 		name = 'HalfOf2'
 		url = 'https://storage.googleapis.com/devan-maven/'
 	}
+//	maven {
+//		name "Station API"
+//		url "https://maven.glass-launcher.net/repo"
+//	}
 }
 
 minecraft {
@@ -60,6 +64,7 @@ dependencies {
 
 	// API. You technically don't need it, but it's extremely useful for not having to write the same code in every mod.
 	modImplementation "io.github.minecraft-cursed-legacy:cursed-legacy-api:${project.api_version}"
+//	modImplementation "net.modificationstation:StationLoader:1.3.1:dev"
 }
 
 processResources {

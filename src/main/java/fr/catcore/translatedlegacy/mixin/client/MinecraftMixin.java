@@ -1,5 +1,6 @@
 package fr.catcore.translatedlegacy.mixin.client;
 
+import fr.catcore.translatedlegacy.language.LanguageManager;
 import net.minecraft.client.ClientInteractionManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MovementManager;
@@ -22,6 +23,9 @@ import net.minecraft.util.Vec3i;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
@@ -53,6 +57,11 @@ public abstract class MinecraftMixin {
     @Shadow public Screen currentScreen;
 
     @Shadow public abstract void openScreen(Screen arg);
+
+    @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;openScreen(Lnet/minecraft/client/gui/Screen;)V"))
+    public void init$reloadLang(CallbackInfo ci) {
+        LanguageManager.switchLanguage(LanguageManager.CURRENT_LANGUAGE.code);
+    }
 
     /**
      * @author CatCore
