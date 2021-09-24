@@ -3,8 +3,6 @@ package fr.catcore.translatedlegacy.language;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.FabricLoaderImpl;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
@@ -89,7 +87,26 @@ public class LanguageManager {
     }
 
     private static void loadLangFiles(String code) {
+        List<String> modidList = new ArrayList<>();
+        FabricLoader.getInstance().getAllMods().forEach(modContainer -> {
+            modidList.add(modContainer.getMetadata().getId());
+        });
 
+        for (String modId : modidList) {
+            URL langFolder = LanguageManager.class.getResource("/assets/" + modId + "/lang/");
+
+            if (langFolder != null) {
+                InputStream langFile = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/lang/" + code + ".lang");
+
+                if (langFile != null) {
+                    try {
+                        CODE_TO_STORAGE.get(code).load(langFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
     public static void switchLanguage(String newCode) {
@@ -103,10 +120,10 @@ public class LanguageManager {
         loadLanguage(DEFAULT_LANGUAGE);
         loadLanguage(CURRENT_LANGUAGE_CODE);
 
-        CURRENT_LANGUAGE = CODE_TO_STORAGE.get(newCode);
+        CURRENT_LANGUAGE = CODE_TO_STORAGE.get(CURRENT_LANGUAGE_CODE);
 
         for (LanguageSwitchCallback languageSwitchCallback : CALLBACKS) {
-            languageSwitchCallback.changed(newCode);
+            languageSwitchCallback.changed(CURRENT_LANGUAGE_CODE);
         }
     }
 
