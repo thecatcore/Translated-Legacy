@@ -124,7 +124,8 @@ async function convert(name_old, name_new, code) {
     map = await removeKey(diffFile["remove"], map)
     map = await addKey(diffFile["add"], map, newMap)
 
-    fs.writeFileSync(`./${name_new}-new/${code}.lang`, toLangFormat(map))
+    if (name_new != "b1.7.3") fs.writeFileSync(`./${name_new}-new/${code}.lang`, toLangFormat(map));
+    else fs.writeFileSync(`./../src/main/resources/assets/minecraft/lang_default/${code}.lang`, toLangFormat(map))
 }
 
 async function readLangFile(file) {
