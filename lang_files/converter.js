@@ -110,14 +110,14 @@ async function convert(name_old, name_new, code) {
     try {
         nFile = fs.readFileSync(`./${name_new}/${code}.lang`)
     } catch (e) {
-        if (e) {
+        if (e && code == "en_us") {
             nFile = fs.readFileSync(`./en_US_${name_new}.lang`)
         }
     }
 
     let map = await readLangFile(lFile);
     
-    let newMap = await readLangFile(nFile);
+    let newMap = nFile ? await readLangFile(nFile) : {};
 
     map = await transform(diffFile["change"], map)
     map = await sameKey(diffFile["same"], map)
