@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.mixin.compat;
+package fr.catcore.translatedlegacy.mixin.compat.cursedlegacyapi;
 
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;

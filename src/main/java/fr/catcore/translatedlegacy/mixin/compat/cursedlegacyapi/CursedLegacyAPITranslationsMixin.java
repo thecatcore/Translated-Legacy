@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.mixin.compat;
+package fr.catcore.translatedlegacy.mixin.compat.cursedlegacyapi;
 
 import fr.catcore.translatedlegacy.language.LanguageManager;
 import io.github.minecraftcursedlegacy.api.registry.Translations;

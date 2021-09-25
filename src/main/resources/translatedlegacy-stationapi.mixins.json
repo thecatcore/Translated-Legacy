@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "fr.catcore.translatedlegacy.mixin.compat.stationapi",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "StationAPII18n"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "plugin": "fr.catcore.translatedlegacy.mixin.compat.stationapi.StationAPIPlugin"
+}

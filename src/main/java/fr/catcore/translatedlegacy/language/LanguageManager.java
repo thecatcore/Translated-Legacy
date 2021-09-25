@@ -104,6 +104,38 @@ public class LanguageManager {
                         e.printStackTrace();
                     }
                 }
+
+                String upperCode = code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ROOT);
+
+                langFile = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/lang/" + upperCode + ".lang");
+
+                if (langFile != null) {
+                    try {
+                        CODE_TO_STORAGE.get(code).load(modId, langFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                langFile = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/stationloader/lang/" + code + ".lang");
+
+                if (langFile != null) {
+                    try {
+                        CODE_TO_STORAGE.get(code).load(modId, langFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                langFile = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/stationloader/lang/" + upperCode + ".lang");
+
+                if (langFile != null) {
+                    try {
+                        CODE_TO_STORAGE.get(code).load(modId, langFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }

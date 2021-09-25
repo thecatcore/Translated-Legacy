@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "fr.catcore.translatedlegacy.mixin.compat",
+  "package": "fr.catcore.translatedlegacy.mixin.compat.cursedlegacyapi",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CursedLegacyAPITranslationsMixin"
@@ -8,5 +8,5 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "plugin": "fr.catcore.translatedlegacy.mixin.compat.CursedLegacyAPIPlugin"
+  "plugin": "fr.catcore.translatedlegacy.mixin.compat.cursedlegacyapi.CursedLegacyAPIPlugin"
 }
