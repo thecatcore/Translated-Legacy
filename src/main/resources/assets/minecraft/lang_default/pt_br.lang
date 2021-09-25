@@ -10,6 +10,7 @@ container.inventory=Inventário
 controls.title=Controles
 deathScreen.respawn=Renascer
 deathScreen.score=Pontuação
+deathScreen.title=Fim de jogo!
 deathScreen.titleScreen=Menu principal
 demo.day.1=Esta demonstração durará cinco dias de jogo, faça o seu melhor!
 demo.day.2=Segundo dia

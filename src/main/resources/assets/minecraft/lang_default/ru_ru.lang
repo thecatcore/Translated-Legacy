@@ -10,6 +10,7 @@ container.inventory=Инвентарь
 controls.title=Управление
 deathScreen.respawn=Возродиться
 deathScreen.score=Счёт
+deathScreen.title=Конец игры!
 deathScreen.titleScreen=Главное меню
 demo.day.1=Демонстрация закончится через 5 игровых дней. Проявите себя!
 demo.day.2=День второй

@@ -10,6 +10,7 @@ container.inventory=Felszerelés
 controls.title=Irányítás
 deathScreen.respawn=Újraéledés
 deathScreen.score=Pontszám
+deathScreen.title=Vége a játéknak!
 deathScreen.titleScreen=Főmenü
 demo.day.1=Ez a demó öt játékbeli napig tart, tégy ki magadért!
 demo.day.2=Második nap

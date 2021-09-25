@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Upravljanje
 deathScreen.respawn=Stvori se ponovno
 deathScreen.score=Rezultat
+deathScreen.title=Kraj igre!
 deathScreen.titleScreen=Naslovna stranica
 demo.day.1=Ovaj demo će trajati pet Minecraft dana, daj sve od sebe!
 demo.day.2=Drugi dan

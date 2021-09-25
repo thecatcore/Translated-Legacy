@@ -10,6 +10,7 @@ container.inventory=Taske
 controls.title=Styring
 deathScreen.respawn=Genopstå
 deathScreen.score=Score
+deathScreen.title=Game over!
 deathScreen.titleScreen=Hovedmenu
 demo.day.1=Denne demo vil vare i fem spildage, gør dit bedste!
 demo.day.2=Dag to

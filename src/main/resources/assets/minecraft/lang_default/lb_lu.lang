@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Steierung
 deathScreen.respawn=Respawnen
 deathScreen.score=Punktzuel
+deathScreen.title=Game over!
 deathScreen.titleScreen=Titelbildschierm
 demo.day.1=Dës Demo dauert 5 Spilldeeg, maach dat bescht draus!
 demo.day.2=Dag Zwee

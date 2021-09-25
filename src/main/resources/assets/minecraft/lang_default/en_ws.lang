@@ -10,6 +10,7 @@ container.inventory=Inventory
 controls.title=There are my keys. but wherefore should I go?
 deathScreen.respawn=Re-enter Stage
 deathScreen.score=Score
+deathScreen.title=Exeunt.
 deathScreen.titleScreen=Leave the Stage
 demo.day.1='Twill be five days ere this Trial World concludes. Play ye well!
 demo.day.2=Day the second

@@ -10,6 +10,7 @@ container.inventory=Imbentaryo
 controls.title=Mga Kontrol
 deathScreen.respawn=Mabuhay muli
 deathScreen.score=Puntos
+deathScreen.title=Tapos na ang laro!
 deathScreen.titleScreen=Screen ng Pamagat
 demo.day.1=Ang demo na ito ay tatagal lamang ng limang araw, galingan mo!
 demo.day.2=Ikalawang Araw

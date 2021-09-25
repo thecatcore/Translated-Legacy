@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Kontrollar
 deathScreen.respawn=Gjenoppstå
 deathScreen.score=Skår
+deathScreen.title=Spelet er over!
 deathScreen.titleScreen=Hovudmeny
 demo.day.1=Denne prøveutgåva varar i fem speledagar. Gjer ditt beste!
 demo.day.2=Dag to

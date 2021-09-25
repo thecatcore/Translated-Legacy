@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Steiarung
 deathScreen.respawn=Wiedabelebn
 deathScreen.score=Punktestond
+deathScreen.title=Game over!
 deathScreen.titleScreen=Hauptmenü
 demo.day.1=De Demo dauat fünf Spütog, gib dei Bests!
 demo.day.2=Tog 2

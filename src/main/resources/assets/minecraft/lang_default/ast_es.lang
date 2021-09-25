@@ -10,6 +10,7 @@ container.inventory=Inventariu
 controls.title=Controles
 deathScreen.respawn=Remanecer
 deathScreen.score=Puntuación
+deathScreen.title=¡Partida finada!
 deathScreen.titleScreen=Pantalla del títulu
 demo.day.1=Esta demo durará 5 díes de xuegu, ¡esfrónate!
 demo.day.2=Día dos

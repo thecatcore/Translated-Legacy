@@ -10,6 +10,7 @@ container.inventory=กระเป๋าเก็บของ
 controls.title=ปุ่มควบคุม
 deathScreen.respawn=เกิดใหม่
 deathScreen.score=คะแนน
+deathScreen.title=จบเกม!
 deathScreen.titleScreen=หน้าหลัก
 demo.day.1=เดโมนี้ เปิดโอกาสให้คุณทดลองเล่น 5 วันของเกม ขอให้สนุก!
 demo.day.2=วันที่สอง

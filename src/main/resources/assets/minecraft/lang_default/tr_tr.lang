@@ -10,6 +10,7 @@ container.inventory=Envanter
 controls.title=Denetimler
 deathScreen.respawn=Yeniden Doğ
 deathScreen.score=Puan
+deathScreen.title=Oyun bitti!
 deathScreen.titleScreen=Ana menü
 demo.day.1=Bu deneme sürümü beş oyun günü sürecek. Elinden gelenin en iyisini yap!
 demo.day.2=İkinci Gün

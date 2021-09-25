@@ -10,6 +10,7 @@ container.inventory=Barang bawaan
 controls.title=Kendali
 deathScreen.respawn=Bangkit kembali
 deathScreen.score=Nilai
+deathScreen.title=Permainan Selesai!
 deathScreen.titleScreen=Menu Utama
 demo.day.1=Demo ini akan berakhir dalam lima hari permainan, lakukan yang terbaik!
 demo.day.2=Hari Kedua

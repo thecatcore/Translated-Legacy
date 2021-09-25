@@ -10,6 +10,7 @@ container.inventory=Inventár
 controls.title=Ovládanie
 deathScreen.respawn=Oživiť
 deathScreen.score=Skóre
+deathScreen.title=Koniec hry!
 deathScreen.titleScreen=Úvodná obrazovka
 demo.day.1=Táto demoverzia bude trvať 5 herných dní, daj si záležať!
 demo.day.2=Druhý deň

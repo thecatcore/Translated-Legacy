@@ -10,6 +10,7 @@ container.inventory=Рыштунак
 controls.title=Кіраванне
 deathScreen.respawn=Адрадзіцца
 deathScreen.score=Лік
+deathScreen.title=Гульня скончаная!
 deathScreen.titleScreen=Галоўнае меню
 demo.day.1=Дэманстрацыйны рэжым будзе доўжыцца пяць гульнявых дзён. Поспехаў!
 demo.day.2=Дзень другі

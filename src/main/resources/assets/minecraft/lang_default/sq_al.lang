@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Kontrollet
 deathScreen.respawn=Reborn
 deathScreen.score=Llogari
+deathScreen.title=Në fund të lojës!
 deathScreen.titleScreen=Menuja kryesore
 demo.day.1=Këtë demo do të zgjasë pesë lojë ditë, të bëni më të mirën tuaj!
 demo.day.2=Dy Ditë

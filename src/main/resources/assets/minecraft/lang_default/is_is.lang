@@ -10,6 +10,7 @@ container.inventory=Hlutaval
 controls.title=Stjórntakkar
 deathScreen.respawn=Byrja aftur
 deathScreen.score=Stig
+deathScreen.title=Leik lokið!
 deathScreen.titleScreen=Valmynd
 demo.day.1=Þessi prufuútgáfa endist í 5 leikjadaga, gerðu þitt besta!
 demo.day.2=Dagur tvö

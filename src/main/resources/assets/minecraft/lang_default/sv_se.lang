@@ -10,6 +10,7 @@ container.inventory=Utrustning
 controls.title=Kontroller
 deathScreen.respawn=Återuppstå
 deathScreen.score=Poäng
+deathScreen.title=Spelet är slut!
 deathScreen.titleScreen=Huvudmeny
 demo.day.1=Detta demo varar i fem speldagar. Gör ditt bästa!
 demo.day.2=Dag två

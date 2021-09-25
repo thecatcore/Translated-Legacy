@@ -199,7 +199,7 @@
         "deathScreen.score": "s",
         "deathScreen.title.hardcore": null,
         "deathScreen.hardcoreInfo": "r",
-        "deathScreen.title": "r",
+        "deathScreen.title": "s",
         "potion.empty": "r",
         "potion.moveSpeed": "r",
         "potion.moveSlowdown": "r",

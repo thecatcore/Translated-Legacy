@@ -10,6 +10,7 @@ container.inventory=Инвентар
 controls.title=Контроли
 deathScreen.respawn=Повторно Раѓање
 deathScreen.score=Бодови
+deathScreen.title=Играта заврши!
 deathScreen.titleScreen=Почетен екран
 demo.day.1=Ова демо ќе трае пет игра дена, направи вашата најдобра!
 demo.day.2=Вториот Ден

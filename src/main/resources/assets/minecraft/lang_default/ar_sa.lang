@@ -10,6 +10,7 @@ container.inventory=الحقيبة
 controls.title=التحكم
 deathScreen.respawn=اعادة الإحياء
 deathScreen.score=النقاط
+deathScreen.title=انتهت اللعبة!
 deathScreen.titleScreen=صفحة البداية
 demo.day.1=هذا العالم التجريبي سوف ينتهي بعد خمسة ايام حسب توقيت اللعبة ابذل جهدك
 demo.day.2=اليوم الثاني

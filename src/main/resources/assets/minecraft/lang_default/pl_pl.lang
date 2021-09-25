@@ -10,6 +10,7 @@ container.inventory=Ekwipunek
 controls.title=Sterowanie
 deathScreen.respawn=Odrodzenie
 deathScreen.score=Wynik
+deathScreen.title=Koniec gry!
 deathScreen.titleScreen=Menu główne
 demo.day.1=Wersja demonstracyjna pozwala tylko na pięć dni rozgrywki, powodzenia!
 demo.day.2=Dzień drugi

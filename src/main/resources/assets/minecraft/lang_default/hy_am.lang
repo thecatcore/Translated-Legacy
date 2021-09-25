@@ -8,6 +8,7 @@ container.furnace=Վառարան
 controls.title=Ղեկավարումներ
 deathScreen.respawn=Վերածնվել
 deathScreen.score=Արդյունք
+deathScreen.title=Խաղն Ավարտվեց!
 deathScreen.titleScreen=Հիմնական Մենյու
 demo.day.1=Այս փորձնական աշխարհը կտևի հինգ խախային օր, արե՛ք հնարավոր ամեն ինչ։
 demo.day.2=Օր Երկրորդ

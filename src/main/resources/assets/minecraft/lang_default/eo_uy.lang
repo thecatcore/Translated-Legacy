@@ -10,6 +10,7 @@ container.inventory=Inventaro
 controls.title=Stirklavoj
 deathScreen.respawn=Reviviĝi
 deathScreen.score=Poentoj
+deathScreen.title=Fino de la ludo!
 deathScreen.titleScreen=Ĉefa menuo
 demo.day.1=Ĉi tiu demonstra ludo daŭros kvin tagojn. Bonŝancon!
 demo.day.2=Dua tago

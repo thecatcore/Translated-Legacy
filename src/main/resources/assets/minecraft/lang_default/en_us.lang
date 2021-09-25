@@ -328,6 +328,7 @@ container.chestDouble=Large Chest
 deathScreen.respawn=Respawn
 deathScreen.titleScreen=Title screen
 deathScreen.score=Score
+deathScreen.title=Game over!
 potion.effect.mundane=Mundane Potion
 potion.effect.thick=Thick Potion
 potion.effect.awkward=Awkward Potion

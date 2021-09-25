@@ -10,6 +10,7 @@ container.inventory=Seljakott
 controls.title=Juhtnupud
 deathScreen.respawn=Taassünni
 deathScreen.score=Tulemus
+deathScreen.title=Mäng läbi!
 deathScreen.titleScreen=Avamenüü
 demo.day.1=Prooviversioon kestab viis mängupäeva, anna endast parim!
 demo.day.2=Teine päev

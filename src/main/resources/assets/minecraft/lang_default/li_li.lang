@@ -10,6 +10,7 @@ container.inventory=Inventaar
 controls.title=Besturing
 deathScreen.respawn=Herspawn
 deathScreen.score=Score
+deathScreen.title=Game over!
 deathScreen.titleScreen=Hoofdmenu
 demo.day.1=Deze demo duurt vijf speldagen, doe je best!
 demo.day.2=Daag Twee

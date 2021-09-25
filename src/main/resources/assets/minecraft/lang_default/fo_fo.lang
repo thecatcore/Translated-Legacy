@@ -6,6 +6,7 @@ container.crafting=Framleiðsla
 controls.title=Stýringar
 deathScreen.respawn=Endurlivna
 deathScreen.score=Stig
+deathScreen.title=Leiklok!
 deathScreen.titleScreen=Høvuðsskrá
 demo.day.1=Sýnisroyndin vara fimm dagar, royn tit besta!
 demo.day.2=Dagur tvey

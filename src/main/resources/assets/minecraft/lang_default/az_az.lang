@@ -10,6 +10,7 @@ container.inventory=İnventar
 controls.title=Kontrollar
 deathScreen.respawn=Yenidən Başla
 deathScreen.score=Xal
+deathScreen.title=Oyun bitdi!
 deathScreen.titleScreen=Əsas menyu
 demo.day.1=Bu sınaq versiyası beş oyun günü davam edəcək. Əlindən gələnin ən yaxşısını et!
 demo.day.2=İkinci Gün

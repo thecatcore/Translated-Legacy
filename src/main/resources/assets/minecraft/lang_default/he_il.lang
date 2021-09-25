@@ -10,6 +10,7 @@ container.inventory=מלאי
 controls.title=מקשים
 deathScreen.respawn=חזור לתחייה
 deathScreen.score=ניקוד
+deathScreen.title=המשחק נגמר!
 deathScreen.titleScreen=מסך ראשי
 demo.day.1=ההדגמה תמשך חמישה ימי משחק, עשו את מיטב יכולותיכם!
 demo.day.2=יום שני

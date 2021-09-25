@@ -10,6 +10,7 @@ container.inventory=Tavaraluettelo
 controls.title=Näppäimet
 deathScreen.respawn=Synny uudelleen
 deathScreen.score=Pisteesi
+deathScreen.title=Peli päättyi!
 deathScreen.titleScreen=Päävalikko
 demo.day.1=Tämä kokeiluversio kestää viisi Minecraft-päivää, tee parhaasi!
 demo.day.2=Toinen päivä

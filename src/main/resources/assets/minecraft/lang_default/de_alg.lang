@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Schteuerung
 deathScreen.respawn=Wiedrbeleba
 deathScreen.score=Punktestand
+deathScreen.title=Feiaåbad!
 deathScreen.titleScreen=Hauptschirm
 demo.day.1=Diese Demo beinhaltet fünf Spieltage, gib dein Bestes!
 demo.day.2=Zweiter Tag

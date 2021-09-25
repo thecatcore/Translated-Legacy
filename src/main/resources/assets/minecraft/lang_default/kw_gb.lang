@@ -10,6 +10,7 @@ container.inventory=Rol
 controls.title=Kontrolyow
 deathScreen.respawn=Dasserhi
 deathScreen.score=Skor
+deathScreen.title=Gorfennys yw an gwari!
 deathScreen.titleScreen=Skrin ditel
 demo.day.1=An demo ma a dhur pymp dydh y'n gwari, gwrewgh agas gwella!
 demo.day.2=Dydh Dew

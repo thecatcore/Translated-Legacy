@@ -10,6 +10,7 @@ container.inventory=Túi đồ
 controls.title=Điều khiển
 deathScreen.respawn=Hồi sinh
 deathScreen.score=Điểm số
+deathScreen.title=Trò chơi kết thúc!
 deathScreen.titleScreen=Màn hình chính
 demo.day.1=Bản thử nghiệm này sẽ kéo dài năm ngày trong trò chơi, bạn hãy làm hết mức có thể!
 demo.day.2=Ngày thứ hai

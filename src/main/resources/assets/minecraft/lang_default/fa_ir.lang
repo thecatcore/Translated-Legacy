@@ -10,6 +10,7 @@ container.inventory=موجودی
 controls.title=کنترل
 deathScreen.respawn=احضار دوباره
 deathScreen.score=امتياز
+deathScreen.title=گيم اور !
 deathScreen.titleScreen=صفحه اصلي
 demo.day.1=این نسخه نمایشی ۵ روز عمر خواهد کرد، حسابی تلاش کنید!
 demo.day.2=روز دوم

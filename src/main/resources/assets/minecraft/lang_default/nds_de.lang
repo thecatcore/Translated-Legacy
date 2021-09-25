@@ -10,6 +10,7 @@ container.inventory=Inventaar
 controls.title=Stüerung
 deathScreen.respawn=Wierinstieg
 deathScreen.score=Punkte
+deathScreen.title=Spiël vüörbi!
 deathScreen.titleScreen=Höftmenü
 demo.day.1=Düsse Demo böd fiew Spiëldage, giw dien Best!
 demo.day.2=Twedde Dag

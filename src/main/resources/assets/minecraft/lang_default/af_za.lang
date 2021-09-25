@@ -10,6 +10,7 @@ container.inventory=Voorraad
 controls.title=Kontroles
 deathScreen.respawn=Herverskyn
 deathScreen.score=Telling
+deathScreen.title=Spel verby!
 deathScreen.titleScreen=Titelskerm
 demo.day.1=Die demo sal vir vyf in-spel-dae werk. Doen jou beste!
 demo.day.2=Dag Twee

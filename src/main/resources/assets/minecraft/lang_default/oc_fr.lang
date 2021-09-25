@@ -9,6 +9,7 @@ container.furnace=Forn
 controls.title=Contraròtles
 deathScreen.respawn=Tornar aparéisser
 deathScreen.score=Marca
+deathScreen.title=Partida Acabada!
 deathScreen.titleScreen=Ecran dels títols
 demo.day.1=Aquesta demonstracion durarà cinc jorns de jòc, fasètz çò melhor que podètz!
 demo.day.2=Segond Jorn

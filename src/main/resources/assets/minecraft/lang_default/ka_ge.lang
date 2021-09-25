@@ -10,6 +10,7 @@ container.inventory=ინვენტარი
 controls.title=მართვა
 deathScreen.respawn=გაჩენა
 deathScreen.score=ქულა
+deathScreen.title=თამაში დასრულებულია!
 deathScreen.titleScreen=მთავარი ეკრანი
 demo.day.1=დემო ვერსიაში გეძლევათ 5 დღე. მაქსიმალურად გამოიყენეთ მოცემული დრო!
 demo.day.2=მეორე დღე

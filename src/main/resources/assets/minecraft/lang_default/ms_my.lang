@@ -10,6 +10,7 @@ container.inventory=Inventori
 controls.title=Kawalan
 deathScreen.respawn=Jelma semula
 deathScreen.score=Skor
+deathScreen.title=Permainan tamat!
 deathScreen.titleScreen=Menu utama
 demo.day.1=Demo ini akan berlangsung selama lima hari dalam permainan, buatlah yang terbaik!
 demo.day.2=Hari Kedua

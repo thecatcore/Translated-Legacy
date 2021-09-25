@@ -10,6 +10,7 @@ container.inventory=sorcu
 controls.title=batke mapti
 deathScreen.respawn=jmive binxo
 deathScreen.score=.i ci'erkeilai li
+deathScreen.title=.i fanmo .uu
 deathScreen.titleScreen=xruti fi le ralju liste
 demo.day.1=.i le cipra nunkei ku fliba ba lo djedi be li mu .i ko snada .iosai
 demo.day.2=.i remoi djedi

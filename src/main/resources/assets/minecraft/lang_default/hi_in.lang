@@ -10,6 +10,7 @@ container.inventory=इन्वेंटरी
 controls.title=नियंत्रण
 deathScreen.respawn=फिर स्पोन
 deathScreen.score=स्कोर
+deathScreen.title=गेम खत्म!
 deathScreen.titleScreen=शीर्षक स्क्रीन
 demo.day.1=इस डेमो पिछले पाँच खेल दिन, तुम्हारा सबसे अच्छा है!
 demo.day.2=दूसरे दिन

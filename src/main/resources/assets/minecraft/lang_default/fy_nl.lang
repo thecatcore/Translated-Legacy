@@ -10,6 +10,7 @@ container.inventory=Ynventaris
 controls.title=Bestjoering
 deathScreen.respawn=Opnij spawne
 deathScreen.score=Skoare
+deathScreen.title=Spultsje is oer!
 deathScreen.titleScreen=Haadmenu
 demo.day.1=Dizze demo duorret fiif dagen (yn it spul), doch dyn bêst!
 demo.day.2=Dei twa

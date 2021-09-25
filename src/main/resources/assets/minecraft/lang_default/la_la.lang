@@ -10,6 +10,7 @@ container.inventory=Inventarium
 controls.title=Frena
 deathScreen.respawn=Revive
 deathScreen.score=Ratio
+deathScreen.title=Ludus finitus est!
 deathScreen.titleScreen=Scrinium Tituli
 demo.day.1=Haec demonstratio quinque dies ludi durabit, fac optima quae potes!
 demo.day.2=Dies Secundus

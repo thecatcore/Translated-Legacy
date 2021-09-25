@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Stürig
 deathScreen.respawn=Wiederbeläbe
 deathScreen.score=Punktestand
+deathScreen.title=Spiil verbii!
 deathScreen.titleScreen=Houptmenü
 demo.day.1=D'Demo duret 5 Spieltäg, gib dis Beschte!
 demo.day.2=Zweite Tag

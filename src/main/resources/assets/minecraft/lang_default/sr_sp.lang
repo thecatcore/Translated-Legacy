@@ -10,6 +10,7 @@ container.inventory=Инвентар
 controls.title=Контроле
 deathScreen.respawn=Реинкарнација
 deathScreen.score=Поени
+deathScreen.title=Крај игре!
 deathScreen.titleScreen=Главни мени
 demo.day.1=Ова проба трајаће пет Мајнкрафт дана, буди што бољи!
 demo.day.2=Дан други

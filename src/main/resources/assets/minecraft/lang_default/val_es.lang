@@ -10,6 +10,7 @@ container.inventory=Inventari
 controls.title=Controls
 deathScreen.respawn=Reaparéixer
 deathScreen.score=Puntuació
+deathScreen.title=Fi del joc!
 deathScreen.titleScreen=Menú principal
 demo.day.1=La demostració durarà cinc dies al joc, aprofita i passa-t'ho bé!
 demo.day.2=Segon dia

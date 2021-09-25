@@ -10,6 +10,7 @@ container.inventory=Rhestr Eiddo
 controls.title=Cyfarwyddiadau
 deathScreen.respawn=Atgyfodi
 deathScreen.score=Sgôr
+deathScreen.title=Gêm drosodd!
 deathScreen.titleScreen=Sgrin teitl
 demo.day.1=Fydd y demo yma'n para pump diwrnod gêm - gwnewch eich gorau!
 demo.day.2=Diwrnod Dau

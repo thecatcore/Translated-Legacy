@@ -10,6 +10,7 @@ container.inventory=Inventorius
 controls.title=Valdymas
 deathScreen.respawn=Prisikelti
 deathScreen.score=Jūsų surinktų taškų kiekis
+deathScreen.title=Žaidimas baigtas!
 deathScreen.titleScreen=Pagrindinis meniu
 demo.day.1=Ši demo versija išliks penkias žaidimo dienas, stenkitės kiek galite!
 demo.day.2=Antra diena

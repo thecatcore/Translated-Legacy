@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Controale
 deathScreen.respawn=Reînvie
 deathScreen.score=Scor
+deathScreen.title=Joc terminat!
 deathScreen.titleScreen=Meniul principal
 demo.day.1=Acest demo ține cinci zile din joc, dă tot ce ai mai bun!
 demo.day.2=A doua zi

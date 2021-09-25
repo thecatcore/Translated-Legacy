@@ -10,6 +10,7 @@ container.inventory=Inventario
 controls.title=Controis
 deathScreen.respawn=Reaparecer
 deathScreen.score=Puntuación
+deathScreen.title=Fin da Partida!
 deathScreen.titleScreen=Pantalla do título
 demo.day.1=Esta demostración durará 5 días de xogo, faino o mellor que poidas!
 demo.day.2=Día Dous

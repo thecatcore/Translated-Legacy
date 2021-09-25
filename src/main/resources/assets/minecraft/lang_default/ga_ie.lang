@@ -10,6 +10,7 @@ container.inventory=Fardal
 controls.title=Rialtáin
 deathScreen.respawn=Athionchollaigh
 deathScreen.score=Scór
+deathScreen.title=Cluiche thart!
 deathScreen.titleScreen=Scáileán Teidil
 demo.day.1=Mairfidh an leagan taispeána seo cúig lá cluiche, déan do dhícheall!
 demo.day.2=Lá a Dó

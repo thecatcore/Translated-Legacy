@@ -10,6 +10,7 @@ container.inventory=Эд зүйлс
 controls.title=Удирдлага
 deathScreen.respawn=Дахин төрөх
 deathScreen.score=Оноо
+deathScreen.title=Тоглоом дууслаа!
 deathScreen.titleScreen=Эхлэл хуудас
 demo.day.1=Танилцуулга тоглоомын таван өдрийн турш үргэлжилнэ. Амжилт хүсье!
 demo.day.2=Хоёрдох өдөр

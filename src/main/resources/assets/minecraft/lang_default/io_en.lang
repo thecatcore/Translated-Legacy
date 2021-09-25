@@ -10,6 +10,7 @@ container.inventory=Inventario
 controls.title=Direkti
 deathScreen.respawn=Regenitar
 deathScreen.score=Puntikonto
+deathScreen.title=Ludo finita!
 deathScreen.titleScreen=Titulo-skreno
 demo.day.1=Ica demo duros por kin ludo-dii, esforcez vua maxim bona!
 demo.day.2=Duesma Jorno

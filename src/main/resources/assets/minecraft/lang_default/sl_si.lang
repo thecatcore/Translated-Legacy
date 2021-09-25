@@ -10,6 +10,7 @@ container.inventory=Inventar
 controls.title=Kontrolne tipke
 deathScreen.respawn=Reinkarniraj se
 deathScreen.score=Točke
+deathScreen.title=Konec igre!
 deathScreen.titleScreen=Glavni meni
 demo.day.1=Preizkusna različica bo trajala pet dni v igri. Veliko sreče!
 demo.day.2=Drugi dan

@@ -10,6 +10,7 @@ container.inventory=Инвентар
 controls.title=Контроли
 deathScreen.respawn=Прераждане
 deathScreen.score=Резултат
+deathScreen.title=Край на играта!
 deathScreen.titleScreen=Начален екран
 demo.day.1=Тази демонстрация ще продължи пет дни, дайте най-доброто от себе си!
 demo.day.2=Ден втори

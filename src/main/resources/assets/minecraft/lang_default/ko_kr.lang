@@ -10,6 +10,7 @@ container.inventory=보관함
 controls.title=조작
 deathScreen.respawn=리스폰
 deathScreen.score=점수
+deathScreen.title=게임 오버!
 deathScreen.titleScreen=타이틀 화면으로
 demo.day.1=체험판은 게임 내의 5일 동안 플레이를 즐기실 수 있습니다, 최선을 다해 보세요!
 demo.day.2=2일째

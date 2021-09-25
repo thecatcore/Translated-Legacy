@@ -10,6 +10,7 @@ container.inventory=An tasgadh
 controls.title=Uidheaman-smachd
 deathScreen.respawn=Ath-ghin
 deathScreen.score=Sgòr
+deathScreen.title=Crìoch a' gheama!
 deathScreen.titleScreen=Sgrìn tiotail
 demo.day.1=Mairidh an saoghal-taisbeanaidh seo còig làithean-geama, dèan do dhìcheall!
 demo.day.2=An dàrna latha

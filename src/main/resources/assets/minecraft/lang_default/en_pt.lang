@@ -10,6 +10,7 @@ container.inventory=Loot Bag
 controls.title=The Wheel
 deathScreen.respawn=Rejoin yer crew
 deathScreen.score=Tally
+deathScreen.title=Yer ship be sunk!
 deathScreen.titleScreen=Deck
 demo.day.1=This here demo be lastin' five game days, do yer worst!
 demo.day.2=Day Two, Arrrr!

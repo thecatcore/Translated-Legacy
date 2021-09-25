@@ -10,6 +10,7 @@ container.inventory=インベントリ
 controls.title=操作設定
 deathScreen.respawn=リスポーン
 deathScreen.score=スコア
+deathScreen.title=ゲームオーバー！
 deathScreen.titleScreen=タイトル画面へ戻る
 demo.day.1=デモ版では５日間ご利用いただけます。頑張ってください！
 demo.day.2=２日目

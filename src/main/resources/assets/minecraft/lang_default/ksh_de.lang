@@ -10,6 +10,7 @@ container.inventory=Enventaar
 controls.title=Muus un Knöpp
 deathScreen.respawn=Widderbelevve
 deathScreen.score=Punkte
+deathScreen.title=Spill am Engk!
 deathScreen.titleScreen=Haupmenü
 demo.day.1=De Demo durt fünnef Spilldäch, dun di Beß!
 demo.day.2=Zwede Dach

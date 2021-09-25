@@ -10,6 +10,7 @@ container.inventory=Αποθέματα
 controls.title=Χειριστήρια
 deathScreen.respawn=Επανεμφάνιση
 deathScreen.score=Πόντοι
+deathScreen.title=Τέλος παιχνιδιού!
 deathScreen.titleScreen=Κεντρικό μενού
 demo.day.1=Αυτή η επίδειξη θα διαρκέσει πέντε ημέρες παιχνιδιού, κάντε το καλύτερό σας!
 demo.day.2=Δεύτερη μέρα

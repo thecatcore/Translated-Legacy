@@ -10,6 +10,7 @@ container.inventory=Inventario
 controls.title=Controłi
 deathScreen.respawn=Renàsi
 deathScreen.score=Pontejo
+deathScreen.title=Game over!
 deathScreen.titleScreen=Menù prinsipal
 demo.day.1=Sta demo ła dura sincue dì (del zugo), fa del to mejo!
 demo.day.2=Segondo dì

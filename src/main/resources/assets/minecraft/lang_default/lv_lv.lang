@@ -10,6 +10,7 @@ container.inventory=Inventārs
 controls.title=Vadîbas uzstâdijumi
 deathScreen.respawn=Atdzimt
 deathScreen.score=Rezultāts
+deathScreen.title=Spēle beigusies!
 deathScreen.titleScreen=Galvenais ekrāns
 demo.day.1=Šis demo ilgs piecas spēles dienas, dari ko spēj!
 demo.day.2=Otrā Diena

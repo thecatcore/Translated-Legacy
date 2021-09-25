@@ -10,6 +10,7 @@ container.inventory=Inventory
 controls.title=Controls
 deathScreen.respawn=Respawn
 deathScreen.score=Score
+deathScreen.title=Game over!
 deathScreen.titleScreen=Title screen
 demo.day.1=This demo will last five game days, do your best!
 demo.day.2=Day Two

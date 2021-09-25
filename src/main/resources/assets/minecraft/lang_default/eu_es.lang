@@ -10,6 +10,7 @@ container.inventory=Inbentarioa
 controls.title=Kontrolak
 deathScreen.respawn=Birsortu
 deathScreen.score=Puntuazioa
+deathScreen.title=Jokoa amaitu da!
 deathScreen.titleScreen=Hasierako pantaila
 demo.day.1=Erakustaldi honek bost joku egun iraungo du, egizu ahalik eta hoberen!
 demo.day.2=Bigarren eguna

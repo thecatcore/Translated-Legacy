@@ -10,6 +10,7 @@ container.inventory=物品欄
 controls.title=按鍵設定
 deathScreen.respawn=重生
 deathScreen.score=分數
+deathScreen.title=遊戲結束！
 deathScreen.titleScreen=標題畫面
 demo.day.1=試玩版只有五天的遊戲內時間，盡你所能吧！
 demo.day.2=第二天
