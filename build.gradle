@@ -15,7 +15,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'com.github.Chocohead:Fabric-Loom:d823377'
+		classpath 'com.github.Chocohead:Fabric-Loom:3219e42'
 	}
 }
 
@@ -29,10 +29,6 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	maven { 
-		name = 'Jitpack'
-		url 'https://jitpack.io/'
-	}
 	maven {
 		name = 'HalfOf2'
 		url = 'https://storage.googleapis.com/devan-maven/'
@@ -41,6 +37,10 @@ repositories {
 //		name "Station API"
 //		url "https://maven.glass-launcher.net/repo"
 //	}
+	maven {
+		name = 'Jitpack'
+		url 'https://jitpack.io/'
+	}
 }
 
 minecraft {
