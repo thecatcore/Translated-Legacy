@@ -2,7 +2,6 @@ package fr.catcore.translatedlegacy.mixin;
 
 import fr.catcore.translatedlegacy.accessor.StatAccessor;
 import fr.catcore.translatedlegacy.language.LanguageManager;
-import net.minecraft.achievement.Achievement;
 import net.minecraft.client.resource.language.TranslationStorage;
 import net.minecraft.stat.RegisteringStat;
 import net.minecraft.stat.Stat;

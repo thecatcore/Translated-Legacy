@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.mixin;
+package fr.catcore.translatedlegacy.mixin.client;
 
 import fr.catcore.translatedlegacy.accessor.StatAccessor;
 import fr.catcore.translatedlegacy.language.LanguageManager;

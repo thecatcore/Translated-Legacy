@@ -1,38 +1,33 @@
 package fr.catcore.translatedlegacy.mixin.client;
 
-import net.minecraft.client.gui.Screen;
 import net.minecraft.client.gui.screen.PauseScreen;
-import net.minecraft.client.gui.widgets.Button;
 import net.minecraft.client.resource.language.I18n;
-import net.minecraft.client.resource.language.TranslationStorage;
-import net.minecraft.util.maths.MathsHelper;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(PauseScreen.class)
-public class PauseScreenMixin extends Screen {
+public class PauseScreenMixin {
 
-    @Shadow private int field_2204;
+    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widgets/Button;<init>(IIILjava/lang/String;)V", ordinal = 0))
+    public String init$lang1(String string) {
+        return I18n.translate("menu.returnToMenu");
+    }
 
-    /**
-     * @author CatCore
-     */
-    @Overwrite
-    public void init() {
-        TranslationStorage translationStorage = TranslationStorage.getInstance();
+    @ModifyVariable(method = "init", at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/widgets/Button;text:Ljava/lang/String;", opcode = Opcodes.PUTFIELD))
+    public String init$lang2(String string) {
+        return I18n.translate("menu.disconnect");
+    }
 
-        this.field_2204 = 0;
-        this.buttons.clear();
-        byte var1 = -16;
-        this.buttons.add(new Button(1, this.width / 2 - 100, this.height / 4 + 120 + var1, translationStorage.translate("menu.returnToMenu")));
-        if (this.minecraft.isConnectedToServer()) {
-            ((Button)this.buttons.get(0)).text = translationStorage.translate("menu.disconnect");
-        }
+    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widgets/Button;<init>(IIILjava/lang/String;)V", ordinal = 1))
+    public String init$lang3(String string) {
+        return I18n.translate("menu.returnToGame");
+    }
 
-        this.buttons.add(new Button(4, this.width / 2 - 100, this.height / 4 + 24 + var1, translationStorage.translate("menu.returnToGame")));
-        this.buttons.add(new Button(0, this.width / 2 - 100, this.height / 4 + 96 + var1, translationStorage.translate("menu.options")));
-        this.buttons.add(new Button(5, this.width / 2 - 100, this.height / 4 + 48 + var1, 98, 20, I18n.translate("gui.achievements")));
-        this.buttons.add(new Button(6, this.width / 2 + 2, this.height / 4 + 48 + var1, 98, 20, I18n.translate("gui.stats")));
+    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widgets/Button;<init>(IIILjava/lang/String;)V", ordinal = 2))
+    public String init$lang4(String string) {
+        return I18n.translate("menu.options");
     }
 }

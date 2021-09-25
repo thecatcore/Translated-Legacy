@@ -1,23 +1,16 @@
 package fr.catcore.translatedlegacy.mixin.client;
 
-import net.minecraft.client.gui.Screen;
 import net.minecraft.client.gui.screen.LevelSaveConflictScreen;
-import net.minecraft.client.gui.widgets.Button;
-import net.minecraft.client.resource.language.TranslationStorage;
+import net.minecraft.client.resource.language.I18n;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(LevelSaveConflictScreen.class)
-public class LevelSaveConflictScreenMixin extends Screen {
+public class LevelSaveConflictScreenMixin {
 
-    /**
-     * @author CatCore
-     */
-    @Overwrite
-    public void init() {
-        TranslationStorage translationStorage = TranslationStorage.getInstance();
-
-        this.buttons.clear();
-        this.buttons.add(new Button(0, this.width / 2 - 100, this.height / 4 + 120 + 12, translationStorage.translate("gui.toMenu")));
+    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widgets/Button;<init>(IIILjava/lang/String;)V"))
+    public String init$lang(String string) {
+        return I18n.translate("gui.toMenu");
     }
 }
