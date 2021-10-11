@@ -24,7 +24,8 @@
     "client.container.FurnaceScreenMixin",
     "client.container.PlayerInventoryScreenMixin",
     "client.gui.widget.TextboxMixin",
-    "client.AchievementMixin"
+    "client.AchievementMixin",
+    "client.AchievementsScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
