@@ -1,5 +1,6 @@
 package fr.catcore.translatedlegacy.font;
 
+import fr.catcore.translatedlegacy.util.Int2ObjectMap;
 import net.minecraft.class_214;
 import net.minecraft.client.options.GameOptions;
 import net.minecraft.client.render.Tessellator;
@@ -12,9 +13,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.Buffer;
 import java.nio.IntBuffer;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class BetterTextRenderer {
+    private static final Glyph SPACE = () -> {
+        return 4.0F;
+    };
+    private static final EmptyGlyphRenderer EMPTY_GLYPH_RENDERER = new EmptyGlyphRenderer();
+
     public int[] imageInt = new int[256];
     private int[] anInt = new int[256];
     private IntBuffer intBuffer = class_214.method_745(1024);
@@ -22,8 +30,10 @@ public class BetterTextRenderer {
     private static final int GLYPH_HEIGHT = 8;
     private static final int GLYPH_WIDTH = 8;
     private byte[] CHARS_WIDTH = new byte[65536];
-    private static final String str = "0123456789abcdef";
-    private static final String str1 = "0123456789abcdef";
+    private Glyph[] GLYPHS = new Glyph[65536];
+    private final List<GlyphAtlasTexture> GLYPH_ATLAS = new ArrayList<>();
+    private GlyphRenderer blankGlyphRenderer;
+    private final Int2ObjectMap<GlyphRenderer> RENDERER_CACHE = new Int2ObjectMap<>();
 
     private void loadFonts(GameOptions arg, TextureManager arg1) {
         for (int a1 = 0; a1 < 256; a1++) {
@@ -38,6 +48,34 @@ public class BetterTextRenderer {
 
     private static int getEnd(byte size) {
         return (size & 15) + 1;
+    }
+
+    private GlyphRenderer getGlyphRenderer(int i) {
+        return (GlyphRenderer)this.RENDERER_CACHE.computeIfAbsent(i, (ix) -> {
+            return (GlyphRenderer)(ix == 32 ? EMPTY_GLYPH_RENDERER : (this.GLYPHS[ix] != null ? this.getGlyphRenderer((RenderableGlyph) this.GLYPHS[ix]) : null));
+        });
+    }
+
+    private GlyphRenderer getGlyphRenderer(RenderableGlyph glyph) {
+        Iterator<GlyphAtlasTexture> var2 = this.GLYPH_ATLAS.iterator();
+
+        GlyphRenderer glyphRenderer;
+
+        do {
+            if (!var2.hasNext()) {
+                GlyphAtlasTexture atlasTexture = new GlyphAtlasTexture();
+                this.GLYPH_ATLAS.add(atlasTexture);
+
+                GlyphRenderer glyphRenderer2 = atlasTexture.getRenderer(glyph);
+                glyphRenderer = glyphRenderer2 == null ? this.blankGlyphRenderer : glyphRenderer2;
+                break;
+            }
+
+            GlyphAtlasTexture glyphAtlasTexture = (GlyphAtlasTexture)var2.next();
+            glyphRenderer = glyphAtlasTexture.getRenderer(glyph);
+        } while (glyphRenderer == null);
+
+        return glyphRenderer;
     }
 
     private void loadFont(GameOptions arg, TextureManager arg1, int j) {
@@ -68,49 +106,37 @@ public class BetterTextRenderer {
         this.anInt[fontBlockIndex] = class_214.method_741(288 + fontBlockIndex);
         Tessellator tessellator = Tessellator.INSTANCE;
 
+        for (int u = 0; u < 256; u++) {
+            int codepoint = j + u;
+            byte b = this.CHARS_WIDTH[codepoint];
+            if (b != 0) this.GLYPHS[codepoint] = new UnicodeTextureGlyph(getEnd(b) - getStart(b), 16);
+            else this.GLYPHS[codepoint] = null;
+
+            if (this.GLYPHS[codepoint] != null && this.GLYPHS[codepoint] instanceof RenderableGlyph) {
+//                this.GLYPH_ATLAS[codepoint] = GlyphRenderer.getRenderer((RenderableGlyph) this.GLYPHS[codepoint]);
+            }
+        }
+
+//        this.GLYPH_ATLAS[32] = EMPTY_GLYPH_RENDERER;
+
         for(int unicodeId = 0; unicodeId < 256; ++unicodeId) {
-            GL11.glNewList(this.anInt[fontBlockIndex] + unicodeId + j, 4864);
+            int codepoint = j + unicodeId;
+            GL11.glNewList(this.anInt[fontBlockIndex] + codepoint, 4864);
             tessellator.start();
-            if ((j + unicodeId) != 32) {
+
+//            GlyphRenderer renderer = this.GLYPH_ATLAS[codepoint];
+//            if (renderer != null) {
+
+//                renderer.draw(false, width, height, tessellator);
+//            }
+
+            GlyphRenderer glyphRenderer = this.getGlyphRenderer(codepoint);
+
+            if (glyphRenderer != null) {
                 int height = unicodeId % 16 * GLYPH_HEIGHT;
                 int width = unicodeId / 16 * GLYPH_WIDTH;
-                float var26 = 7.99F;
-                float var28 = 0.0F;
-                float var30 = 0.0F;
-
-                tessellator.vertex(
-                        0.0D,
-                        0.0F + var26,
-                        0.0D,
-                        (float) height / 128.0F + var28,
-                        ((float) width + var26) / 128.0F + var30
-                );
-
-                tessellator.vertex(
-                        0.0F + var26,
-                        0.0F + var26,
-                        0.0D,
-                        ((float) height + var26) / 128.0F + var28,
-                        ((float) width + var26) / 128.0F + var30
-                );
-
-                tessellator.vertex(
-                        0.0F + var26,
-                        0.0D,
-                        0.0D,
-                        ((float) height + var26) / 128.0F + var28,
-                        (float) width / 128.0F + var30
-                );
-
-                tessellator.vertex(
-                        0.0D,
-                        0.0D,
-                        0.0D,
-                        (float) height / 128.0F + var28,
-                        (float) width / 128.0F + var30
-                );
+                glyphRenderer.draw(false, width, height, tessellator);
             }
-
 
             tessellator.draw();
 
@@ -150,6 +176,7 @@ public class BetterTextRenderer {
     }
 
     public BetterTextRenderer(GameOptions arg, TextureManager arg1) {
+        this.blankGlyphRenderer = this.getGlyphRenderer(BlankGlyph.INSTANCE);
         this.loadGlyphSizes();
         this.loadFonts(arg, arg1);
     }
@@ -240,9 +267,8 @@ public class BetterTextRenderer {
         }
     }
     
-    private int getCharWidth(int index) {
-        byte width = this.CHARS_WIDTH[index];
-        return index == 32 ? 4 : (getEnd(width) - getStart(width)) / 2 + 1;
+    private float getCharWidth(int index) {
+        return index == 32 ? 4.0F : this.GLYPHS[index] !=null ? this.GLYPHS[index].getAdvance() : 8.0F;
     }
 
     private void loadGlyphSizes() {
