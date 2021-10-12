@@ -433,3 +433,5 @@ texturePack.title=Оберіть пакет ресурсів
 texturePack.folderInfo=(Розташуйте тут файли пакету ресурсів)
 menu.mods=Пакети ресурсів...
 tile.sapling.name=Садженець дубу
+title.creative:selectEorld.survival=Виживання
+title.creative:selectEorld.creative=Творчість

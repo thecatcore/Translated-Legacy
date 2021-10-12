@@ -1,45 +1,5 @@
 {
     "change": {
-        "selectWorld.gameMode": {
-            "key": "mco.gameMode",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.survival": {
-            "key": "mco.gameMode.survival",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.survival.line1": {
-            "key": "mco.gameMode.survival.line1",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.survival.line2": {
-            "key": "mco.gameMode.survival.line2",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.creative": {
-            "key": "mco.gameMode.creative",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.creative.line1": {
-            "key": "mco.gameMode.creative.line1",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.creative.line2": {
-            "key": "mco.gameMode.creative.line2",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.adventure": {
-            "key": "mco.gameMode.adventure",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.adventure.line1": {
-            "key": "mco.gameMode.adventure.line1",
-            "mode": "t"
-        },
-        "selectWorld.gameMode.adventure.line2": {
-            "key": "mco.gameMode.adventure.line2",
-            "mode": "t"
-        },
         "options.resourcepack": {
             "key": "options.texture.pack",
             "mode": "t"

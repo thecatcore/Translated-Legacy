@@ -433,3 +433,5 @@ texturePack.title=Seleziona i pacchetti di risorse
 texturePack.folderInfo=(Inserisci qui i pacchetti)
 menu.mods=Pacchetti di risorse...
 tile.sapling.name=Arboscello di quercia
+title.creative:selectEorld.survival=Sopravvivenza
+title.creative:selectEorld.creative=Creativa

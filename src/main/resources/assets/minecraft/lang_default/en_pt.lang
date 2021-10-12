@@ -433,3 +433,5 @@ texturePack.title=Select Picture Packs
 texturePack.folderInfo=(Place picture pack pictures here)
 menu.mods=Picture Packs...
 tile.sapling.name=Oak Meager shrub
+title.creative:selectEorld.survival=Swashbuckler
+title.creative:selectEorld.creative=Aimless Sailing

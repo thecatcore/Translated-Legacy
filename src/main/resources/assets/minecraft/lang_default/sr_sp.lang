@@ -433,3 +433,5 @@ texturePack.title=Изабери пакет ресурса
 texturePack.folderInfo=(Стави пакете ресурса овде)
 menu.mods=Пакети ресурса...
 tile.sapling.name=Младица храста
+title.creative:selectEorld.survival=Преживљавање
+title.creative:selectEorld.creative=Креативност

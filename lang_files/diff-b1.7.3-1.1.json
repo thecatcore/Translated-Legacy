@@ -11,6 +11,14 @@
         "deathScreen.title.hardcore": {
             "key": "deathScreen.title",
             "mode": "t"
+        },
+        "selectWorld.gameMode.survival": {
+            "key": "title.creative:selectEorld.survival",
+            "mode": "t"
+        },
+        "selectWorld.gameMode.creative": {
+            "key": "title.creative:selectEorld.creative",
+            "mode": "t"
         }
     },
     "same": {
@@ -37,10 +45,10 @@
         "gameMode.hardcore": "r",
         "gameMode.changed": "r",
         "selectWorld.gameMode": "r",
-        "selectWorld.gameMode.survival": "r",
+        "selectWorld.gameMode.survival": "s",
         "selectWorld.gameMode.survival.line1": "r",
         "selectWorld.gameMode.survival.line2": "r",
-        "selectWorld.gameMode.creative": "r",
+        "selectWorld.gameMode.creative": "s",
         "selectWorld.gameMode.creative.line1": "r",
         "selectWorld.gameMode.creative.line2": "r",
         "selectWorld.gameMode.hardcore": "r",

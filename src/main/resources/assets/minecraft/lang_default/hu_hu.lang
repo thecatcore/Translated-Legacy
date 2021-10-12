@@ -433,3 +433,5 @@ texturePack.title=Forráscsomagok kiválasztása
 texturePack.folderInfo=(Ide tedd a forráscsomagokat)
 menu.mods=Forráscsomagok...
 tile.sapling.name=Tölgycsemete
+title.creative:selectEorld.survival=Túlélő
+title.creative:selectEorld.creative=Kreatív

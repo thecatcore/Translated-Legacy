@@ -433,3 +433,5 @@ texturePack.title=Valitse resurssipaketit
 texturePack.folderInfo=(Sijoita resurssipaketit tänne)
 menu.mods=Resurssipaketit...
 tile.sapling.name=Tammen taimi
+title.creative:selectEorld.survival=Selviytyminen
+title.creative:selectEorld.creative=Luova

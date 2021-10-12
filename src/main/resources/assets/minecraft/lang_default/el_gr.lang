@@ -433,3 +433,5 @@ texturePack.title=Επιλογή Βοηθητικών Πακέτων
 texturePack.folderInfo=(Τοποθετήστε αρχεία πακέτου πόρων εδώ)
 menu.mods=Bοηθητικά Πακέτα...
 tile.sapling.name=Βλαστάρι βελανιδιάς
+title.creative:selectEorld.survival=Επιβίωση
+title.creative:selectEorld.creative=Δημιουργικό

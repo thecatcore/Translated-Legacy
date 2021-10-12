@@ -433,3 +433,5 @@ texturePack.title=Selecciona paquets de recursos
 texturePack.folderInfo=(Poseu paquets de recursos aquí)
 menu.mods=Paquets de recursos...
 tile.sapling.name=Esqueix de pomer
+title.creative:selectEorld.survival=Supervivència
+title.creative:selectEorld.creative=Creatiu

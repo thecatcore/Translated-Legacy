@@ -433,3 +433,5 @@ texturePack.title=Kaynak Paketi Seç
 texturePack.folderInfo=(Kaynak paketi dosyalarını buraya koyun)
 menu.mods=Kaynak Paketleri...
 tile.sapling.name=Meşe Fidanı
+title.creative:selectEorld.survival=Hayatta Kalma
+title.creative:selectEorld.creative=Yaratıcılık

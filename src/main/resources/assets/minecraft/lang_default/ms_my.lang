@@ -433,3 +433,5 @@ texturePack.title=Pilih Pek Sumber
 texturePack.folderInfo=(Letakkan fail pek sumber di sini)
 menu.mods=Pek-pek Sumber...
 tile.sapling.name=Anak Pokok Oak
+title.creative:selectEorld.survival=Kemandirian
+title.creative:selectEorld.creative=Kreatif

@@ -433,3 +433,5 @@ texturePack.title=Pumili ng Resource Pack
 texturePack.folderInfo=(Ilagay ang Resource Packs dito)
 menu.mods=Resource Packs...
 tile.sapling.name=Halamang Roble
+title.creative:selectEorld.survival=Kaligtasan
+title.creative:selectEorld.creative=Kalikhaan

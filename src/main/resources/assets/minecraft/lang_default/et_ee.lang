@@ -433,3 +433,5 @@ texturePack.title=Vali ressursipakid
 texturePack.folderInfo=(Aseta ressursipaki failid siia)
 menu.mods=Ressursipakid...
 tile.sapling.name=Tammeistik
+title.creative:selectEorld.survival=ellujäämine
+title.creative:selectEorld.creative=loominguline

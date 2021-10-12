@@ -429,3 +429,5 @@ texturePack.title=რესურსთა კრებულის არჩე
 texturePack.folderInfo=(აქ მოათავსეთ რესურსთა კრებულები)
 menu.mods=რესურსთა კრებული...
 tile.sapling.name=მუხის ნერგი
+title.creative:selectEorld.survival=გადარჩენა
+title.creative:selectEorld.creative=შემოქმედებითი

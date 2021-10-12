@@ -433,3 +433,5 @@ texturePack.title=选择资源包
 texturePack.folderInfo=（请把资源包文件放在这里）
 menu.mods=资源包…
 tile.sapling.name=橡树树苗
+title.creative:selectEorld.survival=生存
+title.creative:selectEorld.creative=创造

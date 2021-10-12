@@ -433,3 +433,5 @@ texturePack.title=Izvēlēties Resursu Paku
 texturePack.folderInfo=(Ievietojiet resursu paku failus šeit)
 menu.mods=Resursu pakas...
 tile.sapling.name=Ozola Stāds
+title.creative:selectEorld.survival=Izdzīvošanas
+title.creative:selectEorld.creative=Radošais

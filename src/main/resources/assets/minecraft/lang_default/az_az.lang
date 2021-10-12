@@ -432,3 +432,5 @@ texturePack.title=Qaynaq Paketi Seç
 texturePack.folderInfo=(Qaynaq paketi fayllarını buraya qoyun)
 menu.mods=Qaynaq Paketləri...
 tile.sapling.name=Meşə Fidanı
+title.creative:selectEorld.survival=Həyatda Qalma
+title.creative:selectEorld.creative=Yaradıcılıq

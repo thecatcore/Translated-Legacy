@@ -433,3 +433,5 @@ texturePack.title=Bronpakketten selecteren
 texturePack.folderInfo=(Plaats bronpakketbestanden hier)
 menu.mods=Bronpakketten...
 tile.sapling.name=Eikenkiemplant
+title.creative:selectEorld.survival=Overleven
+title.creative:selectEorld.creative=Creatief

@@ -433,3 +433,5 @@ texturePack.title=حدد حزمة الموارد
 texturePack.folderInfo=(ضع ملفات حزمة الموارد هنا)
 menu.mods=مجموعة الموارد...
 tile.sapling.name=شتلة البلوط
+title.creative:selectEorld.survival=البقاء
+title.creative:selectEorld.creative=إبداع

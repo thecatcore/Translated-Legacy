@@ -433,3 +433,5 @@ texturePack.title=リソースパックの選択
 texturePack.folderInfo=（リソースパックファイルをここへ）
 menu.mods=リソースパック…
 tile.sapling.name=オークの苗木
+title.creative:selectEorld.survival=サバイバル
+title.creative:selectEorld.creative=クリエイティブ

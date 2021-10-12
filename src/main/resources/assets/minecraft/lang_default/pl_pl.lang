@@ -433,3 +433,5 @@ texturePack.title=Wybierz paczki zasobów
 texturePack.folderInfo=(Tutaj umieść paczki zasobów)
 menu.mods=Paczki zasobów...
 tile.sapling.name=Sadzonka dębu
+title.creative:selectEorld.survival=Przetrwanie
+title.creative:selectEorld.creative=Kreatywny

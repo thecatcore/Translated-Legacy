@@ -432,3 +432,5 @@ texturePack.title=Kies Hulpbron Pakette
 texturePack.folderInfo=(Plaas hulpbron pakket lêers hier)
 menu.mods=Hulpbronpakke...
 tile.sapling.name=Eikeboom Stiggie
+title.creative:selectEorld.survival=Oorlewing
+title.creative:selectEorld.creative=Kreatief

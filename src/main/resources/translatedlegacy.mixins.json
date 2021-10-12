@@ -6,14 +6,18 @@
     "I18nMixin",
     "StatMixin",
     "TranslationStorageMixin",
+    "compat.CreativePlayerInventoryMixin",
+    "compat.CursedLegacyAPITranslationsMixin",
+    "compat.StationAPII18n",
     "inventory.ChestMixin",
     "inventory.DoubleInventoryMixin",
     "inventory.MinecartMixin",
     "inventory.PlayerInventoryMixin"
   ],
   "client": [
+    "client.AchievementMixin",
+    "client.AchievementsScreenMixin",
     "client.DeathScreenMixin",
-    "client.font.TextRendererMixin",
     "client.EditSignScreenMixin",
     "client.LevelSaveConflictScreenMixin",
     "client.MinecraftMixin",
@@ -23,9 +27,8 @@
     "client.container.DispenserScreenMixin",
     "client.container.FurnaceScreenMixin",
     "client.container.PlayerInventoryScreenMixin",
-    "client.gui.widget.TextboxMixin",
-    "client.AchievementMixin",
-    "client.AchievementsScreenMixin"
+    "client.font.TextRendererMixin",
+    "client.gui.widget.TextboxMixin"
   ],
   "injectors": {
     "defaultRequire": 1

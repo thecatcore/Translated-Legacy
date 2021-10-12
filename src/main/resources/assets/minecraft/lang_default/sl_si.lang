@@ -433,3 +433,5 @@ texturePack.title=Izberi paket sredstev
 texturePack.folderInfo=(Tukaj vstavi pakete sredstev)
 menu.mods=Paketi sredstev...
 tile.sapling.name=Hrastova sadika
+title.creative:selectEorld.survival=Preživetje
+title.creative:selectEorld.creative=Ustvarjanje

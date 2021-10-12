@@ -433,3 +433,5 @@ texturePack.title=리소스 팩 선택
 texturePack.folderInfo=(리소스 팩 파일을 여기에 놓으세요)
 menu.mods=리소스 팩...
 tile.sapling.name=참나무 묘목
+title.creative:selectEorld.survival=서바이벌
+title.creative:selectEorld.creative=크리에이티브

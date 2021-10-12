@@ -433,3 +433,5 @@ texturePack.title=Избор на ресурсни пакети
 texturePack.folderInfo=(Поставете ресурсните пакети тук)
 menu.mods=Ресурсни пакети...
 tile.sapling.name=Дъбова фиданка
+title.creative:selectEorld.survival=Оцеляване
+title.creative:selectEorld.creative=Творчески

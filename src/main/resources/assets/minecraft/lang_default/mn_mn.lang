@@ -425,3 +425,5 @@ texturePack.title=Дүрслэл сонгох
 texturePack.folderInfo=(Дүрслэлүүдийн файлыг энд байрлуулна уу)
 menu.mods=Дүрслэлүүдийн багц...
 tile.sapling.name=Зулзаган царс мод
+title.creative:selectEorld.survival=Амьд үлдэх
+title.creative:selectEorld.creative=Бүтээгч

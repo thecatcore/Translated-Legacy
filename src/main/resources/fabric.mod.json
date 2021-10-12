@@ -23,9 +23,7 @@
     ]
   },
   "mixins": [
-    "translatedlegacy.mixins.json",
-    "translatedlegacy-cursedlegacyapi.mixins.json",
-    "translatedlegacy-stationapi.mixins.json"
+    "translatedlegacy.mixins.json"
   ],
 
   "depends": {

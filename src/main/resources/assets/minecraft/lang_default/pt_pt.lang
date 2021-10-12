@@ -433,3 +433,5 @@ texturePack.title=Selecionar Pacotes de Recursos
 texturePack.folderInfo=(Coloca os ficheiros do pacote de recursos aqui)
 menu.mods=Pacotes de Recursos
 tile.sapling.name=Rebento de Carvalho
+title.creative:selectEorld.survival=Sobrevivência
+title.creative:selectEorld.creative=Criativo

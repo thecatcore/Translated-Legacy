@@ -419,3 +419,5 @@ texturePack.title=Agħżel Resource Packs
 texturePack.folderInfo=(Itfa l-files tar-resource packs hawnhekk)
 menu.mods=Resource Packs...
 tile.sapling.name=Żgħar tal-Ballut
+title.creative:selectEorld.survival=Sopravivenza
+title.creative:selectEorld.creative=Kreattiv

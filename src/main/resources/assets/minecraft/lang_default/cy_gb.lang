@@ -425,3 +425,5 @@ texturePack.title=Dewis Pecynnau Adnodd
 texturePack.folderInfo=(Rhowch ffeiliau pecynnau adnodd yma)
 menu.mods=Pecynnau Adnodd...
 tile.sapling.name=Coeden Ifanc Derw
+title.creative:selectEorld.survival=Goroesi
+title.creative:selectEorld.creative=Creadigol

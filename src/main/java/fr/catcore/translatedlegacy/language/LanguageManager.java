@@ -107,31 +107,31 @@ public class LanguageManager {
 
                 String upperCode = code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ROOT);
 
-                langFile = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/lang/" + upperCode + ".lang");
+                InputStream langFile1 = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/lang/" + upperCode + ".lang");
 
-                if (langFile != null) {
+                if (langFile1 != null) {
                     try {
-                        CODE_TO_STORAGE.get(code).load(modId, langFile);
+                        CODE_TO_STORAGE.get(code).load(modId, langFile1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
 
-                langFile = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/stationloader/lang/" + code + ".lang");
+                InputStream langFile2 = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/stationloader/lang/" + code + ".lang");
 
-                if (langFile != null) {
+                if (langFile2 != null) {
                     try {
-                        CODE_TO_STORAGE.get(code).load(modId, langFile);
+                        CODE_TO_STORAGE.get(code).load(modId, langFile2);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
 
-                langFile = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/stationloader/lang/" + upperCode + ".lang");
+                InputStream langFile3 = LanguageManager.class.getResourceAsStream("/assets/" + modId + "/stationloader/lang/" + upperCode + ".lang");
 
-                if (langFile != null) {
+                if (langFile3 != null) {
                     try {
-                        CODE_TO_STORAGE.get(code).load(modId, langFile);
+                        CODE_TO_STORAGE.get(code).load(modId, langFile3);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

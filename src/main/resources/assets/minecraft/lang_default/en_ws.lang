@@ -394,3 +394,5 @@ texturePack.title=Select Resource Packs
 texturePack.folderInfo=(Place thine resource packs hither)
 menu.mods=Resource Packs...
 tile.sapling.name=Oak Sapling
+title.creative:selectEorld.survival=Mortal
+title.creative:selectEorld.creative=Omnipotence

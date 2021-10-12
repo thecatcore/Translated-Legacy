@@ -433,3 +433,5 @@ texturePack.title=เลือกชุดรวมระบบ
 texturePack.folderInfo=(วางไฟล์รีซอร์สแพ็คที่นี่)
 menu.mods=รีซอร์สแพ็ค...
 tile.sapling.name=ต้นกล้าโอ๊ก
+title.creative:selectEorld.survival=เอาชีวิตรอด
+title.creative:selectEorld.creative=สร้างสรรค์

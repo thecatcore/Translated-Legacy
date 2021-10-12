@@ -1,15 +1,17 @@
-package fr.catcore.translatedlegacy.mixin.compat.cursedlegacyapi;
+package fr.catcore.translatedlegacy.mixin.compat;
 
 import fr.catcore.translatedlegacy.language.LanguageManager;
 import io.github.minecraftcursedlegacy.api.registry.Translations;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Pseudo;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.Objects;
 
+@Pseudo
 @Mixin(Translations.class)
 public class CursedLegacyAPITranslationsMixin {
 

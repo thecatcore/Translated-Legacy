@@ -54,7 +54,10 @@ public class OldTranslationStorage {
         translations.put(key, value);
 
         // Station API compatibility
-        if (modid != null && !modid.equals("minecraft") && FabricLoader.getInstance().isModLoaded("station-localization-api-v0")) {
+        if (modid != null && !modid.equals("minecraft") && (
+                FabricLoader.getInstance().isModLoaded("station-localization-api-v0")
+                || FabricLoader.getInstance().isModLoaded("stationloader")
+        )) {
             String newKey = String.copyValueOf(key.toCharArray());
 
             String[] keyParts = newKey.split("\\.");

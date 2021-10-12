@@ -433,3 +433,5 @@ texturePack.title=Esbilla de paquetes de recursos
 texturePack.folderInfo=(Posa equí los paquetes de recursos)
 menu.mods=Paquetes de recursos...
 tile.sapling.name=Biltu de carbayu
+title.creative:selectEorld.survival=Sobrevivencia
+title.creative:selectEorld.creative=Creativu

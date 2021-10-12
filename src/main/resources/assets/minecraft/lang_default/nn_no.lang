@@ -433,3 +433,5 @@ texturePack.title=Vel ressurspakke
 texturePack.folderInfo=(Legg filene til ressurspakka her)
 menu.mods=Ressurspakkar...
 tile.sapling.name=Eikefrø
+title.creative:selectEorld.survival=Overleving
+title.creative:selectEorld.creative=Skapande

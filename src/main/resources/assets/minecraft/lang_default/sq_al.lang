@@ -395,3 +395,5 @@ texturePack.title=Zgjidhni Pako Të Burimeve Të
 texturePack.folderInfo=(Vendin e burimeve pack fotografi këtu)
 menu.mods=Pako Të Burimeve Të...
 tile.sapling.name=Fidan druri
+title.creative:selectEorld.survival=Mbijetesë
+title.creative:selectEorld.creative=Creative

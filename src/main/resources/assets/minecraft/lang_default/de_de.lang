@@ -433,3 +433,5 @@ texturePack.title=Ressourcenpakete auswählen
 texturePack.folderInfo=(Ressourcenpakete hier einfügen)
 menu.mods=Ressourcenpakete ...
 tile.sapling.name=Eichensetzling
+title.creative:selectEorld.survival=Überleben
+title.creative:selectEorld.creative=Kreativ

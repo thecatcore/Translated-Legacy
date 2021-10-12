@@ -428,3 +428,5 @@ texturePack.title=Roghnaigh Pacáistí Acmhainní
 texturePack.folderInfo=(Cuir pacáistí acmhainní anseo)
 menu.mods=Pacáistí Acmhainní...
 tile.sapling.name=Dair Óg
+title.creative:selectEorld.survival=Marthanas
+title.creative:selectEorld.creative=Cruthaitheach

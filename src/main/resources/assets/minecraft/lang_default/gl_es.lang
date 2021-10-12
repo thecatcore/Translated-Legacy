@@ -433,3 +433,5 @@ texturePack.title=Seleccionar paquete de recursos
 texturePack.folderInfo=(Coloca aquí os arquivos do paquete de recursos)
 menu.mods=Paquetes de recursos...
 tile.sapling.name=Brote de carballo
+title.creative:selectEorld.survival=Supervivencia
+title.creative:selectEorld.creative=Creativo

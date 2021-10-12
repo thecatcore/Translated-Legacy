@@ -433,3 +433,5 @@ texturePack.title=Odabir paketa resursa
 texturePack.folderInfo=(Ovdje postavi datoteke paketa resursa)
 menu.mods=Paketi resursa...
 tile.sapling.name=Mlado hrasta
+title.creative:selectEorld.survival=Opstanak
+title.creative:selectEorld.creative=Kreativnost

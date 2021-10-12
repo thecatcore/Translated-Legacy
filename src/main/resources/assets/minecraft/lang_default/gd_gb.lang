@@ -426,3 +426,5 @@ texturePack.title=Tagh pacaidean ghoireasan
 texturePack.folderInfo=(Cuir faidhlichean le pacaidean ghoireasan an-seo)
 menu.mods=Pacaidean ghoireasan...
 tile.sapling.name=Fiùran daraich
+title.creative:selectEorld.survival=Mairsinneachd
+title.creative:selectEorld.creative=Cruthachail

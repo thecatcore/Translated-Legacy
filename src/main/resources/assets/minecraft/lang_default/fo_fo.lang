@@ -419,3 +419,5 @@ texturePack.title=Vel tilfeingispakkar
 texturePack.folderInfo=(Set fílur úr tilfeingispakka her)
 menu.mods=Tilfeingispakkar...
 tile.sapling.name=Ungt eikitræ
+title.creative:selectEorld.survival=Yvirlivisli
+title.creative:selectEorld.creative=Skapanarligt
