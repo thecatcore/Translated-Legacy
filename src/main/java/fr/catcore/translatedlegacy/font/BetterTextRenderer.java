@@ -38,7 +38,7 @@ public class BetterTextRenderer {
     private void loadFont(GameOptions arg, TextureManager arg1, char a, char b) {
         BufferedImage fontImage;
         try {
-            fontImage = ImageIO.read(BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/font/unicode_page_" + a + b + ".png"));
+            fontImage = ImageIO.read(BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/textures/font/unicode_page_" + a + b + ".png"));
         } catch (IOException var18) {
             throw new RuntimeException(var18);
         } catch (IllegalArgumentException e) {
