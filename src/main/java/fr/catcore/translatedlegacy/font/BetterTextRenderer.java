@@ -21,7 +21,6 @@ public class BetterTextRenderer {
     private static final Glyph SPACE = () -> {
         return 4.0F;
     };
-    private static final EmptyGlyphRenderer EMPTY_GLYPH_RENDERER = new EmptyGlyphRenderer();
 
     public int[] imageInt = new int[256];
     private int[] anInt = new int[256];
@@ -31,9 +30,6 @@ public class BetterTextRenderer {
     private static final int GLYPH_WIDTH = 8;
     private byte[] CHARS_WIDTH = new byte[65536];
     private Glyph[] GLYPHS = new Glyph[65536];
-    private final List<GlyphAtlasTexture> GLYPH_ATLAS = new ArrayList<>();
-    private GlyphRenderer blankGlyphRenderer;
-    private final Int2ObjectMap<GlyphRenderer> RENDERER_CACHE = new Int2ObjectMap<>();
 
     private void loadFonts(GameOptions arg, TextureManager arg1) {
         for (int a1 = 0; a1 < 256; a1++) {
@@ -48,34 +44,6 @@ public class BetterTextRenderer {
 
     private static int getEnd(byte size) {
         return (size & 15) + 1;
-    }
-
-    private GlyphRenderer getGlyphRenderer(int i) {
-        return (GlyphRenderer)this.RENDERER_CACHE.computeIfAbsent(i, (ix) -> {
-            return (GlyphRenderer)(ix == 32 ? EMPTY_GLYPH_RENDERER : (this.GLYPHS[ix] != null ? this.getGlyphRenderer((RenderableGlyph) this.GLYPHS[ix]) : null));
-        });
-    }
-
-    private GlyphRenderer getGlyphRenderer(RenderableGlyph glyph) {
-        Iterator<GlyphAtlasTexture> var2 = this.GLYPH_ATLAS.iterator();
-
-        GlyphRenderer glyphRenderer;
-
-        do {
-            if (!var2.hasNext()) {
-                GlyphAtlasTexture atlasTexture = new GlyphAtlasTexture();
-                this.GLYPH_ATLAS.add(atlasTexture);
-
-                GlyphRenderer glyphRenderer2 = atlasTexture.getRenderer(glyph);
-                glyphRenderer = glyphRenderer2 == null ? this.blankGlyphRenderer : glyphRenderer2;
-                break;
-            }
-
-            GlyphAtlasTexture glyphAtlasTexture = (GlyphAtlasTexture)var2.next();
-            glyphRenderer = glyphAtlasTexture.getRenderer(glyph);
-        } while (glyphRenderer == null);
-
-        return glyphRenderer;
     }
 
     private void loadFont(GameOptions arg, TextureManager arg1, int j) {
@@ -111,31 +79,21 @@ public class BetterTextRenderer {
             byte b = this.CHARS_WIDTH[codepoint];
             if (b != 0) this.GLYPHS[codepoint] = new UnicodeTextureGlyph(getEnd(b) - getStart(b), 16);
             else this.GLYPHS[codepoint] = null;
-
-            if (this.GLYPHS[codepoint] != null && this.GLYPHS[codepoint] instanceof RenderableGlyph) {
-//                this.GLYPH_ATLAS[codepoint] = GlyphRenderer.getRenderer((RenderableGlyph) this.GLYPHS[codepoint]);
-            }
         }
 
-//        this.GLYPH_ATLAS[32] = EMPTY_GLYPH_RENDERER;
+        this.GLYPHS[32] = SPACE;
 
         for(int unicodeId = 0; unicodeId < 256; ++unicodeId) {
             int codepoint = j + unicodeId;
             GL11.glNewList(this.anInt[fontBlockIndex] + codepoint, 4864);
             tessellator.start();
 
-//            GlyphRenderer renderer = this.GLYPH_ATLAS[codepoint];
-//            if (renderer != null) {
+            Glyph glyph = this.GLYPHS[codepoint];
 
-//                renderer.draw(false, width, height, tessellator);
-//            }
-
-            GlyphRenderer glyphRenderer = this.getGlyphRenderer(codepoint);
-
-            if (glyphRenderer != null) {
-                int height = unicodeId % 16 * GLYPH_HEIGHT;
-                int width = unicodeId / 16 * GLYPH_WIDTH;
-                glyphRenderer.draw(false, width, height, tessellator);
+            if (glyph != null) {
+                int width = unicodeId % 16 * GLYPH_HEIGHT;
+                int height = unicodeId / 16 * GLYPH_WIDTH;
+                glyph.preDraw(false, height, width, getStart(this.CHARS_WIDTH[codepoint])/2.0F, getEnd(this.CHARS_WIDTH[codepoint]), tessellator);
             }
 
             tessellator.draw();
@@ -144,16 +102,16 @@ public class BetterTextRenderer {
             GL11.glEndList();
         }
 
-        for(int var21 = 0; var21 < 32; ++var21) {
-            int var23 = (var21 >> 3 & 1) * 85;
-            int red = (var21 >> 2 & 1) * 170 + var23;
-            int green = (var21 >> 1 & 1) * 170 + var23;
-            int blue = (var21 & 1) * 170 + var23;
-            if (var21 == 6) {
+        for(int color = 0; color < 32; ++color) {
+            int var23 = (color >> 3 & 1) * 85;
+            int red = (color >> 2 & 1) * 170 + var23;
+            int green = (color >> 1 & 1) * 170 + var23;
+            int blue = (color & 1) * 170 + var23;
+            if (color == 6) {
                 red += 85;
             }
 
-            boolean var31 = var21 >= 16;
+            boolean flag = color >= 16;
             if (arg.anaglyph3d) {
                 int var32 = (red * 30 + green * 59 + blue * 11) / 100;
                 int var33 = (red * 30 + green * 70) / 100;
@@ -163,20 +121,19 @@ public class BetterTextRenderer {
                 blue = var17;
             }
 
-            if (var31) {
+            if (flag) {
                 red /= 4;
                 green /= 4;
                 blue /= 4;
             }
 
-            GL11.glNewList(this.anInt[0] + 256 + var21, 4864);
+            GL11.glNewList(this.anInt[0] + 256 + color, 4864);
             GL11.glColor3f((float)red / 255.0F, (float)green / 255.0F, (float)blue / 255.0F);
             GL11.glEndList();
         }
     }
 
     public BetterTextRenderer(GameOptions arg, TextureManager arg1) {
-        this.blankGlyphRenderer = this.getGlyphRenderer(BlankGlyph.INSTANCE);
         this.loadGlyphSizes();
         this.loadFonts(arg, arg1);
     }
@@ -268,7 +225,7 @@ public class BetterTextRenderer {
     }
     
     private float getCharWidth(int index) {
-        return index == 32 ? 4.0F : this.GLYPHS[index] !=null ? this.GLYPHS[index].getAdvance() : 8.0F;
+        return this.GLYPHS[index] != null ? this.GLYPHS[index].getAdvance() : 8.0F;
     }
 
     private void loadGlyphSizes() {

@@ -19,7 +19,7 @@ public class I18nMixin {
      * @author Cat Core
      */
     @Overwrite
-    public static String translate(String key, Object... arg) {
+    public static String translate(String key, Object[] arg) {
         return LanguageManager.CURRENT_LANGUAGE.translate(key, arg);
     }
 }

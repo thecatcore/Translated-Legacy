@@ -1,5 +1,7 @@
 package fr.catcore.translatedlegacy.font;
 
+import net.minecraft.client.render.Tessellator;
+
 public interface Glyph {
     float getAdvance();
 
@@ -22,4 +24,6 @@ public interface Glyph {
     default float getShadowOffset() {
         return 1.0F;
     }
+
+    default void preDraw(boolean italic, float y, float x, float indent, float end, Tessellator tessellator) {}
 }
