@@ -109,7 +109,7 @@
         "commands.weather.usage": "u"
     },
     "remove": {
-        "menu.game": "r",
+        "menu.game": "s",
         "generator.amplified": "r",
         "generator.amplified.info": "r",
         "addServer.resourcePack": "r",

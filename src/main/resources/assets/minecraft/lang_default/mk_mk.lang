@@ -173,6 +173,7 @@ language.code=mk_MK
 language.name=Македонски
 language.region=Македонија
 menu.disconnect=Прекини
+menu.game=игра Мени
 menu.generatingLevel=генерирање на световите
 menu.generatingTerrain=градежни Терен
 menu.loadingLevel=Се поврзува световите

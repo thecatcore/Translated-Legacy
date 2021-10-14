@@ -30,4 +30,14 @@ public class PauseScreenMixin {
     public String init$lang4(String string) {
         return I18n.translate("menu.options");
     }
+
+    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/PauseScreen;drawTextWithShadow(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"))
+    public String render$lang1(String string) {
+        return I18n.translate("menu.saving");
+    }
+
+    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/PauseScreen;drawTextWithShadowCentred(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"))
+    public String render$lang2(String string) {
+        return I18n.translate("menu.game");
+    }
 }

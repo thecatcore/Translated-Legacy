@@ -1,6 +1,5 @@
 package fr.catcore.translatedlegacy.font;
 
-import fr.catcore.translatedlegacy.util.Int2ObjectMap;
 import net.minecraft.class_214;
 import net.minecraft.client.options.GameOptions;
 import net.minecraft.client.render.Tessellator;
@@ -13,23 +12,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.Buffer;
 import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class BetterTextRenderer {
-    private static final Glyph SPACE = () -> {
-        return 4.0F;
-    };
+    private static final Glyph SPACE = () -> 4.0F;
 
     public int[] imageInt = new int[256];
-    private int[] anInt = new int[256];
-    private IntBuffer intBuffer = class_214.method_745(1024);
+    private final int[] anInt = new int[256];
+    private final IntBuffer intBuffer = class_214.method_745(1024);
 
     private static final int GLYPH_HEIGHT = 8;
     private static final int GLYPH_WIDTH = 8;
-    private byte[] CHARS_WIDTH = new byte[65536];
-    private Glyph[] GLYPHS = new Glyph[65536];
+    private final byte[] CHARS_WIDTH = new byte[65536];
+    private final Glyph[] GLYPHS = new Glyph[65536];
 
     private void loadFonts(GameOptions arg, TextureManager arg1) {
         for (int a1 = 0; a1 < 256; a1++) {
@@ -102,6 +96,10 @@ public class BetterTextRenderer {
             GL11.glEndList();
         }
 
+        this.registerColorCodes(arg.anaglyph3d);
+    }
+
+    private void registerColorCodes(boolean anaglyph3d) {
         for(int color = 0; color < 32; ++color) {
             int var23 = (color >> 3 & 1) * 85;
             int red = (color >> 2 & 1) * 170 + var23;
@@ -112,7 +110,7 @@ public class BetterTextRenderer {
             }
 
             boolean flag = color >= 16;
-            if (arg.anaglyph3d) {
+            if (anaglyph3d) {
                 int var32 = (red * 30 + green * 59 + blue * 11) / 100;
                 int var33 = (red * 30 + green * 70) / 100;
                 int var17 = (red * 30 + blue * 70) / 100;
@@ -167,42 +165,46 @@ public class BetterTextRenderer {
 
             GL11.glPushMatrix();
             GL11.glTranslatef((float)x, (float)y, 0.0F);
-            for(int var12 = 0; var12 < string.length(); ++var12) {
-                int var141 = BetterCharacterUtils.getId(string.charAt(var12));
-                if (this.CHARS_WIDTH[var141] == 0) continue;
-                ((Buffer)this.intBuffer).clear();
-                GL11.glBindTexture(3553, this.imageInt[var141 / 256]);
-
-                for(; string.length() > var12 + 1 && string.charAt(var12) == 167; var12 += 2) {
-                    int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(var12 + 1));
-                    if (var13 < 0 || var13 > 15) {
-                        var13 = 15;
-                    }
-
-                    this.intBuffer.put(this.anInt[0] + 256 + var13 + (flag ? 16 : 0));
-                    if (this.intBuffer.remaining() == 0) {
-                        ((Buffer)this.intBuffer).flip();
-                        GL11.glCallLists(this.intBuffer);
-                        ((Buffer)this.intBuffer).clear();
-                    }
-                }
-
-                if (var12 < string.length()) {
-                    int var14 = BetterCharacterUtils.getId(string.charAt(var12));
-                    if (this.CHARS_WIDTH[var14] <= 0) continue;
-                    this.intBuffer.put(this.anInt[var14 / 256] + var14);
-                }
-
-                if (this.intBuffer.remaining() == 0) {
-                    ((Buffer)this.intBuffer).flip();
-                    GL11.glCallLists(this.intBuffer);
-                    ((Buffer)this.intBuffer).clear();
-                }
-                ((Buffer)this.intBuffer).flip();
-                GL11.glCallLists(this.intBuffer);
+            for(int charIndex = 0; charIndex < string.length(); ++charIndex) {
+                char c = string.charAt(charIndex);
+                this.drawChar(string, c, charIndex, flag);
             }
             GL11.glPopMatrix();
         }
+    }
+
+    private void drawChar(String string, char c, int charIndex, boolean flag) {
+        if (this.CHARS_WIDTH[c] == 0) return;
+        ((Buffer)this.intBuffer).clear();
+        GL11.glBindTexture(3553, this.imageInt[c / 256]);
+
+        for(; string.length() > charIndex + 1 && c == 167; charIndex += 2) {
+            int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(charIndex + 1));
+            if (var13 < 0 || var13 > 15) {
+                var13 = 15;
+            }
+
+            this.intBuffer.put(this.anInt[0] + 256 + var13 + (flag ? 16 : 0));
+            if (this.intBuffer.remaining() == 0) {
+                ((Buffer)this.intBuffer).flip();
+                GL11.glCallLists(this.intBuffer);
+                ((Buffer)this.intBuffer).clear();
+            }
+        }
+
+        if (charIndex < string.length()) {
+            c = string.charAt(charIndex);
+            if (this.CHARS_WIDTH[c] <= 0) return;
+            this.intBuffer.put(this.anInt[c / 256] + c);
+        }
+
+        if (this.intBuffer.remaining() == 0) {
+            ((Buffer)this.intBuffer).flip();
+            GL11.glCallLists(this.intBuffer);
+            ((Buffer)this.intBuffer).clear();
+        }
+        ((Buffer)this.intBuffer).flip();
+        GL11.glCallLists(this.intBuffer);
     }
 
     public int getTextWidth(String string) {

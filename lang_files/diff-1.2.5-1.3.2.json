@@ -7,6 +7,10 @@
         "tile.sapling.oak.name": {
             "key": "tile.sapling.name",
             "mode": "t"
+        },
+        "commands.save.start": {
+            "key": "menu.saving",
+            "mode": "t"
         }
     },
     "same": {
@@ -162,7 +166,7 @@
         "commands.unbanip.usage": "r",
         "commands.save.enabled": "r",
         "commands.save.disabled": "r",
-        "commands.save.start": "r",
+        "commands.save.start": "s",
         "commands.save.success": "r",
         "commands.save.failed": "r",
         "commands.stop.start": "r",

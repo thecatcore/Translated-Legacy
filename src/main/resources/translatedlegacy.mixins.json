@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "I18nMixin",
+    "LevelMixin",
     "StatMixin",
     "TranslationStorageMixin",
     "compat.CreativePlayerInventoryMixin",
