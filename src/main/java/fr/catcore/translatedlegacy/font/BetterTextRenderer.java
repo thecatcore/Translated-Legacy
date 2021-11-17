@@ -14,7 +14,7 @@ import java.nio.Buffer;
 import java.nio.IntBuffer;
 
 public class BetterTextRenderer {
-    private static final Glyph SPACE = () -> 4.0F;
+    private static final NonRenderableGlyph SPACE = () -> 4.0F;
 
     public int[] imageInt = new int[256];
     private final int[] anInt = new int[256];
@@ -71,7 +71,7 @@ public class BetterTextRenderer {
         for (int u = 0; u < 256; u++) {
             int codepoint = j + u;
             byte b = this.CHARS_WIDTH[codepoint];
-            if (b != 0) this.GLYPHS[codepoint] = new UnicodeTextureGlyph(getEnd(b) - getStart(b), 16);
+            if (b != 0) this.GLYPHS[codepoint] = new UnicodeTextureGlyph(getEnd(b) - getStart(b), 16, codepoint, fontBlockIndex);
             else this.GLYPHS[codepoint] = null;
         }
 
@@ -166,19 +166,19 @@ public class BetterTextRenderer {
             GL11.glPushMatrix();
             GL11.glTranslatef((float)x, (float)y, 0.0F);
             for(int charIndex = 0; charIndex < string.length(); ++charIndex) {
-                char c = string.charAt(charIndex);
+                Glyph c = this.GLYPHS[string.charAt(charIndex)];
                 this.drawChar(string, c, charIndex, flag);
             }
             GL11.glPopMatrix();
         }
     }
 
-    private void drawChar(String string, char c, int charIndex, boolean flag) {
-        if (this.CHARS_WIDTH[c] == 0) return;
+    private void drawChar(String string, Glyph c, int charIndex, boolean flag) {
+        if (this.CHARS_WIDTH[c.getId()] == 0) return;
         ((Buffer)this.intBuffer).clear();
-        GL11.glBindTexture(3553, this.imageInt[c / 256]);
+        GL11.glBindTexture(3553, this.imageInt[c.getImagePointer()]);
 
-        for(; string.length() > charIndex + 1 && c == 167; charIndex += 2) {
+        for(; string.length() > charIndex + 1 && c.getId() == 167; charIndex += 2) {
             int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(charIndex + 1));
             if (var13 < 0 || var13 > 15) {
                 var13 = 15;
@@ -193,9 +193,9 @@ public class BetterTextRenderer {
         }
 
         if (charIndex < string.length()) {
-            c = string.charAt(charIndex);
-            if (this.CHARS_WIDTH[c] <= 0) return;
-            this.intBuffer.put(this.anInt[c / 256] + c);
+            c = this.GLYPHS[string.charAt(charIndex)];
+            if (this.CHARS_WIDTH[c.getId()] <= 0) return;
+            this.intBuffer.put(this.anInt[c.getImagePointer()] + c.getId());
         }
 
         if (this.intBuffer.remaining() == 0) {

@@ -4,17 +4,30 @@ public class UnicodeTextureGlyph implements RenderableGlyph {
     private final int width;
     private final int height;
 
-    UnicodeTextureGlyph(/*int i, int j, */int k, int l/*, NativeImage nativeImage*/) {
-        this.width = k;
-        this.height = l;
-//        this.unpackSkipPixels = i;
-//        this.unpackSkipRows = j;
-//        this.image = nativeImage;
+    private final int id;
+    private final int imagePointer;
+
+    UnicodeTextureGlyph(int width, int height, int id, int imagePointer) {
+        this.width = width;
+        this.height = height;
+
+        this.id = id;
+        this.imagePointer = imagePointer;
     }
 
     @Override
     public float getAdvance() {
         return (float)(this.width / 2 + 1);
+    }
+
+    @Override
+    public int getId() {
+        return this.id;
+    }
+
+    @Override
+    public int getImagePointer() {
+        return this.imagePointer;
     }
 
     @Override

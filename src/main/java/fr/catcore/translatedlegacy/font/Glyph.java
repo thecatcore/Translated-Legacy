@@ -3,6 +3,10 @@ package fr.catcore.translatedlegacy.font;
 import net.minecraft.client.render.Tessellator;
 
 public interface Glyph {
+    int getId();
+
+    int getImagePointer();
+
     float getAdvance();
 
     default float getAdvance(boolean bold) {
