@@ -1,139 +1,47 @@
 package fr.catcore.translatedlegacy.font;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.minecraft.class_214;
 import net.minecraft.client.options.GameOptions;
-import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.texture.TextureManager;
 import org.lwjgl.opengl.GL11;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.Buffer;
 import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BetterTextRenderer {
-    private static final NonRenderableGlyph SPACE = () -> 4.0F;
-
-    public int[] imageInt = new int[256];
-    private final int[] anInt = new int[256];
+    private static final Gson GSON = new Gson();
     private final IntBuffer intBuffer = class_214.method_745(1024);
-
-    private static final int GLYPH_HEIGHT = 8;
-    private static final int GLYPH_WIDTH = 8;
-    private final byte[] CHARS_WIDTH = new byte[65536];
-    private final Glyph[] GLYPHS = new Glyph[65536];
+    private static final List<Font> FONTS = new ArrayList<>();
 
     private void loadFonts(GameOptions arg, TextureManager arg1) {
-        for (int a1 = 0; a1 < 256; a1++) {
-            int j = a1 * 256;
-            loadFont(arg, arg1, j);
-        }
-    }
-
-    private static int getStart(byte size) {
-        return size >> 4 & 15;
-    }
-
-    private static int getEnd(byte size) {
-        return (size & 15) + 1;
-    }
-
-    private void loadFont(GameOptions arg, TextureManager arg1, int j) {
-        BufferedImage fontImage;
-        try {
-            fontImage = ImageIO.read(BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/textures/font/unicode_page_" + String.format("%02x", j / 256) + ".png"));
-        } catch (IOException var18) {
-            throw new RuntimeException(var18);
-        } catch (IllegalArgumentException e) {
-            return;
-        }
-
-        int imageWidth = fontImage.getWidth();
-        int imageHeight = fontImage.getHeight();
-
-        if (imageWidth != 256 || imageHeight != 256) return;
-
-        for (int k = 0; k < 256; k++) {
-            byte b = this.CHARS_WIDTH[j + k];
-            if (b != 0 && getStart(b) > getEnd(b)) {
-                this.CHARS_WIDTH[j + k] = 0;
-            }
-        }
-
-        int fontBlockIndex = j / 256;
-
-        this.imageInt[fontBlockIndex] = arg1.glLoadImage(fontImage);
-        this.anInt[fontBlockIndex] = class_214.method_741(288 + fontBlockIndex);
-        Tessellator tessellator = Tessellator.INSTANCE;
-
-        for (int u = 0; u < 256; u++) {
-            int codepoint = j + u;
-            byte b = this.CHARS_WIDTH[codepoint];
-            if (b != 0) this.GLYPHS[codepoint] = new UnicodeTextureGlyph(getEnd(b) - getStart(b), 16, codepoint, fontBlockIndex);
-            else this.GLYPHS[codepoint] = null;
-        }
-
-        this.GLYPHS[32] = SPACE;
-
-        for(int unicodeId = 0; unicodeId < 256; ++unicodeId) {
-            int codepoint = j + unicodeId;
-            GL11.glNewList(this.anInt[fontBlockIndex] + codepoint, 4864);
-            tessellator.start();
-
-            Glyph glyph = this.GLYPHS[codepoint];
-
-            if (glyph != null) {
-                int width = unicodeId % 16 * GLYPH_HEIGHT;
-                int height = unicodeId / 16 * GLYPH_WIDTH;
-                glyph.preDraw(false, height, width, getStart(this.CHARS_WIDTH[codepoint])/2.0F, getEnd(this.CHARS_WIDTH[codepoint]), tessellator);
-            }
-
-            tessellator.draw();
-
-            GL11.glTranslatef(this.getCharWidth(unicodeId + j), 0.0F, 0.0F);
-            GL11.glEndList();
-        }
-
-        this.registerColorCodes(arg.anaglyph3d);
-    }
-
-    private void registerColorCodes(boolean anaglyph3d) {
-        for(int color = 0; color < 32; ++color) {
-            int var23 = (color >> 3 & 1) * 85;
-            int red = (color >> 2 & 1) * 170 + var23;
-            int green = (color >> 1 & 1) * 170 + var23;
-            int blue = (color & 1) * 170 + var23;
-            if (color == 6) {
-                red += 85;
-            }
-
-            boolean flag = color >= 16;
-            if (anaglyph3d) {
-                int var32 = (red * 30 + green * 59 + blue * 11) / 100;
-                int var33 = (red * 30 + green * 70) / 100;
-                int var17 = (red * 30 + blue * 70) / 100;
-                red = var32;
-                green = var33;
-                blue = var17;
-            }
-
-            if (flag) {
-                red /= 4;
-                green /= 4;
-                blue /= 4;
-            }
-
-            GL11.glNewList(this.anInt[0] + 256 + color, 4864);
-            GL11.glColor3f((float)red / 255.0F, (float)green / 255.0F, (float)blue / 255.0F);
-            GL11.glEndList();
+        for (Font font : FONTS) {
+            font.loadTextures(arg, arg1);
         }
     }
 
     public BetterTextRenderer(GameOptions arg, TextureManager arg1) {
-        this.loadGlyphSizes();
+        this.loadFontJson();
         this.loadFonts(arg, arg1);
+    }
+
+    private void loadFontJson() {
+        InputStream stream = BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/font/uniform.json");
+        InputStreamReader reader = new InputStreamReader(stream);
+
+        JsonObject object = GSON.fromJson(reader, JsonObject.class);
+        JsonArray list = object.getAsJsonArray("providers");
+
+        for (JsonElement element : list) {
+            FONTS.add(FontType.create(element.getAsJsonObject()));
+        }
     }
 
     public void drawTextWithShadow(String string, int x, int y, int color) {
@@ -166,17 +74,54 @@ public class BetterTextRenderer {
             GL11.glPushMatrix();
             GL11.glTranslatef((float)x, (float)y, 0.0F);
             for(int charIndex = 0; charIndex < string.length(); ++charIndex) {
-                Glyph c = this.GLYPHS[string.charAt(charIndex)];
-                this.drawChar(string, c, charIndex, flag);
+                char c = string.charAt(charIndex);
+                Glyph g = this.getGlyph(c);
+                if (g != null) this.drawChar(string, g, charIndex, flag);
             }
             GL11.glPopMatrix();
         }
     }
 
+    private Glyph getGlyph(char c) {
+        Font font = null;
+        for (Font ft: FONTS) {
+            if (ft.contains(c)) font = ft; break;
+        }
+
+        return font != null ? font.getGlyph(c) : null;
+    }
+
+    private int getImageInt(char c) {
+        Font font = null;
+        for (Font ft: FONTS) {
+            if (ft.contains(c)) font = ft; break;
+        }
+
+        return font != null ? font.getImagePointer(c) : -1;
+    }
+
+    private int getAnInt(char c) {
+        Font font = null;
+        for (Font ft: FONTS) {
+            if (ft.contains(c)) font = ft; break;
+        }
+
+        return font != null ? font.getOtherPointer(c) : -1;
+    }
+
+    private byte getCharWidth(char c) {
+        Font font = null;
+        for (Font ft: FONTS) {
+            if (ft.contains(c)) font = ft; break;
+        }
+
+        return font != null ? font.getWidth(c) : 0;
+    }
+
     private void drawChar(String string, Glyph c, int charIndex, boolean flag) {
-        if (this.CHARS_WIDTH[c.getId()] == 0) return;
+        if (this.getCharWidth((char) c.getId()) == 0) return;
         ((Buffer)this.intBuffer).clear();
-        GL11.glBindTexture(3553, this.imageInt[c.getImagePointer()]);
+        GL11.glBindTexture(3553, this.getImageInt((char) c.getId()));
 
         for(; string.length() > charIndex + 1 && c.getId() == 167; charIndex += 2) {
             int var13 = "0123456789abcdef".indexOf(string.toLowerCase().charAt(charIndex + 1));
@@ -184,7 +129,7 @@ public class BetterTextRenderer {
                 var13 = 15;
             }
 
-            this.intBuffer.put(this.anInt[0] + 256 + var13 + (flag ? 16 : 0));
+            this.intBuffer.put(this.getAnInt((char) 0) + 256 + var13 + (flag ? 16 : 0));
             if (this.intBuffer.remaining() == 0) {
                 ((Buffer)this.intBuffer).flip();
                 GL11.glCallLists(this.intBuffer);
@@ -193,9 +138,9 @@ public class BetterTextRenderer {
         }
 
         if (charIndex < string.length()) {
-            c = this.GLYPHS[string.charAt(charIndex)];
-            if (this.CHARS_WIDTH[c.getId()] <= 0) return;
-            this.intBuffer.put(this.anInt[c.getImagePointer()] + c.getId());
+            c = this.getGlyph(string.charAt(charIndex));
+            if (this.getCharWidth((char) c.getId()) <= 0) return;
+            this.intBuffer.put(this.getAnInt((char) c.getId()) + c.getId());
         }
 
         if (this.intBuffer.remaining() == 0) {
@@ -218,34 +163,13 @@ public class BetterTextRenderer {
                     ++pos;
                 } else {
                     int index = BetterCharacterUtils.getId(string.charAt(pos));
-                    width += this.getCharWidth(index);
+                    Glyph glyph = this.getGlyph((char) index);
+                    width += glyph != null ? glyph.getAdvance() : 8.0F;
                 }
             }
 
             return width;
         }
-    }
-    
-    private float getCharWidth(int index) {
-        return this.GLYPHS[index] != null ? this.GLYPHS[index].getAdvance() : 8.0F;
-    }
-
-    private void loadGlyphSizes() {
-        InputStream inputStream = null;
-
-        try {
-            inputStream = BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/font/glyph_sizes.bin");
-            inputStream.read(this.CHARS_WIDTH);
-        } catch (IOException var6) {
-            throw new RuntimeException(var6);
-        } finally {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 
     public void drawText(String string, int x, int y, int width, int color) {
