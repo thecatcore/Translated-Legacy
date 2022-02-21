@@ -6,7 +6,7 @@ public enum FontType {
     bitmap(BitmapFont::new),
     legacy_unicode(LegacyUnicodeFont::new);
 
-    private FontBuilder builder;
+    private final FontBuilder builder;
 
     FontType(FontBuilder builder) {
         this.builder = builder;
