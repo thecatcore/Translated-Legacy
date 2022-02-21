@@ -225,5 +225,5 @@ tile.sand.name=Sáttu
 tile.flower.name=Uvlorássi
 item.emerald.name=Diamántta
 tile.sapling.name=Áika Vesá
-title.creative:selectEorld.survival=Birgen
-title.creative:selectEorld.creative=Kreatiiva
+title.creative:selectWorld.survival=Birgen
+title.creative:selectWorld.creative=Kreatiiva

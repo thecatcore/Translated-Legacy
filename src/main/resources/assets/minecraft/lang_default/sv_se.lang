@@ -435,5 +435,5 @@ texturePack.folderInfo=(Placera resurspaketfiler här)
 menu.mods=Resurspaket...
 tile.sapling.name=Ekplanta
 menu.saving=Sparar...
-title.creative:selectEorld.survival=Överlevnad
-title.creative:selectEorld.creative=Kreativt
+title.creative:selectWorld.survival=Överlevnad
+title.creative:selectWorld.creative=Kreativt

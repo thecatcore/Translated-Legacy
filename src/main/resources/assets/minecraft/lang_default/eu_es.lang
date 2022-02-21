@@ -434,5 +434,5 @@ texturePack.folderInfo=(Baliabide paketea hemen ipini)
 menu.mods=Baliabide-paketeak...
 tile.sapling.name=Haritz kimua
 menu.saving=Gordetzen...
-title.creative:selectEorld.survival=Biziraupena
-title.creative:selectEorld.creative=Sortzailea
+title.creative:selectWorld.survival=Biziraupena
+title.creative:selectWorld.creative=Sortzailea

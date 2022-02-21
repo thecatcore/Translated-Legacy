@@ -435,5 +435,5 @@ texturePack.folderInfo=(Do tohto priečinka vlož zdrojové balíky)
 menu.mods=Zdrojové balíky...
 tile.sapling.name=Dubová sadenica
 menu.saving=Ukladanie...
-title.creative:selectEorld.survival=Prežitie
-title.creative:selectEorld.creative=Tvorivý
+title.creative:selectWorld.survival=Prežitie
+title.creative:selectWorld.creative=Tvorivý

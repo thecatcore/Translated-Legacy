@@ -435,5 +435,5 @@ texturePack.folderInfo=(Pune aici pachetele de resurse)
 menu.mods=Pachete de resurse...
 tile.sapling.name=Puiet de stejar
 menu.saving=Se salvează lumea...
-title.creative:selectEorld.survival=Supraviețuire
-title.creative:selectEorld.creative=Creativ
+title.creative:selectWorld.survival=Supraviețuire
+title.creative:selectWorld.creative=Creativ

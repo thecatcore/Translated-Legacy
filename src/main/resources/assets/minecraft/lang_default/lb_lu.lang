@@ -435,5 +435,5 @@ texturePack.folderInfo=(Ressourcepäck hei afügen)
 menu.mods=Ressourcepäck ...
 tile.sapling.name=Eechesetzlek
 menu.saving=Späicheren ...
-title.creative:selectEorld.survival=Iwwerliewen
-title.creative:selectEorld.creative=Kreativ
+title.creative:selectWorld.survival=Iwwerliewen
+title.creative:selectWorld.creative=Kreativ

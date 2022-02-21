@@ -435,5 +435,5 @@ texturePack.folderInfo=(place visualz here)
 menu.mods=Resource Packz...
 tile.sapling.name=baby oak
 menu.saving=Savin...
-title.creative:selectEorld.survival=SIRVIVL
-title.creative:selectEorld.creative=HAX
+title.creative:selectWorld.survival=SIRVIVL
+title.creative:selectWorld.creative=HAX

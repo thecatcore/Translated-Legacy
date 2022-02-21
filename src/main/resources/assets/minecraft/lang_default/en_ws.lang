@@ -396,5 +396,5 @@ texturePack.folderInfo=(Place thine resource packs hither)
 menu.mods=Resource Packs...
 tile.sapling.name=Oak Sapling
 menu.saving=Saving...
-title.creative:selectEorld.survival=Mortal
-title.creative:selectEorld.creative=Omnipotence
+title.creative:selectWorld.survival=Mortal
+title.creative:selectWorld.creative=Omnipotence

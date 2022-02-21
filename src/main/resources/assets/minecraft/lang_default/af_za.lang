@@ -434,5 +434,5 @@ texturePack.folderInfo=(Plaas hulpbron pakket lêers hier)
 menu.mods=Hulpbronpakke...
 tile.sapling.name=Eikeboom Stiggie
 menu.saving=Besig om te stoor...
-title.creative:selectEorld.survival=Oorlewing
-title.creative:selectEorld.creative=Kreatief
+title.creative:selectWorld.survival=Oorlewing
+title.creative:selectWorld.creative=Kreatief

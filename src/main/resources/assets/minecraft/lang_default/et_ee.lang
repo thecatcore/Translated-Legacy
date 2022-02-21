@@ -435,5 +435,5 @@ texturePack.folderInfo=(Aseta ressursipaki failid siia)
 menu.mods=Ressursipakid...
 tile.sapling.name=Tammeistik
 menu.saving=Salvestamine...
-title.creative:selectEorld.survival=ellujäämine
-title.creative:selectEorld.creative=loominguline
+title.creative:selectWorld.survival=ellujäämine
+title.creative:selectWorld.creative=loominguline

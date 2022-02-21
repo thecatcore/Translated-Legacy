@@ -435,5 +435,5 @@ texturePack.folderInfo=(Ressursepaket he erendonn)
 menu.mods=Ressursepakete ...
 tile.sapling.name=Eescheböumche
 menu.saving=Afspeichere ...
-title.creative:selectEorld.survival=Üvverlevve
-title.creative:selectEorld.creative=Krejativ
+title.creative:selectWorld.survival=Üvverlevve
+title.creative:selectWorld.creative=Krejativ

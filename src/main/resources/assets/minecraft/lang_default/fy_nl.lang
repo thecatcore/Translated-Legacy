@@ -435,5 +435,5 @@ texturePack.folderInfo=(pleats boarnepakketbestannen hjir)
 menu.mods=Boarnepakketten…
 tile.sapling.name=Ikekymplant
 menu.saving=Bewarje…
-title.creative:selectEorld.survival=Oerlibje
-title.creative:selectEorld.creative=Kreatyf
+title.creative:selectWorld.survival=Oerlibje
+title.creative:selectWorld.creative=Kreatyf

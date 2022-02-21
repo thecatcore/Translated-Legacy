@@ -435,5 +435,5 @@ texturePack.folderInfo=(Placez les fichiers de packs de ressources ici)
 menu.mods=Packs de ressources...
 tile.sapling.name=Pousse de chêne
 menu.saving=Sauvegarde...
-title.creative:selectEorld.survival=Survie
-title.creative:selectEorld.creative=Créatif
+title.creative:selectWorld.survival=Survie
+title.creative:selectWorld.creative=Créatif

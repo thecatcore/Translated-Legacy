@@ -427,5 +427,5 @@ texturePack.folderInfo=(Дүрслэлүүдийн файлыг энд байр�
 menu.mods=Дүрслэлүүдийн багц...
 tile.sapling.name=Зулзаган царс мод
 menu.saving=Хадгалж байна...
-title.creative:selectEorld.survival=Амьд үлдэх
-title.creative:selectEorld.creative=Бүтээгч
+title.creative:selectWorld.survival=Амьд үлдэх
+title.creative:selectWorld.creative=Бүтээгч

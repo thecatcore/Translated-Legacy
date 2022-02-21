@@ -431,5 +431,5 @@ texturePack.folderInfo=(Matriaolpakätte hier rin doon)
 menu.mods=Matriaolpakätte...
 tile.sapling.name=Ekenpuorte
 menu.saving=Spiker...
-title.creative:selectEorld.survival=Üöwerliäwen
-title.creative:selectEorld.creative=Kreativ
+title.creative:selectWorld.survival=Üöwerliäwen
+title.creative:selectWorld.creative=Kreativ

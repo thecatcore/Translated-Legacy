@@ -435,5 +435,5 @@ texturePack.folderInfo=（請將資源包置於此處）
 menu.mods=資源包...
 tile.sapling.name=橡木樹苗
 menu.saving=儲存中...
-title.creative:selectEorld.survival=生存
-title.creative:selectEorld.creative=創造
+title.creative:selectWorld.survival=生存
+title.creative:selectWorld.creative=創造

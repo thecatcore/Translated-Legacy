@@ -428,5 +428,5 @@ texturePack.folderInfo=فایل های ریسورس پک را اینجا قرا�
 menu.mods=بسته منابع...
 tile.sapling.name=نهال درخت بلوط
 menu.saving=در حال ذخیره سازی...
-title.creative:selectEorld.survival=بقا
-title.creative:selectEorld.creative=خلاق
+title.creative:selectWorld.survival=بقا
+title.creative:selectWorld.creative=خلاق

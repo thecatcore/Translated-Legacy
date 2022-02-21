@@ -435,5 +435,5 @@ texturePack.folderInfo=(Letakkan fail pek sumber di sini)
 menu.mods=Pek-pek Sumber...
 tile.sapling.name=Anak Pokok Oak
 menu.saving=Sedang menyimpan...
-title.creative:selectEorld.survival=Kemandirian
-title.creative:selectEorld.creative=Kreatif
+title.creative:selectWorld.survival=Kemandirian
+title.creative:selectWorld.creative=Kreatif

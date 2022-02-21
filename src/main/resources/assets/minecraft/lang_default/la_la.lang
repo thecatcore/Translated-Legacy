@@ -435,5 +435,5 @@ texturePack.folderInfo=(Hic pone scapos compilationum supplementorum)
 menu.mods=Sarcinae Auxiliorum...
 tile.sapling.name=Arbuscula Quercus
 menu.saving=Salvans...
-title.creative:selectEorld.survival=Supervivendi
-title.creative:selectEorld.creative=Generanda
+title.creative:selectWorld.survival=Supervivendi
+title.creative:selectWorld.creative=Generanda

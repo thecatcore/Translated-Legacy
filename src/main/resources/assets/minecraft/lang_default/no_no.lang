@@ -435,5 +435,5 @@ texturePack.folderInfo=(Plassér ressurspakkefiler her)
 menu.mods=Ressurspakker...
 tile.sapling.name=Eikespire
 menu.saving=Lagrer...
-title.creative:selectEorld.survival=Overlevelse
-title.creative:selectEorld.creative=Kreativ
+title.creative:selectWorld.survival=Overlevelse
+title.creative:selectWorld.creative=Kreativ

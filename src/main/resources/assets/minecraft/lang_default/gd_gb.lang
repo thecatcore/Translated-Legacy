@@ -428,5 +428,5 @@ texturePack.folderInfo=(Cuir faidhlichean le pacaidean ghoireasan an-seo)
 menu.mods=Pacaidean ghoireasan...
 tile.sapling.name=Fiùran daraich
 menu.saving='Ga shàbhaladh...
-title.creative:selectEorld.survival=Mairsinneachd
-title.creative:selectEorld.creative=Cruthachail
+title.creative:selectWorld.survival=Mairsinneachd
+title.creative:selectWorld.creative=Cruthachail

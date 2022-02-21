@@ -421,5 +421,5 @@ texturePack.folderInfo=(Itfa l-files tar-resource packs hawnhekk)
 menu.mods=Resource Packs...
 tile.sapling.name=Żgħar tal-Ballut
 menu.saving=Saving...
-title.creative:selectEorld.survival=Sopravivenza
-title.creative:selectEorld.creative=Kreattiv
+title.creative:selectWorld.survival=Sopravivenza
+title.creative:selectWorld.creative=Kreattiv

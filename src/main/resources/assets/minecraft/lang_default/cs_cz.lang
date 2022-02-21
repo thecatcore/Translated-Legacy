@@ -435,5 +435,5 @@ texturePack.folderInfo=(Do tohoto umístění ulož soubory balíčků modifikac
 menu.mods=Balíčky modifikací…
 tile.sapling.name=Sazenice dubu
 menu.saving=Ukládání…
-title.creative:selectEorld.survival=Hra o přežití
-title.creative:selectEorld.creative=Tvořivá hra
+title.creative:selectWorld.survival=Hra o přežití
+title.creative:selectWorld.creative=Tvořivá hra

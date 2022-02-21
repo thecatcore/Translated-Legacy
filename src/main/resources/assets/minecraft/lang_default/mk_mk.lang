@@ -392,5 +392,5 @@ texturePack.title=Избер на Пакети на Ресурси
 texturePack.folderInfo=(Стави пакети на ресурси тука)
 menu.mods=Пакети на Ресурси...
 tile.sapling.name=Фиданка на Даб
-title.creative:selectEorld.survival=Преживување
-title.creative:selectEorld.creative=Креативни
+title.creative:selectWorld.survival=Преживување
+title.creative:selectWorld.creative=Креативни

@@ -395,5 +395,5 @@ texturePack.folderInfo=(Cur bundeil cooid ayns shoh)
 menu.mods=Bundeil Cooid...
 tile.sapling.name=Darragh Aeg
 menu.saving=Sauail...
-title.creative:selectEorld.survival=Mayrnaght
-title.creative:selectEorld.creative=Crootagh
+title.creative:selectWorld.survival=Mayrnaght
+title.creative:selectWorld.creative=Crootagh

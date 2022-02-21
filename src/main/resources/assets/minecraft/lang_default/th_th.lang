@@ -435,5 +435,5 @@ texturePack.folderInfo=(วางไฟล์รีซอร์สแพ็ค�
 menu.mods=รีซอร์สแพ็ค...
 tile.sapling.name=ต้นกล้าโอ๊ก
 menu.saving=กำลังบันทึก...
-title.creative:selectEorld.survival=เอาชีวิตรอด
-title.creative:selectEorld.creative=สร้างสรรค์
+title.creative:selectWorld.survival=เอาชีวิตรอด
+title.creative:selectWorld.creative=สร้างสรรค์

@@ -411,5 +411,5 @@ texturePack.title=Cilë Talmaron Ocombi
 menu.mods=Talmaron Ocombi...
 tile.sapling.name=Nessa Nordo
 menu.saving=Rehtëa...
-title.creative:selectEorld.survival=Voronwië
-title.creative:selectEorld.creative=Maitalë
+title.creative:selectWorld.survival=Voronwië
+title.creative:selectWorld.creative=Maitalë

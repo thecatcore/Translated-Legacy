@@ -435,5 +435,5 @@ texturePack.folderInfo=(Legg filene til ressurspakka her)
 menu.mods=Ressurspakkar...
 tile.sapling.name=Eikefrø
 menu.saving=Lagrar...
-title.creative:selectEorld.survival=Overleving
-title.creative:selectEorld.creative=Skapande
+title.creative:selectWorld.survival=Overleving
+title.creative:selectWorld.creative=Skapande

@@ -420,5 +420,5 @@ texturePack.folderInfo=(Տեղադրեք Ռեսուրսների Փաթեթը ա�
 menu.mods=Ռեսուրսների Փաթեթներ...
 tile.sapling.name=Կաղնու տնկի
 menu.saving=Աշխարհը պահպանվում է...
-title.creative:selectEorld.survival=Գոյատևում
-title.creative:selectEorld.creative=Ստեղծագործական
+title.creative:selectWorld.survival=Գոյատևում
+title.creative:selectWorld.creative=Ստեղծագործական

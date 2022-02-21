@@ -435,5 +435,5 @@ texturePack.folderInfo=(Placer ressourcepakkefiler her)
 menu.mods=Ressourcepakker...
 tile.sapling.name=Ungt egetræ
 menu.saving=Gemmer...
-title.creative:selectEorld.survival=Overlevelse
-title.creative:selectEorld.creative=Kreativ
+title.creative:selectWorld.survival=Overlevelse
+title.creative:selectWorld.creative=Kreativ

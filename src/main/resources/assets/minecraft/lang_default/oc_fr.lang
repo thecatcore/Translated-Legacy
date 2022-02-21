@@ -423,5 +423,5 @@ texturePack.folderInfo=(Plaçar los fichièrs de paquet de ressorsa aicí)
 menu.mods=Paquets de Ressorsa...
 tile.sapling.name=Grelh d'Euse
 menu.saving=Salvagarda...
-title.creative:selectEorld.survival=Subrevida
-title.creative:selectEorld.creative=Creatiu
+title.creative:selectWorld.survival=Subrevida
+title.creative:selectWorld.creative=Creatiu

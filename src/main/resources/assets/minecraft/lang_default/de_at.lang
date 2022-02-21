@@ -427,5 +427,5 @@ texturePack.folderInfo=(Ressourcenpakete do eine doa)
 menu.mods=Ressourcenpakete ...
 tile.sapling.name=Oachnsetzling
 menu.saving=Wead gspeichat ...
-title.creative:selectEorld.survival=Übalebn
-title.creative:selectEorld.creative=Kreativ
+title.creative:selectWorld.survival=Übalebn
+title.creative:selectWorld.creative=Kreativ

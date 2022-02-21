@@ -430,5 +430,5 @@ texturePack.folderInfo=(Cuir pacáistí acmhainní anseo)
 menu.mods=Pacáistí Acmhainní...
 tile.sapling.name=Dair Óg
 menu.saving=Ag sábháil...
-title.creative:selectEorld.survival=Marthanas
-title.creative:selectEorld.creative=Cruthaitheach
+title.creative:selectWorld.survival=Marthanas
+title.creative:selectWorld.creative=Cruthaitheach

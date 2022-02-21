@@ -397,5 +397,5 @@ texturePack.folderInfo=(Vendin e burimeve pack fotografi këtu)
 menu.mods=Pako Të Burimeve Të...
 tile.sapling.name=Fidan druri
 menu.saving=Duke u ruajtur...
-title.creative:selectEorld.survival=Mbijetesë
-title.creative:selectEorld.creative=Creative
+title.creative:selectWorld.survival=Mbijetesë
+title.creative:selectWorld.creative=Creative

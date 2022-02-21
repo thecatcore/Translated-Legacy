@@ -435,5 +435,5 @@ texturePack.folderInfo=(Tempatkan Paket Daya di sini)
 menu.mods=Paket Daya...
 tile.sapling.name=Bibit Pohon Ek
 menu.saving=Menyimpan...
-title.creative:selectEorld.survival=Sintas
-title.creative:selectEorld.creative=Kreatif
+title.creative:selectWorld.survival=Sintas
+title.creative:selectWorld.creative=Kreatif

@@ -13,11 +13,11 @@
             "mode": "t"
         },
         "selectWorld.gameMode.survival": {
-            "key": "title.creative:selectEorld.survival",
+            "key": "title.creative:selectWorld.survival",
             "mode": "t"
         },
         "selectWorld.gameMode.creative": {
-            "key": "title.creative:selectEorld.creative",
+            "key": "title.creative:selectWorld.creative",
             "mode": "t"
         }
     },

@@ -396,5 +396,5 @@ texturePack.folderInfo=(Mittlpäckla då neidoa)
 menu.mods=Mittlpäckla ...
 tile.sapling.name=Eichabäumle
 menu.saving=Speichere ...
-title.creative:selectEorld.survival=Ibrleaba
-title.creative:selectEorld.creative=Baschtla
+title.creative:selectWorld.survival=Ibrleaba
+title.creative:selectWorld.creative=Baschtla

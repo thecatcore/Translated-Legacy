@@ -427,5 +427,5 @@ texturePack.folderInfo=(Rhowch ffeiliau pecynnau adnodd yma)
 menu.mods=Pecynnau Adnodd...
 tile.sapling.name=Coeden Ifanc Derw
 menu.saving=Arbedu...
-title.creative:selectEorld.survival=Goroesi
-title.creative:selectEorld.creative=Creadigol
+title.creative:selectWorld.survival=Goroesi
+title.creative:selectWorld.creative=Creadigol

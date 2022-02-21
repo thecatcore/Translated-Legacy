@@ -435,5 +435,5 @@ texturePack.folderInfo=(מקם כאן את קבצי ערכת המשאבים)
 menu.mods=ערכות משאבים...
 tile.sapling.name=שתיל אלון
 menu.saving=שומר...
-title.creative:selectEorld.survival=הישרדות
-title.creative:selectEorld.creative=יצירתי
+title.creative:selectWorld.survival=הישרדות
+title.creative:selectWorld.creative=יצירתי

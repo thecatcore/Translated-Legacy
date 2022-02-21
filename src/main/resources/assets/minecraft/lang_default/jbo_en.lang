@@ -425,5 +425,5 @@ texturePack.folderInfo=(to ko muvgau lo seldji xragri ti toi)
 menu.mods=xragri
 tile.sapling.name=cindu ciftricu
 menu.saving=ca rejgau
-title.creative:selectEorld.survival=renvi
-title.creative:selectEorld.creative=finti
+title.creative:selectWorld.survival=renvi
+title.creative:selectWorld.creative=finti

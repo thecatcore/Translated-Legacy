@@ -435,5 +435,5 @@ texturePack.folderInfo=(Place picture pack pictures here)
 menu.mods=Picture Packs...
 tile.sapling.name=Oak Meager shrub
 menu.saving=Copying map to a safe place...
-title.creative:selectEorld.survival=Swashbuckler
-title.creative:selectEorld.creative=Aimless Sailing
+title.creative:selectWorld.survival=Swashbuckler
+title.creative:selectWorld.creative=Aimless Sailing

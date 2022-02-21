@@ -435,5 +435,5 @@ texturePack.folderInfo=(Setið efnispakka skrárnar hér)
 menu.mods=Efnispakkar...
 tile.sapling.name=Eikargræðlingur
 menu.saving=Er að vista...
-title.creative:selectEorld.survival=Lifa af
-title.creative:selectEorld.creative=Skapandi
+title.creative:selectWorld.survival=Lifa af
+title.creative:selectWorld.creative=Skapandi

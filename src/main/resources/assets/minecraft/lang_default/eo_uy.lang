@@ -435,5 +435,5 @@ texturePack.folderInfo=(Metu rimedpakaĵojn ĉi tien)
 menu.mods=Rimedpakaĵoj...
 tile.sapling.name=Kverka arbido
 menu.saving=Konservado...
-title.creative:selectEorld.survival=Traviva
-title.creative:selectEorld.creative=Krea
+title.creative:selectWorld.survival=Traviva
+title.creative:selectWorld.creative=Krea

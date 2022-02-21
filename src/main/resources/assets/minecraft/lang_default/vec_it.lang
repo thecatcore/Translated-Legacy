@@ -396,5 +396,5 @@ texturePack.folderInfo=(Inserisi cua i to pacheti)
 menu.mods=Pacheti de resorse...
 tile.sapling.name=Albareło de jandaro
 menu.saving=Drio salvar...
-title.creative:selectEorld.survival=Soravivensa
-title.creative:selectEorld.creative=Creativa
+title.creative:selectWorld.survival=Soravivensa
+title.creative:selectWorld.creative=Creativa

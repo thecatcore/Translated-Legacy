@@ -435,5 +435,5 @@ texturePack.folderInfo=(리소스 팩 파일을 여기에 놓으세요)
 menu.mods=리소스 팩...
 tile.sapling.name=참나무 묘목
 menu.saving=저장 중...
-title.creative:selectEorld.survival=서바이벌
-title.creative:selectEorld.creative=크리에이티브
+title.creative:selectWorld.survival=서바이벌
+title.creative:selectWorld.creative=크리에이티브

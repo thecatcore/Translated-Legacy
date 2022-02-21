@@ -435,5 +435,5 @@ texturePack.folderInfo=(dėkite resursų paketus čia)
 menu.mods=Resursų paketai...
 tile.sapling.name=Ąžuolo sodinukas
 menu.saving=Išsaugoma...
-title.creative:selectEorld.survival=išlikimas
-title.creative:selectEorld.creative=kūrybinis
+title.creative:selectWorld.survival=išlikimas
+title.creative:selectWorld.creative=kūrybinis

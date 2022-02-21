@@ -435,5 +435,5 @@ texturePack.folderInfo=(Поместите сюда пакеты ресурсо�
 menu.mods=Пакеты ресурсов...
 tile.sapling.name=Саженец дуба
 menu.saving=Сохранение...
-title.creative:selectEorld.survival=Выживание
-title.creative:selectEorld.creative=Творческий
+title.creative:selectWorld.survival=Выживание
+title.creative:selectWorld.creative=Творческий

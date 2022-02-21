@@ -406,5 +406,5 @@ texturePack.folderInfo=(Plaats bronpakketbestanden hier)
 menu.mods=Bron pakketten...
 tile.sapling.name=Eikenkiemplant
 menu.saving=Opsjloan...
-title.creative:selectEorld.survival=Oaverleef
-title.creative:selectEorld.creative=Creatief
+title.creative:selectWorld.survival=Oaverleef
+title.creative:selectWorld.creative=Creatief

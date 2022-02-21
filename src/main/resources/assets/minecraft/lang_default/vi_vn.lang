@@ -435,5 +435,5 @@ texturePack.folderInfo=(Đặt các tập gói tài nguyên tại đây)
 menu.mods=Các gói tài nguyên...
 tile.sapling.name=Chồi cây sồi
 menu.saving=Đang lưu lại...
-title.creative:selectEorld.survival=Sinh tồn
-title.creative:selectEorld.creative=Sáng tạo
+title.creative:selectWorld.survival=Sinh tồn
+title.creative:selectWorld.creative=Sáng tạo
