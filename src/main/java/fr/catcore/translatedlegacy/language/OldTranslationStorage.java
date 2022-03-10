@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class OldTranslationStorage {
     }
 
     protected void load(String modid, InputStream inputStream) throws IOException {
-        this.load(modid, new InputStreamReader(inputStream));
+        this.load(modid, new InputStreamReader(inputStream, StandardCharsets.UTF_8));
     }
 
     protected void load(Reader reader) throws IOException {

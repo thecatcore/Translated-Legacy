@@ -7,6 +7,7 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -23,7 +24,7 @@ public class LanguageManager {
     private static final List<LanguageSwitchCallback> CALLBACKS = new ArrayList<>();
 
     public static OldTranslationStorage init() {
-        JsonObject jsonObject = GSON.fromJson(new InputStreamReader(LanguageManager.class.getResourceAsStream("/pack.mcmeta")), JsonObject.class).getAsJsonObject("language");
+        JsonObject jsonObject = GSON.fromJson(new InputStreamReader(LanguageManager.class.getResourceAsStream("/pack.mcmeta"), StandardCharsets.UTF_8), JsonObject.class).getAsJsonObject("language");
 
         for (String code : jsonObject.keySet()) {
             JsonObject languageEntry = jsonObject.getAsJsonObject(code);

@@ -84,11 +84,6 @@ dependencies {
 	modCompileOnly ("com.github.ModificationStation:StationAPI:2.0-PRE2") {
 		exclude group: "com.github.minecraft-cursed-legacy"
 	}
-
-	modCompileOnly ('com.github.paulevsGitch:Creative-b.1.7.3-:0.1.2') {
-		exclude group: "com.github.minecraft-cursed-legacy"
-		exclude group: "net.modificationstation"
-	}
 }
 
 processResources {
