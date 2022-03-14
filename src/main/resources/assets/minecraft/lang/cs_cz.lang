@@ -1,1 +1,13 @@
 options.languageWarning=Překlady nemusí být 100% přesné
+achievement.openInventory=Co mám v kapsičkách?
+achievement.mineWood.desc=Útoč na strom dokud z něj nevypadne blok dřeva
+achievement.buildWorkBench.desc=Vyrob si stůl ze 4 prken
+achievement.buildPickaxe.desc=Použij prkna a tyčky na výrobu krumpáče
+achievement.buildHoe.desc=Použij prkna a tyčky k výrobě motyky
+achievement.makeBread.desc=Proměň pšenici v chléb
+achievement.bakeCake.desc=Pšenice, cukr, mléko a vajíčka!
+achievement.cookFish.desc=Chyť a uvař rybu!
+achievement.buildSword=Hrrrr na ně!
+achievement.buildSword.desc=Použij prkna a tyčky na vytvoření meče
+achievement.killEnemy.desc=Zaútoč na obludu a znič ji
+achievement.flyPig.desc=Rozleť se na praseti ze skály
