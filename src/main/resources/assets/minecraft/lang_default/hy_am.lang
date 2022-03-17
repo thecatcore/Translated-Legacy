@@ -236,6 +236,7 @@ selectWorld.select=Խաղալ Ընտրված Աշխարհը
 selectWorld.title=Ընտրել Աշխարհը
 selectWorld.unable_to_load=Չ՛կարողացանք բեռնել աշխարհները
 selectWorld.world=Աշխարհ
+sign.edit=Փոխել նշումի տեքստը
 stat.blocksButton=Բլոկեր
 stat.boatOneCm=Նավով
 stat.breakItem=%1$s Ձարդված

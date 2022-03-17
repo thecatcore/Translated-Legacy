@@ -244,6 +244,7 @@ selectWorld.select=Jouer sur ce monde
 selectWorld.title=Choix du monde
 selectWorld.unable_to_load=Impossible de charger les mondes
 selectWorld.world=Monde
+sign.edit=Inscrivez le message de la pancarte
 stat.blocksButton=Blocs
 stat.boatOneCm=Distance en bateau
 stat.breakItem=%1$s consommé(e)s

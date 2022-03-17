@@ -244,6 +244,7 @@ selectWorld.select=Spēlēt Izvēlētajā Pasaulē
 selectWorld.title=Izvēlieties Pasauli
 selectWorld.unable_to_load=Nevarēja ielādēt pasaules
 selectWorld.world=Pasaule
+sign.edit=Rediģēt zīmes ziņojumu
 stat.blocksButton=Bloki
 stat.boatOneCm=Attālums nobraukts ar laivu
 stat.breakItem=Salauzti '%1$s'

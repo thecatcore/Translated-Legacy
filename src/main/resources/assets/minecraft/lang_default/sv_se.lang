@@ -244,6 +244,7 @@ selectWorld.select=Spela vald värld
 selectWorld.title=Välj värld
 selectWorld.unable_to_load=Kunde inte ladda världar
 selectWorld.world=Värld
+sign.edit=Redigera skyltmeddelande
 stat.blocksButton=Block
 stat.boatOneCm=Distans med båt
 stat.breakItem=%1$s förbrukade

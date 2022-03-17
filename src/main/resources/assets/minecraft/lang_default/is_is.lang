@@ -244,6 +244,7 @@ selectWorld.select=Spila valinn heim
 selectWorld.title=Velja heim
 selectWorld.unable_to_load=Tókst ekki að hlaða heima
 selectWorld.world=Heimur
+sign.edit=Breyta skilaboðum á skilti
 stat.blocksButton=Kubbar
 stat.boatOneCm=Vegalengd með bát
 stat.breakItem=%1$s klárað

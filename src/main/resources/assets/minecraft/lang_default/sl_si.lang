@@ -244,6 +244,7 @@ selectWorld.select=Igraj izbrani svet
 selectWorld.title=Izberi svet
 selectWorld.unable_to_load=Svetov ni bilo mogoče naložiti
 selectWorld.world=Svet
+sign.edit=Uredite sporočilo table
 stat.blocksButton=Kocke
 stat.boatOneCm=Razdalja s čolnom
 stat.breakItem=%1$s izrabljenih

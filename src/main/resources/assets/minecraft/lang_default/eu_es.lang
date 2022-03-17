@@ -243,6 +243,7 @@ selectWorld.select=Jokatu aukeratutako munduan
 selectWorld.title=Aukeratu mundua
 selectWorld.unable_to_load=Ezin izan dira munduak kargatu
 selectWorld.world=Mundua
+sign.edit=Editatu kartel mezua
 stat.blocksButton=Blokeak
 stat.boatOneCm=Distantzia txalupaz
 stat.breakItem=%1$s hautsita

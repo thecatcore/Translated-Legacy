@@ -244,6 +244,7 @@ selectWorld.select=Играј изабрани свет
 selectWorld.title=Изабери свет
 selectWorld.unable_to_load=Није могуће учитати светове
 selectWorld.world=Свет
+sign.edit=Уреди текст знака
 stat.blocksButton=Блокови
 stat.boatOneCm=Пређена даљина чамцем
 stat.breakItem=%1$s Истрошено

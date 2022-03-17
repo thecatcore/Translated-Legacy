@@ -244,6 +244,7 @@ selectWorld.select=Xugar nel mundu esbilláu
 selectWorld.title=Esbilla del mundu
 selectWorld.unable_to_load=Nun puen cargase los mundos
 selectWorld.world=Mundu
+sign.edit=Edición del mensaxe del cartelu
 stat.blocksButton=Bloques
 stat.boatOneCm=Distancia en chalana
 stat.breakItem=%1$s escosaos

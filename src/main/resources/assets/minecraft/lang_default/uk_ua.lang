@@ -244,6 +244,7 @@ selectWorld.select=Грати в обраному світі
 selectWorld.title=Обрати світ
 selectWorld.unable_to_load=Неможливо завантажити світи
 selectWorld.world=Світ
+sign.edit=Введіть текст
 stat.blocksButton=Блоки
 stat.boatOneCm=Відстань, проплита на човні
 stat.breakItem=%1$s зруйновано

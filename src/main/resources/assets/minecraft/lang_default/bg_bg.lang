@@ -244,6 +244,7 @@ selectWorld.select=Игра в избрания свят
 selectWorld.title=Избиране на свят
 selectWorld.unable_to_load=Грешка при зареждането на световете
 selectWorld.world=Свят
+sign.edit=Редактиране на съобщението на табелата
 stat.blocksButton=Блокове
 stat.boatOneCm=Разстояние изминато чрез лодка
 stat.breakItem=%1$s изразходвани

@@ -244,6 +244,7 @@ selectWorld.select=Play Selected World
 selectWorld.title=Select World
 selectWorld.unable_to_load=Unable to load worlds
 selectWorld.world=World
+sign.edit=Edit sign message
 stat.blocksButton=Blocks
 stat.boatOneCm=Distance by Boat
 stat.breakItem=%1$s Depleted

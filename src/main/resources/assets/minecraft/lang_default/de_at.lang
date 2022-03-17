@@ -244,6 +244,7 @@ selectWorld.select=Ausgwöhte Wöd spün
 selectWorld.title=Wöd auswöhn
 selectWorld.unable_to_load=Wötn kinan ned glodn wean
 selectWorld.world=Wöd
+sign.edit=Beschriftung eigebn
 stat.blocksButton=Bleck
 stat.boatOneCm=Streckn im Boot gfohn
 stat.breakItem=%1$s vabraucht

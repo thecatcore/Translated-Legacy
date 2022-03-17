@@ -244,6 +244,7 @@ selectWorld.select=Spil den valgte verden
 selectWorld.title=Vælg verden
 selectWorld.unable_to_load=Kan ikke indlæse verdenerne
 selectWorld.world=Verden
+sign.edit=Rediger skiltets indhold
 stat.blocksButton=Blokke
 stat.boatOneCm=Afstand i båd
 stat.breakItem=%1$s opbrugt

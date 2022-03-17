@@ -244,6 +244,7 @@ selectWorld.select=選択したワールドで遊ぶ
 selectWorld.title=ワールドを選択
 selectWorld.unable_to_load=ワールドを読み込めません
 selectWorld.world=ワールド
+sign.edit=看板の編集
 stat.blocksButton=ブロック
 stat.boatOneCm=ボートで移動した距離
 stat.breakItem=%1$sを消耗した回数

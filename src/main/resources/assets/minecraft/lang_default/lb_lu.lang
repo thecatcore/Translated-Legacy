@@ -244,6 +244,7 @@ selectWorld.select=D'ausgewielte Welt spillen
 selectWorld.title=Welt wielen
 selectWorld.unable_to_load=D'Welte konnten net geluede ginn
 selectWorld.world=Welt
+sign.edit=Schëldnoriicht editéieren
 stat.blocksButton=Bléck
 stat.boatOneCm=Distanz an engem Boot
 stat.breakItem=%1$s verbraucht

@@ -232,7 +232,7 @@
         "key.categories.stream": "r",
         "resourcePack.available.title": "r",
         "resourcePack.selected.title": "r",
-        "sign.edit": "r",
+        "sign.edit": "s",
         "tile.dirt.default.name": "s",
         "tile.dirt.podzol.name": "r",
         "tile.wood.acacia.name": "r",

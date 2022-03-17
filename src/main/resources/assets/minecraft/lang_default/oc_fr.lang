@@ -239,6 +239,7 @@ selectWorld.select=Jogar al Mond Causit
 selectWorld.title=Causir un mond
 selectWorld.unable_to_load=Impossible de cargar los mondes
 selectWorld.world=Mond
+sign.edit=Modificar lo tèxte de la plancarda
 stat.blocksButton=Blòts
 stat.boatOneCm=Distància en Batèl
 stat.breakItem=%1$s copats

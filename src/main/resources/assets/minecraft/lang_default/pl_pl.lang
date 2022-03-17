@@ -244,6 +244,7 @@ selectWorld.select=Graj w wybranym świecie
 selectWorld.title=Wybierz świat
 selectWorld.unable_to_load=Nie można załadować światów
 selectWorld.world=Świat
+sign.edit=Edytuj treść tabliczki
 stat.blocksButton=Bloki
 stat.boatOneCm=Dystans przebyty łódką
 stat.breakItem=%1$s zużytych

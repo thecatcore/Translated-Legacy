@@ -244,6 +244,7 @@ selectWorld.select=Joacă în această lume
 selectWorld.title=Alege o lume
 selectWorld.unable_to_load=Nu se pot încărca lumile
 selectWorld.world=Lume
+sign.edit=Modifică mesajul semnului
 stat.blocksButton=Blocuri
 stat.boatOneCm=Distanță în barcă
 stat.breakItem=%1$s consumate

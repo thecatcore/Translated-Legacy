@@ -244,6 +244,7 @@ selectWorld.select=Chơi thế giới được chọn
 selectWorld.title=Lựa chọn thế giới
 selectWorld.unable_to_load=Không thể nạp thế giới
 selectWorld.world=Thế giới
+sign.edit=Chỉnh sửa thông điệp trên bảng
 stat.blocksButton=Khối
 stat.boatOneCm=Tổng quãng đường đã đi bằng thuyền
 stat.breakItem=%1$s lần dùng đồ đến mức hỏng

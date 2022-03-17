@@ -244,6 +244,7 @@ selectWorld.select=Игра Избрани Свет
 selectWorld.title=одберете World
 selectWorld.unable_to_load=Неможат да се вчитат световите
 selectWorld.world=свет
+sign.edit=Уредете ја пораката на знакот
 stat.boatOneCm=Должина со чамец
 stat.breakItem=%1$s истрошено
 stat.climbOneCm=Искачена должина

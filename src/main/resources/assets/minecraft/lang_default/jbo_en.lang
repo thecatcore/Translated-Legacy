@@ -239,6 +239,7 @@ selectWorld.select=kelci do'e le se cuxna munje
 selectWorld.title=.i ko cuxna fi lo munje
 selectWorld.unable_to_load=munje cpacu nalka'e
 selectWorld.world=munje
+sign.edit=cusku'i fu lo sinxa
 stat.blocksButton=bliku
 stat.boatOneCm=.i lo bloti ku xe klama sela'u li
 stat.breakItem=lo %1$s ku se xaksu sela'u li

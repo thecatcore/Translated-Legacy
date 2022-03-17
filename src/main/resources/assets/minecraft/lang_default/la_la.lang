@@ -244,6 +244,7 @@ selectWorld.select=Lude Mundum Electum
 selectWorld.title=Elige Mundum
 selectWorld.unable_to_load=Mundis non possum imponere
 selectWorld.world=Mundus
+sign.edit=īnscrīptiō signī mūtāre
 stat.blocksButton=Cubi
 stat.boatOneCm=Distantia a Navicula Cursa
 stat.breakItem=%1$s infrequenti

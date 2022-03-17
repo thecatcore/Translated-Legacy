@@ -244,6 +244,7 @@ selectWorld.select=Jugar al món seleccionat
 selectWorld.title=Seleccionar món
 selectWorld.unable_to_load=No s'han pogut carregar els mons
 selectWorld.world=Món
+sign.edit=Editant el missatge del cartell
 stat.blocksButton=Blocs
 stat.boatOneCm=Distància en barca
 stat.breakItem=%1$s esgotat

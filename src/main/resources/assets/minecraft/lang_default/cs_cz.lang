@@ -244,6 +244,7 @@ selectWorld.select=Hrát vybraný svět
 selectWorld.title=Výběr světa
 selectWorld.unable_to_load=Světy nelze načíst
 selectWorld.world=Svět
+sign.edit=Napiš text na ceduli
 stat.blocksButton=Bloky
 stat.boatOneCm=Nacestováno ve člunu
 stat.breakItem=%1$s Zničeno

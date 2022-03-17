@@ -244,6 +244,7 @@ selectWorld.select=Žaisti pasirinktame pasaulyje
 selectWorld.title=Pasirinkite pasaulį
 selectWorld.unable_to_load=Nepavyko užkrauti pasaulių
 selectWorld.world=Pasaulis
+sign.edit=Redaguoti ženklo žinutę
 stat.blocksButton=Blokai
 stat.boatOneCm=Atstumas valtimi
 stat.breakItem=%1$s išnaudota

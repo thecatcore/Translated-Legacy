@@ -244,6 +244,7 @@ selectWorld.select=Játék a kiválasztott világgal
 selectWorld.title=Világ kiválasztása
 selectWorld.unable_to_load=A világ betöltése sikertelen
 selectWorld.world=Világ
+sign.edit=Tábla szövegének szerkesztése
 stat.blocksButton=Blokkok
 stat.boatOneCm=Távolság csónakkal
 stat.breakItem=%1$s elhasznált

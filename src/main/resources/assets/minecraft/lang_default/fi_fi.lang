@@ -244,6 +244,7 @@ selectWorld.select=Pelaa valittua maailmaa
 selectWorld.title=Valitse maailma
 selectWorld.unable_to_load=Maailmoja ei voida ladata
 selectWorld.world=Maailma
+sign.edit=Muokkaa kyltin viestiä
 stat.blocksButton=Kuutiot
 stat.boatOneCm=Veneellä kuljettu matka
 stat.breakItem=%1$s kulutettu

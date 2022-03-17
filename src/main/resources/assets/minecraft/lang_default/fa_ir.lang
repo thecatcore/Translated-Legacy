@@ -244,6 +244,7 @@ selectWorld.select=بازی در دنیای انتخاب شده
 selectWorld.title=انتخاب دنیا
 selectWorld.unable_to_load=نمی توان دنیا را بارگذاری کرد
 selectWorld.world=دنیا
+sign.edit=تغییر نوشته نشانه
 stat.blocksButton=بلوک ها
 stat.boatOneCm=مقدار حرکت با قايق
 stat.breakItem=%1$ها از بين رفته

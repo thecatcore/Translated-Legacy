@@ -244,6 +244,7 @@ selectWorld.select=Ausgwählte Welt schpiela
 selectWorld.title=Welt wähla
 selectWorld.unable_to_load=Welten konnten nicht geladen werden
 selectWorld.world=Welt
+sign.edit=Beschriftung eingeben
 stat.blocksButton=Blöcke
 stat.boatOneCm=Strecke im Boot gefahren
 stat.breakItem=%1$s verbraucht

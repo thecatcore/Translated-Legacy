@@ -112,6 +112,7 @@ key.drop=Drop Selected Item
 key.chat=Open Chat
 key.sneak=Sneak
 key.playerlist=List Players
+sign.edit=Edit sign message
 tile.grass.name=Grass
 tile.stonebrick.name=Cobblestone
 tile.wood.name=Wooden Planks

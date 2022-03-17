@@ -244,6 +244,7 @@ selectWorld.select=Παίξτε στον επιλεγμένο κόσμο
 selectWorld.title=Επιλέξτε κόσμο
 selectWorld.unable_to_load=Αδυναμία στη φόρτωση κόσμων
 selectWorld.world=Κόσμος
+sign.edit=Επεξεργαστείτε το μήνυμα της πινακίδας
 stat.blocksButton=Κύβοι
 stat.boatOneCm=Απόσταση με βάρκα
 stat.breakItem=%1$s εξαντλήθηκε/θηκαν

@@ -244,6 +244,7 @@ selectWorld.select=進入所選的世界
 selectWorld.title=選擇世界
 selectWorld.unable_to_load=無法載入世界
 selectWorld.world=世界
+sign.edit=編輯告示牌文字
 stat.blocksButton=方塊
 stat.boatOneCm=坐船航行距離
 stat.breakItem=消耗了 %1$s 個工具

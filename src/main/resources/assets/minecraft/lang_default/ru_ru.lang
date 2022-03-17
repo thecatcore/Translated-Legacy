@@ -244,6 +244,7 @@ selectWorld.select=Играть в выбранном мире
 selectWorld.title=Выбор мира
 selectWorld.unable_to_load=Не удалось загрузить миры
 selectWorld.world=Мир
+sign.edit=Введите текст
 stat.blocksButton=Блоки
 stat.boatOneCm=Преодолено на лодке
 stat.breakItem=%1$s сломано

@@ -244,6 +244,7 @@ selectWorld.select=Imir sa Domhan Roghnaithe
 selectWorld.title=Roghnaigh Domhan
 selectWorld.unable_to_load=Ní féidir na domhain a lódáil
 selectWorld.world=Domhan
+sign.edit=Athraigh téacs comhartha
 stat.blocksButton=Bloic
 stat.boatOneCm=Fad Slánaithe i mBád
 stat.breakItem=%1$s Ídithe

@@ -244,6 +244,7 @@ selectWorld.select=لعب العالم المحدد
 selectWorld.title=حدد العالم
 selectWorld.unable_to_load=لا يمكن تحميل العالم
 selectWorld.world=عالم
+sign.edit=تحرير علامة الرسالة
 stat.blocksButton=مكعبات
 stat.boatOneCm=المسافة التي تم قطعها بالقارب
 stat.breakItem=استنفدت %1$s

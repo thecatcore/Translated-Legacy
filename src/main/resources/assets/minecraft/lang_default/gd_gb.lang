@@ -244,6 +244,7 @@ selectWorld.select=Cluich san t-saoghal a thagh thu
 selectWorld.title=Tagh saoghal
 selectWorld.unable_to_load=Cha b' urrainn dhuinn na saoghalan a luchdadh
 selectWorld.world=Saoghal
+sign.edit=Deasaich teachdaireachd an t-sanais
 stat.blocksButton=Blocaichean
 stat.boatOneCm=An t-astar air bàta
 stat.breakItem=%1$s air a chaitheamh

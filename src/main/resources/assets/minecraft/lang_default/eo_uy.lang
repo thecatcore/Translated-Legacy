@@ -244,6 +244,7 @@ selectWorld.select=Ludi elektitan mondon
 selectWorld.title=Elekti mondon
 selectWorld.unable_to_load=Nekapabla ŝargi mondojn
 selectWorld.world=Mondo
+sign.edit=Redakti ŝildmesaĝon
 stat.blocksButton=Blokoj
 stat.boatOneCm=Distanco per boato
 stat.breakItem=%1$s rompitaj

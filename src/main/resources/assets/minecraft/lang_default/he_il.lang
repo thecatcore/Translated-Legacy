@@ -244,6 +244,7 @@ selectWorld.select=שחק בעולם הנבחר
 selectWorld.title=בחר עולם
 selectWorld.unable_to_load=לא ניתן לטעון עולמות
 selectWorld.world=עולם
+sign.edit=ערוך שלט
 stat.blocksButton=בלוקים
 stat.boatOneCm=מרחק שעברת בסירה
 stat.breakItem=%1$s נשבר

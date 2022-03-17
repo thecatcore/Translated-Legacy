@@ -238,6 +238,7 @@ selectWorld.select=Gwary an nor dewisys
 selectWorld.title=Dewis Bys
 selectWorld.unable_to_load=Ny yllir karga bysow
 selectWorld.world=Bys
+sign.edit=Chanjya messach an arwodh
 stat.boatOneCm=Pelder gans Skath
 stat.breakItem=%1$s Skwithys
 stat.climbOneCm=Distance Climbed

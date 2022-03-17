@@ -244,6 +244,7 @@ selectWorld.select=Mängi valitud maailmas
 selectWorld.title=Vali maailm
 selectWorld.unable_to_load=Ei suutnud maailmu laadida
 selectWorld.world=Maailm
+sign.edit=Muuda sildi teksti
 stat.blocksButton=Plokid
 stat.boatOneCm=Paadiga läbitud vahemaa
 stat.breakItem=%1$s ammendatud

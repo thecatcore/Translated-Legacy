@@ -244,6 +244,7 @@ selectWorld.select=चलायें चयनित वर्ल्ड
 selectWorld.title=दुनिया चुनें
 selectWorld.unable_to_load=दुनिया को लोड करने में असमर्थ
 selectWorld.world=दुनिया
+sign.edit=साइन इन संदेश संपादित करें
 stat.blocksButton=बलौक
 stat.boatOneCm=नाव से दूरी
 stat.breakItem=%1$s समाप्त

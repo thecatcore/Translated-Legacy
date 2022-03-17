@@ -244,6 +244,7 @@ selectWorld.select=Wereld spelen
 selectWorld.title=Wereld selecteren
 selectWorld.unable_to_load=Kan werelden niet laden
 selectWorld.world=Wereld
+sign.edit=Bordtekst bewerken
 stat.blocksButton=Blokken
 stat.boatOneCm=Afstand per boot
 stat.breakItem=%1$s uitgeput

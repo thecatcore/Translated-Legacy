@@ -244,6 +244,7 @@ selectWorld.select=Maglaro sa Mundo
 selectWorld.title=Pumili ng Mundo
 selectWorld.unable_to_load=Nabigo sa pagbukas ng mundo
 selectWorld.world=Mundo
+sign.edit=Ayusin ang sinasabi ng karatula
 stat.blocksButton=Bloke
 stat.boatOneCm=Layong Bangka
 stat.breakItem=%1$s Nawala

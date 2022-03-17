@@ -243,6 +243,7 @@ selectWorld.select=Chwarae'r Byd Yma
 selectWorld.title=Dewis Byd
 selectWorld.unable_to_load=Methu llwytho bydoedd
 selectWorld.world=Byd
+sign.edit=Golygu neges yr arwydd
 stat.blocksButton=Blociau
 stat.boatOneCm=Pellter gyda Cwch
 stat.breakItem=%1$s wedi Ddihysbyddu

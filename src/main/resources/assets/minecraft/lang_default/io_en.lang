@@ -244,6 +244,7 @@ selectWorld.select=Ludar mondo selektita
 selectWorld.title=Selektar mondo
 selectWorld.unable_to_load=Ne povas charjar la mondi
 selectWorld.world=Mondo
+sign.edit=Masajo di insigno
 stat.blocksButton=Bloki
 stat.boatOneCm=Disto en batelo
 stat.breakItem=Quanton di %1$s exhaustis

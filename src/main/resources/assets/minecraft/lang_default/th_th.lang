@@ -244,6 +244,7 @@ selectWorld.select=เล่นเวิลด์ที่เลือก
 selectWorld.title=เลือกเวิลด์
 selectWorld.unable_to_load=ไม่สามารถโหลดโลกได้
 selectWorld.world=โลก
+sign.edit=แก้ไขข้อความบนป้าย
 stat.blocksButton=บล็อก
 stat.boatOneCm=ระยะทางที่นั่งเรือ
 stat.breakItem=%1$s เสียหาย

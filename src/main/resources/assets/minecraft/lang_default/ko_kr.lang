@@ -244,6 +244,7 @@ selectWorld.select=선택한 세계 플레이
 selectWorld.title=세계 선택
 selectWorld.unable_to_load=세계를 불러올 수 없습니다
 selectWorld.world=세계
+sign.edit=표지판 문구 편집
 stat.blocksButton=블록
 stat.boatOneCm=보트를 타고 이동한 거리
 stat.breakItem=%1$s 소모 횟수

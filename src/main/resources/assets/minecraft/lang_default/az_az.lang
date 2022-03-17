@@ -244,6 +244,7 @@ selectWorld.select=Seçilən Dünyada Oyna
 selectWorld.title=Dünya Seç
 selectWorld.unable_to_load=Dünyalar yüklənə bilmir
 selectWorld.world=Dünya
+sign.edit=Lövhə mesajını düzəlt
 stat.blocksButton=Bloklar
 stat.boatOneCm=Qayıq ilə gedilən məsafə
 stat.breakItem=İstehlak Edilen %1$s

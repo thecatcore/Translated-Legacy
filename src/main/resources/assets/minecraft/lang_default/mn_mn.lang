@@ -244,6 +244,7 @@ selectWorld.select=Сонгосон дэлхийг тоглох
 selectWorld.title=Дэлхийг сонгох
 selectWorld.unable_to_load=Дэлхийг унших боломжгүй
 selectWorld.world=Дэлхий
+sign.edit=Засах
 stat.blocksButton=Блокууд
 stat.boatOneCm=Завиар явсан зай
 stat.breakItem=%1$s эвдэрсэн

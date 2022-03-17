@@ -244,6 +244,7 @@ selectWorld.select=Spel vald verd
 selectWorld.title=Vel verd
 selectWorld.unable_to_load=Klarer ikkje å lasta inn verder
 selectWorld.world=Verd
+sign.edit=Gjer om tekst på skilt
 stat.blocksButton=Blokker
 stat.boatOneCm=Veglengd i båt
 stat.breakItem=%1$s oppbruka

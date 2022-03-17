@@ -244,6 +244,7 @@ selectWorld.select=Uutsochte Wiält spiëlen
 selectWorld.title=Wiält uutsöken
 selectWorld.unable_to_load=Kan werelden niet laden
 selectWorld.world=Welt
+sign.edit=Schild bewiärken
 stat.blocksButton=Blök
 stat.boatOneCm=Afstand met Boot
 stat.breakItem=%1$s upbruukt

@@ -244,6 +244,7 @@ selectWorld.select=Enter Thine Chosen World
 selectWorld.title=A stage where every man must play a part,
 selectWorld.unable_to_load=Unable to retrieve worlds
 selectWorld.world=World
+sign.edit=Amend sign lines
 stat.blocksButton=Blocks
 stat.boatOneCm=Range sat in a Boat
 stat.breakItem=%1$s Finish'd

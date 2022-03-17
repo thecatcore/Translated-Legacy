@@ -244,6 +244,7 @@ selectWorld.select=Sail this Sea
 selectWorld.title=Choose yer port o' call
 selectWorld.unable_to_load=Yarrr, yer blimey world won't spool up
 selectWorld.world=Sea
+sign.edit=Write on yer sign
 stat.blocksButton=Load o' Squares
 stat.boatOneCm=Distance ye Sailed
 stat.breakItem=%1$s Wasted

@@ -244,6 +244,7 @@ selectWorld.select=Jugar al mundo seleccionado
 selectWorld.title=Seleccionar mundo
 selectWorld.unable_to_load=No se ha podido cargar el mapa
 selectWorld.world=Mundo
+sign.edit=Editar mensaje del cartel
 stat.blocksButton=Bloques
 stat.boatOneCm=Distancia en barca
 stat.breakItem=%1$s rotos

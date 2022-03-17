@@ -244,6 +244,7 @@ selectWorld.select=Speel Gekose Wêreld
 selectWorld.title=Kies Wêreld
 selectWorld.unable_to_load=Kon nie wêrelde laai nie
 selectWorld.world=Wêreld
+sign.edit=Wysig merkteken boodskap
 stat.blocksButton=Blokke
 stat.boatOneCm=Afstand met Boot
 stat.breakItem=%1$s Uitgeput

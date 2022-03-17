@@ -244,6 +244,7 @@ selectWorld.select=Luaj Botën e Zgjedhur
 selectWorld.title=Selekto botën
 selectWorld.unable_to_load=Nuk munda të ngarkojë botat
 selectWorld.world=Botë
+sign.edit=Edit shenjë mesazh
 stat.blocksButton=Bllok
 stat.boatOneCm=Kapërcyer me anije
 stat.breakItem=%1$s Zbrazur

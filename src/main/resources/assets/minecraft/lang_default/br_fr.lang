@@ -244,6 +244,7 @@ selectWorld.select=C'hoari gant ar bed diuzet
 selectWorld.title=Dibab ar bed
 selectWorld.unable_to_load=N'haller ket kargañ ar bedoù
 selectWorld.world=Bed
+sign.edit=Embann kemennadenn ar panell
 stat.blocksButton=Bloc'hoù
 stat.boatOneCm=Pellder war vag
 stat.breakItem=%1$s torret

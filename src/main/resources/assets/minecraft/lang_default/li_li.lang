@@ -244,6 +244,7 @@ selectWorld.select=Sjpieël
 selectWorld.title=Waereldj selectere
 selectWorld.unable_to_load=Kens de waeledj neet laaje
 selectWorld.world=Waereldj
+sign.edit=Bordtekst bewerke
 stat.blocksButton=Blokke
 stat.boatOneCm=Aafsjtandj per Boeat
 stat.breakItem=%1$s oetgeput

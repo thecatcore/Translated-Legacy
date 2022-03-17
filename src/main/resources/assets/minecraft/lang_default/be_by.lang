@@ -244,6 +244,7 @@ selectWorld.select=Гуляць у абраным свеце
 selectWorld.title=Абярыце свет
 selectWorld.unable_to_load=Не атрымалася загрузіць светы
 selectWorld.world=Свет
+sign.edit=Рэдагаваць надпіс шыльды
 stat.blocksButton=Блокі
 stat.boatOneCm=На чоўне
 stat.breakItem=%1$s разбурана

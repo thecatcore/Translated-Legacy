@@ -244,6 +244,7 @@ selectWorld.select=Igraj odabrani svijet
 selectWorld.title=Odaberi svijet
 selectWorld.unable_to_load=Neuspješno učitavanje svjetova
 selectWorld.world=Svijet
+sign.edit=Uredi natpis
 stat.blocksButton=blokovi
 stat.boatOneCm=Pređeno u čamcu
 stat.breakItem=%1$s Iskorišteno

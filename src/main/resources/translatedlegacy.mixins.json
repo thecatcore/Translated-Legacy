@@ -29,7 +29,8 @@
     "client.container.FurnaceScreenMixin",
     "client.container.PlayerInventoryScreenMixin",
     "client.font.TextRendererMixin",
-    "client.gui.widget.TextboxMixin"
+    "client.gui.widget.TextboxMixin",
+    "client.ChatScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

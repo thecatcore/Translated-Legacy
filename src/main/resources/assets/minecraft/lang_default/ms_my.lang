@@ -244,6 +244,7 @@ selectWorld.select=Main Dunia yang Dipilih
 selectWorld.title=Pilih Dunia
 selectWorld.unable_to_load=Tidak dapat memuatkan dunia
 selectWorld.world=Dunia
+sign.edit=Ubah mesej papan tanda
 stat.blocksButton=Blok
 stat.boatOneCm=Jarak dengan Kapal
 stat.breakItem=%1$s Dihabiskan
