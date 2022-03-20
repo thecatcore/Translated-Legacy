@@ -86,7 +86,7 @@ public class BitmapFont extends Font {
                 int p = n++;
                 if (o != 0 && o != 32) {
                     int q = this.findCharacterStartX(fontImage, k, l, p, m);
-                    GLYPHS.put(o, new BitmapTextureGlyph(f, p * k, m * l, k, l, (int)(0.5D + (double)((float)q * f)) + 1, this.ascent, o, this.imagePointer));
+                    GLYPHS.put(o, new BitmapTextureGlyph(fontImage, f, p * k, m * l, k, l, (int)(0.5D + (double)((float)q * f)) + 1, this.ascent, o, this.imagePointer));
                 }
             }
 
@@ -145,6 +145,6 @@ public class BitmapFont extends Font {
 
     @Override
     protected byte getWidth(char c) {
-        return 4;
+        return (byte) (GLYPHS.containsKey(c) ? ((RenderableGlyph)GLYPHS.get(c)).getAdvance() : 8);
     }
 }

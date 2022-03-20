@@ -2,7 +2,10 @@ package fr.catcore.translatedlegacy.font;
 
 import net.minecraft.client.render.Tessellator;
 
+import java.awt.image.BufferedImage;
+
 public class BitmapTextureGlyph implements RenderableGlyph {
+    private final BufferedImage fontImage;
     private final float scaleFactor;
     private final int x;
     private final int y;
@@ -14,7 +17,9 @@ public class BitmapTextureGlyph implements RenderableGlyph {
     private final int id;
     private final int imagePointer;
 
-    protected BitmapTextureGlyph(float scaleFactor, int x, int y, int width, int height, int advance, int ascent, int id, int imagePointer) {
+    protected BitmapTextureGlyph(BufferedImage fontImage, float scaleFactor, int x, int y, int width, int height, int advance, int ascent, int id, int imagePointer) {
+        this.fontImage = fontImage;
+
         this.scaleFactor = scaleFactor;
         this.x = x;
         this.y = y;
@@ -74,7 +79,7 @@ public class BitmapTextureGlyph implements RenderableGlyph {
 
     @Override
     public void preDraw(boolean italic, float y, float x, float indent, float end, Tessellator tessellator) {
-        float var26 = 7.99F;
+        float var26 = this.fontImage.getWidth() > 128 ? 8.99F : 7.99F;
 
         x = this.x;
         y = this.y;
@@ -83,32 +88,32 @@ public class BitmapTextureGlyph implements RenderableGlyph {
                 0.0D,
                 0.0F + var26,
                 0.0D,
-                (float) (x + indent) / 128.0F,
-                ((float) y + var26) / 128.0F
+                (float) (x + indent) / (float) this.fontImage.getWidth(),
+                ((float) y + var26) / (float) this.fontImage.getHeight()
         );
 
         tessellator.vertex(
                 0.0F + var26,
                 0.0F + var26,
                 0.0D,
-                (float) (x + var26) / 128.0F,
-                ((float) y + var26) / 128.0F
+                (float) (x + var26) / (float) this.fontImage.getWidth(),
+                ((float) y + var26) / (float) this.fontImage.getHeight()
         );
 
         tessellator.vertex(
                 0.0F + var26,
                 0.0D,
                 0.0D,
-                (float) (x + var26) / 128.0F,
-                (float) y / 128.0F
+                (float) (x + var26) / (float) this.fontImage.getWidth(),
+                (float) y / (float) this.fontImage.getHeight()
         );
 
         tessellator.vertex(
                 0.0D,
                 0.0D,
                 0.0D,
-                (float) (x + indent) / 128.0F,
-                (float) y / 128.0F
+                (float) (x + indent) / (float) this.fontImage.getWidth(),
+                (float) y / (float) this.fontImage.getHeight()
         );
     }
 }
