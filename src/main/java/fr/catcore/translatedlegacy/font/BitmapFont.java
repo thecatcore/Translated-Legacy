@@ -4,7 +4,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.class_214;
 import net.minecraft.client.options.GameOptions;
+import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.texture.TextureManager;
+import org.lwjgl.opengl.GL11;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -26,6 +28,7 @@ public class BitmapFont extends Font {
 
     protected BitmapFont(JsonObject object) {
         this.fileLocation = "/assets/" + object.get("file").getAsString().replace(":", "/textures/");
+        System.out.println(this.fileLocation);
         this.ascent = object.get("ascent").getAsInt();
 
         for (JsonElement element : object.getAsJsonArray("chars")) {
@@ -40,12 +43,12 @@ public class BitmapFont extends Font {
 
     @Override
     public boolean contains(char c) {
-        return false;
+        return GLYPHS.containsKey((int)c);
     }
 
     @Override
     protected Glyph getGlyph(char c) {
-        return null;
+        return GLYPHS.get((int)c);
     }
 
     @Override
@@ -61,16 +64,74 @@ public class BitmapFont extends Font {
 
         int imageWidth = fontImage.getWidth();
         int imageHeight = fontImage.getHeight();
+        int k = imageWidth / this.chars.get(0).length;
+        int l = imageHeight / this.chars.size();
+        float f = (float)this.height / (float)l;
+
+        int m = 0;
+
+        while(true) {
+            if (m >= this.chars.size()) break;
+
+            int n = 0;
+            int[] var12 = this.chars.get(m);
+            int var13 = var12.length;
+
+            for(int var14 = 0; var14 < var13; ++var14) {
+                int o = var12[var14];
+                int p = n++;
+                if (o != 0 && o != 32) {
+                    int q = this.findCharacterStartX(fontImage, k, l, p, m);
+                    GLYPHS.put(o, new BitmapTextureGlyph(f, p * k, m * l, k, l, (int)(0.5D + (double)((float)q * f)) + 1, this.ascent));
+                }
+            }
+
+            ++m;
+        }
 
         this.imagePointer = arg1.glLoadImage(fontImage);
         this.anInt = class_214.method_741(this.getImagePointer());
+        Tessellator tessellator = Tessellator.INSTANCE;
+
+        for (Map.Entry<Integer, Glyph> entry : GLYPHS.entrySet()) {
+            GL11.glNewList(this.anInt + entry.getKey(), 4864);
+
+            tessellator.start();
+            RenderableGlyph glyph = (RenderableGlyph) entry.getValue();
+
+            if (glyph != null) {
+                glyph.preDraw(false, 10F,50F,2.0F,0, tessellator);
+            }
+
+            tessellator.draw();
+
+            GL11.glTranslatef(4, 0.0F, 0.0F);
+            GL11.glEndList();
+        }
+    }
+
+    private int findCharacterStartX(BufferedImage image, int characterWidth, int characterHeight, int charPosX, int charPosY) {
+        int i;
+        for(i = characterWidth - 1; i >= 0; --i) {
+            int j = charPosX * characterWidth + i;
+
+            for(int k = 0; k < characterHeight; ++k) {
+                int l = charPosY * characterHeight + k;
+                if (image.getRGB(j, l) != 0) {
+                    return i + 1;
+                }
+            }
+        }
+
+        return i + 1;
     }
 
     private int getImagePointer() {
-        return 545 + (
-                this.fileLocation.contains("ascii") ? 1 :
-                        this.fileLocation.contains("nonlatin_european") ? 2 : 3
-                );
+//        return 545 + (
+//                this.fileLocation.contains("ascii") ? 1 :
+//                        this.fileLocation.contains("nonlatin_european") ? 2 : 3
+//                );
+        return 288;
     }
 
     @Override
@@ -85,6 +146,6 @@ public class BitmapFont extends Font {
 
     @Override
     protected byte getWidth(char c) {
-        return 0;
+        return 4;
     }
 }
