@@ -27,13 +27,22 @@ public class BetterTextRenderer {
         }
     }
 
+    public static boolean isRegistered(int c) {
+        Font font = null;
+        for (Font ft: FONTS) {
+            if (ft.contains((char)c)) { font = ft; break; }
+        }
+
+        return font != null && font.contains((char)c);
+    }
+
     public BetterTextRenderer(GameOptions arg, TextureManager arg1) {
         this.loadFontJson();
         this.loadFonts(arg, arg1);
     }
 
     private void loadFontJson() {
-        InputStream stream = BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/font/uniform.json");
+        InputStream stream = BetterTextRenderer.class.getResourceAsStream("/assets/minecraft/font/default.json");
         InputStreamReader reader = new InputStreamReader(stream);
 
         JsonObject object = GSON.fromJson(reader, JsonObject.class);
@@ -85,7 +94,7 @@ public class BetterTextRenderer {
     private Glyph getGlyph(char c) {
         Font font = null;
         for (Font ft: FONTS) {
-            if (ft.contains(c)) font = ft; break;
+            if (ft.contains(c)) { font = ft; break; }
         }
 
         return font != null ? font.getGlyph(c) : null;
@@ -94,7 +103,7 @@ public class BetterTextRenderer {
     private int getImageInt(char c) {
         Font font = null;
         for (Font ft: FONTS) {
-            if (ft.contains(c)) font = ft; break;
+            if (ft.contains(c)) { font = ft; break; }
         }
 
         return font != null ? font.getImagePointer(c) : -1;
@@ -103,7 +112,7 @@ public class BetterTextRenderer {
     private int getAnInt(char c) {
         Font font = null;
         for (Font ft: FONTS) {
-            if (ft.contains(c)) font = ft; break;
+            if (ft.contains(c)) { font = ft; break; }
         }
 
         return font != null ? font.getOtherPointer(c) : -1;
@@ -112,7 +121,7 @@ public class BetterTextRenderer {
     private byte getCharWidth(char c) {
         Font font = null;
         for (Font ft: FONTS) {
-            if (ft.contains(c)) font = ft; break;
+            if (ft.contains(c)) { font = ft; break; }
         }
 
         return font != null ? font.getWidth(c) : 0;

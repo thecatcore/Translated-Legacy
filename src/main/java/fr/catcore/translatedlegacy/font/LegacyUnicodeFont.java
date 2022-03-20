@@ -91,7 +91,7 @@ public class LegacyUnicodeFont extends Font {
         }
 
         this.imageInt[blockIndex] = arg1.glLoadImage(fontImage);
-        this.anInt[blockIndex] = class_214.method_741(288 + blockIndex);
+        this.anInt[blockIndex] = class_214.method_741(300 + blockIndex);
         Tessellator tessellator = Tessellator.INSTANCE;
 
         for (int u = 0; u < 256; u++) {
@@ -118,7 +118,9 @@ public class LegacyUnicodeFont extends Font {
 
             tessellator.draw();
 
-            GL11.glTranslatef(this.getCharWidth(unicodeId + j), 0.0F, 0.0F);
+            float width = this.getCharWidth(unicodeId + j);
+
+            GL11.glTranslatef(width, 0.0F, 0.0F);
             GL11.glEndList();
         }
 

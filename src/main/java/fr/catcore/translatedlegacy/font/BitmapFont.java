@@ -62,6 +62,10 @@ public class BitmapFont extends Font {
             return;
         }
 
+        this.imagePointer = arg1.glLoadImage(fontImage);
+        this.anInt = class_214.method_741(this.getImagePointer());
+        Tessellator tessellator = Tessellator.INSTANCE;
+
         int imageWidth = fontImage.getWidth();
         int imageHeight = fontImage.getHeight();
         int k = imageWidth / this.chars.get(0).length;
@@ -82,16 +86,12 @@ public class BitmapFont extends Font {
                 int p = n++;
                 if (o != 0 && o != 32) {
                     int q = this.findCharacterStartX(fontImage, k, l, p, m);
-                    GLYPHS.put(o, new BitmapTextureGlyph(f, p * k, m * l, k, l, (int)(0.5D + (double)((float)q * f)) + 1, this.ascent));
+                    GLYPHS.put(o, new BitmapTextureGlyph(f, p * k, m * l, k, l, (int)(0.5D + (double)((float)q * f)) + 1, this.ascent, o, this.imagePointer));
                 }
             }
 
             ++m;
         }
-
-        this.imagePointer = arg1.glLoadImage(fontImage);
-        this.anInt = class_214.method_741(this.getImagePointer());
-        Tessellator tessellator = Tessellator.INSTANCE;
 
         for (Map.Entry<Integer, Glyph> entry : GLYPHS.entrySet()) {
             GL11.glNewList(this.anInt + entry.getKey(), 4864);
@@ -100,12 +100,12 @@ public class BitmapFont extends Font {
             RenderableGlyph glyph = (RenderableGlyph) entry.getValue();
 
             if (glyph != null) {
-                glyph.preDraw(false, 10F,50F,2.0F,0, tessellator);
+                glyph.preDraw(false, 0,0,0,0, tessellator);
             }
 
             tessellator.draw();
 
-            GL11.glTranslatef(4, 0.0F, 0.0F);
+            GL11.glTranslatef(glyph.getWidth(), 0.0F, 0.0F);
             GL11.glEndList();
         }
     }
@@ -127,11 +127,10 @@ public class BitmapFont extends Font {
     }
 
     private int getImagePointer() {
-//        return 545 + (
-//                this.fileLocation.contains("ascii") ? 1 :
-//                        this.fileLocation.contains("nonlatin_european") ? 2 : 3
-//                );
-        return 288;
+        return 288 + (
+                this.fileLocation.contains("ascii") ? 1 :
+                        this.fileLocation.contains("nonlatin_european") ? 2 : 3
+                );
     }
 
     @Override

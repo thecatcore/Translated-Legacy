@@ -11,7 +11,10 @@ public class BitmapTextureGlyph implements RenderableGlyph {
     private final int advance;
     private final int ascent;
 
-    protected BitmapTextureGlyph(float scaleFactor, int x, int y, int width, int height, int advance, int ascent) {
+    private final int id;
+    private final int imagePointer;
+
+    protected BitmapTextureGlyph(float scaleFactor, int x, int y, int width, int height, int advance, int ascent, int id, int imagePointer) {
         this.scaleFactor = scaleFactor;
         this.x = x;
         this.y = y;
@@ -19,16 +22,19 @@ public class BitmapTextureGlyph implements RenderableGlyph {
         this.height = height;
         this.advance = advance;
         this.ascent = ascent;
+
+        this.id = id;
+        this.imagePointer = imagePointer;
     }
 
     @Override
     public int getId() {
-        return 0;
+        return this.id;
     }
 
     @Override
     public int getImagePointer() {
-        return 0;
+        return this.imagePointer;
     }
 
     @Override
@@ -70,9 +76,8 @@ public class BitmapTextureGlyph implements RenderableGlyph {
     public void preDraw(boolean italic, float y, float x, float indent, float end, Tessellator tessellator) {
         float var26 = 7.99F;
 
-//        y = this.getHeight()/8F;
-//        x = this.getWidth()/8F;
-//        indent = this.getAdvance();
+        x = this.x;
+        y = this.y;
 
         tessellator.vertex(
                 0.0D,
