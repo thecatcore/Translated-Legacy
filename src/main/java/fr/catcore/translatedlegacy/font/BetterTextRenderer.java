@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.class_214;
-import net.minecraft.client.options.GameOptions;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.texture.TextureManager;
+import net.minecraft.client.util.GlAllocationUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.io.InputStream;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class BetterTextRenderer {
     private static final Gson GSON = new Gson();
-    private final IntBuffer intBuffer = class_214.method_745(1024);
+    private final IntBuffer intBuffer = GlAllocationUtils.allocateIntBuffer(1024);
     private static final List<Font> FONTS = new ArrayList<>();
 
     private void loadFonts(GameOptions arg, TextureManager arg1) {

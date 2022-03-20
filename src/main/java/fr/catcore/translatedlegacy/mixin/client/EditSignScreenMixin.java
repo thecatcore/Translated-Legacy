@@ -1,17 +1,17 @@
 package fr.catcore.translatedlegacy.mixin.client;
 
-import net.minecraft.client.gui.screen.EditSignScreen;
-import net.minecraft.client.resource.language.I18n;
+import net.minecraft.class_629;
+import net.minecraft.client.gui.screen.ingame.SignEditScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(EditSignScreen.class)
+@Mixin(SignEditScreen.class)
 public class EditSignScreenMixin {
 
-    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widgets/Button;<init>(IIILjava/lang/String;)V"))
+    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V"))
     public String init$lang(String string) {
-        return I18n.translate("gui.done");
+        return class_629.method_2049("gui.done");
     }
 
     @ModifyArg(method = "keyPressed", index = 0, at = @At(value = "INVOKE", target = "Ljava/lang/String;indexOf(I)I"))
@@ -19,8 +19,8 @@ public class EditSignScreenMixin {
         return '0';
     }
 
-    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/EditSignScreen;drawTextWithShadowCentred(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"))
+    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/SignEditScreen;drawCenteredTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"))
     public String render$lang(String string) {
-        return I18n.translate("sign.edit");
+        return class_629.method_2049("sign.edit");
     }
 }

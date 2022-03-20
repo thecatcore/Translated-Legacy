@@ -1,43 +1,46 @@
 package fr.catcore.translatedlegacy.mixin.client;
 
-import net.minecraft.client.gui.screen.PauseScreen;
-import net.minecraft.client.resource.language.I18n;
+import fr.catcore.translatedlegacy.mixin.client.screen.ScreenAccessor;
+import net.minecraft.class_525;
+import net.minecraft.class_629;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(PauseScreen.class)
+@Mixin(class_525.class)
 public class PauseScreenMixin {
 
-    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widgets/Button;<init>(IIILjava/lang/String;)V", ordinal = 0))
+    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V", ordinal = 0))
     public String init$lang1(String string) {
-        return I18n.translate("menu.returnToMenu");
+        return class_629.method_2049("menu.returnToMenu");
     }
 
-    @ModifyVariable(method = "init", at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/widgets/Button;text:Ljava/lang/String;", opcode = Opcodes.PUTFIELD))
-    public String init$lang2(String string) {
-        return I18n.translate("menu.disconnect");
+    @Inject(method = "init", at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;text:Ljava/lang/String;", opcode = Opcodes.PUTFIELD, shift = At.Shift.AFTER))
+    public void init$lang2(CallbackInfo ci) {
+        ((ButtonWidget)((ScreenAccessor)this).getButtons().get(0)).text = class_629.method_2049("menu.disconnect");
     }
 
-    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widgets/Button;<init>(IIILjava/lang/String;)V", ordinal = 1))
+    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V", ordinal = 1))
     public String init$lang3(String string) {
-        return I18n.translate("menu.returnToGame");
+        return class_629.method_2049("menu.returnToGame");
     }
 
-    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widgets/Button;<init>(IIILjava/lang/String;)V", ordinal = 2))
+    @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V", ordinal = 2))
     public String init$lang4(String string) {
-        return I18n.translate("menu.options");
+        return class_629.method_2049("menu.options");
     }
 
-    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/PauseScreen;drawTextWithShadow(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"))
+    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/class_525;drawStringWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"))
     public String render$lang1(String string) {
-        return I18n.translate("menu.saving");
+        return class_629.method_2049("menu.saving");
     }
 
-    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/PauseScreen;drawTextWithShadowCentred(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"))
+    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/class_525;drawCenteredTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"))
     public String render$lang2(String string) {
-        return I18n.translate("menu.game");
+        return class_629.method_2049("menu.game");
     }
 }

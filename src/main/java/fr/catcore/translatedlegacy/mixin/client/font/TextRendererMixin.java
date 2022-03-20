@@ -2,8 +2,8 @@ package fr.catcore.translatedlegacy.mixin.client.font;
 
 import fr.catcore.translatedlegacy.TranslatedLegacy;
 import fr.catcore.translatedlegacy.font.BetterTextRenderer;
-import net.minecraft.client.options.GameOptions;
-import net.minecraft.client.render.TextRenderer;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.texture.TextureManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -24,7 +24,7 @@ public class TextRendererMixin {
      * @author CatCore
      */
     @Overwrite
-    public void drawTextWithShadow(String string, int i, int j, int k) {
+    public void drawWithShadow(String string, int i, int j, int k) {
         TranslatedLegacy.TEXT_RENDERER.drawTextWithShadow(string, i, j, k);
     }
 
@@ -32,7 +32,7 @@ public class TextRendererMixin {
      * @author CatCore
      */
     @Overwrite
-    public void drawText(String string, int i, int j, int k) {
+    public void draw(String string, int i, int j, int k) {
         TranslatedLegacy.TEXT_RENDERER.drawText(string, i, j, k);
     }
 
@@ -40,7 +40,7 @@ public class TextRendererMixin {
      * @author CatCore
      */
     @Overwrite
-    public void drawText(String string, int i, int j, int k, boolean flag) {
+    public void draw(String string, int i, int j, int k, boolean flag) {
         TranslatedLegacy.TEXT_RENDERER.drawText(string, i, j, k, flag);
     }
 
@@ -48,7 +48,7 @@ public class TextRendererMixin {
      * @author CatCore
      */
     @Overwrite
-    public int getTextWidth(String string) {
+    public int getWidth(String string) {
         return TranslatedLegacy.TEXT_RENDERER.getTextWidth(string);
     }
 

@@ -12,12 +12,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = TranslationStorage.class, priority = 800)
 public class TranslationStorageMixin {
 
-    @Inject(method = "translate(Ljava/lang/String;)Ljava/lang/String;", cancellable = true, at = @At("HEAD"))
+    @Inject(method = "get(Ljava/lang/String;)Ljava/lang/String;", cancellable = true, at = @At("HEAD"))
     public void tl$translate(String key, CallbackInfoReturnable<String> cir) {
         cir.setReturnValue(LanguageManager.CURRENT_LANGUAGE.translate(key));
     }
 
-    @Inject(method = "translate(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", cancellable = true, at = @At("HEAD"))
+    @Inject(method = "get(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", cancellable = true, at = @At("HEAD"))
     public void tl$translate(String key, Object[] args, CallbackInfoReturnable<String> cir) {
         cir.setReturnValue(LanguageManager.CURRENT_LANGUAGE.translate(key, args));
     }

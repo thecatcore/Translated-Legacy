@@ -1,23 +1,23 @@
 package fr.catcore.translatedlegacy.mixin.client.container;
 
-import net.minecraft.client.gui.screen.container.PlayerInventoryScreen;
-import net.minecraft.client.resource.language.I18n;
+import net.minecraft.class_585;
+import net.minecraft.class_629;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(PlayerInventoryScreen.class)
+@Mixin(class_585.class)
 public abstract class PlayerInventoryScreenMixin {
 
     @ModifyArg(
-            method = "renderForeground",
+            method = "drawForeground",
             index = 0,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/TextRenderer;drawText(Ljava/lang/String;III)V"
+                    target = "Lnet/minecraft/client/font/TextRenderer;draw(Ljava/lang/String;III)V"
             )
     )
     public String renderForeground$lang(String string) {
-        return I18n.translate("container.crafting");
+        return class_629.method_2049("container.crafting");
     }
 }

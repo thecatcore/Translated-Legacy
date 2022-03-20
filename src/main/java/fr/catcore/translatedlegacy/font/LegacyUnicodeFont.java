@@ -1,10 +1,10 @@
 package fr.catcore.translatedlegacy.font;
 
 import com.google.gson.JsonObject;
-import net.minecraft.class_214;
-import net.minecraft.client.options.GameOptions;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.texture.TextureManager;
+import net.minecraft.client.util.GlAllocationUtils;
 import org.lwjgl.opengl.GL11;
 
 import javax.imageio.ImageIO;
@@ -90,8 +90,8 @@ public class LegacyUnicodeFont extends Font {
             }
         }
 
-        this.imageInt[blockIndex] = arg1.glLoadImage(fontImage);
-        this.anInt[blockIndex] = class_214.method_741(300 + blockIndex);
+        this.imageInt[blockIndex] = arg1.method_1088(fontImage);
+        this.anInt[blockIndex] = GlAllocationUtils.generateDisplayLists(300 + blockIndex);
         Tessellator tessellator = Tessellator.INSTANCE;
 
         for (int u = 0; u < 256; u++) {
@@ -106,7 +106,7 @@ public class LegacyUnicodeFont extends Font {
         for(int unicodeId = 0; unicodeId < 256; ++unicodeId) {
             int codepoint = j + unicodeId;
             GL11.glNewList(this.anInt[blockIndex] + codepoint, 4864);
-            tessellator.start();
+            tessellator.startQuads();
 
             Glyph glyph = this.GLYPHS[codepoint];
 

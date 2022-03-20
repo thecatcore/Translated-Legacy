@@ -2,10 +2,10 @@ package fr.catcore.translatedlegacy.font;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.class_214;
-import net.minecraft.client.options.GameOptions;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.texture.TextureManager;
+import net.minecraft.client.util.GlAllocationUtils;
 import org.lwjgl.opengl.GL11;
 
 import javax.imageio.ImageIO;
@@ -28,7 +28,6 @@ public class BitmapFont extends Font {
 
     protected BitmapFont(JsonObject object) {
         this.fileLocation = "/assets/" + object.get("file").getAsString().replace(":", "/textures/");
-        System.out.println(this.fileLocation);
         this.ascent = object.get("ascent").getAsInt();
 
         for (JsonElement element : object.getAsJsonArray("chars")) {
@@ -62,8 +61,8 @@ public class BitmapFont extends Font {
             return;
         }
 
-        this.imagePointer = arg1.glLoadImage(fontImage);
-        this.anInt = class_214.method_741(this.getImagePointer());
+        this.imagePointer = arg1.method_1088(fontImage);
+        this.anInt = GlAllocationUtils.generateDisplayLists(this.getImagePointer());
         Tessellator tessellator = Tessellator.INSTANCE;
 
         int imageWidth = fontImage.getWidth();
@@ -96,7 +95,7 @@ public class BitmapFont extends Font {
         for (Map.Entry<Integer, Glyph> entry : GLYPHS.entrySet()) {
             GL11.glNewList(this.anInt + entry.getKey(), 4864);
 
-            tessellator.start();
+            tessellator.startQuads();
             RenderableGlyph glyph = (RenderableGlyph) entry.getValue();
 
             if (glyph != null) {

@@ -2,35 +2,35 @@ package fr.catcore.translatedlegacy.mixin;
 
 import fr.catcore.translatedlegacy.accessor.StatAccessor;
 import fr.catcore.translatedlegacy.language.LanguageManager;
+import net.minecraft.class_139;
+import net.minecraft.class_498;
+import net.minecraft.class_542;
 import net.minecraft.client.resource.language.TranslationStorage;
-import net.minecraft.stat.RegisteringStat;
-import net.minecraft.stat.Stat;
-import net.minecraft.stat.StringFormatter;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Stat.class)
+@Mixin(class_139.class)
 public class StatMixin implements StatAccessor {
     @Mutable
-    @Shadow @Final public String name;
+    @Shadow @Final public String field_2026;
 
     @Unique
     private String stringId;
 
     @Override
     public void setName(String name) {
-        this.name = name;
+        this.field_2026 = name;
     }
 
-    @Inject(method = "<init>(ILjava/lang/String;Lnet/minecraft/stat/StringFormatter;)V", at = @At("RETURN"))
-    public void init$callback(int i, String string, StringFormatter arg, CallbackInfo ci) {
-        if (((Object)this) instanceof RegisteringStat) {
-            this.stringId = string;
-            ((StatAccessor)(Object)this).setName(TranslationStorage.getInstance().translate("stat." + this.stringId));
+    @Inject(method = "<init>(ILjava/lang/String;Lnet/minecraft/class_498;)V", at = @At("RETURN"))
+    public void init$callback(int string, String stringId, class_498 par3, CallbackInfo ci) {
+        if (((Object)this) instanceof class_542) {
+            this.stringId = stringId;
+            ((StatAccessor)(Object)this).setName(TranslationStorage.getInstance().get("stat." + this.stringId));
             LanguageManager.registerCallback(code -> {
-                ((StatAccessor)(Object)this).setName(TranslationStorage.getInstance().translate("stat." + this.stringId));
+                ((StatAccessor)(Object)this).setName(TranslationStorage.getInstance().get("stat." + this.stringId));
             });
         }
     }

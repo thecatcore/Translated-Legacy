@@ -1,6 +1,6 @@
 package fr.catcore.translatedlegacy.font;
 
-import net.minecraft.client.options.GameOptions;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.texture.TextureManager;
 
 public abstract class Font {
