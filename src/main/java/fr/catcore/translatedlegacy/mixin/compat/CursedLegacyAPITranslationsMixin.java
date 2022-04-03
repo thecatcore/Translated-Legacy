@@ -17,6 +17,7 @@ public class CursedLegacyAPITranslationsMixin {
 
     /**
      * @author Cat Core
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite(remap = false)
     public static void addTranslation(String key, String translation) {
@@ -27,6 +28,7 @@ public class CursedLegacyAPITranslationsMixin {
 
     /**
      * @author Cat Core
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite(remap = false)
     public static void loadLangFile(String file) throws IOException {
@@ -43,6 +45,7 @@ public class CursedLegacyAPITranslationsMixin {
 
     /**
      * @author Cat Core
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite(remap = false)
     public static void loadLangFile(Reader reader) throws IOException {

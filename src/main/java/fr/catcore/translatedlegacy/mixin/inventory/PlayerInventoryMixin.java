@@ -10,6 +10,7 @@ public class PlayerInventoryMixin {
 
     /**
      * @author CatCore
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public String getName() {

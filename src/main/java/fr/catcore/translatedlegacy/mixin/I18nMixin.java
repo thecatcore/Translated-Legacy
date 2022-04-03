@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 public class I18nMixin {
     /**
      * @author Cat Core
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public static String method_2049(String key) {
@@ -17,6 +18,7 @@ public class I18nMixin {
 
     /**
      * @author Cat Core
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public static String method_2050(String key, Object... objects) {

@@ -22,6 +22,7 @@ public class TextRendererMixin {
 
     /**
      * @author CatCore
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public void drawWithShadow(String string, int i, int j, int k) {
@@ -30,6 +31,7 @@ public class TextRendererMixin {
 
     /**
      * @author CatCore
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public void draw(String string, int i, int j, int k) {
@@ -38,6 +40,7 @@ public class TextRendererMixin {
 
     /**
      * @author CatCore
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public void draw(String string, int i, int j, int k, boolean flag) {
@@ -46,6 +49,7 @@ public class TextRendererMixin {
 
     /**
      * @author CatCore
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public int getWidth(String string) {
@@ -54,6 +58,7 @@ public class TextRendererMixin {
 
     /**
      * @author CatCore
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public void method_1904(String string, int i, int j, int k, int i1) {
@@ -62,6 +67,7 @@ public class TextRendererMixin {
 
     /**
      * @author CatCore
+     * @reason We don't want any of the original code to run.
      */
     @Overwrite
     public int method_1902(String string, int i) {
