@@ -79,43 +79,43 @@ public class BitmapTextureGlyph implements RenderableGlyph {
 
     @Override
     public void preDraw(boolean italic, float y, float x, float indent, float end, Tessellator tessellator) {
-        float var26 = this.fontImage.getWidth() > 128 ? 10.99F : 7.99F;
-        float var27 = this.fontImage.getWidth() > 128 ? 8.99F : 7.99F;
+        float height = this.fontImage.getWidth() > 128 ? 10.99F : 7.99F;
+        float width = this.fontImage.getWidth() > 128 ? 8.99F : 7.99F;
 
-        float start = this.fontImage.getWidth() > 128 ? -2.80F : 0.0F;
+        float yTop = this.fontImage.getWidth() > 128 ? -2.80F : 0.0F;
 
         x = this.x;
         y = this.y;
 
-        if (this.fontImage.getWidth() > 128) indent = this.getAscent();
+        indent = this.getAdvance(false) / (float) this.fontImage.getWidth();
 
         tessellator.vertex(
-                0.0D,
-                start + var26,
-                0.0D,
-                (float) (x + indent) / (float) this.fontImage.getWidth(),
-                ((float) y + var26) / (float) this.fontImage.getHeight()
+                0.0D, // x
+                yTop + height, // y
+                0.0D, // z
+                (float) (x + indent) / (float) this.fontImage.getWidth(), // texture x
+                ((float) y + height) / (float) this.fontImage.getHeight() // texture y
         );
 
         tessellator.vertex(
-                0.0F + var27,
-                start + var26,
+                0.0F + width,
+                yTop + height,
                 0.0D,
-                (float) (x + var27) / (float) this.fontImage.getWidth(),
-                ((float) y + var26) / (float) this.fontImage.getHeight()
+                (float) (x + width) / (float) this.fontImage.getWidth(),
+                ((float) y + height) / (float) this.fontImage.getHeight()
         );
 
         tessellator.vertex(
-                0.0F + var27,
-                start,
+                0.0F + width,
+                yTop,
                 0.0D,
-                (float) (x + var27) / (float) this.fontImage.getWidth(),
+                (float) (x + width) / (float) this.fontImage.getWidth(),
                 (float) y / (float) this.fontImage.getHeight()
         );
 
         tessellator.vertex(
                 0.0D,
-                start,
+                yTop,
                 0.0D,
                 (float) (x + indent) / (float) this.fontImage.getWidth(),
                 (float) y / (float) this.fontImage.getHeight()
