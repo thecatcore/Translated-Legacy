@@ -79,38 +79,43 @@ public class BitmapTextureGlyph implements RenderableGlyph {
 
     @Override
     public void preDraw(boolean italic, float y, float x, float indent, float end, Tessellator tessellator) {
-        float var26 = this.fontImage.getWidth() > 128 ? 8.99F : 7.99F;
+        float var26 = this.fontImage.getWidth() > 128 ? 10.99F : 7.99F;
+        float var27 = this.fontImage.getWidth() > 128 ? 8.99F : 7.99F;
+
+        float start = this.fontImage.getWidth() > 128 ? -2.80F : 0.0F;
 
         x = this.x;
         y = this.y;
 
+        if (this.fontImage.getWidth() > 128) indent = this.getAscent();
+
         tessellator.vertex(
                 0.0D,
-                0.0F + var26,
+                start + var26,
                 0.0D,
                 (float) (x + indent) / (float) this.fontImage.getWidth(),
                 ((float) y + var26) / (float) this.fontImage.getHeight()
         );
 
         tessellator.vertex(
-                0.0F + var26,
-                0.0F + var26,
+                0.0F + var27,
+                start + var26,
                 0.0D,
-                (float) (x + var26) / (float) this.fontImage.getWidth(),
+                (float) (x + var27) / (float) this.fontImage.getWidth(),
                 ((float) y + var26) / (float) this.fontImage.getHeight()
         );
 
         tessellator.vertex(
-                0.0F + var26,
+                0.0F + var27,
+                start,
                 0.0D,
-                0.0D,
-                (float) (x + var26) / (float) this.fontImage.getWidth(),
+                (float) (x + var27) / (float) this.fontImage.getWidth(),
                 (float) y / (float) this.fontImage.getHeight()
         );
 
         tessellator.vertex(
                 0.0D,
-                0.0D,
+                start,
                 0.0D,
                 (float) (x + indent) / (float) this.fontImage.getWidth(),
                 (float) y / (float) this.fontImage.getHeight()
