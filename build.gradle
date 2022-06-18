@@ -1,5 +1,6 @@
 plugins {
 	id 'babric-loom' version '0.12-SNAPSHOT'
+	id 'io.github.juuxel.loom-quiltflower' version '1.7.3'
 	id 'maven-publish'
 }
 
@@ -24,9 +25,21 @@ repositories {
 		name = 'HalfOf2'
 		url = 'https://storage.googleapis.com/devan-maven/'
 	}
+
+	// Used for StationAPI and HowManyItems.
+	maven {
+		name = 'Glass Snapshots'
+		url = 'https://maven.glass-launcher.net/snapshots'
+	}
+	// Used for a StationAPI dependency.
+	maven {
+		name = 'Froge'
+		url 'https://maven.minecraftforge.net/'
+	}
+	// Used for projects that do not have a maven repository, but do have a GitHub repository with working build scripts.
 	maven {
 		name = 'Jitpack'
-		url 'https://jitpack.io/'
+		url = 'https://jitpack.io'
 	}
 }
 
@@ -37,18 +50,24 @@ dependencies {
 	modImplementation "babric:fabric-loader:${project.loader_version}"
 
 	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
-	implementation "org.apache.logging.log4j:log4j-slf4j18-impl:2.16.0"
+	implementation 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.2'
 
-	implementation include("com.google.code.gson:gson:2.8.6")
+	implementation(include("com.google.code.gson:gson:2.8.6"))
 
 	// API. You technically don't need it, but it's extremely useful for not having to write the same code in every mod.
 	modCompileOnly "io.github.minecraft-cursed-legacy:cursed-legacy-api:${project.api_version}"
 
-	implementation "com.github.jhalterman:typetools:87240d6"
-	implementation "com.github.mineLdiver:expressions:2fa66db"
-	implementation "com.github.mineLdiver:UnsafeEvents:7efec57"
-	modCompileOnly ("com.github.ModificationStation:StationAPI:2.0-PRE2") {
-		exclude group: "com.github.minecraft-cursed-legacy"
+	modImplementation "net.modificationstation:StationAPI:${project.stapi_version}"
+
+	// Optional, but convenient mods for mod creators and users alike.
+	modImplementation("com.github.calmilamsy:ModMenu:${project.modmenu_version}") {
+		transitive false
+	}
+	modImplementation("com.github.calmilamsy:glass-config-api:${project.gcapi_version}") {
+		transitive false
+	}
+	modImplementation("net.glasslauncher:HowManyItems-Fabric-Unofficial:${project.howmanyitems_version}") {
+		transitive false
 	}
 }
 
