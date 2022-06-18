@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "translatedbeta",
+  "id": "translated-legacy",
   "version": "${version}",
 
   "name": "Translated Legacy",
@@ -14,7 +14,7 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/translatedbeta/icon.png",
+  "icon": "assets/translated-legacy/icon.png",
 
   "environment": "*",
   "entrypoints": {
