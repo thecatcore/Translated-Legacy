@@ -31,7 +31,8 @@ public class LanguageManager {
             CODE_TO_STORAGE.put(code, new OldTranslationStorage(
                     languageEntry.get("name").getAsString(),
                     languageEntry.get("region").getAsString(),
-                    code
+                    code,
+                    languageEntry.get("bidirectional").getAsBoolean()
             ));
         }
 

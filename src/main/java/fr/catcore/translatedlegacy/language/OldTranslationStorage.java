@@ -1,5 +1,6 @@
 package fr.catcore.translatedlegacy.language;
 
+import com.ibm.icu.text.Bidi;
 import fr.catcore.translatedlegacy.mixin.TranslationStorageAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,13 +19,15 @@ public class OldTranslationStorage {
     public final String name;
     public final String region;
     public final String code;
+    public final boolean rightToLeft;
 
     private static boolean checkedVanilla = false;
 
-    public OldTranslationStorage(String name, String region, String code) {
+    public OldTranslationStorage(String name, String region, String code, boolean rightToLeft) {
         this.name = name;
         this.region = region;
         this.code = code;
+        this.rightToLeft = rightToLeft;
     }
 
     protected void load(InputStream inputStream) throws IOException {
@@ -108,8 +111,14 @@ public class OldTranslationStorage {
     }
 
     private String getOrDefault(String key, String defaultValue) {
-        if (checkedVanilla) return this.translations.getOrDefault(key, defaultValue);
-        else if (key.equals(defaultValue) || defaultValue.isEmpty()){
+        if (checkedVanilla) {
+            String translation = this.translations.getOrDefault(key, defaultValue);
+            if (this.rightToLeft && this.hasKey(key)) {
+                Bidi bidi = new Bidi(translation, Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
+                translation = bidi.getTextAsString();
+            }
+            return translation;
+        } else if (key.equals(defaultValue) || defaultValue.isEmpty()){
             ((TranslationStorageAccessor)TranslationStorage.getInstance()).getTranslations().forEach((vKey, value) -> {
                 if (!LanguageManager.CODE_TO_STORAGE
                         .get(LanguageManager.DEFAULT_LANGUAGE).hasKey((String) vKey)) {
@@ -122,7 +131,7 @@ public class OldTranslationStorage {
                     .get(LanguageManager.DEFAULT_LANGUAGE)
                     .method_995(key));
         }
-        return defaultValue.isEmpty() ? key : defaultValue;
+        return defaultValue;
     }
 
     private boolean hasKey(String key) {

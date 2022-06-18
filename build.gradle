@@ -53,20 +53,21 @@ dependencies {
 	implementation 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.2'
 
 	implementation(include("com.google.code.gson:gson:2.8.6"))
+	implementation(include(group: 'com.ibm.icu', name: 'icu4j', version: '71.1'))
 
 	// API. You technically don't need it, but it's extremely useful for not having to write the same code in every mod.
 	modCompileOnly "io.github.minecraft-cursed-legacy:cursed-legacy-api:${project.api_version}"
 
-	modImplementation "net.modificationstation:StationAPI:${project.stapi_version}"
+	modCompileOnly "net.modificationstation:StationAPI:${project.stapi_version}"
 
 	// Optional, but convenient mods for mod creators and users alike.
-	modImplementation("com.github.calmilamsy:ModMenu:${project.modmenu_version}") {
+	modCompileOnly("com.github.calmilamsy:ModMenu:${project.modmenu_version}") {
 		transitive false
 	}
-	modImplementation("com.github.calmilamsy:glass-config-api:${project.gcapi_version}") {
+	modCompileOnly("com.github.calmilamsy:glass-config-api:${project.gcapi_version}") {
 		transitive false
 	}
-	modImplementation("net.glasslauncher:HowManyItems-Fabric-Unofficial:${project.howmanyitems_version}") {
+	modCompileOnly("net.glasslauncher:HowManyItems-Fabric-Unofficial:${project.howmanyitems_version}") {
 		transitive false
 	}
 }
