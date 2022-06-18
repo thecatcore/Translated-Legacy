@@ -6,6 +6,7 @@
     "I18nMixin",
     "LevelMixin",
     "StatMixin",
+    "TranslationStorageAccessor",
     "TranslationStorageMixin",
     "compat.CursedLegacyAPITranslationsMixin",
     "compat.StationAPII18n",
@@ -17,6 +18,7 @@
   "client": [
     "client.AchievementMixin",
     "client.AchievementsScreenMixin",
+    "client.ChatScreenMixin",
     "client.DeathScreenMixin",
     "client.EditSignScreenMixin",
     "client.LevelSaveConflictScreenMixin",
@@ -29,7 +31,6 @@
     "client.container.PlayerInventoryScreenMixin",
     "client.font.TextRendererMixin",
     "client.gui.widget.TextboxMixin",
-    "client.ChatScreenMixin",
     "client.screen.ScreenAccessor"
   ],
   "injectors": {

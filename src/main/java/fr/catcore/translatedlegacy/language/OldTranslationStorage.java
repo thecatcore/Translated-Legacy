@@ -1,8 +1,10 @@
 package fr.catcore.translatedlegacy.language;
 
+import fr.catcore.translatedlegacy.mixin.TranslationStorageAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.resource.language.TranslationStorage;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -16,6 +18,8 @@ public class OldTranslationStorage {
     public final String name;
     public final String region;
     public final String code;
+
+    private static boolean checkedVanilla = false;
 
     public OldTranslationStorage(String name, String region, String code) {
         this.name = name;
@@ -84,14 +88,14 @@ public class OldTranslationStorage {
         String defaultValue = isDefaultLanguage() ? key : LanguageManager.CODE_TO_STORAGE
                 .get(LanguageManager.DEFAULT_LANGUAGE)
                 .translate(key);
-        return this.translations.getOrDefault(key, defaultValue);
+        return this.getOrDefault(key, defaultValue);
     }
 
     public String translate(String key, Object... arg) {
         String defaultValue = isDefaultLanguage() ? key : LanguageManager.CODE_TO_STORAGE
                 .get(LanguageManager.DEFAULT_LANGUAGE)
                 .translate(key);
-        String var3 = this.translations.getOrDefault(key, defaultValue);
+        String var3 = this.getOrDefault(key, defaultValue);
         return String.format(var3, arg);
     }
 
@@ -100,6 +104,28 @@ public class OldTranslationStorage {
         String defaultValue = isDefaultLanguage() ? "" : LanguageManager.CODE_TO_STORAGE
                 .get(LanguageManager.DEFAULT_LANGUAGE)
                 .method_995(string);
-        return this.translations.getOrDefault(string + ".name", defaultValue);
+        return this.getOrDefault(string + ".name", defaultValue);
+    }
+
+    private String getOrDefault(String key, String defaultValue) {
+        if (checkedVanilla) return this.translations.getOrDefault(key, defaultValue);
+        else if (key.equals(defaultValue) || defaultValue.isEmpty()){
+            ((TranslationStorageAccessor)TranslationStorage.getInstance()).getTranslations().forEach((vKey, value) -> {
+                if (!LanguageManager.CODE_TO_STORAGE
+                        .get(LanguageManager.DEFAULT_LANGUAGE).hasKey((String) vKey)) {
+                    LanguageManager.CODE_TO_STORAGE
+                            .get(LanguageManager.DEFAULT_LANGUAGE).add((String) vKey, (String) value);
+                }
+            });
+            checkedVanilla = true;
+            return this.getOrDefault(key, isDefaultLanguage() ? "" : LanguageManager.CODE_TO_STORAGE
+                    .get(LanguageManager.DEFAULT_LANGUAGE)
+                    .method_995(key));
+        }
+        return defaultValue.isEmpty() ? key : defaultValue;
+    }
+
+    private boolean hasKey(String key) {
+        return this.translations.containsKey(key);
     }
 }
