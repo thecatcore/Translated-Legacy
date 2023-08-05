@@ -1,7 +1,51 @@
 plugins {
-	id 'babric-loom' version '0.12-SNAPSHOT'
-	id 'io.github.juuxel.loom-quiltflower' version '1.7.3'
+	id 'java-library'
 	id 'maven-publish'
+	id "fabric-loom" version "1.3-SNAPSHOT" apply false
+	id "legacy-looming" version "1.3-SNAPSHOT" apply false
+	id "babric-loom" version "1.3-SNAPSHOT" apply false
+}
+
+enum FabricKind {
+	UPSTREAM("net.fabricmc", "0.14.22", "net.fabricmc:yarn"),
+	LEGACY("net.fabricmc", "0.14.22", "net.legacyfabric:yarn"),
+	BABRIC("babric", "0.14.19-babric.1", "babric:barn");
+
+	String loaderGroup, loaderVersion, mappingsGroup;
+
+	FabricKind(String loaderGroup, String loaderVersion, String mappingsGroup) {
+		this.loaderGroup = loaderGroup;
+		this.loaderVersion = loaderVersion;
+		this.mappingsGroup = mappingsGroup;
+	}
+}
+
+class VersionInfo {
+	String mc, mappings;
+	FabricKind kind;
+	List<String> projectNames;
+
+	VersionInfo(String mc, String mappings, FabricKind kind, String... projectNames) {
+		this.mc = mc;
+		this.mappings = mappings;
+		this.kind = kind;
+		this.projectNames = new ArrayList(projectNames);
+	}
+
+	public static final VersionInfo[] VERSIONS = [
+		new VersionInfo("1.16.5", "10", FabricKind.UPSTREAM),
+		new VersionInfo("b1.7.3", "5", FabricKind.BABRIC, "babric")
+	];
+
+	static VersionInfo getInfo(String projectName) {
+		for (def info in VERSIONS) {
+            if (projectName == info.mc || info.projectNames.contains(projectName)) {
+                return info
+            }
+        }
+        
+		return VERSIONS[0]
+	}
 }
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
@@ -10,102 +54,124 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-loom {
-	gluedMinecraftJar()
-	customMinecraftManifest.set("https://babric.github.io/manifest-polyfill/${minecraft_version}.json")
-}
+allprojects {
+	def versionInfo = VersionInfo.getInfo(project.name);
 
-repositories {
-	maven {
-		name = 'Babric'
-		url = 'https://maven.glass-launcher.net/babric'
+	if (versionInfo.kind == FabricKind.BABRIC) {
+		apply plugin: 'babric-loom'
+	} else {
+		apply plugin: 'fabric-loom'
 	}
 
-	maven {
-		name = 'HalfOf2'
-		url = 'https://storage.googleapis.com/devan-maven/'
+	if (versionInfo.kind == FabricKind.LEGACY) {
+		apply plugin: 'legacy-looming'
 	}
 
-	// Used for StationAPI and HowManyItems.
-	maven {
-		name = 'Glass Snapshots'
-		url = 'https://maven.glass-launcher.net/snapshots'
-	}
-	// Used for a StationAPI dependency.
-	maven {
-		name = 'Froge'
-		url 'https://maven.minecraftforge.net/'
-	}
-	// Used for projects that do not have a maven repository, but do have a GitHub repository with working build scripts.
-	maven {
-		name = 'Jitpack'
-		url = 'https://jitpack.io'
-	}
-}
-
-dependencies {
-	//to change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "babric:barn:${project.yarn_mappings}"
-	modImplementation "babric:fabric-loader:${project.loader_version}"
-
-	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
-	implementation 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.2'
-
-	implementation(include("com.google.code.gson:gson:2.8.6"))
-	implementation(include(group: 'com.ibm.icu', name: 'icu4j', version: '71.1'))
-
-	// API. You technically don't need it, but it's extremely useful for not having to write the same code in every mod.
-	modCompileOnly "io.github.minecraft-cursed-legacy:cursed-legacy-api:${project.api_version}"
-
-	modCompileOnly "net.modificationstation:StationAPI:${project.stapi_version}"
-
-	// Optional, but convenient mods for mod creators and users alike.
-	modCompileOnly("com.github.calmilamsy:ModMenu:${project.modmenu_version}") {
-		transitive false
-	}
-	modCompileOnly("com.github.calmilamsy:glass-config-api:${project.gcapi_version}") {
-		transitive false
-	}
-	modCompileOnly("net.glasslauncher:HowManyItems-Fabric-Unofficial:${project.howmanyitems_version}") {
-		transitive false
-	}
-}
-
-processResources {
-	inputs.property "version", project.version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
-}
-
-java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
-	withSourcesJar()
-}
-
-jar {
-	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}" }
-	}
-}
-
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
+	loom {
+		if (versionInfo.kind == FabricKind.BABRIC) {
+			gluedMinecraftJar()
+			customMinecraftManifest.set("https://babric.github.io/manifest-polyfill/${minecraft_version}.json")
 		}
 	}
 
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+	dependencies {
+		minecraft "com.mojang:minecraft:$versionInfo.mc"
+		mappings "$versionInfo.kind.mappingsGroup:$versionInfo.mc+build.$versionInfo.mappings:v2"
+		modImplementation "$versionInfo.kind.loaderGroup:fabric-loader:$versionInfo.kind.loaderVersion"
 	}
 }
+
+// repositories {
+// 	maven {
+// 		name = 'Babric'
+// 		url = 'https://maven.glass-launcher.net/babric'
+// 	}
+
+// 	maven {
+// 		name = 'HalfOf2'
+// 		url = 'https://storage.googleapis.com/devan-maven/'
+// 	}
+
+// 	// Used for StationAPI and HowManyItems.
+// 	maven {
+// 		name = 'Glass Snapshots'
+// 		url = 'https://maven.glass-launcher.net/snapshots'
+// 	}
+// 	// Used for a StationAPI dependency.
+// 	maven {
+// 		name = 'Froge'
+// 		url 'https://maven.minecraftforge.net/'
+// 	}
+// 	// Used for projects that do not have a maven repository, but do have a GitHub repository with working build scripts.
+// 	maven {
+// 		name = 'Jitpack'
+// 		url = 'https://jitpack.io'
+// 	}
+// }
+
+// dependencies {
+// 	//to change the versions see the gradle.properties file
+// 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+// 	mappings "babric:barn:${project.yarn_mappings}"
+// 	modImplementation "babric:fabric-loader:${project.loader_version}"
+
+// 	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
+// 	implementation 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.2'
+
+// 	implementation(include("com.google.code.gson:gson:2.8.6"))
+// 	implementation(include(group: 'com.ibm.icu', name: 'icu4j', version: '71.1'))
+
+// 	// API. You technically don't need it, but it's extremely useful for not having to write the same code in every mod.
+// 	modCompileOnly "io.github.minecraft-cursed-legacy:cursed-legacy-api:${project.api_version}"
+
+// 	modCompileOnly "net.modificationstation:StationAPI:${project.stapi_version}"
+
+// 	// Optional, but convenient mods for mod creators and users alike.
+// 	modCompileOnly("com.github.calmilamsy:ModMenu:${project.modmenu_version}") {
+// 		transitive false
+// 	}
+// 	modCompileOnly("com.github.calmilamsy:glass-config-api:${project.gcapi_version}") {
+// 		transitive false
+// 	}
+// 	modCompileOnly("net.glasslauncher:HowManyItems-Fabric-Unofficial:${project.howmanyitems_version}") {
+// 		transitive false
+// 	}
+// }
+
+// processResources {
+// 	inputs.property "version", project.version
+
+// 	filesMatching("fabric.mod.json") {
+// 		expand "version": project.version
+// 	}
+// }
+
+// java {
+// 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+// 	// if it is present.
+// 	// If you remove this line, sources will not be generated.
+// 	withSourcesJar()
+// }
+
+// jar {
+// 	from("LICENSE") {
+// 		rename { "${it}_${project.archivesBaseName}" }
+// 	}
+// }
+
+// // configure the maven publication
+// publishing {
+// 	publications {
+// 		mavenJava(MavenPublication) {
+// 			from components.java
+// 		}
+// 	}
+
+// 	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+// 	repositories {
+// 		// Add repositories to publish to here.
+// 		// Notice: This block does NOT have the same function as the block in the top level.
+// 		// The repositories here will be used for publishing your artifact, not for
+// 		// retrieving dependencies.
+// 	}
+// }
