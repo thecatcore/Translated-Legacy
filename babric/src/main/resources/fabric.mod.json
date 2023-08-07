@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "init": [
-      "fr.catcore.translatedlegacy.TranslatedLegacy"
+      "fr.catcore.translatedlegacy.babric.TranslatedLegacyBabric"
     ]
   },
   "mixins": [

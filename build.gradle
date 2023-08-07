@@ -49,14 +49,14 @@ class VersionInfo {
 	}
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
-
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
 allprojects {
 	def versionInfo = VersionInfo.getInfo(project.name);
+
+	sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 	if (versionInfo.kind == FabricKind.BABRIC) {
 		apply plugin: 'babric-loom'
@@ -67,6 +67,9 @@ allprojects {
 	if (versionInfo.kind == FabricKind.LEGACY) {
 		apply plugin: 'legacy-looming'
 	}
+
+	version = rootProject.version
+	group = rootProject.group
 
 	repositories {
 		maven {
@@ -86,6 +89,12 @@ allprojects {
 		minecraft "com.mojang:minecraft:$versionInfo.mc"
 		mappings "$versionInfo.kind.mappingsGroup:$versionInfo.mc+build.${versionInfo.mappings}${versionInfo.kind.mappingsSuffix}"
 		modImplementation "$versionInfo.kind.loaderGroup:fabric-loader:$versionInfo.kind.loaderVersion"
+
+		implementation(group: 'com.ibm.icu', name: 'icu4j', version: '71.1')
+
+		if (versionInfo.kind == FabricKind.BABRIC) {
+			implementation "com.google.code.gson:gson:2.8.9"
+		}
 	}
 
 	processResources {
@@ -114,22 +123,41 @@ allprojects {
 			rename { "${it}_${project.archivesBaseName}"}
 		}
 	}
+}
+
+dependencies {
+	include(group: 'com.ibm.icu', name: 'icu4j', version: '71.1')
+}
+
+subprojects {
+	dependencies {
+		api(project.dependencies.project(path: ":", configuration: 'namedElements'))
+	}
+}
+
+remapJar {
+	afterEvaluate {
+		subprojects.each {
+			// Include the jar from the sub project.
+			nestedJars.from project("${it.path}").tasks.getByName("remapJar")
+		}
+	}
+}
 
 // configure the maven publication
-	publishing {
-		publications {
-			mavenJava(MavenPublication) {
-				from components.java
-			}
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
 		}
+	}
 
-		// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-		repositories {
-			// Add repositories to publish to here.
-			// Notice: This block does NOT have the same function as the block in the top level.
-			// The repositories here will be used for publishing your artifact, not for
-			// retrieving dependencies.
-		}
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
 	}
 }
 
@@ -168,7 +196,7 @@ allprojects {
 // 	implementation 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.2'
 
 // 	implementation(include("com.google.code.gson:gson:2.8.6"))
-// 	implementation(include(group: 'com.ibm.icu', name: 'icu4j', version: '71.1'))
+//
 
 // 	// API. You technically don't need it, but it's extremely useful for not having to write the same code in every mod.
 // 	modCompileOnly "io.github.minecraft-cursed-legacy:cursed-legacy-api:${project.api_version}"

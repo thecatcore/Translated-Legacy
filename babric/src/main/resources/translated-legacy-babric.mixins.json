@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "fr.catcore.translatedlegacy.mixin",
+  "package": "fr.catcore.translatedlegacy.babric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "I18nMixin",
@@ -8,8 +8,6 @@
     "StatMixin",
     "TranslationStorageAccessor",
     "TranslationStorageMixin",
-    "compat.CursedLegacyAPITranslationsMixin",
-    "compat.StationAPII18n",
     "inventory.ChestMixin",
     "inventory.DoubleInventoryMixin",
     "inventory.MinecartMixin",
