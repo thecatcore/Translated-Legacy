@@ -1,22 +1,23 @@
 plugins {
 	id 'java-library'
+//	id "fabric-loom" version "1.3-SNAPSHOT" apply false
+//	id "legacy-looming" version "1.3-SNAPSHOT" apply false
+	id 'babric-loom' version '1.1-SNAPSHOT' apply false
 	id 'maven-publish'
-	id "fabric-loom" version "1.3-SNAPSHOT" apply false
-	id "legacy-looming" version "1.3-SNAPSHOT" apply false
-	id "babric-loom" version "1.3-SNAPSHOT" apply false
 }
 
 enum FabricKind {
-	UPSTREAM("net.fabricmc", "0.14.22", "net.fabricmc:yarn"),
-	LEGACY("net.fabricmc", "0.14.22", "net.legacyfabric:yarn"),
-	BABRIC("babric", "0.14.19-babric.1", "babric:barn");
+	UPSTREAM("net.fabricmc", "0.14.22", "net.fabricmc:yarn", ":v2"),
+	LEGACY("net.fabricmc", "0.14.22", "net.legacyfabric:yarn", ":v2"),
+	BABRIC("babric", "0.14.19-babric.1", "babric:barn", "");
 
-	String loaderGroup, loaderVersion, mappingsGroup;
+	String loaderGroup, loaderVersion, mappingsGroup, mappingsSuffix;
 
-	FabricKind(String loaderGroup, String loaderVersion, String mappingsGroup) {
+	FabricKind(String loaderGroup, String loaderVersion, String mappingsGroup, String mappingsSuffix) {
 		this.loaderGroup = loaderGroup;
 		this.loaderVersion = loaderVersion;
 		this.mappingsGroup = mappingsGroup;
+		this.mappingsSuffix = mappingsSuffix;
 	}
 }
 
@@ -29,12 +30,12 @@ class VersionInfo {
 		this.mc = mc;
 		this.mappings = mappings;
 		this.kind = kind;
-		this.projectNames = new ArrayList(projectNames);
+		this.projectNames = Arrays.asList(projectNames);
 	}
 
 	public static final VersionInfo[] VERSIONS = [
-		new VersionInfo("1.16.5", "10", FabricKind.UPSTREAM),
-		new VersionInfo("b1.7.3", "5", FabricKind.BABRIC, "babric")
+		// new VersionInfo("1.16.5", "10", FabricKind.UPSTREAM),
+		new VersionInfo("b1.7.3", "9", FabricKind.BABRIC, "babric")
 	];
 
 	static VersionInfo getInfo(String projectName) {
@@ -67,25 +68,73 @@ allprojects {
 		apply plugin: 'legacy-looming'
 	}
 
+	repositories {
+		maven {
+			name = 'Babric'
+			url = 'https://maven.glass-launcher.net/babric'
+		}
+	}
+
 	loom {
 		if (versionInfo.kind == FabricKind.BABRIC) {
 			gluedMinecraftJar()
-			customMinecraftManifest.set("https://babric.github.io/manifest-polyfill/${minecraft_version}.json")
+			customMinecraftManifest.set("https://babric.github.io/manifest-polyfill/${versionInfo.mc}.json")
 		}
 	}
 
 	dependencies {
 		minecraft "com.mojang:minecraft:$versionInfo.mc"
-		mappings "$versionInfo.kind.mappingsGroup:$versionInfo.mc+build.$versionInfo.mappings:v2"
+		mappings "$versionInfo.kind.mappingsGroup:$versionInfo.mc+build.${versionInfo.mappings}${versionInfo.kind.mappingsSuffix}"
 		modImplementation "$versionInfo.kind.loaderGroup:fabric-loader:$versionInfo.kind.loaderVersion"
+	}
+
+	processResources {
+		inputs.property "version", project.version
+
+		filesMatching("fabric.mod.json") {
+			expand "version": project.version
+		}
+	}
+
+	tasks.withType(JavaCompile).configureEach {
+		// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+		// Loom also requires J17.
+		it.options.release = 8
+	}
+
+	java {
+		// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+		// if it is present.
+		// If you remove this line, sources will not be generated.
+		withSourcesJar()
+	}
+
+	jar {
+		from("LICENSE") {
+			rename { "${it}_${project.archivesBaseName}"}
+		}
+	}
+
+// configure the maven publication
+	publishing {
+		publications {
+			mavenJava(MavenPublication) {
+				from components.java
+			}
+		}
+
+		// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+		repositories {
+			// Add repositories to publish to here.
+			// Notice: This block does NOT have the same function as the block in the top level.
+			// The repositories here will be used for publishing your artifact, not for
+			// retrieving dependencies.
+		}
 	}
 }
 
 // repositories {
-// 	maven {
-// 		name = 'Babric'
-// 		url = 'https://maven.glass-launcher.net/babric'
-// 	}
+
 
 // 	maven {
 // 		name = 'HalfOf2'

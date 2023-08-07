@@ -8,6 +8,10 @@ pluginManagement {
             name = 'Babric'
             url = 'https://maven.glass-launcher.net/babric'
         }
+        maven {
+            name = "legacy-fabric"
+            url = "https://repo.legacyfabric.net/repository/legacyfabric/"
+        }
         mavenCentral()
         gradlePluginPortal()
     }
