@@ -74,6 +74,7 @@ public class OldTranslationStorage {
     }
 
     protected void add(String modid, String key, String value) {
+        key = key.replace("\\:", ":");
         translations.put(key, value);
 
         // Station API compatibility
@@ -83,12 +84,10 @@ public class OldTranslationStorage {
         )) {
             String newKey = String.copyValueOf(key.toCharArray());
 
-            String[] keyParts = newKey.split("\\.");
-            if (keyParts.length > 1) {
-                keyParts[1] = modid + ":" + keyParts[1];
-            }
-
-            newKey = String.join(".", keyParts);
+            String[] strings = newKey.split("\\.");
+            if (strings.length > 1)
+                strings[1] = modid + ":" + strings[1];
+            newKey = String.join(".", strings);
 
             translations.put(newKey, value);
         }

@@ -3,6 +3,7 @@
   "package": "fr.catcore.translatedlegacy.babric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "StAPII18nMixin",
     "I18nMixin",
     "LevelMixin",
     "StatMixin",

@@ -21,9 +21,11 @@ public class LanguageManager {
 
     protected static final Gson GSON = new GsonBuilder().create();
 
-    public static OldTranslationStorage CURRENT_LANGUAGE = init();
-
     private static final List<LanguageSwitchCallback> CALLBACKS = new ArrayList<>();
+
+    private static final Map<String, List<String>> MODID_TO_FOLDER = new HashMap<>();
+
+    public static OldTranslationStorage CURRENT_LANGUAGE = init();
 
     public static OldTranslationStorage init() {
         TranslatedLegacy.updateLanguageList();
@@ -111,18 +113,16 @@ public class LanguageManager {
             modidList.add(modContainer.getMetadata().getId());
         });
 
+        boolean hasRegion = true;
+
+        if (!code.contains("_")) hasRegion = false;
+
         for (String modId : modidList) {
-            boolean hasRegion = true;
-
-            if (!code.contains("_")) hasRegion = false;
-
             String upperCode = hasRegion ? code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH) : "dummy_uppercode";
 
             String[] possiblePaths = new String[]{
                     "/assets/" + modId + "/lang/" + code,
-                    "/assets/" + modId + "/lang/" + upperCode,
-                    "/assets/" + modId + "/stationloader/lang/" + code,
-                    "/assets/" + modId + "/stationloader/lang/" + upperCode
+                    "/assets/" + modId + "/lang/" + upperCode
             };
 
             for (String possiblePath : possiblePaths) {
@@ -145,6 +145,42 @@ public class LanguageManager {
                         CODE_TO_STORAGE.get(code).load(modId, jsonFile, true);
                     } catch (IOException e) {
                         e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        for (Map.Entry<String, List<String>> entry : MODID_TO_FOLDER.entrySet()) {
+            String modid = entry.getKey();
+            List<String> folders = entry.getValue();
+
+            for (String folder : folders) {
+
+                String langPath = folder + "/" + code + ".lang";
+
+                InputStream inputStream = LanguageManager.class.getResourceAsStream(langPath);
+
+                if (inputStream != null) {
+                    try {
+                        CODE_TO_STORAGE.get(code).load(modid, inputStream, false);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (hasRegion) {
+                    String upperCode = code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH);
+
+                    String langPath2 = folder + "/" + upperCode + ".lang";
+
+                    InputStream inputStream2 = LanguageManager.class.getResourceAsStream(langPath2);
+
+                    if (inputStream2 != null) {
+                        try {
+                            CODE_TO_STORAGE.get(code).load(modid, inputStream2, false);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -183,6 +219,52 @@ public class LanguageManager {
 
     public static void registerCallback(LanguageSwitchCallback callback) {
         CALLBACKS.add(callback);
+    }
+
+    public static void registerFolderToModid(String folder, String modid) {
+        if (modid != null) {
+            if (!MODID_TO_FOLDER.containsKey(modid)) {
+                MODID_TO_FOLDER.put(modid, new ArrayList<>());
+            }
+
+            MODID_TO_FOLDER.get(modid).add(folder);
+
+            String[] codes = DEFAULT_LANGUAGE.equals(CURRENT_LANGUAGE_CODE) ? new String[]{DEFAULT_LANGUAGE} : new String[]{DEFAULT_LANGUAGE, CURRENT_LANGUAGE_CODE};
+
+            for (String code : codes) {
+                boolean hasRegion = true;
+
+                if (!code.contains("_")) hasRegion = false;
+
+                String langPath = folder + "/" + code + ".lang";
+
+                InputStream inputStream = LanguageManager.class.getResourceAsStream(langPath);
+
+                if (inputStream != null) {
+                    try {
+                        CODE_TO_STORAGE.get(code).load(modid, inputStream, false);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (hasRegion) {
+                    String upperCode = code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH);
+
+                    String langPath2 = folder + "/" + upperCode + ".lang";
+
+                    InputStream inputStream2 = LanguageManager.class.getResourceAsStream(langPath2);
+
+                    if (inputStream2 != null) {
+                        try {
+                            CODE_TO_STORAGE.get(code).load(modid, inputStream2, false);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public interface LanguageSwitchCallback {
