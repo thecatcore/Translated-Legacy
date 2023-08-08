@@ -6,6 +6,7 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.util.GlAllocationUtils;
+import net.modificationstation.stationapi.api.client.texture.NativeImage;
 import org.lwjgl.opengl.GL11;
 
 import javax.imageio.ImageIO;
@@ -53,8 +54,10 @@ public class BitmapFont extends Font {
     @Override
     protected void loadTextures(GameOptions arg, TextureManager arg1) {
         BufferedImage fontImage;
+        NativeImage nativeImage;
         try {
             fontImage = ImageIO.read(LegacyUnicodeFont.class.getResourceAsStream(this.fileLocation));
+            nativeImage = NativeImage.read(LegacyUnicodeFont.class.getResourceAsStream(this.fileLocation));
         } catch (IOException var18) {
             throw new RuntimeException(var18);
         } catch (IllegalArgumentException e) {
@@ -67,29 +70,66 @@ public class BitmapFont extends Font {
 
         int imageWidth = fontImage.getWidth();
         int imageHeight = fontImage.getHeight();
-        int k = imageWidth / this.chars.get(0).length;
-        int l = imageHeight / this.chars.size();
-        float f = (float)this.height / (float)l;
+        int columnWidth = imageWidth / this.chars.get(0).length;
+        int rowHeight = imageHeight / this.chars.size();
+        float scaleFactor = (float)this.height / (float)rowHeight;
 
-        int m = 0;
+//        String builder = "\nImage: " + this.fileLocation +
+//                "\nImage width: " + imageWidth +
+//                "\nImage height: " + imageHeight +
+//                "\nColumn width: " + columnWidth +
+//                "\nRow height: " + rowHeight +
+//                "\nScale factor: " + scaleFactor +
+//                "\nLines: " + this.chars.size() +
+//                "\nRows: " + this.chars.get(0).length +
+//                "\nAscent: " + this.ascent +
+//                "\nHeight: " + this.height;
+//
+//
+//        System.out.println(builder);
+
+        int processedLine = 0;
 
         while(true) {
-            if (m >= this.chars.size()) break;
+            if (processedLine >= this.chars.size()) break;
 
-            int n = 0;
-            int[] var12 = this.chars.get(m);
-            int var13 = var12.length;
+            int charIndex = 0;
+            int[] lineChars = this.chars.get(processedLine);
+            int charsAmount = lineChars.length;
 
-            for(int var14 = 0; var14 < var13; ++var14) {
-                int o = var12[var14];
-                int p = n++;
-                if (o != 0 && o != 32) {
-                    int q = this.findCharacterStartX(fontImage, k, l, p, m);
-                    GLYPHS.put(o, new BitmapTextureGlyph(fontImage, f, p * k, m * l, k, l, (int)(0.5D + (double)((float)q * f)) + 1, this.ascent, o, this.imagePointer));
+//            System.out.println(
+//                    "\nLine: " + processedLine +
+//                            "\nChars: " + charsAmount
+//            );
+
+            for(int index = 0; index < charsAmount; ++index) {
+                int processedChar = lineChars[index];
+                int currentIndex = charIndex++;
+                if (processedChar != 0 && processedChar != 32) {
+                    int startingX = this.findCharacterStartX(nativeImage, columnWidth, rowHeight, currentIndex, processedLine);
+
+                    int x = currentIndex * columnWidth;
+                    int y = processedLine * rowHeight;
+                    int advance = (int)(0.5D + (double)((float)startingX * scaleFactor)) + 1;
+
+//                    System.out.println(
+//                            "\n'" + (char) processedChar + "' " +
+//                                    "\nIndex: " + index +
+//                                    "\nId: " + processedChar +
+//                                    "\nStarting x: " + startingX +
+//                                    "\nX: " + x +
+//                                    "\nY: " + y +
+//                                    "\nAdvance: " + advance
+//                    );
+
+                    GLYPHS.put(processedChar, new BitmapTextureGlyph(
+                            fontImage, scaleFactor, x, y,
+                            columnWidth, rowHeight, advance,
+                            this.ascent, processedChar, this.imagePointer));
                 }
             }
 
-            ++m;
+            ++processedLine;
         }
 
         for (Map.Entry<Integer, Glyph> entry : GLYPHS.entrySet()) {
@@ -104,19 +144,21 @@ public class BitmapFont extends Font {
 
             tessellator.draw();
 
-            GL11.glTranslatef(glyph.getWidth(), 0.0F, 0.0F);
+            float width = glyph.getAdvance();
+
+            GL11.glTranslatef(width, 0.0F, 0.0F);
             GL11.glEndList();
         }
     }
 
-    private int findCharacterStartX(BufferedImage image, int characterWidth, int characterHeight, int charPosX, int charPosY) {
+    private int findCharacterStartX(NativeImage image, int characterWidth, int characterHeight, int charPosX, int charPosY) {
         int i;
         for(i = characterWidth - 1; i >= 0; --i) {
             int j = charPosX * characterWidth + i;
 
             for(int k = 0; k < characterHeight; ++k) {
                 int l = charPosY * characterHeight + k;
-                if (image.getRGB(j, l) != 0) {
+                if (image.getPixelOpacity(j, l) != 0) {
                     return i + 1;
                 }
             }
@@ -144,6 +186,8 @@ public class BitmapFont extends Font {
 
     @Override
     protected byte getWidth(char c) {
-        return (byte) (GLYPHS.containsKey(c) ? ((RenderableGlyph)GLYPHS.get(c)).getAdvance() : 8);
+        return (byte) (GLYPHS.containsKey((int) c) ?
+                GLYPHS.get((int) c).getAdvance()
+                : 8);
     }
 }

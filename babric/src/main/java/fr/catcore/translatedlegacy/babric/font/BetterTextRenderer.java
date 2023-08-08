@@ -128,7 +128,7 @@ public class BetterTextRenderer {
     }
 
     private void drawChar(String string, Glyph c, int charIndex, boolean flag) {
-        if (this.getCharWidth((char) c.getId()) == 0) return;
+        if (this.getCharWidth((char) c.getId()) <= 0) return;
         ((Buffer)this.intBuffer).clear();
         GL11.glBindTexture(3553, this.getImageInt((char) c.getId()));
 
@@ -173,7 +173,14 @@ public class BetterTextRenderer {
                 } else {
                     int index = BetterCharacterUtils.getId(string.charAt(pos));
                     Glyph glyph = this.getGlyph((char) index);
-                    width += glyph != null ? glyph.getAdvance() : 8.0F;
+
+                    float baseWidth = 8.0F;
+
+                    if (glyph != null) {
+                        baseWidth = glyph.getAdvance();
+                    }
+
+                    width += (int) baseWidth;
                 }
             }
 

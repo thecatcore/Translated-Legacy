@@ -89,8 +89,20 @@ public class BitmapTextureGlyph implements RenderableGlyph {
 
         indent = this.getAdvance(false) / (float) this.fontImage.getWidth();
 
+//        System.out.println(
+//                "\n'" + (char)this.id + "'" +
+//                        "\nHeight: " + height +
+//                        "\nWidth: " + width +
+//                        "\nYTop: " + yTop +
+//                        "\nX: " + x +
+//                        "\nY: " + y +
+//                        "\nBase Advance: " + this.advance +
+//                        "\nComputed Advance: " + this.getAdvance(false) +
+//                        "\nIndent: " + indent
+//        );
+
         tessellator.vertex(
-                0.0D, // x
+                this.getXMin(), // x
                 yTop + height, // y
                 0.0D, // z
                 (float) (x + indent) / (float) this.fontImage.getWidth(), // texture x
@@ -98,7 +110,7 @@ public class BitmapTextureGlyph implements RenderableGlyph {
         );
 
         tessellator.vertex(
-                0.0F + width,
+                this.getXMax(),
                 yTop + height,
                 0.0D,
                 (float) (x + width) / (float) this.fontImage.getWidth(),
@@ -106,7 +118,7 @@ public class BitmapTextureGlyph implements RenderableGlyph {
         );
 
         tessellator.vertex(
-                0.0F + width,
+                this.getXMax(),
                 yTop,
                 0.0D,
                 (float) (x + width) / (float) this.fontImage.getWidth(),
@@ -114,7 +126,7 @@ public class BitmapTextureGlyph implements RenderableGlyph {
         );
 
         tessellator.vertex(
-                0.0D,
+                this.getXMin(),
                 yTop,
                 0.0D,
                 (float) (x + indent) / (float) this.fontImage.getWidth(),
