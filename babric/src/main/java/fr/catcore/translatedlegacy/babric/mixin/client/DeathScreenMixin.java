@@ -31,7 +31,7 @@ public class DeathScreenMixin {
     @ModifyArg(method = "render", index = 1, at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/gui/screen/DeathScreen;drawCenteredTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V",
-            ordinal = 0
+            ordinal = 1
     ))
     public String render$lang2(String string) {
         return class_629.method_2049("deathScreen.score") + ": §e" + string.replace("Score: &e", "");
