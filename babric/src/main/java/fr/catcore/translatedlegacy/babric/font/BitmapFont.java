@@ -2,11 +2,11 @@ package fr.catcore.translatedlegacy.babric.font;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import fr.catcore.translatedlegacy.babric.util.SimpleNativeImage;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.util.GlAllocationUtils;
-import net.modificationstation.stationapi.api.client.texture.NativeImage;
 import org.lwjgl.opengl.GL11;
 
 import javax.imageio.ImageIO;
@@ -54,10 +54,10 @@ public class BitmapFont extends Font {
     @Override
     protected void loadTextures(GameOptions arg, TextureManager arg1) {
         BufferedImage fontImage;
-        NativeImage nativeImage;
+        SimpleNativeImage nativeImage;
         try {
             fontImage = ImageIO.read(LegacyUnicodeFont.class.getResourceAsStream(this.fileLocation));
-            nativeImage = NativeImage.read(LegacyUnicodeFont.class.getResourceAsStream(this.fileLocation));
+            nativeImage = SimpleNativeImage.read(LegacyUnicodeFont.class.getResourceAsStream(this.fileLocation));
         } catch (IOException var18) {
             throw new RuntimeException(var18);
         } catch (IllegalArgumentException e) {
@@ -151,7 +151,7 @@ public class BitmapFont extends Font {
         }
     }
 
-    private int findCharacterStartX(NativeImage image, int characterWidth, int characterHeight, int charPosX, int charPosY) {
+    private int findCharacterStartX(SimpleNativeImage image, int characterWidth, int characterHeight, int charPosX, int charPosY) {
         int i;
         for(i = characterWidth - 1; i >= 0; --i) {
             int j = charPosX * characterWidth + i;

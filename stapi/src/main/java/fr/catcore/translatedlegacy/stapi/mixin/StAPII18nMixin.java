@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.babric.mixin;
+package fr.catcore.translatedlegacy.stapi.mixin;
 
 import fr.catcore.translatedlegacy.babric.language.LanguageManager;
 import net.modificationstation.stationapi.api.lang.I18n;

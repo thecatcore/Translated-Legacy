@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "fr.catcore.translatedlegacy.stapi.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "StAPII18nMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

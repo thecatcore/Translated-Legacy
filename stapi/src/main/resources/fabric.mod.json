@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "translated-legacy-babric",
+  "id": "translated-legacy-stapi",
   "version": "${version}",
 
-  "name": "Translated Legacy Babric Compatibility Module",
+  "name": "Translated Legacy StationAPI Compatibility Module",
   "description": "",
   "authors": [
     "Cat Core"
@@ -18,16 +18,16 @@
 
   "environment": "*",
   "entrypoints": {
-    "init": [
-      "fr.catcore.translatedlegacy.babric.TranslatedLegacyBabric"
-    ]
   },
   "mixins": [
-    "translated-legacy-babric.mixins.json"
+    "translated-legacy-stapi.mixins.json"
   ],
 
   "depends": {
     "fabricloader": "*",
-    "minecraft": "1.0.0-beta.7.3"
+    "minecraft": "1.0.0-beta.7.3",
+    "java": ">=17",
+    "stationapi": "*",
+    "translated-legacy-babric": "*"
   }
 }
