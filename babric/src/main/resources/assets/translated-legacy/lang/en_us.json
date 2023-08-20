@@ -1,12 +1,18 @@
 {
-  "menu.savingLevel": "Saving level",
+  "_comment_1": "Backported translations",
   "menu.savingChunks": "Saving chunks",
   "options.language": "Language",
   "options.languageWarning": "Translations may not be 100% complete or accurate.",
   "container.chest": "Chest",
-  "container.chestDouble": "Large chest",
   "container.minecart": "Minecart",
   "container.inventory": "Inventory",
+  "container.crafting": "Crafting",
+  "container.dispenser": "Dispenser",
+  "container.furnace": "Furnace",
+  "container.chestDouble": "Large chest",
+
+  "_comment_2": "b1.7.3 only translations",
+  "menu.savingLevel": "Saving level",
   "deathScreen.respawn": "Respawn",
   "deathScreen.titleScreen": "Title menu",
   "deathScreen.title": "Game over!",
@@ -21,8 +27,5 @@
   "menu.disconnect": "Disconnect",
   "menu.returnToGame": "Back to game",
   "menu.saving": "Saving level..",
-  "menu.game": "Game menu",
-  "container.crafting": "Crafting",
-  "container.dispenser": "Dispenser",
-  "container.furnace": "Furnace"
+  "menu.game": "Game menu"
 }
