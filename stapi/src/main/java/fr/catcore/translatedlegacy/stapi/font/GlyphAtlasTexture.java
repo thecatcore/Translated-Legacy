@@ -17,15 +17,15 @@ public class GlyphAtlasTexture
         extends AbstractTexture
         implements DynamicTexture {
     private static final int SLOT_LENGTH = 256;
-    private final TextRenderLayerSet textRenderLayers;
+//    private final TextRenderLayerSet textRenderLayers;
     private final boolean hasColor;
     private final Slot rootSlot;
 
-    public GlyphAtlasTexture(TextRenderLayerSet textRenderLayers, boolean hasColor) {
+    public GlyphAtlasTexture(/*TextRenderLayerSet textRenderLayers, */boolean hasColor) {
         this.hasColor = hasColor;
         this.rootSlot = new Slot(0, 0, 256, 256);
         TextureUtil.prepareImage(hasColor ? NativeImage.InternalFormat.RGBA : NativeImage.InternalFormat.RED, this.getGlId(), 256, 256);
-        this.textRenderLayers = textRenderLayers;
+//        this.textRenderLayers = textRenderLayers;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class GlyphAtlasTexture
             float f = 256.0f;
             float g = 256.0f;
             float h = 0.01f;
-            return new GlyphRenderer(this.textRenderLayers, ((float)slot.x + 0.01f) / 256.0f, ((float)slot.x - 0.01f + (float)glyph.getWidth()) / 256.0f, ((float)slot.y + 0.01f) / 256.0f, ((float)slot.y - 0.01f + (float)glyph.getHeight()) / 256.0f, glyph.getXMin(), glyph.getXMax(), glyph.getYMin(), glyph.getYMax());
+            return new GlyphRenderer(/*this.textRenderLayers, */((float)slot.x + 0.01f) / 256.0f, ((float)slot.x - 0.01f + (float)glyph.getWidth()) / 256.0f, ((float)slot.y + 0.01f) / 256.0f, ((float)slot.y - 0.01f + (float)glyph.getHeight()) / 256.0f, glyph.getXMin(), glyph.getXMax(), glyph.getYMin(), glyph.getYMax());
         }
         return null;
     }
