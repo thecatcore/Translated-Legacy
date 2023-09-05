@@ -4,6 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.ibm.icu.text.ArabicShaping;
+import com.ibm.icu.text.ArabicShapingException;
+import com.ibm.icu.text.Bidi;
+import fr.catcore.translatedlegacy.babric.language.LanguageManager;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.util.GlAllocationUtils;
@@ -188,10 +192,24 @@ public class BetterTextRenderer {
         }
     }
 
+    public String mirror(String text) {
+        try {
+            Bidi bidi = new Bidi(new ArabicShaping(8).shape(text), 127);
+            bidi.setReorderingMode(0);
+            return bidi.writeReordered(2);
+        } catch (ArabicShapingException arabicShapingException) {
+            return text;
+        }
+    }
+
     public void drawText(String string, int x, int y, int width, int color) {
         String[] lines = string.split("\n");
         if (lines.length > 1) {
             for (String line : lines) {
+                if (LanguageManager.CURRENT_LANGUAGE.rightToLeft) {
+                    line = this.mirror(line);
+                }
+
                 this.drawText(line, x, y, width, color);
                 y += this.getLineWidth(line, width);
             }

@@ -118,7 +118,7 @@ public class OldTranslationStorage {
 
     @Environment(EnvType.CLIENT)
     public String method_995(String string) {
-        String defaultValue = isDefaultLanguage() ? "" : LanguageManager.CODE_TO_STORAGE
+        String defaultValue = isDefaultLanguage() ? string : LanguageManager.CODE_TO_STORAGE
                 .get(LanguageManager.DEFAULT_LANGUAGE)
                 .method_995(string);
         return this.getOrDefault(string + ".name", defaultValue);
@@ -126,12 +126,7 @@ public class OldTranslationStorage {
 
     private String getOrDefault(String key, String defaultValue) {
         if (checkedVanilla) {
-            String translation = this.translations.getOrDefault(key, defaultValue);
-            if (this.rightToLeft && this.hasKey(key)) {
-                Bidi bidi = new Bidi(translation, Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
-                translation = bidi.getTextAsString();
-            }
-            return translation;
+            return this.translations.getOrDefault(key, defaultValue);
         } else if (key.equals(defaultValue) || defaultValue.isEmpty()){
             ((TranslationStorageAccessor)TranslationStorage.getInstance()).getTranslations().forEach((vKey, value) -> {
                 if (!LanguageManager.CODE_TO_STORAGE
@@ -141,10 +136,11 @@ public class OldTranslationStorage {
                 }
             });
             checkedVanilla = true;
-            return this.getOrDefault(key, isDefaultLanguage() ? "" : LanguageManager.CODE_TO_STORAGE
+            return this.getOrDefault(key, isDefaultLanguage() ? key : LanguageManager.CODE_TO_STORAGE
                     .get(LanguageManager.DEFAULT_LANGUAGE)
-                    .method_995(key));
+                    .translate(key));
         }
+
         return defaultValue;
     }
 
