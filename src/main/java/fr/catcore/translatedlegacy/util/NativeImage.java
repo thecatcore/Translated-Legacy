@@ -1,11 +1,8 @@
-package fr.catcore.translatedlegacy.babric.util;
+package fr.catcore.translatedlegacy.util;
 
+import fr.catcore.translatedlegacy.api.GameProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.GlAllocationUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.MemoryUtil;
@@ -30,7 +27,7 @@ import java.util.Set;
 import java.util.function.IntUnaryOperator;
 
 @Environment(EnvType.CLIENT)
-public final class SimpleNativeImage implements AutoCloseable {
+public final class NativeImage implements AutoCloseable {
     static int bufferedToNative(int buffered) {
         if (buffered == BufferedImage.TYPE_INT_ARGB) return 0;
         if (buffered == BufferedImage.TYPE_INT_RGB) return 1;
@@ -51,21 +48,21 @@ public final class SimpleNativeImage implements AutoCloseable {
     private ByteBuffer buffer;
     private final long sizeBytes;
 
-    public SimpleNativeImage(int width, int height, boolean useStb) {
+    public NativeImage(int width, int height, boolean useStb) {
         this(Format.RGBA, width, height, useStb);
     }
 
-    public SimpleNativeImage(Format format, int width, int height, boolean useStb) {
+    public NativeImage(Format format, int width, int height, boolean useStb) {
         this.format = format;
         this.width = width;
         this.height = height;
         this.sizeBytes = (long) width * (long) height * (long) format.getChannelCount();
         this.isStbImage = false;
-        buffer = GlAllocationUtils.allocateByteBuffer((int) sizeBytes);
+        buffer = GLUtils.allocateByteBuffer((int) sizeBytes);
 
     }
 
-    private SimpleNativeImage(Format format, int width, int height, boolean useStb, ByteBuffer buffer) {
+    private NativeImage(Format format, int width, int height, boolean useStb, ByteBuffer buffer) {
         this.format = format;
         this.width = width;
         this.height = height;
@@ -79,15 +76,15 @@ public final class SimpleNativeImage implements AutoCloseable {
         return "SimpleNativeImage[" + this.format + " " + this.width + "x" + this.height + "@" + MemoryUtil.getAddress(buffer) + (this.isStbImage ? "S" : "N") + "]";
     }
 
-    public static SimpleNativeImage read(InputStream inputStream) throws IOException {
+    public static NativeImage read(InputStream inputStream) throws IOException {
         return read(Format.RGBA, inputStream);
     }
 
-    public static SimpleNativeImage read(@Nullable Format format, InputStream inputStream) throws IOException {
+    public static NativeImage read(@Nullable Format format, InputStream inputStream) throws IOException {
         try {
             BufferedImage image = ImageIO.read(inputStream);
             format = format == null ? Format.ALL[bufferedToNative(image.getType())] : format;
-            return new SimpleNativeImage(format, image.getWidth(), image.getHeight(), true, read(format, image));
+            return new NativeImage(format, image.getWidth(), image.getHeight(), true, read(format, image));
         }
         finally {
 //            IOUtils.closeQuietly(inputStream);
@@ -95,18 +92,18 @@ public final class SimpleNativeImage implements AutoCloseable {
         }
     }
 
-    public static SimpleNativeImage read(ByteBuffer byteBuffer) throws IOException {
+    public static NativeImage read(ByteBuffer byteBuffer) throws IOException {
         return read(Format.RGBA, byteBuffer);
     }
 
-    public static SimpleNativeImage read(@Nullable Format format, ByteBuffer byteBuffer) throws IOException {
+    public static NativeImage read(@Nullable Format format, ByteBuffer byteBuffer) throws IOException {
         byte[] imageBytes = new byte[byteBuffer.remaining()];
         byteBuffer.get(imageBytes);
         ByteArrayInputStream imageStream = new ByteArrayInputStream(imageBytes);
         BufferedImage image = ImageIO.read(imageStream);
         imageStream.close();
         format = format == null ? Format.ALL[bufferedToNative(image.getType())] : format;
-        return new SimpleNativeImage(format, image.getWidth(), image.getHeight(), true, read(format, image));
+        return new NativeImage(format, image.getWidth(), image.getHeight(), true, read(format, image));
     }
 
     private static ByteBuffer read(@NotNull Format format, BufferedImage image) {
@@ -119,9 +116,9 @@ public final class SimpleNativeImage implements AutoCloseable {
             int var9 = (ints[var7] >> 16) & 255;
             int var10 = (ints[var7] >> 8) & 255;
             int var11 = ints[var7] & 255;
-            //noinspection deprecation
-            GameOptions gameOptions = ((Minecraft) FabricLoader.getInstance().getGameInstance()).options;
-            if (gameOptions != null && gameOptions.anaglyph3d) {
+
+            GameProvider gameProvider = GameProvider.getInstance();
+            if (gameProvider != null && gameProvider.anaglyph3d()) {
                 int var12 = (var9 * 30 + var10 * 59 + var11 * 11) / 100;
                 int var13 = (var9 * 30 + var10 * 70) / 100;
                 int var14 = (var9 * 30 + var11 * 70) / 100;
@@ -135,7 +132,7 @@ public final class SimpleNativeImage implements AutoCloseable {
             bytes[var7 * 4 + 2] = (byte)var11;
             bytes[var7 * 4 + 3] = (byte)var8;
         }
-        ByteBuffer directBuffer = GlAllocationUtils.allocateByteBuffer(sizeBytes);
+        ByteBuffer directBuffer = GLUtils.allocateByteBuffer(sizeBytes);
         directBuffer.put(bytes);
         directBuffer.position(0);
         return directBuffer;
@@ -207,13 +204,13 @@ public final class SimpleNativeImage implements AutoCloseable {
             throw new IllegalArgumentException(String.format("(%s, %s) outside of image bounds (%s, %s)", x, y, this.width, this.height));
     }
 
-    public SimpleNativeImage apply(IntUnaryOperator operator) {
+    public NativeImage apply(IntUnaryOperator operator) {
         if (this.format != Format.RGBA)
             throw new IllegalArgumentException(String.format(Locale.ROOT, "function application only works on RGBA images; have %s", this.format));
         this.checkAllocated();
-        SimpleNativeImage SimpleNativeImage = new SimpleNativeImage(this.width, this.height, false);
+        NativeImage NativeImage = new NativeImage(this.width, this.height, false);
         for (int j = 0; j < width * height; ++j) buffer.putInt(j, operator.applyAsInt(buffer.getInt(j)));
-        return SimpleNativeImage;
+        return NativeImage;
     }
 
     public byte getPixelOpacity(int x, int y) {
@@ -315,7 +312,7 @@ public final class SimpleNativeImage implements AutoCloseable {
         this.copyRect(this, x, y, x + translateX, y + translateY, width, height, flipX, flipY);
     }
 
-    public void copyRect(SimpleNativeImage image, int x, int y, int destX, int destY, int width, int height, boolean flipX, boolean flipY) {
+    public void copyRect(NativeImage image, int x, int y, int destX, int destY, int width, int height, boolean flipX, boolean flipY) {
         for (int i = 0; i < height; ++i)
             for (int j = 0; j < width; ++j) {
                 int k = flipX ? width - 1 - j : j;
@@ -344,9 +341,9 @@ public final class SimpleNativeImage implements AutoCloseable {
 
     public void untrack() {}
 
-    public static SimpleNativeImage read(String dataUri) throws IOException {
+    public static NativeImage read(String dataUri) throws IOException {
         byte[] bs = Base64.getDecoder().decode(dataUri.replaceAll("\n", "").getBytes(StandardCharsets.UTF_8));
-        ByteBuffer byteBuffer = GlAllocationUtils.allocateByteBuffer(bs.length);
+        ByteBuffer byteBuffer = GLUtils.allocateByteBuffer(bs.length);
         byteBuffer.put(bs);
         byteBuffer.rewind();
         return read(byteBuffer);
