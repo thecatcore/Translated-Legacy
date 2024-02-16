@@ -12,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LanguageManager {
 
@@ -108,21 +109,19 @@ public class LanguageManager {
     }
 
     private static void loadLangFiles(String code) {
-        List<String> modidList = new ArrayList<>();
-        FabricLoader.getInstance().getAllMods().forEach(modContainer -> {
-            modidList.add(modContainer.getMetadata().getId());
-        });
+        List<String> modidList = FabricLoader.getInstance().getAllMods()
+                .stream().map(c -> c.getMetadata().getId()).collect(Collectors.toList());
 
-        boolean hasRegion = true;
-
-        if (!code.contains("_")) hasRegion = false;
+        boolean hasRegion = code.contains("_");
 
         for (String modId : modidList) {
             String upperCode = hasRegion ? code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH) : "dummy_uppercode";
 
             String[] possiblePaths = new String[]{
                     "/assets/" + modId + "/lang/" + code,
-                    "/assets/" + modId + "/lang/" + upperCode
+                    "/assets/" + modId + "/lang/" + upperCode,
+                    "/assets/" + modId + "/stationapi/lang/" + code,
+                    "/assets/" + modId + "/stationapi/lang/" + upperCode
             };
 
             for (String possiblePath : possiblePaths) {
@@ -155,34 +154,7 @@ public class LanguageManager {
             List<String> folders = entry.getValue();
 
             for (String folder : folders) {
-
-                String langPath = folder + "/" + code + ".lang";
-
-                InputStream inputStream = LanguageManager.class.getResourceAsStream(langPath);
-
-                if (inputStream != null) {
-                    try {
-                        CODE_TO_STORAGE.get(code).load(modid, inputStream, false);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (hasRegion) {
-                    String upperCode = code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH);
-
-                    String langPath2 = folder + "/" + upperCode + ".lang";
-
-                    InputStream inputStream2 = LanguageManager.class.getResourceAsStream(langPath2);
-
-                    if (inputStream2 != null) {
-                        try {
-                            CODE_TO_STORAGE.get(code).load(modid, inputStream2, false);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+                loadStAPILang(folder, modid, code, hasRegion);
             }
         }
     }
@@ -232,37 +204,35 @@ public class LanguageManager {
             String[] codes = DEFAULT_LANGUAGE.equals(CURRENT_LANGUAGE_CODE) ? new String[]{DEFAULT_LANGUAGE} : new String[]{DEFAULT_LANGUAGE, CURRENT_LANGUAGE_CODE};
 
             for (String code : codes) {
-                boolean hasRegion = true;
+                boolean hasRegion = code.contains("_");
 
-                if (!code.contains("_")) hasRegion = false;
+                loadStAPILang(folder, modid, code, hasRegion);
+            }
+        }
+    }
 
-                String langPath = folder + "/" + code + ".lang";
+    private static void loadStAPILang(String folder, String modid, String code, boolean hasRegion) {
+        loadStAPILang(folder, modid, code, CODE_TO_STORAGE.get(code));
+        loadStAPILang(folder, modid, "stats_" + code, CODE_TO_STORAGE.get(code));
 
-                InputStream inputStream = LanguageManager.class.getResourceAsStream(langPath);
+        if (hasRegion) {
+            String upperCode = code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH);
 
-                if (inputStream != null) {
-                    try {
-                        CODE_TO_STORAGE.get(code).load(modid, inputStream, false);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+            loadStAPILang(folder, modid, upperCode, CODE_TO_STORAGE.get(code));
+            loadStAPILang(folder, modid, "stats_" + upperCode, CODE_TO_STORAGE.get(code));
+        }
+    }
 
-                if (hasRegion) {
-                    String upperCode = code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH);
+    private static void loadStAPILang(String folder, String modid, String code, OldTranslationStorage oldTranslationStorage) {
+        String langPath = folder + "/" + code + ".lang";
 
-                    String langPath2 = folder + "/" + upperCode + ".lang";
+        InputStream inputStream = LanguageManager.class.getResourceAsStream(langPath);
 
-                    InputStream inputStream2 = LanguageManager.class.getResourceAsStream(langPath2);
-
-                    if (inputStream2 != null) {
-                        try {
-                            CODE_TO_STORAGE.get(code).load(modid, inputStream2, false);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+        if (inputStream != null) {
+            try {
+                oldTranslationStorage.load(modid, inputStream, false);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

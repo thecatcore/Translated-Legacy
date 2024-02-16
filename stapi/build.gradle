@@ -1,30 +1,48 @@
 repositories {
-    // Used for StationAPI and HowManyItems.
+    // Add repositories to retrieve artifacts from in here.
+    // You should only use this when depending on other mods because
+    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    // for more information about repositories.
+
+    // Used for the fabric toolchain in this project.
     maven {
-        name = 'Glass Snapshots'
-        url = 'https://maven.glass-launcher.net/snapshots'
-    }
-    maven {
-        name = 'Froge'
-        url 'https://maven.minecraftforge.net/'
+        name = 'Babric'
+        url = 'https://maven.glass-launcher.net/babric'
     }
     // Used for mappings.
     maven {
         name = 'Glass Releases'
         url = 'https://maven.glass-launcher.net/releases'
     }
-
+    // Used for StationAPI and HowManyItems.
     maven {
-        name 'Modrinth'
-        url 'https://api.modrinth.com/maven'
-        content {
-            includeGroup 'maven.modrinth'
+        name = 'Glass Snapshots'
+        url = 'https://maven.glass-launcher.net/snapshots'
+    }
+    // Used for a StationAPI dependency.
+    maven {
+        name = 'Froge'
+        url 'https://maven.minecraftforge.net/'
+    }
+    // Used for projects that do not have a maven repository, but do have a GitHub repository with working build scripts.
+    maven {
+        name = 'Jitpack'
+        url = 'https://jitpack.io'
+    }
+    // Used for another StationAPI dependency
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
         }
     }
-    maven {
-        name 'JitPack'
-        url 'https://jitpack.io'
-    }
+    mavenCentral()
 }
 
 

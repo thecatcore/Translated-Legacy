@@ -61,8 +61,7 @@ public class OldTranslationStorage {
 
                 for (String line : fileStr.split("\n")) {
                     if (!line.contains("=") || line.startsWith("#")) continue;
-                    String[] parts = line.split("=");
-                    if (parts.length < 2) continue;
+                    String[] parts = line.split("=", 2);
                     this.add(modid, parts[0], parts[1]);
                 }
             }
@@ -75,6 +74,9 @@ public class OldTranslationStorage {
 
     protected void add(String modid, String key, String value) {
         key = key.replace("\\:", ":");
+
+        if (key.contains(":")) modid = key.split(":")[0];
+
         translations.put(key, value);
 
         // Station API compatibility
