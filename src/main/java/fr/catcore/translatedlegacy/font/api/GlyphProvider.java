@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.api;
+package fr.catcore.translatedlegacy.font.api;
 
 import fr.catcore.translatedlegacy.util.NativeImage;
 

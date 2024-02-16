@@ -1,7 +1,8 @@
-package fr.catcore.translatedlegacy.babric.fontnewnew;
+package fr.catcore.translatedlegacy.font.provider;
 
-import fr.catcore.translatedlegacy.api.Glyph;
-import fr.catcore.translatedlegacy.api.GlyphProvider;
+import fr.catcore.translatedlegacy.font.TextRenderer;
+import fr.catcore.translatedlegacy.font.api.Glyph;
+import fr.catcore.translatedlegacy.font.api.GlyphProvider;
 import fr.catcore.translatedlegacy.util.NativeImage;
 import net.fabricmc.loader.api.FabricLoader;
 
@@ -9,11 +10,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OriginalGlyphProvider implements GlyphProvider {
+public class AsciiGlyphProvider implements GlyphProvider {
     private final Glyph[] glyphs = new Glyph[256];
     private final int[] widths = new int[256];
-    private static final String texturePath = "/font/default.png";
+    private final String texturePath;
     private NativeImage fullTexture;
+
+    public AsciiGlyphProvider(String texturePath) {
+        this.texturePath = texturePath;
+    }
 
     @Override
     public boolean provides(Character c) {
@@ -27,7 +32,7 @@ public class OriginalGlyphProvider implements GlyphProvider {
 
     @Override
     public String getId() {
-        return "minecraft:vanilla";
+        return "minecraft:ascii";
     }
 
     @Override
@@ -45,7 +50,7 @@ public class OriginalGlyphProvider implements GlyphProvider {
 
     @Override
     public void load() throws IOException {
-        fullTexture = NativeImage.read(NativeImage.Format.RGBA, FabricLoader.getInstance().getGameInstance().getClass().getResourceAsStream(texturePath));
+        fullTexture = NativeImage.read(NativeImage.Format.RGBA, TextRenderer.getGameProvider().getResource(texturePath));
 
         for (int i = 0; i < 256; i++) {
             int column = i % 16;
@@ -81,7 +86,7 @@ public class OriginalGlyphProvider implements GlyphProvider {
             int column = (i % 16) * 8;
             int row = (i / 16) * 8;
 
-            glyphs[i] = new OriginalGlyph(widths[i], column, row, i, this);
+            glyphs[i] = new AsciiGlyph(widths[i], column, row, i, this);
         }
     }
 

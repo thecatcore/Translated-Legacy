@@ -1,6 +1,6 @@
 package fr.catcore.translatedlegacy.stapi.listener;
 
-import fr.catcore.translatedlegacy.api.TextRenderer;
+import fr.catcore.translatedlegacy.font.TextRenderer;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.modificationstation.stationapi.api.client.event.resource.AssetsReloadEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;

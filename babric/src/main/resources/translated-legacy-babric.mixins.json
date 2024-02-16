@@ -19,6 +19,7 @@
     "client.ChatScreenMixin",
     "client.DeathScreenMixin",
     "client.EditSignScreenMixin",
+    "client.GameOptionsAccessor",
     "client.LevelSaveConflictScreenMixin",
     "client.MinecraftMixin",
     "client.OptionsScreenMixin",

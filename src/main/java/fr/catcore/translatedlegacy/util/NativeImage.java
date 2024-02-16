@@ -1,6 +1,7 @@
 package fr.catcore.translatedlegacy.util;
 
-import fr.catcore.translatedlegacy.api.GameProvider;
+import fr.catcore.translatedlegacy.font.TextRenderer;
+import fr.catcore.translatedlegacy.font.api.GameProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.NotNull;
@@ -117,7 +118,7 @@ public final class NativeImage implements AutoCloseable {
             int var10 = (ints[var7] >> 8) & 255;
             int var11 = ints[var7] & 255;
 
-            GameProvider gameProvider = GameProvider.getInstance();
+            GameProvider gameProvider = TextRenderer.getGameProvider();
             if (gameProvider != null && gameProvider.anaglyph3d()) {
                 int var12 = (var9 * 30 + var10 * 59 + var11 * 11) / 100;
                 int var13 = (var9 * 30 + var10 * 70) / 100;

@@ -1,7 +1,8 @@
 package fr.catcore.translatedlegacy.babric.mixin.client.font;
 
-import fr.catcore.translatedlegacy.babric.TranslatedLegacyBabric;
-import fr.catcore.translatedlegacy.babric.font.BetterTextRenderer;
+import fr.catcore.translatedlegacy.babric.TranslatedLegacyBabricClient;
+import fr.catcore.translatedlegacy.babric.mixin.client.GameOptionsAccessor;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.texture.TextureManager;
@@ -15,7 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class TextRendererMixin {
     @Inject(method = "<init>", at = @At("RETURN"))
     public void c$init(GameOptions arg, String string, TextureManager arg1, CallbackInfo ci) {
-        TranslatedLegacyBabric.registerProviders();
+        if (!FabricLoader.getInstance().isModLoaded("translated-legacy-stapi"))
+            TranslatedLegacyBabricClient.setGameProvider(((GameOptionsAccessor)arg).getMinecraft());
     }
 
     /**
@@ -24,7 +26,7 @@ public class TextRendererMixin {
      */
     @Overwrite
     public void draw(String string, int i, int j, int k, boolean flag) {
-        fr.catcore.translatedlegacy.api.TextRenderer.draw(string, i, j, k, flag);
+        fr.catcore.translatedlegacy.font.TextRenderer.draw(string, i, j, k, flag);
     }
 
 //    /**

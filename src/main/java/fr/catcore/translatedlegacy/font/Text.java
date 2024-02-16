@@ -1,5 +1,7 @@
-package fr.catcore.translatedlegacy.api;
+package fr.catcore.translatedlegacy.font;
 
+import fr.catcore.translatedlegacy.font.api.Glyph;
+import fr.catcore.translatedlegacy.font.api.GlyphProvider;
 import fr.catcore.translatedlegacy.util.NativeImage;
 
 import java.util.ArrayList;

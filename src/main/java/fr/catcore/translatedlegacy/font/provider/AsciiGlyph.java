@@ -1,13 +1,13 @@
-package fr.catcore.translatedlegacy.babric.fontnewnew;
+package fr.catcore.translatedlegacy.font.provider;
 
-import fr.catcore.translatedlegacy.api.Glyph;
-import fr.catcore.translatedlegacy.api.GlyphProvider;
+import fr.catcore.translatedlegacy.font.api.Glyph;
+import fr.catcore.translatedlegacy.font.api.GlyphProvider;
 
-public class OriginalGlyph implements Glyph {
+public class AsciiGlyph implements Glyph {
     private final int width, x, y, index;
     private final GlyphProvider provider;
 
-    public OriginalGlyph(int width, int x, int y, int index, GlyphProvider provider) {
+    public AsciiGlyph(int width, int x, int y, int index, GlyphProvider provider) {
         this.width = width;
         this.x = x;
         this.y = y;

@@ -1,5 +1,8 @@
-package fr.catcore.translatedlegacy.api;
+package fr.catcore.translatedlegacy.font;
 
+import fr.catcore.translatedlegacy.font.api.GameProvider;
+import fr.catcore.translatedlegacy.font.api.Glyph;
+import fr.catcore.translatedlegacy.font.api.GlyphProvider;
 import fr.catcore.translatedlegacy.util.NativeImage;
 import org.lwjgl.opengl.GL11;
 
@@ -11,9 +14,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TextRenderer {
-    private static final GameProvider game = GameProvider.getInstance();
+    private static GameProvider game;
     private static final List<GlyphProvider> providers = new ArrayList<>();
     private static final Map<Text, TextTexture> CACHED = new HashMap<>();
+
+    public static void setGameProvider(GameProvider provider) {
+        game = provider;
+    }
+
+    public static GameProvider getGameProvider() {
+        return game;
+    }
 
     public static void registerProvider(GlyphProvider provider) {
         providers.add(provider);
