@@ -14,11 +14,7 @@ public interface Glyph {
     }
 
     default void upload(NativeImage from, NativeImage to, int x, int y, boolean flipX, boolean flipY) {
-        int destX = x;
-
-        if (destX < 0) destX = 0;
-
-        from.copyRect(to, getXStart(), getYStart(), destX, y, getWidth(), getHeight(), flipX, flipY);
+        from.copyRect(to, getXStart(), getYStart(), x, y, getWidth(), getHeight(), flipX, flipY);
     }
 
     default int getFullWidth() {

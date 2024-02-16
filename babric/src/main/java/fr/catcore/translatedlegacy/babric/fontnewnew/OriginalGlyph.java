@@ -4,22 +4,20 @@ import fr.catcore.translatedlegacy.api.Glyph;
 import fr.catcore.translatedlegacy.api.GlyphProvider;
 
 public class OriginalGlyph implements Glyph {
-    private final int offset, x, y, index;
+    private final int width, x, y, index;
     private final GlyphProvider provider;
 
-    public OriginalGlyph(int offset, int x, int y, int index, GlyphProvider provider) {
-        this.offset = offset;
+    public OriginalGlyph(int width, int x, int y, int index, GlyphProvider provider) {
+        this.width = width;
         this.x = x;
         this.y = y;
         this.index = index;
         this.provider = provider;
-
-        System.out.println("'" + ((char) index) + "' x:" + x + " y:" + y + " offset:" + offset);
     }
 
     @Override
     public int getWidth() {
-        return getOffset();
+        return this.width;
     }
 
     @Override
@@ -29,7 +27,7 @@ public class OriginalGlyph implements Glyph {
 
     @Override
     public int getOffset() {
-        return offset;
+        return 0;
     }
 
     @Override

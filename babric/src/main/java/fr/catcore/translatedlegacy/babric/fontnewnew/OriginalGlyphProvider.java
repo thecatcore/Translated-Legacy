@@ -3,7 +3,7 @@ package fr.catcore.translatedlegacy.babric.fontnewnew;
 import fr.catcore.translatedlegacy.api.Glyph;
 import fr.catcore.translatedlegacy.api.GlyphProvider;
 import fr.catcore.translatedlegacy.util.NativeImage;
-import net.minecraft.client.texture.TextureManager;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OriginalGlyphProvider implements GlyphProvider {
     private final Glyph[] glyphs = new Glyph[256];
-    private final int[] offsets = new int[256];
+    private final int[] widths = new int[256];
     private static final String texturePath = "/font/default.png";
     private NativeImage fullTexture;
 
@@ -45,7 +45,7 @@ public class OriginalGlyphProvider implements GlyphProvider {
 
     @Override
     public void load() throws IOException {
-        fullTexture = NativeImage.read(NativeImage.Format.RGBA, TextureManager.class.getResourceAsStream(texturePath));
+        fullTexture = NativeImage.read(NativeImage.Format.RGBA, FabricLoader.getInstance().getGameInstance().getClass().getResourceAsStream(texturePath));
 
         for (int i = 0; i < 256; i++) {
             int column = i % 16;
@@ -74,20 +74,23 @@ public class OriginalGlyphProvider implements GlyphProvider {
                 xOffset = 2;
             }
 
-            offsets[i] = xOffset + 2;
+            widths[i] = xOffset + 2;
         }
 
         for (int i = 0; i < 256; i++) {
             int column = (i % 16) * 8;
             int row = (i / 16) * 8;
 
-            glyphs[i] = new OriginalGlyph(offsets[i], column, row, i, this);
+            glyphs[i] = new OriginalGlyph(widths[i], column, row, i, this);
         }
     }
 
     @Override
     public void unload() {
-
+        if (fullTexture != null) {
+            fullTexture.close();
+            fullTexture = null;
+        }
     }
 
     @Override

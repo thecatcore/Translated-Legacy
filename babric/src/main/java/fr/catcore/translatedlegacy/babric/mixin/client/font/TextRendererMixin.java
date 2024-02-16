@@ -13,11 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TextRenderer.class)
 public class TextRendererMixin {
-
-
     @Inject(method = "<init>", at = @At("RETURN"))
     public void c$init(GameOptions arg, String string, TextureManager arg1, CallbackInfo ci) {
-//        TranslatedLegacyBabric.TEXT_RENDERER = new BetterTextRenderer(arg, arg1);
         TranslatedLegacyBabric.registerProviders();
     }
 

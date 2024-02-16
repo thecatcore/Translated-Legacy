@@ -17,8 +17,6 @@ public class TextTexture implements Closeable {
         GLUtils.prepareImage(pointer, image.getWidth(), image.getHeight());
         GL11.glBindTexture(3553, pointer);
         image.upload(0, 0, 0, false);
-
-        System.out.println(this.pointer);
     }
 
     public void bind() {

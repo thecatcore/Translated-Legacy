@@ -65,6 +65,19 @@ public class TextRenderer {
         return CACHED.get(text);
     }
 
+    public static void reload() {
+        CACHED.forEach((t, r) -> {
+            try {
+                r.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        CACHED.clear();
+
+        providers.forEach(GlyphProvider::unload);
+    }
+
     public static void draw(String string, int x, int y, int color, boolean flag) {
         if (string == null || string.isEmpty()) return;
 
