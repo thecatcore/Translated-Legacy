@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.font;
+package fr.catcore.translatedlegacy.font.renderable;
 
 import fr.catcore.translatedlegacy.util.GLUtils;
 import fr.catcore.translatedlegacy.util.NativeImage;

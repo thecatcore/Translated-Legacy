@@ -3,6 +3,7 @@ package fr.catcore.translatedlegacy.font;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
+import fr.catcore.translatedlegacy.font.renderable.TextTexture;
 import fr.catcore.translatedlegacy.util.NativeImage;
 import org.lwjgl.opengl.GL11;
 
@@ -38,10 +39,25 @@ public class TextRenderer {
         return null;
     }
 
-    private static Text createTextFromString(String string) {
+    private static Text createTextFromString(String string, boolean flag) {
         List<Glyph> glyphs = new ArrayList<>();
 
-        for (int character : string.toCharArray()) {
+        Style style = null;
+
+        for (int i = 0; i < string.length(); i++) {
+            char character = string.charAt(i);
+
+            if (character == 167 && string.length() > i+1) {
+                Character modifier = string.charAt(i+1);
+
+                style = Style.VANILLAS.get(flag).get(modifier);
+
+                if (style != null) {
+                    i += 2;
+                    continue;
+                }
+            }
+
             GlyphProvider provider = getCharRenderer((char) character);
 
             if (provider != null) {
@@ -65,8 +81,8 @@ public class TextRenderer {
         return text;
     }
 
-    private static TextTexture getTexture(String string) {
-        Text text = createTextFromString(string);
+    private static TextTexture getTexture(String string, boolean flag) {
+        Text text = createTextFromString(string, flag);
 
         if (!CACHED.containsKey(text)) {
             NativeImage image = text.createImage();
@@ -92,7 +108,7 @@ public class TextRenderer {
     public static void draw(String string, int x, int y, int color, boolean flag) {
         if (string == null || string.isEmpty()) return;
 
-        TextTexture texture = getTexture(string);
+        TextTexture texture = getTexture(string, flag);
 
         if (flag) {
             int c = color & -16777216;
