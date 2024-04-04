@@ -3,9 +3,7 @@ package fr.catcore.translatedlegacy.font;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
-import fr.catcore.translatedlegacy.font.renderable.TextTexture;
-import fr.catcore.translatedlegacy.util.NativeImage;
-import org.lwjgl.opengl.GL11;
+import fr.catcore.translatedlegacy.font.renderable.RenderableText;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import java.util.stream.Collectors;
 public class TextRenderer {
     private static GameProvider game;
     private static final List<GlyphProvider> providers = new ArrayList<>();
-    private static final Map<Text, TextTexture> CACHED = new HashMap<>();
+    private static final Map<Text, RenderableText> CACHED = new HashMap<>();
 
     public static void setGameProvider(GameProvider provider) {
         game = provider;
@@ -40,6 +38,7 @@ public class TextRenderer {
     }
 
     private static Text createTextFromString(String string, boolean flag) {
+        List<Text> texts = new ArrayList<>();
         List<Glyph> glyphs = new ArrayList<>();
 
         Style style = null;
@@ -50,10 +49,23 @@ public class TextRenderer {
             if (character == 167 && string.length() > i+1) {
                 Character modifier = string.charAt(i+1);
 
-                style = Style.VANILLAS.get(flag).get(modifier);
+                Style newStyle = Style.VANILLA.get(modifier);
 
-                if (style != null) {
-                    i += 2;
+                if (newStyle != null) {
+                    i += 1;
+
+                    if (!glyphs.isEmpty()) {
+                        Text tempText = new Text(style);
+
+                        tempText.add(glyphs.stream().map(Text.CharInfo::new).collect(Collectors.toList()));
+
+                        glyphs.clear();
+
+                        texts.add(tempText);
+                    }
+
+                    style = newStyle;
+
                     continue;
                 }
             }
@@ -73,20 +85,28 @@ public class TextRenderer {
                     Glyph glyph = provider.getGlyph((char) character);
                     if (glyph != null) glyphs.add(glyph);
                 }
+            } else {
             }
         }
 
-        Text text = new Text();
+        Text text = new Text(style);
         text.add(glyphs.stream().map(Text.CharInfo::new).collect(Collectors.toList()));
-        return text;
+
+        if (texts.isEmpty()) return text;
+
+        texts.add(text);
+        MultiText multiText = new MultiText(null);
+        multiText.addText(texts);
+        return multiText;
     }
 
-    private static TextTexture getTexture(String string, boolean flag) {
+    private static RenderableText getRenderableText(String string, boolean flag) {
         Text text = createTextFromString(string, flag);
 
         if (!CACHED.containsKey(text)) {
-            NativeImage image = text.createImage();
-            CACHED.put(text, new TextTexture(image));
+            System.out.println("'" + string + "' -> " + text);
+            RenderableText renderableText = new RenderableText(text.createRenderable());
+            CACHED.put(text, renderableText);
         }
 
         return CACHED.get(text);
@@ -108,7 +128,9 @@ public class TextRenderer {
     public static void draw(String string, int x, int y, int color, boolean flag) {
         if (string == null || string.isEmpty()) return;
 
-        TextTexture texture = getTexture(string, flag);
+        Style.init();
+
+        RenderableText renderableText = getRenderableText(string, flag);
 
         if (flag) {
             int c = color & -16777216;
@@ -116,17 +138,6 @@ public class TextRenderer {
             color += c;
         }
 
-        texture.bind();
-
-        float var10 = (float)(color >> 16 & 255) / 255.0F;
-        float var7 = (float)(color >> 8 & 255) / 255.0F;
-        float var8 = (float)(color & 255) / 255.0F;
-        float var9 = (float)(color >> 24 & 255) / 255.0F;
-        if (var9 == 0.0F) {
-            var9 = 1.0F;
-        }
-
-        GL11.glColor4f(var10, var7, var8, var9);
-        game.draw(x, y, texture.getWidth(), texture.getHeight(), 0.0F);
+        renderableText.render(x, y, color, 0, game, flag);
     }
 }

@@ -2,6 +2,8 @@ package fr.catcore.translatedlegacy.font;
 
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
+import fr.catcore.translatedlegacy.font.renderable.Renderable;
+import fr.catcore.translatedlegacy.font.renderable.TextTexture;
 import fr.catcore.translatedlegacy.util.NativeImage;
 
 import java.util.ArrayList;
@@ -10,17 +12,22 @@ import java.util.Objects;
 
 public class Text {
     private final List<CharInfo> charInfos = new ArrayList<>();
+    private final Style style;
+
+    public Text(Style style) {
+        this.style = style;
+    }
 
     public void add(List<CharInfo> infos) {
         charInfos.addAll(infos);
     }
 
     public int getWidth() {
-        return charInfos.stream().map(CharInfo::getWidth).reduce(0, Integer::sum);
+        return charInfos.stream().mapToInt(CharInfo::getWidth).sum();
     }
 
     public int getHeight() {
-        return charInfos.stream().map(CharInfo::getHeight).reduce(0, Integer::max);
+        return charInfos.stream().mapToInt(CharInfo::getHeight).max().orElse(0);
     }
 
     public NativeImage createImage() {
@@ -43,26 +50,33 @@ public class Text {
         return image;
     }
 
+    public List<Renderable> createRenderable() {
+        TextTexture textTexture = new TextTexture(createImage());
+        Renderable renderable = new Renderable(textTexture, style);
+
+        List<Renderable> renderables = new ArrayList<>();
+        renderables.add(renderable);
+        return renderables;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Text text = (Text) o;
-        return Objects.equals(charInfos, text.charInfos);
+        return Objects.equals(charInfos, text.charInfos) && Objects.equals(style, text.style);
     }
 
     @Override
     public int hashCode() {
-        return charInfos.stream().map(CharInfo::hashCode).reduce(0, Integer::sum);
+        return charInfos.stream().map(CharInfo::hashCode).reduce(0, Integer::sum) + (style != null ? style.hashCode() : 0);
     }
 
     public static class CharInfo {
         private final Glyph glyph;
-//        private final Style style;
 
-        public CharInfo(Glyph glyph/*, Style style*/) {
+        public CharInfo(Glyph glyph) {
             this.glyph = glyph;
-//            this.style = style;
         }
 
         @Override
@@ -72,8 +86,6 @@ public class Text {
             CharInfo info = (CharInfo) obj;
 
             if (!Objects.equals(info.glyph.getId(), this.glyph.getId())) return false;
-
-//            return Objects.equals(info.style.toString(), this.style.toString());
             return true;
         }
 

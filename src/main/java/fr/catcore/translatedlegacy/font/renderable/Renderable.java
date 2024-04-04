@@ -16,24 +16,37 @@ public class Renderable implements Closeable {
         this.style = style;
     }
 
-    public void render(int x, int y, int defaultColor, int blitOffset, GameProvider game) {
+    public void render(int x, int y, int defaultColor, int blitOffset, GameProvider game, boolean flag) {
         this.texture.bind();
+        float alpha = (float)(defaultColor >> 24 & 255) / 255.0F;
 
-        if (style == null || style.color == null) {
-            float var10 = (float)(defaultColor >> 16 & 255) / 255.0F;
-            float var7 = (float)(defaultColor >> 8 & 255) / 255.0F;
-            float var8 = (float)(defaultColor & 255) / 255.0F;
-            float var9 = (float)(defaultColor >> 24 & 255) / 255.0F;
-            if (var9 == 0.0F) {
-                var9 = 1.0F;
-            }
-
-            GL11.glColor4f(var10, var7, var8, var9);
-        } else {
-            GL11.glColor3f(style.color.r, style.color.g, style.color.b);
+        if (alpha == 0.0F) {
+            alpha = 1.0F;
         }
 
+        float red = (float)(defaultColor >> 16 & 255) / 255.0F;
+        float green = (float)(defaultColor >> 8 & 255) / 255.0F;
+        float blue = (float)(defaultColor & 255) / 255.0F;
+
+        if (style != null && style.color != null) {
+            red = style.color.r;
+            green = style.color.g;
+            blue = style.color.b;
+
+            if (flag) {
+                red /= 4;
+                green /= 4;
+                blue /= 4;
+            }
+        }
+
+        GL11.glColor4f(red, green, blue, alpha);
+
         game.draw(x, y, texture.getWidth(), texture.getHeight(), blitOffset);
+    }
+
+    public int getWidth() {
+        return texture.getWidth();
     }
 
     @Override

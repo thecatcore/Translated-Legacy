@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Style {
-    public static final Map<Boolean, Map<Character, Style>> VANILLAS = new HashMap<>();
+    public static final Map<Character, Style> VANILLA = new HashMap<>();
     public final Color3f color;
 
     public Style(Color3f color) {
@@ -18,39 +18,35 @@ public class Style {
 
     private static final String styleCodes = "0123456789abcdef";
 
-    static {
-        VANILLAS.put(true, new HashMap<>());
-        VANILLAS.put(false, new HashMap<>());
+    private static boolean init = false;
 
-        for(int var9 = 0; var9 < 32; ++var9) {
-            int var10 = (var9 >> 3 & 1) * 85;
-            int var11 = (var9 >> 2 & 1) * 170 + var10;
-            int var12 = (var9 >> 1 & 1) * 170 + var10;
-            int var22 = (var9 >> 0 & 1) * 170 + var10;
-            if (var9 == 6) {
-                var11 += 85;
-            }
+    private static void color(Character character, int color) {
+        float r = (float)(color >> 16 & 255) / 255.0F;
+        float g = (float)(color >> 8 & 255) / 255.0F;
+        float b = (float)(color & 255) / 255.0F;
 
-            boolean var24 = var9 >= 16;
-            if (TextRenderer.getGameProvider().anaglyph3d()) {
-                int var15 = (var11 * 30 + var12 * 59 + var22 * 11) / 100;
-                int var16 = (var11 * 30 + var12 * 70) / 100;
-                int var17 = (var11 * 30 + var22 * 70) / 100;
-                var11 = var15;
-                var12 = var16;
-                var22 = var17;
-            }
+        VANILLA.put(character, new Style(new Color3f(r, g, b)));
+    }
 
-            if (var24) {
-                var11 /= 4;
-                var12 /= 4;
-                var22 /= 4;
-            }
+    protected static void init() {
+        if (init) return;
+        init = true;
 
-            Character character = styleCodes.charAt(var24 ? var9 - 16 : var9);
-
-            Color3f color = new Color3f((float)var11 / 255.0F, (float)var12 / 255.0F, (float)var22 / 255.0F);
-            VANILLAS.get(var24).put(character, new Style(color));
-        }
+        color('0', 0);
+        color('1', 170);
+        color('2', 43520);
+        color('3', 43690);
+        color('4', 11141120);
+        color('5', 11141290);
+        color('6', 16755200);
+        color('7', 11184810);
+        color('8', 5592405);
+        color('9', 5592575);
+        color('a', 5635925);
+        color('b', 5636095);
+        color('c', 16733525);
+        color('d', 16733695);
+        color('e', 16777045);
+        color('f', 16777215);
     }
 }
