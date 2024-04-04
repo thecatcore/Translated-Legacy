@@ -6,7 +6,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.MemoryUtil;
+//import org.lwjgl.MemoryUtil;
 import org.lwjgl.opengl.GL11;
 
 import javax.imageio.ImageIO;
@@ -74,7 +74,7 @@ public final class NativeImage implements AutoCloseable {
 
     @Override
     public String toString() {
-        return "SimpleNativeImage[" + this.format + " " + this.width + "x" + this.height + "@" + MemoryUtil.getAddress(buffer) + (this.isStbImage ? "S" : "N") + "]";
+        return "SimpleNativeImage[" + this.format + " " + this.width + "x" + this.height + "@" /*+ MemoryUtil.getAddress(buffer)*/ + (this.isStbImage ? "S" : "N") + "]";
     }
 
     public static NativeImage read(InputStream inputStream) throws IOException {
