@@ -4,10 +4,10 @@ import fr.catcore.translatedlegacy.font.api.GameProvider;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
 import fr.catcore.translatedlegacy.font.renderable.RenderableText;
+import fr.catcore.translatedlegacy.util.AccessWeightedMap;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,7 +15,13 @@ import java.util.stream.Collectors;
 public class TextRenderer {
     private static GameProvider game;
     private static final List<GlyphProvider> providers = new ArrayList<>();
-    private static final Map<Text, RenderableText> CACHED = new HashMap<>();
+    private static final Map<Text, RenderableText> CACHED = new AccessWeightedMap<>(20000, renderableText -> {
+        try {
+            renderableText.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    });
 
     public static void setGameProvider(GameProvider provider) {
         game = provider;
@@ -104,7 +110,6 @@ public class TextRenderer {
         Text text = createTextFromString(string, flag);
 
         if (!CACHED.containsKey(text)) {
-            System.out.println("'" + string + "' -> " + text);
             RenderableText renderableText = new RenderableText(text.createRenderable());
             CACHED.put(text, renderableText);
         }
