@@ -5,10 +5,7 @@ import fr.catcore.translatedlegacy.font.TextImage;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import org.lwjgl.opengl.GL11;
 
-import java.io.Closeable;
-import java.io.IOException;
-
-public class Renderable implements Closeable {
+public class Renderable {
     private final TextImage texture;
     private final Style style;
 
@@ -48,10 +45,5 @@ public class Renderable implements Closeable {
 
     public int getWidth() {
         return texture.getWidth();
-    }
-
-    @Override
-    public void close() throws IOException {
-        texture.close();
     }
 }

@@ -23,7 +23,6 @@ public class TextRenderer {
             e.printStackTrace();
         }
     });
-    private static final Map<String, Renderable> CACHED = new AccessWeightedMap<>(20000, renderableText -> {});
 
     public static void setGameProvider(GameProvider provider) {
         game = provider;
@@ -112,10 +111,6 @@ public class TextRenderer {
     }
 
     private static Renderable getRenderable(TextInfo info) {
-        String fullText = info.getFull();
-
-        if (CACHED.containsKey(fullText)) return CACHED.get(fullText);
-
         TextImage image;
 
         if (CACHED_TEXT.containsKey(info.text)) {
@@ -126,11 +121,7 @@ public class TextRenderer {
             CACHED_TEXT.put(info.text, image);
         }
 
-        Renderable renderable = new Renderable(image, info.style);
-
-        CACHED.put(fullText, renderable);
-
-        return renderable;
+        return new Renderable(image, info.style);
     }
 
     private static RenderableText getRenderableText(String string) {
@@ -143,7 +134,6 @@ public class TextRenderer {
     }
 
     public static void reload() {
-        CACHED.clear();
         CACHED_TEXT.clear();
 
         providers.forEach(GlyphProvider::unload);
