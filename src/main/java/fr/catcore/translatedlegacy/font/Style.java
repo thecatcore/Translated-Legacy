@@ -6,9 +6,11 @@ import java.util.Map;
 public class Style {
     public static final Map<Character, Style> VANILLA = new HashMap<>();
     public final Color3f color;
+    public final Character character;
 
-    public Style(Color3f color) {
+    public Style(Color3f color, Character character) {
         this.color = color;
+        this.character = character;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class Style {
         float g = (float)(color >> 8 & 255) / 255.0F;
         float b = (float)(color & 255) / 255.0F;
 
-        VANILLA.put(character, new Style(new Color3f(r, g, b)));
+        VANILLA.put(character, new Style(new Color3f(r, g, b), character));
     }
 
     protected static void init() {

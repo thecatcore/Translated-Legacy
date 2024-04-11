@@ -1,6 +1,7 @@
 package fr.catcore.translatedlegacy.font.renderable;
 
 import fr.catcore.translatedlegacy.font.Style;
+import fr.catcore.translatedlegacy.font.TextImage;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import org.lwjgl.opengl.GL11;
 
@@ -8,10 +9,10 @@ import java.io.Closeable;
 import java.io.IOException;
 
 public class Renderable implements Closeable {
-    private final TextTexture texture;
+    private final TextImage texture;
     private final Style style;
 
-    public Renderable(TextTexture texture, Style style) {
+    public Renderable(TextImage texture, Style style) {
         this.texture = texture;
         this.style = style;
     }

@@ -3,6 +3,7 @@ package fr.catcore.translatedlegacy.font;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
+import fr.catcore.translatedlegacy.font.renderable.Renderable;
 import fr.catcore.translatedlegacy.font.renderable.RenderableText;
 import fr.catcore.translatedlegacy.util.AccessWeightedMap;
 
@@ -15,13 +16,14 @@ import java.util.stream.Collectors;
 public class TextRenderer {
     private static GameProvider game;
     private static final List<GlyphProvider> providers = new ArrayList<>();
-    private static final Map<Text, RenderableText> CACHED = new AccessWeightedMap<>(20000, renderableText -> {
+    private static final Map<String, TextImage> CACHED_TEXT = new AccessWeightedMap<>(20000, text -> {
         try {
-            renderableText.close();
+            text.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     });
+    private static final Map<String, Renderable> CACHED = new AccessWeightedMap<>(20000, renderableText -> {});
 
     public static void setGameProvider(GameProvider provider) {
         game = provider;
@@ -43,38 +45,49 @@ public class TextRenderer {
         return null;
     }
 
-    private static Text createTextFromString(String string, boolean flag) {
-        List<Text> texts = new ArrayList<>();
-        List<Glyph> glyphs = new ArrayList<>();
+    private static List<TextInfo> parseTextInfos(String text) {
+        List<TextInfo> infos = new ArrayList<>();
 
-        Style style = null;
+        StringBuilder currentText = new StringBuilder();
+        Style currentStyle = null;
 
-        for (int i = 0; i < string.length(); i++) {
-            char character = string.charAt(i);
+        for (int i = 0; i < text.length(); i++) {
+            char character = text.charAt(i);
 
-            if (character == 167 && string.length() > i+1) {
-                Character modifier = string.charAt(i+1);
+            if (character == 167 && text.length() > i+1) {
+                Character modifier = text.charAt(i+1);
 
                 Style newStyle = Style.VANILLA.get(modifier);
 
                 if (newStyle != null) {
                     i += 1;
 
-                    if (!glyphs.isEmpty()) {
-                        Text tempText = new Text(style);
-
-                        tempText.add(glyphs.stream().map(Text.CharInfo::new).collect(Collectors.toList()));
-
-                        glyphs.clear();
-
-                        texts.add(tempText);
+                    if (currentText.length() > 0) {
+                        infos.add(new TextInfo(currentText.toString(), currentStyle));
+                        currentText = new StringBuilder();
                     }
 
-                    style = newStyle;
+                    currentStyle = newStyle;
 
                     continue;
                 }
             }
+
+            currentText.append(character);
+        }
+
+        if (currentText.length() > 0) {
+            infos.add(new TextInfo(currentText.toString(), currentStyle));
+        }
+
+        return infos;
+    }
+
+    private static List<Glyph> parseGlyphs(String text) {
+        List<Glyph> glyphs = new ArrayList<>();
+
+        for (int i = 0; i < text.length(); i++) {
+            char character = text.charAt(i);
 
             GlyphProvider provider = getCharRenderer((char) character);
 
@@ -95,37 +108,43 @@ public class TextRenderer {
             }
         }
 
-        Text text = new Text(style);
-        text.add(glyphs.stream().map(Text.CharInfo::new).collect(Collectors.toList()));
-
-        if (texts.isEmpty()) return text;
-
-        texts.add(text);
-        MultiText multiText = new MultiText(null);
-        multiText.addText(texts);
-        return multiText;
+        return glyphs;
     }
 
-    private static RenderableText getRenderableText(String string, boolean flag) {
-        Text text = createTextFromString(string, flag);
+    private static Renderable getRenderable(TextInfo info) {
+        String fullText = info.getFull();
 
-        if (!CACHED.containsKey(text)) {
-            RenderableText renderableText = new RenderableText(text.createRenderable());
-            CACHED.put(text, renderableText);
+        if (CACHED.containsKey(fullText)) return CACHED.get(fullText);
+
+        TextImage image;
+
+        if (CACHED_TEXT.containsKey(info.text)) {
+            image = CACHED_TEXT.get(info.text);
+        } else {
+            List<Glyph> glyphs = parseGlyphs(info.text);
+            image = new TextImage(glyphs);
+            CACHED_TEXT.put(info.text, image);
         }
 
-        return CACHED.get(text);
+        Renderable renderable = new Renderable(image, info.style);
+
+        CACHED.put(fullText, renderable);
+
+        return renderable;
+    }
+
+    private static RenderableText getRenderableText(String string) {
+        return new RenderableText(
+            parseTextInfos(string)
+                    .stream()
+                    .map(TextRenderer::getRenderable)
+                    .collect(Collectors.toList())
+        );
     }
 
     public static void reload() {
-        CACHED.forEach((t, r) -> {
-            try {
-                r.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
         CACHED.clear();
+        CACHED_TEXT.clear();
 
         providers.forEach(GlyphProvider::unload);
     }
@@ -135,7 +154,7 @@ public class TextRenderer {
 
         Style.init();
 
-        RenderableText renderableText = getRenderableText(string, flag);
+        RenderableText renderableText = getRenderableText(string);
 
         if (flag) {
             int c = color & -16777216;

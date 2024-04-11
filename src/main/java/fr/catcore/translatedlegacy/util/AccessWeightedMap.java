@@ -29,8 +29,7 @@ public class AccessWeightedMap<K, V> extends HashMap<K, V> {
                     K k = sortedList.get(i);
 
                     if (this.containsKey(k)) {
-                        V val = this.remove(k);
-                        removeCallback.accept(val);
+                        this.remove(k);
                     }
                 }
             }
@@ -52,7 +51,18 @@ public class AccessWeightedMap<K, V> extends HashMap<K, V> {
     }
 
     @Override
+    public V remove(Object key) {
+        V value = super.remove(key);
+        removeCallback.accept(value);
+        return value;
+    }
+
+    @Override
     public void clear() {
+        for (V value : this.values()) {
+            removeCallback.accept(value);
+        }
+
         super.clear();
         weights.clear();
     }
