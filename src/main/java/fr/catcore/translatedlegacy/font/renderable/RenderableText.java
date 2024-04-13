@@ -19,4 +19,8 @@ public class RenderableText {
             currentX += renderable.getWidth();
         }
     }
+
+    public int getWidth() {
+        return renderables.stream().mapToInt(Renderable::getWidth).sum();
+    }
 }

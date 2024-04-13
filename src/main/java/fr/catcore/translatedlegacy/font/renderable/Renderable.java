@@ -2,20 +2,35 @@ package fr.catcore.translatedlegacy.font.renderable;
 
 import fr.catcore.translatedlegacy.font.Style;
 import fr.catcore.translatedlegacy.font.TextImage;
+import fr.catcore.translatedlegacy.font.TextRenderer;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import org.lwjgl.opengl.GL11;
 
+import java.util.List;
+
 public class Renderable {
-    private final TextImage texture;
+    private final List<TextImage> textures;
     private final Style style;
 
-    public Renderable(TextImage texture, Style style) {
-        this.texture = texture;
+    public Renderable(List<TextImage> textures, Style style) {
+        this.textures = textures;
         this.style = style;
     }
 
     public void render(int x, int y, int defaultColor, int blitOffset, GameProvider game, boolean flag) {
-        this.texture.bind();
+        this.textures.stream().reduce(x, (currentX, textImage) -> {
+            if (currentX != x) {
+                currentX += TextRenderer.getSpaceWidth();
+            }
+
+            if (textImage.getWidth() > 0) render(textImage, currentX, y, defaultColor, blitOffset, game, flag);
+
+            return currentX + textImage.getWidth();
+        }, (integer, integer2) -> integer2);
+    }
+
+    public void render(TextImage texture, int x, int y, int defaultColor, int blitOffset, GameProvider game, boolean flag) {
+        texture.bind();
         float alpha = (float)(defaultColor >> 24 & 255) / 255.0F;
 
         if (alpha == 0.0F) {
@@ -44,6 +59,9 @@ public class Renderable {
     }
 
     public int getWidth() {
-        return texture.getWidth();
+        return textures.stream().mapToInt(TextImage::getWidth)
+                .reduce(0,
+                        (left, right) -> left == 0 ? right : left + TextRenderer.getSpaceWidth() + right
+                );
     }
 }

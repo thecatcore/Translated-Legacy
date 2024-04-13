@@ -12,12 +12,12 @@ import java.util.List;
 
 public class TextImage implements Closeable {
     private final List<Glyph> glyphs;
-    private final NativeImage image;
+    private NativeImage image;
     private Integer pointer = null;
 
     public TextImage(List<Glyph> glyphs) {
         this.glyphs = glyphs;
-        this.image = createImage();
+        if (!this.glyphs.isEmpty()) this.image = createImage();
     }
 
     public int getWidth() {
@@ -66,7 +66,7 @@ public class TextImage implements Closeable {
 
     @Override
     public void close() throws IOException {
-        image.close();
+        if (image != null) image.close();
 
         if (pointer != null) {
             GLUtils.releaseTextureId(pointer);

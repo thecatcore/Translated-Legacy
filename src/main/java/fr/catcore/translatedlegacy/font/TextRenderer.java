@@ -24,6 +24,23 @@ public class TextRenderer {
         }
     });
 
+    private static TextImage SPACE;
+
+    public static TextImage getSpaceImage() {
+        if (SPACE == null) {
+            List<Glyph> glyphs = new ArrayList<>();
+            glyphs.add(getCharRenderer(' ').getGlyph(' '));
+            SPACE = new TextImage(glyphs);
+        }
+
+        return SPACE;
+    }
+
+    public static int getSpaceWidth() {
+        TextImage spaceImage = getSpaceImage();
+        return spaceImage != null ? spaceImage.getWidth() : 4;
+    }
+
     public static void setGameProvider(GameProvider provider) {
         game = provider;
     }
@@ -110,18 +127,32 @@ public class TextRenderer {
         return glyphs;
     }
 
-    private static Renderable getRenderable(TextInfo info) {
+    private static TextImage getTextImage(String text) {
         TextImage image;
 
-        if (CACHED_TEXT.containsKey(info.text)) {
-            image = CACHED_TEXT.get(info.text);
+        if (CACHED_TEXT.containsKey(text)) {
+            image = CACHED_TEXT.get(text);
         } else {
-            List<Glyph> glyphs = parseGlyphs(info.text);
+            List<Glyph> glyphs = parseGlyphs(text);
             image = new TextImage(glyphs);
-            CACHED_TEXT.put(info.text, image);
+            CACHED_TEXT.put(text, image);
         }
 
-        return new Renderable(image, info.style);
+        return image;
+    }
+
+    private static Renderable getRenderable(TextInfo info) {
+        List<TextImage> textImages = new ArrayList<>();
+
+        if (!info.text.contains(" ")) {
+            textImages.add(getTextImage(info.text));
+        } else {
+            for (String text : info.text.split(" ", -1)) {
+                textImages.add(getTextImage(text));
+            }
+        }
+
+        return new Renderable(textImages, info.style);
     }
 
     private static RenderableText getRenderableText(String string) {
@@ -137,6 +168,8 @@ public class TextRenderer {
         CACHED_TEXT.clear();
 
         providers.forEach(GlyphProvider::unload);
+
+        SPACE = null;
     }
 
     public static void draw(String string, int x, int y, int color, boolean flag) {
@@ -153,5 +186,10 @@ public class TextRenderer {
         }
 
         renderableText.render(x, y, color, 0, game, flag);
+    }
+
+    public static int getTextWidth(String string) {
+        RenderableText renderableText = getRenderableText(string);
+        return renderableText.getWidth();
     }
 }

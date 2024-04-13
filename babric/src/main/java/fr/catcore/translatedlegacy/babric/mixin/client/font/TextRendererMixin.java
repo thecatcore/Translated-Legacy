@@ -29,15 +29,15 @@ public class TextRendererMixin {
         fr.catcore.translatedlegacy.font.TextRenderer.draw(string, i, j, k, flag);
     }
 
-//    /**
-//     * @author CatCore
-//     * @reason We don't want any of the original code to run.
-//     */
-//    @Overwrite
-//    public int getWidth(String string) {
-//        return TranslatedLegacyBabric.TEXT_RENDERER.getTextWidth(string);
-//    }
-//
+    /**
+     * @author CatCore
+     * @reason We don't want any of the original code to run.
+     */
+    @Overwrite
+    public int getWidth(String string) {
+        return fr.catcore.translatedlegacy.font.TextRenderer.getTextWidth(string);
+    }
+
 //    /**
 //     * @author CatCore
 //     * @reason We don't want any of the original code to run.
