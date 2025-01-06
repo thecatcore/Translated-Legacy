@@ -1,8 +1,8 @@
 plugins {
 	id 'java-library'
-	id "fabric-loom" version "1.6-SNAPSHOT" apply false
-	id "legacy-looming" version "1.6-SNAPSHOT" apply false
-	id 'babric-loom-extension' version '1.6-SNAPSHOT' apply false
+	id "fabric-loom" version "1.9-SNAPSHOT" apply false
+	id "legacy-looming" version "1.9-SNAPSHOT" apply false
+	id 'babric-loom-extension' version '1.9-SNAPSHOT' apply false
 	id 'maven-publish'
 }
 
@@ -50,6 +50,9 @@ base.archivesName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+project.ext.lwjglVersion = "3.3.3"
+project.ext.lwjglNatives = "natives-linux"
+
 allprojects {
 	def versionInfo = VersionInfo.getInfo(project.name);
 
@@ -69,10 +72,6 @@ allprojects {
 	}
 
 	loom {
-		if (versionInfo.kind == FabricKind.BABRIC) {
-			customMinecraftManifest.set("https://babric.github.io/manifest-polyfill/${versionInfo.mc}.json")
-			intermediaryUrl.set("https://maven.glass-launcher.net/babric/babric/intermediary/%1\$s/intermediary-%1\$s-v2.jar")
-		}
 	}
 
 	dependencies {
@@ -86,6 +85,13 @@ allprojects {
 			implementation "com.google.code.gson:gson:2.8.9"
 			implementation "blue.endless:jankson:1.2.1"
 		}
+
+//		implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+
+//		implementation "org.lwjgl:lwjgl"
+		implementation "org.lwjgl:lwjgl-harfbuzz:$lwjglVersion"
+//		runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
+//		runtimeOnly "org.lwjgl:lwjgl-harfbuzz::$lwjglNatives"
 	}
 
 	processResources {
