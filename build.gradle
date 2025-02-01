@@ -31,7 +31,7 @@ class VersionInfo {
 	}
 
 	public static final VersionInfo[] VERSIONS = [
-			new VersionInfo("1.20.4", "3", FabricKind.UPSTREAM),
+//			new VersionInfo("1.20.4", "3", FabricKind.UPSTREAM),
 			new VersionInfo("b1.7.3", "9", FabricKind.BABRIC, "babric", "stapi"),
 	];
 
@@ -56,6 +56,7 @@ project.ext.lwjglNatives = "natives-linux"
 allprojects {
 	def versionInfo = VersionInfo.getInfo(project.name);
 
+	apply plugin: 'maven-publish'
 	apply plugin: 'fabric-loom'
 
 	if (versionInfo.kind == FabricKind.LEGACY) {
