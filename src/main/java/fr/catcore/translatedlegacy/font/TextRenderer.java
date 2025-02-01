@@ -29,16 +29,19 @@ public class TextRenderer {
     public static TextImage getSpaceImage() {
         if (SPACE == null) {
             List<Glyph> glyphs = new ArrayList<>();
-            glyphs.add(getCharRenderer(' ').getGlyph(' '));
-            SPACE = new TextImage(glyphs);
+            GlyphProvider provider = getCharRenderer(' ');
+            if (provider != null) {
+                glyphs.add(provider.getGlyph(' '));
+                SPACE = new TextImage(glyphs);
+            }
         }
 
         return SPACE;
     }
 
     public static int getSpaceWidth() {
-        TextImage spaceImage = getSpaceImage();
-        return spaceImage != null ? spaceImage.getWidth() : 4;
+//        TextImage spaceImage = getSpaceImage();
+        return 4;
     }
 
     public static void setGameProvider(GameProvider provider) {

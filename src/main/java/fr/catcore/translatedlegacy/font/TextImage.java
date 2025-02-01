@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class TextImage implements Closeable {
     private final List<Glyph> glyphs;
@@ -21,11 +22,11 @@ public class TextImage implements Closeable {
     }
 
     public int getWidth() {
-        return glyphs.stream().mapToInt(Glyph::getFullWidth).sum();
+        return glyphs.stream().mapToInt(x -> x == null ? TextRenderer.getSpaceWidth() : x.getFullWidth()).sum();
     }
 
     public int getHeight() {
-        return glyphs.stream().mapToInt(Glyph::getHeight).max().orElse(0);
+        return glyphs.stream().mapToInt(x -> x == null ? TextRenderer.getSpaceWidth() : x.getHeight()).max().orElse(0);
     }
 
     private NativeImage createImage() {
@@ -37,6 +38,11 @@ public class TextImage implements Closeable {
         int currentX = 0;
 
         for (Glyph glyph : glyphs) {
+            if (glyph == null) {
+                currentX += TextRenderer.getSpaceWidth();
+                continue;
+            }
+
             GlyphProvider provider = glyph.getProvider();
 
             provider.upload(glyph, image, currentX, 0);

@@ -25,6 +25,6 @@ public interface Glyph {
     Character getChar();
 
     default String getId() {
-        return getProvider().getId() + "::" + getChar();
+        return getProvider().getId() + ":" + ((int) getChar());
     }
 }
