@@ -45,7 +45,15 @@ public class TextImage implements Closeable {
 
             GlyphProvider provider = glyph.getProvider();
 
-            provider.upload(glyph, image, currentX, 0);
+            int y = 0;
+            if (height > 8) {
+                int originalY = height - glyph.getHeight() - 1;
+                y = Math.max(originalY, 0);
+
+                System.out.println(glyph.getChar() + " " + y + " " + originalY);
+            }
+
+            provider.upload(glyph, image, currentX, y);
 
             currentX += glyph.getFullWidth();
         }

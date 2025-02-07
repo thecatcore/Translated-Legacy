@@ -55,6 +55,10 @@ public class Renderable {
 
         GL11.glColor4f(red, green, blue, alpha);
 
+        if (texture.getHeight() > 8) {
+            y -= texture.getHeight() - 9;
+        }
+
         game.draw(x, y, texture.getWidth(), texture.getHeight(), blitOffset);
     }
 
