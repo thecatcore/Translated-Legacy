@@ -68,4 +68,8 @@ public class Renderable {
                         (left, right) -> left == 0 ? right : left + TextRenderer.getSpaceWidth() + right
                 );
     }
+
+    public int getHeight() {
+        return textures.stream().mapToInt(TextImage::getHeight).max().orElse(8);
+    }
 }

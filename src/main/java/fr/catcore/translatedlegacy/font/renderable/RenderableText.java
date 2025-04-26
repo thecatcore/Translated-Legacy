@@ -23,4 +23,7 @@ public class RenderableText {
     public int getWidth() {
         return renderables.stream().mapToInt(Renderable::getWidth).sum();
     }
+    public int getHeight() {
+        return renderables.stream().mapToInt(Renderable::getHeight).max().orElse(8);
+    }
 }

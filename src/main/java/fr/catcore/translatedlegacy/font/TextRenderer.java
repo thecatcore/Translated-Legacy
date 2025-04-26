@@ -24,23 +24,8 @@ public class TextRenderer {
         }
     });
 
-    private static TextImage SPACE;
-
-    public static TextImage getSpaceImage() {
-        if (SPACE == null) {
-            List<Glyph> glyphs = new ArrayList<>();
-            GlyphProvider provider = getCharRenderer(' ');
-            if (provider != null) {
-                glyphs.add(provider.getGlyph(' '));
-                SPACE = new TextImage(glyphs);
-            }
-        }
-
-        return SPACE;
-    }
 
     public static int getSpaceWidth() {
-//        TextImage spaceImage = getSpaceImage();
         return 4;
     }
 
@@ -171,12 +156,10 @@ public class TextRenderer {
         CACHED_TEXT.clear();
 
         providers.forEach(GlyphProvider::unload);
-
-        SPACE = null;
     }
 
-    public static void draw(String string, int x, int y, int color, boolean flag) {
-        if (string == null || string.isEmpty()) return;
+    public static int draw(String string, int x, int y, int color, boolean flag) {
+        if (string == null || string.isEmpty()) return 8;
 
         Style.init();
 
@@ -189,10 +172,24 @@ public class TextRenderer {
         }
 
         renderableText.render(x, y, color, 0, game, flag);
+
+        if (renderableText.getHeight() > 8) {
+            return renderableText.getHeight() - 2;
+        }
+
+        return renderableText.getHeight();
     }
 
     public static int getTextWidth(String string) {
         RenderableText renderableText = getRenderableText(string);
         return renderableText.getWidth();
+    }
+
+    public static int getTextHeight(String string) {
+        if (string == null || string.isEmpty()) return 8;
+
+        RenderableText renderableText = getRenderableText(string);
+        int height = renderableText.getHeight();
+        return height > 8 ? height - 2 : height;
     }
 }
