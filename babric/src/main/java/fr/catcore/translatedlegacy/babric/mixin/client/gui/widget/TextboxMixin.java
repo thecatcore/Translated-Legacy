@@ -1,6 +1,5 @@
 package fr.catcore.translatedlegacy.babric.mixin.client.gui.widget;
 
-import fr.catcore.translatedlegacy.babric.font.BetterCharacterUtils;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,7 +24,7 @@ public class TextboxMixin {
             )
     )
     public void method_1877$fix(char c, int i, CallbackInfo ci) {
-        if (BetterCharacterUtils.getId(c) >= 32 && (this.text.length() < this.maxLength || this.maxLength == 0)) {
+        if (c >= 32 && (this.text.length() < this.maxLength || this.maxLength == 0)) {
             this.text = this.text + c;
         }
         ci.cancel();

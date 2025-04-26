@@ -1,5 +1,7 @@
 package fr.catcore.translatedlegacy.font.provider;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import fr.catcore.translatedlegacy.font.TextRenderer;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
@@ -13,15 +15,27 @@ public class BitmapGlyphProvider implements GlyphProvider {
     private final Map<Character, Glyph> glyphs = new HashMap<>();
     private final String texturePath;
     private final int ascent, height;
-    private final List<int[]> chars;
+    private final List<int[]> chars = new ArrayList<>();
     private final Set<Character> charSet;
     private NativeImage fullTexture;
 
-    public BitmapGlyphProvider(String texturePath, int ascent, int height, List<int[]> chars) {
-        this.texturePath = texturePath;
-        this.ascent = ascent;
-        this.height = height;
-        this.chars = chars;
+    public BitmapGlyphProvider(JsonObject obj) {
+        String path = obj.get("file").getAsString();
+
+        if (path.contains(":")) {
+            String[] split = path.split(":");
+            path = "/assets/" + split[0] + "/textures/" + split[1];
+        }
+
+        this.texturePath = path;
+
+        for (JsonElement element : obj.getAsJsonArray("chars")) {
+            int[] is = element.getAsString().codePoints().toArray();
+            this.chars.add(is);
+        }
+
+        this.ascent = obj.get("ascent").getAsInt();
+        this.height = obj.has("height") ? obj.get("height").getAsInt() : 8;
         this.charSet = chars.stream().flatMapToInt(Arrays::stream).mapToObj(x -> (Character) (char) x).filter(x -> x != 0).collect(Collectors.toSet());
     }
 
