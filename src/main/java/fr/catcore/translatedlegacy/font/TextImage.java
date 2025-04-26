@@ -29,6 +29,18 @@ public class TextImage implements Closeable {
         return glyphs.stream().mapToInt(x -> x == null ? TextRenderer.getSpaceWidth() : x.getHeight()).max().orElse(0);
     }
 
+    public float getScalingFactor() {
+        return this.image != null ? this.glyphs.get(0).getProvider().scalingFactor() : 1.0f;
+    }
+
+    public int getRenderWidth() {
+        return (int) (this.getWidth() * this.getScalingFactor());
+    }
+
+    public int getRenderHeight() {
+        return (int) (this.getHeight() * this.getScalingFactor());
+    }
+
     private NativeImage createImage() {
         int width = getWidth();
         int height = getHeight();

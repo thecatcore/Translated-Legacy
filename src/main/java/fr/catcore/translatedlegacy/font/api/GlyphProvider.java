@@ -18,4 +18,8 @@ public interface GlyphProvider {
     void unload();
 
     void upload(Glyph glyph, NativeImage to, int x, int y);
+
+    default float scalingFactor() {
+        return 1.0F;
+    }
 }

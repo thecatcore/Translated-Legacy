@@ -98,10 +98,10 @@ public class LanguageManager {
     private static void loadDefaultLangFiles(String code) {
         try {
             if ("en_us".equals(code)) {
-                CODE_TO_STORAGE.get(code).load(TranslationStorage.class.getResourceAsStream("/lang/en_US.lang"), false);
-                CODE_TO_STORAGE.get(code).load(TranslationStorage.class.getResourceAsStream("/lang/stats_US.lang"), false);
+                loadFile(code, TranslationStorage.class.getResourceAsStream("/lang/en_US.lang"), false);
+                loadFile(code, TranslationStorage.class.getResourceAsStream("/lang/stats_US.lang"), false);
             } else {
-                CODE_TO_STORAGE.get(code).load(Files.newInputStream(TranslatedLegacy.getLangFile("b1.7.3", code).toPath()), true);
+                loadFile(code, Files.newInputStream(TranslatedLegacy.getLangFile("b1.7.3", code).toPath()), true);
             }
         } catch (IOException e) {
             e.printStackTrace();

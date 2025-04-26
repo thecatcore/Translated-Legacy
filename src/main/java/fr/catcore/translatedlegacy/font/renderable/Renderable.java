@@ -25,7 +25,7 @@ public class Renderable {
 
             if (textImage.getWidth() > 0) render(textImage, currentX, y, defaultColor, blitOffset, game, flag);
 
-            return currentX + textImage.getWidth();
+            return currentX + textImage.getRenderWidth();
         }, (integer, integer2) -> integer2);
     }
 
@@ -55,21 +55,23 @@ public class Renderable {
 
         GL11.glColor4f(red, green, blue, alpha);
 
-        if (texture.getHeight() > 8) {
-            y -= texture.getHeight() - 9;
+        int height = texture.getRenderHeight();
+
+        if (height > 8) {
+            y -= height - 9;
         }
 
-        game.draw(x, y, texture.getWidth(), texture.getHeight(), blitOffset);
+        game.draw(x, y, texture.getRenderWidth(), height, blitOffset);
     }
 
     public int getWidth() {
-        return textures.stream().mapToInt(TextImage::getWidth)
+        return textures.stream().mapToInt(TextImage::getRenderWidth)
                 .reduce(0,
                         (left, right) -> left == 0 ? right : left + TextRenderer.getSpaceWidth() + right
                 );
     }
 
     public int getHeight() {
-        return textures.stream().mapToInt(TextImage::getHeight).max().orElse(8);
+        return textures.stream().mapToInt(TextImage::getRenderHeight).max().orElse(8);
     }
 }

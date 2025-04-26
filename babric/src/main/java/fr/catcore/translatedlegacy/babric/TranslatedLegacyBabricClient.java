@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import fr.catcore.translatedlegacy.babric.font.BetterTextRenderer;
 import fr.catcore.translatedlegacy.font.TextRenderer;
 import fr.catcore.translatedlegacy.font.provider.BitmapGlyphProvider;
+import fr.catcore.translatedlegacy.font.provider.LegacyUnicodeProvider;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 
@@ -59,6 +60,8 @@ public class TranslatedLegacyBabricClient {
                 }
 
                 TextRenderer.registerProvider(new BitmapGlyphProvider(path, ascent, height, chars));
+            } else if (Objects.equals(obj.get("type").getAsString(), "legacy_unicode")) {
+                TextRenderer.registerProvider(new LegacyUnicodeProvider(obj));
             }
         }
     }

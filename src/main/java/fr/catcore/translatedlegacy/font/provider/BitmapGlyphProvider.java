@@ -104,6 +104,7 @@ public class BitmapGlyphProvider implements GlyphProvider {
         if (fullTexture != null) {
             fullTexture.close();
             fullTexture = null;
+            this.glyphs.clear();
         }
     }
 

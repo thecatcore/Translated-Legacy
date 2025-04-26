@@ -8,20 +8,20 @@ import fr.catcore.translatedlegacy.font.renderable.RenderableText;
 import fr.catcore.translatedlegacy.util.AccessWeightedMap;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TextRenderer {
     private static GameProvider game;
     private static final List<GlyphProvider> providers = new ArrayList<>();
-    private static final Map<String, TextImage> CACHED_TEXT = new AccessWeightedMap<>(20000, text -> {
-        try {
-            text.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private static final Map<String, List<TextImage>> CACHED_TEXT = new AccessWeightedMap<>(20000, text -> {
+        text.forEach(t -> {
+            try {
+                t.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     });
 
 
@@ -115,28 +115,53 @@ public class TextRenderer {
         return glyphs;
     }
 
-    private static TextImage getTextImage(String text) {
-        TextImage image;
+    private static List<TextImage> getTextImage(String text) {
+        List<TextImage> images = new ArrayList<>();
 
         if (CACHED_TEXT.containsKey(text)) {
-            image = CACHED_TEXT.get(text);
+            return CACHED_TEXT.get(text);
         } else {
             List<Glyph> glyphs = parseGlyphs(text);
-            image = new TextImage(glyphs);
-            CACHED_TEXT.put(text, image);
+
+            List<Glyph> temp = new ArrayList<>();
+            float currentFactor = 1.0F;
+
+            for (Glyph glyph : glyphs) {
+                if (temp.isEmpty()) {
+                    temp.add(glyph);
+                    currentFactor = glyph.getProvider().scalingFactor();
+                } else {
+                    if (currentFactor != glyph.getProvider().scalingFactor()) {
+                        images.add(new TextImage(new ArrayList<>(temp)));
+                        temp.clear();
+
+                        temp.add(glyph);
+                        currentFactor = glyph.getProvider().scalingFactor();
+                    } else {
+                        temp.add(glyph);
+                    }
+                }
+            }
+
+            if (!temp.isEmpty()) {
+                images.add(new TextImage(new ArrayList<>(temp)));
+                temp.clear();
+            }
+
+            CACHED_TEXT.put(text, images);
         }
 
-        return image;
+        return images;
     }
 
     private static Renderable getRenderable(TextInfo info) {
         List<TextImage> textImages = new ArrayList<>();
 
         if (!info.text.contains(" ")) {
-            textImages.add(getTextImage(info.text));
+            textImages.addAll(getTextImage(info.text));
         } else {
             for (String text : info.text.split(" ", -1)) {
-                textImages.add(getTextImage(text));
+                textImages.addAll(getTextImage(text));
             }
         }
 
