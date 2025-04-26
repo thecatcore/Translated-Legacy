@@ -10,7 +10,7 @@ import net.modificationstation.stationapi.api.mod.entrypoint.EventBusPolicy;
 @EventListener
 public final class ReloadListener {
     @EventListener
-    private static void reloadResourceManager(final AssetsReloadEvent event) {
+    public static void reloadResourceManager(final AssetsReloadEvent event) {
         TextRenderer.reload();
     }
 }

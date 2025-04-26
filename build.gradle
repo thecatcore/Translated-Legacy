@@ -1,8 +1,8 @@
 plugins {
 	id 'java-library'
-	id "fabric-loom" version "1.9-SNAPSHOT" apply false
-	id "legacy-looming" version "1.9-SNAPSHOT" apply false
-	id 'babric-loom-extension' version '1.9-SNAPSHOT' apply false
+	id "fabric-loom" version "1.10-SNAPSHOT" apply false
+	id "legacy-looming" version "1.10-SNAPSHOT" apply false
+	id 'babric-loom-extension' version '1.10-SNAPSHOT' apply false
 	id 'maven-publish'
 }
 
