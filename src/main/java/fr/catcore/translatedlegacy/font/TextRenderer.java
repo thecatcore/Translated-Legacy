@@ -13,15 +13,6 @@ import java.util.stream.Collectors;
 public class TextRenderer {
     private static GameProvider game;
     private static final List<GlyphProvider> providers = new ArrayList<>();
-    private static final Map<String, List<TextImage>> CACHED_TEXT = new AccessWeightedMap<>(20000, text -> {
-        text.forEach(t -> {
-            try {
-                t.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-    });
 
     private static final Map<String, List<RenderableItem>> CACHED_TEXT2 = new AccessWeightedMap<>(20000, text -> {});
 
@@ -122,45 +113,6 @@ public class TextRenderer {
         return glyphs;
     }
 
-    private static List<TextImage> getTextImage(String text) {
-        List<TextImage> images = new ArrayList<>();
-
-        if (CACHED_TEXT.containsKey(text)) {
-            return CACHED_TEXT.get(text);
-        } else {
-            List<Glyph> glyphs = parseGlyphs(text);
-
-            List<Glyph> temp = new ArrayList<>();
-            float currentFactor = 1.0F;
-
-            for (Glyph glyph : glyphs) {
-                if (temp.isEmpty()) {
-                    temp.add(glyph);
-                    currentFactor = glyph.getProvider().scalingFactor();
-                } else {
-                    if (currentFactor != glyph.getProvider().scalingFactor()) {
-                        images.add(new TextImage(new ArrayList<>(temp)));
-                        temp.clear();
-
-                        temp.add(glyph);
-                        currentFactor = glyph.getProvider().scalingFactor();
-                    } else {
-                        temp.add(glyph);
-                    }
-                }
-            }
-
-            if (!temp.isEmpty()) {
-                images.add(new TextImage(new ArrayList<>(temp)));
-                temp.clear();
-            }
-
-            CACHED_TEXT.put(text, images);
-        }
-
-        return images;
-    }
-
     private static List<RenderableItem> getTextImage2(String text, TextInfo info) {
         List<RenderableItem> images = new ArrayList<>();
 
@@ -207,31 +159,8 @@ public class TextRenderer {
         return new GlyphContainer(items, info.style);
     }
 
-    private static Renderable getRenderable(TextInfo info) {
-        List<TextImage> textImages = new ArrayList<>();
-
-        if (!info.text.contains(" ")) {
-            textImages.addAll(getTextImage(info.text));
-        } else {
-            for (String text : info.text.split(" ", -1)) {
-                textImages.addAll(getTextImage(text));
-            }
-        }
-
-        return new Renderable(textImages, info.style);
-    }
-
-    private static RenderableText getRenderableText(String string) {
+    private static RenderableText getRenderableText2(String string) {
         return new RenderableText(
-            parseTextInfos(string)
-                    .stream()
-                    .map(TextRenderer::getRenderable)
-                    .collect(Collectors.toList())
-        );
-    }
-
-    private static RenderableText2 getRenderableText2(String string) {
-        return new RenderableText2(
                 parseTextInfos(string)
                         .stream()
                         .map(TextRenderer::getContainer)
@@ -240,7 +169,6 @@ public class TextRenderer {
     }
 
     public static void reload() {
-        CACHED_TEXT.clear();
         CACHED_TEXT2.clear();
 
         providers.forEach(GlyphProvider::unload);
@@ -251,7 +179,7 @@ public class TextRenderer {
 
         Style.init();
 
-        RenderableText2 renderableText = getRenderableText2(string);
+        RenderableText renderableText = getRenderableText2(string);
 
         if (flag) {
             int c = color & -16777216;
@@ -269,14 +197,14 @@ public class TextRenderer {
     }
 
     public static int getTextWidth(String string) {
-        RenderableText2 renderableText = getRenderableText2(string);
+        RenderableText renderableText = getRenderableText2(string);
         return renderableText.getWidth();
     }
 
     public static int getTextHeight(String string) {
         if (string == null || string.isEmpty()) return 8;
 
-        RenderableText2 renderableText = getRenderableText2(string);
+        RenderableText renderableText = getRenderableText2(string);
         int height = renderableText.getHeight();
         return height > 8 ? height - 2 : height;
     }
