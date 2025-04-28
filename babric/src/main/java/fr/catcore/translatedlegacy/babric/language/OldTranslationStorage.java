@@ -14,6 +14,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class OldTranslationStorage {
@@ -72,6 +73,8 @@ public class OldTranslationStorage {
         this.add(null, key, value);
     }
 
+    private static final Pattern NAMESPACE_PLACEHOLDER = Pattern.compile("(^|\\.)@($|\\.)");
+
     protected void add(String modid, String key, String value) {
         key = key.replace("\\:", ":");
 
@@ -85,13 +88,16 @@ public class OldTranslationStorage {
                 || FabricLoader.getInstance().isModLoaded("stationloader")
         )) {
             String newKey = String.copyValueOf(key.toCharArray());
+            String modIdRegex = "$1" + modid + "$2";
 
-            String[] strings = newKey.split("\\.");
-            if (strings.length > 1)
-                strings[1] = modid + ":" + strings[1];
-            newKey = String.join(".", strings);
+            translations.put(NAMESPACE_PLACEHOLDER.matcher(newKey).replaceAll(modIdRegex), value);
 
-            translations.put(newKey, value);
+//            String[] strings = newKey.split("\\.");
+//            if (strings.length > 1)
+//                strings[1] = modid + ":" + strings[1];
+//            newKey = String.join(".", strings);
+//
+//            translations.put(newKey, value);
         }
     }
 

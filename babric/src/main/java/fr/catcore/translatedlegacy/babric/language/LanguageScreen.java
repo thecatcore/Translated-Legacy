@@ -30,7 +30,6 @@ public class LanguageScreen extends Screen {
     protected void buttonClicked(ButtonWidget arg) {
         if (arg.active) {
             if (arg.id == 5) {
-                this.minecraft.textureManager.method_1096();
                 this.minecraft.setScreen(this.parent);
             } else {
                 this.list.buttonClicked(arg);
