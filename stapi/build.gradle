@@ -71,4 +71,6 @@ dependencies {
     modImplementation ("com.github.paulevsGitch:BHCreative:${project.bhcreative_version}") {
         transitive false
     }
+
+    modCompileOnly("maven.modrinth:always-more-items:1.5.3")
 }
