@@ -51,7 +51,7 @@ public class BitmapGlyphProvider implements GlyphProvider {
 
     @Override
     public String getId() {
-        return "minecraft:iiii";
+        return this.texturePath;
     }
 
     @Override

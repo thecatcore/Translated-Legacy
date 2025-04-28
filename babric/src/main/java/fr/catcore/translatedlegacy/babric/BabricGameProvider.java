@@ -3,6 +3,7 @@ package fr.catcore.translatedlegacy.babric;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.render.Tessellator;
+import org.lwjgl.opengl.GL11;
 
 public abstract class BabricGameProvider implements GameProvider {
     private final Minecraft minecraft;
@@ -17,13 +18,48 @@ public abstract class BabricGameProvider implements GameProvider {
     }
 
     @Override
-    public void draw(int x, int y, int width, int height, float u0, float v0, float u1, float v1, float blitOffset) {
+    public void draw(int x, int y, int width, int height, float u0, float v0, float u1, float v1, float blitOffset, boolean italic) {
+        int italicOffset = italic ? 1 : 0;
+
         Tessellator var9;
         (var9 = Tessellator.INSTANCE).startQuads();
-        var9.vertex((float)x, (float)(y + height), blitOffset, u0, v1);
-        var9.vertex((float)(x + width), (float)(y + height), blitOffset, u1, v1);
-        var9.vertex((float)(x + width), (float)y, blitOffset, u1, v0);
-        var9.vertex((float)x, (float)y, blitOffset, u0, v0);
+        var9.vertex((float)x - (float) italicOffset, (float)(y + height), blitOffset, u0, v1);
+        var9.vertex((float)(x + width) - (float) italicOffset, (float)(y + height), blitOffset, u1, v1);
+        var9.vertex((float)(x + width) + (float) italicOffset, (float)y, blitOffset, u1, v0);
+        var9.vertex((float)x + (float) italicOffset, (float)y, blitOffset, u0, v0);
         var9.draw();
+    }
+
+    @Override
+    public void doDecorations(int posX, int posY, float charWidth, float charHeight, boolean strikethroughStyle, boolean underlineStyle) {
+        Tessellator tessellator1 = null;
+        if (strikethroughStyle) {
+            tessellator1 = Tessellator.INSTANCE;
+            GL11.glDisable(GL11.GL_TEXTURE_2D);
+            tessellator1.startQuads();
+            tessellator1.vertex(posX, posY + (charHeight / 2), 0.0);
+            tessellator1.vertex(posX + charWidth, posY + (charHeight / 2), 0.0);
+            tessellator1.vertex(posX + charWidth, posY + (charHeight / 2) - 1.0F, 0.0);
+            tessellator1.vertex(posX, posY + (charHeight / 2) - 1.0F, 0.0);
+            tessellator1.draw();
+            if(!underlineStyle) {
+                GL11.glEnable(GL11.GL_TEXTURE_2D);
+            }
+        }
+
+        if (underlineStyle) {
+            if(!strikethroughStyle) {
+                tessellator1 = Tessellator.INSTANCE;
+                GL11.glDisable(GL11.GL_TEXTURE_2D);
+            }
+            tessellator1.startQuads();
+            int underlineOffset = -1;
+            tessellator1.vertex(posX + (float)underlineOffset, posY + charHeight, 0.0);
+            tessellator1.vertex(posX + charWidth, posY + charHeight, 0.0);
+            tessellator1.vertex(posX + charWidth, posY + charHeight - 1.0F, 0.0);
+            tessellator1.vertex(posX + (float)underlineOffset, posY + charHeight - 1.0F, 0.0);
+            tessellator1.draw();
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
+        }
     }
 }

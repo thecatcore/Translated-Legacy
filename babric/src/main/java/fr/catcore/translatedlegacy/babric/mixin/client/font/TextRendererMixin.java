@@ -17,8 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class TextRendererMixin {
     @Inject(method = "<init>", at = @At("RETURN"))
     public void c$init(GameOptions arg, String string, TextureManager arg1, CallbackInfo ci) {
-        if (!FabricLoader.getInstance().isModLoaded("translated-legacy-stapi"))
-            TranslatedLegacyBabricClient.setGameProvider(((GameOptionsAccessor)arg).getMinecraft());
+        if (!FabricLoader.getInstance().isModLoaded("translated-legacy-stapi")) {
+            TranslatedLegacyBabricClient.setGameProvider(((GameOptionsAccessor) arg).getMinecraft());
+        }
     }
 
     /**

@@ -71,7 +71,11 @@ public class TextRenderer {
                         currentText = new StringBuilder();
                     }
 
-                    currentStyle = newStyle;
+                    if (currentStyle != null) {
+                        currentStyle = currentStyle.append(newStyle);
+                    } else {
+                        currentStyle = newStyle;
+                    }
 
                     continue;
                 }

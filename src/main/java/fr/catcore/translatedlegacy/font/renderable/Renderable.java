@@ -61,7 +61,8 @@ public class Renderable {
             y -= height - 9;
         }
 
-        game.draw(x, y, texture.getRenderWidth(), height, blitOffset);
+        game.draw(x, y, texture.getRenderWidth(), height, blitOffset, style != null ? style.italic : false);
+        if (style != null) game.doDecorations(x, y, texture.getRenderWidth(), height, style.strikethrough, style.underline);
     }
 
     public int getWidth() {

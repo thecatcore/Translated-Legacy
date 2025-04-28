@@ -7,18 +7,62 @@ public class Style {
     public static final Map<Character, Style> VANILLA = new HashMap<>();
     public final Color3f color;
     public final Character character;
+    public final Boolean random, bold, strikethrough, underline, italic, reset;
 
-    public Style(Color3f color, Character character) {
+    public Style(Color3f color, Character character, Boolean random, Boolean bold, Boolean strikethrough, Boolean underline, Boolean italic, Boolean reset) {
         this.color = color;
         this.character = character;
+        this.random = random;
+        this.bold = bold;
+        this.strikethrough = strikethrough;
+        this.underline = underline;
+        this.italic = italic;
+        this.reset = reset;
     }
 
-    @Override
-    public String toString() {
-        return "{}";
-    }
+    public Style append(Style style) {
+        Color3f newColor = this.color;
 
-    private static final String styleCodes = "0123456789abcdef";
+        if (style.color != null) {
+            newColor = style.color;
+        }
+
+        if (style.reset) {
+            newColor = null;
+        }
+
+        Boolean newRandom = this.random;
+
+        if (style.random != null) {
+            newRandom = style.random;
+        }
+
+        Boolean newBold = this.bold;
+
+        if (style.bold != null) {
+            newBold = style.bold;
+        }
+
+        Boolean newStrikethrough = this.strikethrough;
+
+        if (style.strikethrough != null) {
+            newStrikethrough = style.strikethrough;
+        }
+
+        Boolean newUnderline = this.underline;
+
+        if (style.underline != null) {
+            newUnderline = style.underline;
+        }
+
+        Boolean newItalic = this.italic;
+
+        if (style.italic != null) {
+            newItalic = style.italic;
+        }
+
+        return new Style(newColor, null, newRandom, newBold, newStrikethrough, newUnderline, newItalic, false);
+    }
 
     private static boolean init = false;
 
@@ -27,7 +71,16 @@ public class Style {
         float g = (float)(color >> 8 & 255) / 255.0F;
         float b = (float)(color & 255) / 255.0F;
 
-        VANILLA.put(character, new Style(new Color3f(r, g, b), character));
+        VANILLA.put(character, new Style(
+                new Color3f(r, g, b),
+                character,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+        ));
     }
 
     protected static void init() {
@@ -50,5 +103,12 @@ public class Style {
         color('d', 16733695);
         color('e', 16777045);
         color('f', 16777215);
+
+        VANILLA.put('k', new Style(null, 'k', true, null, null, null, null, null));
+        VANILLA.put('l', new Style(null, 'l', null, true, null, null, null, null));
+        VANILLA.put('m', new Style(null, 'm', null, null, true, null, null, null));
+        VANILLA.put('n', new Style(null, 'n', null, null, null, true, null, null));
+        VANILLA.put('o', new Style(null, 'o', null, null, null, null, true, null));
+        VANILLA.put('r', new Style(null, 'r', false, false, false, false, false, true));
     }
 }
