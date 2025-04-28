@@ -22,4 +22,6 @@ public interface GlyphProvider {
     default float scalingFactor() {
         return 1.0F;
     }
+
+    void draw(Glyph glyph, GameProvider game, int x, int y, int width, int height, float blitOffset, boolean italic);
 }

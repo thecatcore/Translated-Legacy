@@ -2,7 +2,9 @@ package fr.catcore.translatedlegacy.font.provider;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import fr.catcore.translatedlegacy.font.NativeTexture;
 import fr.catcore.translatedlegacy.font.TextRenderer;
+import fr.catcore.translatedlegacy.font.api.GameProvider;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
 import fr.catcore.translatedlegacy.util.NativeImage;
@@ -17,7 +19,7 @@ public class BitmapGlyphProvider implements GlyphProvider {
     private final int ascent, height;
     private final List<int[]> chars = new ArrayList<>();
     private final Set<Character> charSet;
-    private NativeImage fullTexture;
+    private NativeTexture fullTexture;
 
     public BitmapGlyphProvider(JsonObject obj) {
         String path = obj.get("file").getAsString();
@@ -69,7 +71,8 @@ public class BitmapGlyphProvider implements GlyphProvider {
 
     @Override
     public void load() throws IOException {
-        fullTexture = NativeImage.read(NativeImage.Format.RGBA, TextRenderer.getGameProvider().getResource(texturePath));
+        NativeImage fullImage = NativeImage.read(NativeImage.Format.RGBA, TextRenderer.getGameProvider().getResource(texturePath));
+        fullTexture = new NativeTexture(fullImage);
 
         int imageWidth = fullTexture.getWidth();
         int imageHeight = fullTexture.getHeight();
@@ -84,7 +87,7 @@ public class BitmapGlyphProvider implements GlyphProvider {
                 int currentChar = row[columnIndex];
 
                 if (currentChar != 0 && currentChar != 32) {
-                    int startingX = findCharacterStartX(fullTexture, columnWidth, rowHeight, columnIndex, rowIndex) + 1;
+                    int startingX = findCharacterStartX(fullImage, columnWidth, rowHeight, columnIndex, rowIndex) + 1;
 
                     int x = columnIndex * columnWidth;
                     int y = rowIndex * rowHeight;
@@ -124,6 +127,11 @@ public class BitmapGlyphProvider implements GlyphProvider {
 
     @Override
     public void upload(Glyph glyph, NativeImage to, int x, int y) {
-        glyph.upload(fullTexture, to, x, y);
+//        glyph.upload(fullTexture, to, x, y);
+    }
+
+    @Override
+    public void draw(Glyph glyph, GameProvider game, int x, int y, int width, int height, float blitOffset, boolean italic) {
+        glyph.draw(game, fullTexture, x, y, width, height, blitOffset, italic);
     }
 }

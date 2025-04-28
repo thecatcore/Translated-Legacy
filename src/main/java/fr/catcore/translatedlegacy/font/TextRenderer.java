@@ -3,8 +3,7 @@ package fr.catcore.translatedlegacy.font;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
-import fr.catcore.translatedlegacy.font.renderable.Renderable;
-import fr.catcore.translatedlegacy.font.renderable.RenderableText;
+import fr.catcore.translatedlegacy.font.renderable.*;
 import fr.catcore.translatedlegacy.util.AccessWeightedMap;
 
 import java.io.IOException;
@@ -23,6 +22,8 @@ public class TextRenderer {
             }
         });
     });
+
+    private static final Map<String, List<RenderableItem>> CACHED_TEXT2 = new AccessWeightedMap<>(20000, text -> {});
 
 
     public static int getSpaceWidth() {
@@ -79,6 +80,8 @@ public class TextRenderer {
                 } else {
                     currentStyle = newStyle;
                 }
+
+                continue;
             }
 
             currentText.append(character);
@@ -158,6 +161,52 @@ public class TextRenderer {
         return images;
     }
 
+    private static List<RenderableItem> getTextImage2(String text, TextInfo info) {
+        List<RenderableItem> images = new ArrayList<>();
+
+        if (CACHED_TEXT2.containsKey(info.getStylePrefix() + text)) {
+            return CACHED_TEXT2.get(info.getStylePrefix() + text);
+        } else {
+            List<Glyph> glyphs = parseGlyphs(text);
+
+            List<RenderableItem> items = glyphs.stream().map(glyph -> {
+                if (info.style != null && info.style.random != null && info.style.random) {
+                    return new ObfuscatedGlyphRenderer(glyph);
+                } else {
+                    return new GlyphRenderer(glyph);
+                }
+            }).collect(Collectors.toList());
+
+            images.addAll(items);
+
+            CACHED_TEXT2.put(info.getStylePrefix() + text, items);
+        }
+
+        return images;
+    }
+
+    private static GlyphContainer getContainer(TextInfo info) {
+        List<RenderableItem> items = new ArrayList<>();
+
+        if (!info.text.contains(" ")) {
+            items.addAll(getTextImage2(info.text, info));
+        } else {
+            String[] texts = info.text.split(" ", -1);
+
+            for (int i = 0; i < texts.length; i++) {
+                String text = texts[i];
+
+                items.addAll(getTextImage2(text, info));
+
+                if (i != texts.length - 1) {
+                    items.add(new SpaceRenderer());
+                }
+            }
+        }
+
+        return new GlyphContainer(items, info.style);
+    }
+
     private static Renderable getRenderable(TextInfo info) {
         List<TextImage> textImages = new ArrayList<>();
 
@@ -181,8 +230,18 @@ public class TextRenderer {
         );
     }
 
+    private static RenderableText2 getRenderableText2(String string) {
+        return new RenderableText2(
+                parseTextInfos(string)
+                        .stream()
+                        .map(TextRenderer::getContainer)
+                        .collect(Collectors.toList())
+        );
+    }
+
     public static void reload() {
         CACHED_TEXT.clear();
+        CACHED_TEXT2.clear();
 
         providers.forEach(GlyphProvider::unload);
     }
@@ -192,7 +251,7 @@ public class TextRenderer {
 
         Style.init();
 
-        RenderableText renderableText = getRenderableText(string);
+        RenderableText2 renderableText = getRenderableText2(string);
 
         if (flag) {
             int c = color & -16777216;
@@ -210,15 +269,53 @@ public class TextRenderer {
     }
 
     public static int getTextWidth(String string) {
-        RenderableText renderableText = getRenderableText(string);
+        RenderableText2 renderableText = getRenderableText2(string);
         return renderableText.getWidth();
     }
 
     public static int getTextHeight(String string) {
         if (string == null || string.isEmpty()) return 8;
 
-        RenderableText renderableText = getRenderableText(string);
+        RenderableText2 renderableText = getRenderableText2(string);
         int height = renderableText.getHeight();
         return height > 8 ? height - 2 : height;
+    }
+
+    public static final String RANDOM_CHARS_PALLETTE = "ÀÁÂÈÊËÍÓÔÕÚßãõğİıŒœŞşŴŵžȇ\u0000\u0000\u0000\u0000\u0000\u0000\u0000 !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u0000ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»░▒▓│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌█▄▌▐▀αβΓπΣσμτΦΘΩδ∞∅∈∩≡±≥≤⌠⌡÷≈°∙·√ⁿ²■\u0000";
+    public static final Random fontRandom = new Random();
+
+    public static Glyph getGlyph(char character) {
+        GlyphProvider provider = getCharRenderer(character);
+        if (provider != null) {
+            if (!provider.isLoaded()) {
+                try {
+                    provider.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (provider.isLoaded()) {
+                return provider.getGlyph(character);
+            } else {
+                return null;
+            }
+        }
+
+        return null;
+    }
+
+    public static Glyph getObfuscated(int width, int height) {
+        Glyph glyph = getGlyph(
+                (char) RANDOM_CHARS_PALLETTE.indexOf(fontRandom.nextInt(RANDOM_CHARS_PALLETTE.length()))
+        );
+
+        while (glyph == null || glyph.getHeight() != height || glyph.getWidth() != width) {
+            glyph = getGlyph(
+                    (char) RANDOM_CHARS_PALLETTE.indexOf(fontRandom.nextInt(RANDOM_CHARS_PALLETTE.length()))
+            );
+        }
+
+        return glyph;
     }
 }

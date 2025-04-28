@@ -1,7 +1,9 @@
 package fr.catcore.translatedlegacy.font.provider;
 
 import com.google.gson.JsonObject;
+import fr.catcore.translatedlegacy.font.NativeTexture;
 import fr.catcore.translatedlegacy.font.TextRenderer;
+import fr.catcore.translatedlegacy.font.api.GameProvider;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
 import fr.catcore.translatedlegacy.util.NativeImage;
@@ -15,7 +17,7 @@ import java.util.Map;
 
 public class LegacyUnicodeProvider implements GlyphProvider {
     private final Map<Character, Glyph> glyphs = new HashMap<>();
-    private final Map<Integer, NativeImage> textures = new HashMap<>();
+    private final Map<Integer, NativeTexture> textures = new HashMap<>();
     private byte[] CHARS_WIDTH = null;
 
     private final String sizesLocation;
@@ -84,7 +86,7 @@ public class LegacyUnicodeProvider implements GlyphProvider {
     public void unload() {
         this.CHARS_WIDTH = null;
 
-        this.textures.values().forEach(NativeImage::close);
+        this.textures.values().forEach(NativeTexture::close);
         this.textures.clear();
         this.glyphs.clear();
     }
@@ -92,7 +94,7 @@ public class LegacyUnicodeProvider implements GlyphProvider {
     @Override
     public void upload(Glyph glyph, NativeImage to, int x, int y) {
         int blockIndex = glyph.getChar()/256;
-        glyph.upload(this.textures.get(blockIndex), to, x, y);
+//        glyph.upload(this.textures.get(blockIndex), to, x, y);
     }
 
     @Override
@@ -106,9 +108,10 @@ public class LegacyUnicodeProvider implements GlyphProvider {
         String path = String.format(String.format(this.template, "%02x"), blockIndex);
 
         NativeImage nativeImage = NativeImage.read(NativeImage.Format.RGBA, TextRenderer.getGameProvider().getResource(path));
+        NativeTexture nativeTexture = new NativeTexture(nativeImage);
 
-        int imageWidth = nativeImage.getWidth();
-        int imageHeight = nativeImage.getHeight();
+        int imageWidth = nativeTexture.getWidth();
+        int imageHeight = nativeTexture.getHeight();
 
         if (imageWidth != 256 || imageHeight != 256) return;
 
@@ -140,7 +143,7 @@ public class LegacyUnicodeProvider implements GlyphProvider {
             }
         }
 
-        this.textures.put(blockIndex, nativeImage);
+        this.textures.put(blockIndex, nativeTexture);
     }
 
     private int findCharacterStartX(NativeImage image, int characterWidth, int characterHeight, int columnIndex, int rowIndex) {
@@ -166,5 +169,11 @@ public class LegacyUnicodeProvider implements GlyphProvider {
 
     private static int getEnd(byte size) {
         return (size & 15) + 1;
+    }
+
+    @Override
+    public void draw(Glyph glyph, GameProvider game, int x, int y, int width, int height, float blitOffset, boolean italic) {
+        int blockIndex = glyph.getChar()/256;
+        glyph.draw(game, this.textures.get(blockIndex), x, y, width, height, blitOffset, italic);
     }
 }

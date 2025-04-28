@@ -23,7 +23,7 @@ public class Style {
     public Style append(Style style) {
         Color3f newColor = this.color;
 
-        if (style.reset) {
+        if (style.reset != null && style.reset) {
             newColor = null;
         }
 

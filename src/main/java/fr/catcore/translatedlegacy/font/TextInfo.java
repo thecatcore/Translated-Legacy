@@ -8,4 +8,12 @@ public class TextInfo {
         this.text = text;
         this.style = style;
     }
+
+    public String getStylePrefix() {
+        if (style != null && style.random != null && style.random) {
+            return "§k";
+        }
+
+        return "";
+    }
 }
