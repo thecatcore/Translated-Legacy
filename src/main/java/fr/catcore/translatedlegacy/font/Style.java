@@ -23,12 +23,13 @@ public class Style {
     public Style append(Style style) {
         Color3f newColor = this.color;
 
-        if (style.color != null) {
-            newColor = style.color;
-        }
-
         if (style.reset) {
             newColor = null;
+        }
+
+        if (style.color != null) {
+            newColor = style.color;
+            style = VANILLA.get('r');
         }
 
         Boolean newRandom = this.random;

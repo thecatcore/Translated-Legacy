@@ -20,6 +20,7 @@ public class Renderable {
     public void render(int x, int y, int defaultColor, int blitOffset, GameProvider game, boolean flag) {
         this.textures.stream().reduce(x, (currentX, textImage) -> {
             if (currentX != x) {
+                game.doDecorations(currentX, y, TextRenderer.getSpaceWidth(), 9, style.strikethrough, style.underline);
                 currentX += TextRenderer.getSpaceWidth();
             }
 

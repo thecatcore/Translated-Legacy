@@ -63,21 +63,21 @@ public class TextRenderer {
 
                 Style newStyle = Style.VANILLA.get(modifier);
 
-                if (newStyle != null) {
-                    i += 1;
+                if (newStyle == null) {
+                    newStyle = Style.VANILLA.get('r');
+                }
 
-                    if (currentText.length() > 0) {
-                        infos.add(new TextInfo(currentText.toString(), currentStyle));
-                        currentText = new StringBuilder();
-                    }
+                i += 1;
 
-                    if (currentStyle != null) {
-                        currentStyle = currentStyle.append(newStyle);
-                    } else {
-                        currentStyle = newStyle;
-                    }
+                if (currentText.length() > 0) {
+                    infos.add(new TextInfo(currentText.toString(), currentStyle));
+                    currentText = new StringBuilder();
+                }
 
-                    continue;
+                if (currentStyle != null) {
+                    currentStyle = currentStyle.append(newStyle);
+                } else {
+                    currentStyle = newStyle;
                 }
             }
 
