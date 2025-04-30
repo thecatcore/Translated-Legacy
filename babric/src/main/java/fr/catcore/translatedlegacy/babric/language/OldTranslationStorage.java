@@ -76,9 +76,8 @@ public class OldTranslationStorage {
     private static final Pattern NAMESPACE_PLACEHOLDER = Pattern.compile("(^|\\.)@($|\\.)");
 
     protected void add(String modid, String key, String value) {
+        // Station API compatibility
         key = key.replace("\\:", ":");
-
-        if (key.contains(":")) modid = key.split(":")[0];
 
         translations.put(key, value);
 
@@ -91,13 +90,6 @@ public class OldTranslationStorage {
             String modIdRegex = "$1" + modid + "$2";
 
             translations.put(NAMESPACE_PLACEHOLDER.matcher(newKey).replaceAll(modIdRegex), value);
-
-//            String[] strings = newKey.split("\\.");
-//            if (strings.length > 1)
-//                strings[1] = modid + ":" + strings[1];
-//            newKey = String.join(".", strings);
-//
-//            translations.put(newKey, value);
         }
     }
 

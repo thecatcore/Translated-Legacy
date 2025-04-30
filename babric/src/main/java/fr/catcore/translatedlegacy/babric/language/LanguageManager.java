@@ -116,12 +116,15 @@ public class LanguageManager {
 
         for (String modId : modidList) {
             String upperCode = hasRegion ? code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH) : "dummy_uppercode";
+            String region = hasRegion ? code.split("_")[1].toUpperCase(Locale.ENGLISH) : "dummy_uppercode";
 
             String[] possiblePaths = new String[]{
                     "/assets/" + modId + "/lang/" + code,
                     "/assets/" + modId + "/lang/" + upperCode,
+                    // Station API compatibility
                     "/assets/" + modId + "/stationapi/lang/" + code,
-                    "/assets/" + modId + "/stationapi/lang/" + upperCode
+                    "/assets/" + modId + "/stationapi/lang/" + upperCode,
+                    "/assets/" + modId + "/stationapi/lang/stats_" + region
             };
 
             for (String possiblePath : possiblePaths) {
@@ -219,7 +222,7 @@ public class LanguageManager {
             String upperCode = code.split("_")[0] + "_" + code.split("_")[1].toUpperCase(Locale.ENGLISH);
 
             loadStAPILang(folder, modid, upperCode, CODE_TO_STORAGE.get(code));
-            loadStAPILang(folder, modid, "stats_" + upperCode, CODE_TO_STORAGE.get(code));
+            loadStAPILang(folder, modid, "stats_" + code.split("_")[1].toUpperCase(Locale.ENGLISH), CODE_TO_STORAGE.get(code));
         }
     }
 
