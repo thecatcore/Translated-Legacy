@@ -14,7 +14,7 @@ public class TextRenderer {
     private static GameProvider game;
     private static final List<GlyphProvider> providers = new ArrayList<>();
 
-    private static final Map<String, List<RenderableItem>> CACHED_TEXT2 = new AccessWeightedMap<>(20000, text -> {});
+    private static final Map<String, List<RenderableItem>> CACHED_TEXT = new AccessWeightedMap<>(20000, text -> {});
 
 
     public static int getSpaceWidth() {
@@ -113,11 +113,11 @@ public class TextRenderer {
         return glyphs;
     }
 
-    private static List<RenderableItem> getTextImage2(String text, TextInfo info) {
+    private static List<RenderableItem> getTextImage(String text, TextInfo info) {
         List<RenderableItem> images = new ArrayList<>();
 
-        if (CACHED_TEXT2.containsKey(info.getStylePrefix() + text)) {
-            return CACHED_TEXT2.get(info.getStylePrefix() + text);
+        if (CACHED_TEXT.containsKey(info.getStylePrefix() + text)) {
+            return CACHED_TEXT.get(info.getStylePrefix() + text);
         } else {
             List<Glyph> glyphs = parseGlyphs(text);
 
@@ -131,7 +131,7 @@ public class TextRenderer {
 
             images.addAll(items);
 
-            CACHED_TEXT2.put(info.getStylePrefix() + text, items);
+            CACHED_TEXT.put(info.getStylePrefix() + text, items);
         }
 
         return images;
@@ -141,14 +141,14 @@ public class TextRenderer {
         List<RenderableItem> items = new ArrayList<>();
 
         if (!info.text.contains(" ")) {
-            items.addAll(getTextImage2(info.text, info));
+            items.addAll(getTextImage(info.text, info));
         } else {
             String[] texts = info.text.split(" ", -1);
 
             for (int i = 0; i < texts.length; i++) {
                 String text = texts[i];
 
-                items.addAll(getTextImage2(text, info));
+                items.addAll(getTextImage(text, info));
 
                 if (i != texts.length - 1) {
                     items.add(new SpaceRenderer());
@@ -159,7 +159,7 @@ public class TextRenderer {
         return new GlyphContainer(items, info.style);
     }
 
-    private static RenderableText getRenderableText2(String string) {
+    private static RenderableText getRenderableText(String string) {
         return new RenderableText(
                 parseTextInfos(string)
                         .stream()
@@ -169,7 +169,7 @@ public class TextRenderer {
     }
 
     public static void reload() {
-        CACHED_TEXT2.clear();
+        CACHED_TEXT.clear();
 
         providers.forEach(GlyphProvider::unload);
     }
@@ -179,7 +179,7 @@ public class TextRenderer {
 
         Style.init();
 
-        RenderableText renderableText = getRenderableText2(string);
+        RenderableText renderableText = getRenderableText(string);
 
         if (flag) {
             int c = color & -16777216;
@@ -197,14 +197,16 @@ public class TextRenderer {
     }
 
     public static int getTextWidth(String string) {
-        RenderableText renderableText = getRenderableText2(string);
+        if (string == null || string.isEmpty()) return 0;
+
+        RenderableText renderableText = getRenderableText(string);
         return renderableText.getWidth();
     }
 
     public static int getTextHeight(String string) {
         if (string == null || string.isEmpty()) return 8;
 
-        RenderableText renderableText = getRenderableText2(string);
+        RenderableText renderableText = getRenderableText(string);
         int height = renderableText.getHeight();
         return height > 8 ? height - 2 : height;
     }
