@@ -34,5 +34,8 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "server": [
+    "server.ServerPlayerNetworkHandlerMixin"
+  ]
 }
