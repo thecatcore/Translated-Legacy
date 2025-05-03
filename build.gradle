@@ -125,7 +125,7 @@ allprojects {
 }
 
 dependencies {
-	include(group: 'com.ibm.icu', name: 'icu4j', version: '71.1')
+//	include(group: 'com.ibm.icu', name: 'icu4j', version: '71.1')
 }
 
 subprojects {
