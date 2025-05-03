@@ -19,6 +19,7 @@ public class LegacyUnicodeProvider implements GlyphProvider {
     private final Map<Character, Glyph> glyphs = new HashMap<>();
     private final Map<Integer, NativeTexture> textures = new HashMap<>();
     private byte[] CHARS_WIDTH = null;
+    private final List<Integer> ignoredBlocks = new ArrayList<>();
 
     private final String sizesLocation;
     private final String template;
@@ -30,6 +31,10 @@ public class LegacyUnicodeProvider implements GlyphProvider {
 
     @Override
     public boolean provides(Character c) {
+        int blockIndex = c/256;
+
+        if (this.ignoredBlocks.contains(blockIndex)) return false;
+
         return c <= 65536;
     }
 
@@ -64,7 +69,7 @@ public class LegacyUnicodeProvider implements GlyphProvider {
     }
 
     @Override
-    public void load() throws IOException {
+    public void load() {
         InputStream inputStream = null;
 
         try {
@@ -89,12 +94,7 @@ public class LegacyUnicodeProvider implements GlyphProvider {
         this.textures.values().forEach(NativeTexture::close);
         this.textures.clear();
         this.glyphs.clear();
-    }
-
-    @Override
-    public void upload(Glyph glyph, NativeImage to, int x, int y) {
-        int blockIndex = glyph.getChar()/256;
-//        glyph.upload(this.textures.get(blockIndex), to, x, y);
+        this.ignoredBlocks.clear();
     }
 
     @Override
@@ -107,7 +107,15 @@ public class LegacyUnicodeProvider implements GlyphProvider {
 
         String path = String.format(String.format(this.template, "%02x"), blockIndex);
 
-        NativeImage nativeImage = NativeImage.read(NativeImage.Format.RGBA, TextRenderer.getGameProvider().getResource(path));
+        InputStream inputStream = TextRenderer.getGameProvider().getResource(path);
+
+        if (inputStream == null) {
+            System.err.println("Failed to find font texture: " + path);
+            this.ignoredBlocks.add(blockIndex);
+            return;
+        }
+
+        NativeImage nativeImage = NativeImage.read(NativeImage.Format.RGBA, inputStream);
         NativeTexture nativeTexture = new NativeTexture(nativeImage);
 
         int imageWidth = nativeTexture.getWidth();

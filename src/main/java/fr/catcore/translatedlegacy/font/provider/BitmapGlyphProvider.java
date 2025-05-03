@@ -126,11 +126,6 @@ public class BitmapGlyphProvider implements GlyphProvider {
     }
 
     @Override
-    public void upload(Glyph glyph, NativeImage to, int x, int y) {
-//        glyph.upload(fullTexture, to, x, y);
-    }
-
-    @Override
     public void draw(Glyph glyph, GameProvider game, int x, int y, int width, int height, float blitOffset, boolean italic) {
         glyph.draw(game, fullTexture, x, y, width, height, blitOffset, italic);
     }

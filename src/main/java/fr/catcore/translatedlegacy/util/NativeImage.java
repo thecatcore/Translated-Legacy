@@ -89,7 +89,7 @@ public final class NativeImage implements AutoCloseable {
         }
         finally {
 //            IOUtils.closeQuietly(inputStream);
-            inputStream.close();
+            if (inputStream != null) inputStream.close();
         }
     }
 

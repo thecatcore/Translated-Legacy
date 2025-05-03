@@ -1,7 +1,5 @@
 package fr.catcore.translatedlegacy.font.api;
 
-import fr.catcore.translatedlegacy.util.NativeImage;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -16,8 +14,6 @@ public interface GlyphProvider {
     boolean isLoaded();
     void load() throws IOException;
     void unload();
-
-    void upload(Glyph glyph, NativeImage to, int x, int y);
 
     default float scalingFactor() {
         return 1.0F;
