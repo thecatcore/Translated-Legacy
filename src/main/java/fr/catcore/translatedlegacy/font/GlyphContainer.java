@@ -42,6 +42,13 @@ public class GlyphContainer {
 
         GL11.glColor4f(red, green, blue, alpha);
 
+        // Decorations disable texturing, so a run containing them can't be batched straight
+        // through - we fall back to flushing per character only where that's actually needed.
+        boolean hasDecorations = style != null && (Boolean.TRUE.equals(style.strikethrough) || Boolean.TRUE.equals(style.underline));
+
+        NativeTexture boundTexture = null;
+        boolean batchOpen = false;
+
         for (RenderableItem renderable : renderables) {
             int currentY = y;
 
@@ -53,20 +60,49 @@ public class GlyphContainer {
 
             renderable.beforeRender();
 
-            renderable.draw(game, currentX, currentY, blitOffset, style != null ? style.italic : false);
+            NativeTexture texture = renderable.getTexture();
+
+            if (texture != null) {
+                if (texture != boundTexture) {
+                    if (batchOpen) {
+                        game.endGlyphBatch();
+                        batchOpen = false;
+                    }
+                    texture.bind();
+                    boundTexture = texture;
+                }
+
+                if (!batchOpen) {
+                    game.beginGlyphBatch();
+                    batchOpen = true;
+                }
+
+                renderable.drawBatched(game, currentX, currentY, blitOffset, style != null ? style.italic : false);
+            }
 
             int currentWidth = renderable.getWidth();
 
             if (style != null) {
                 if (style.bold) {
-                    renderable.draw(game, currentX + 1, currentY, blitOffset, style.italic);
+                    if (texture != null) {
+                        renderable.drawBatched(game, currentX + 1, currentY, blitOffset, style.italic);
+                    }
                     currentWidth++;
+                }
+
+                if (hasDecorations && batchOpen) {
+                    game.endGlyphBatch();
+                    batchOpen = false;
                 }
 
                 game.doDecorations(currentX, y, currentWidth, 9, style.strikethrough, style.underline);
             }
 
             currentX += currentWidth;
+        }
+
+        if (batchOpen) {
+            game.endGlyphBatch();
         }
     }
 

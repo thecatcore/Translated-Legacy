@@ -184,4 +184,9 @@ public class LegacyUnicodeProvider implements GlyphProvider {
         int blockIndex = glyph.getChar()/256;
         glyph.draw(game, this.textures.get(blockIndex), x, y, width, height, blitOffset, italic);
     }
+
+    @Override
+    public NativeTexture getTexture(Glyph glyph) {
+        return this.textures.get(glyph.getChar()/256);
+    }
 }

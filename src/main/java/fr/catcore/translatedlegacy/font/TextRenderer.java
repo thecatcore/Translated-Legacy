@@ -237,12 +237,12 @@ public class TextRenderer {
 
     public static Glyph getObfuscated(int width, int height) {
         Glyph glyph = getGlyph(
-                (char) RANDOM_CHARS_PALLETTE.indexOf(fontRandom.nextInt(RANDOM_CHARS_PALLETTE.length()))
+                RANDOM_CHARS_PALLETTE.charAt(fontRandom.nextInt(RANDOM_CHARS_PALLETTE.length()))
         );
 
         while (glyph == null || glyph.getHeight() != height || glyph.getWidth() != width) {
             glyph = getGlyph(
-                    (char) RANDOM_CHARS_PALLETTE.indexOf(fontRandom.nextInt(RANDOM_CHARS_PALLETTE.length()))
+                    RANDOM_CHARS_PALLETTE.charAt(fontRandom.nextInt(RANDOM_CHARS_PALLETTE.length()))
             );
         }
 

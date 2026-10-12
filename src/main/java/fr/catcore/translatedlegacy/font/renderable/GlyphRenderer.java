@@ -1,5 +1,6 @@
 package fr.catcore.translatedlegacy.font.renderable;
 
+import fr.catcore.translatedlegacy.font.NativeTexture;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import fr.catcore.translatedlegacy.font.api.Glyph;
 
@@ -13,6 +14,26 @@ public class GlyphRenderer implements RenderableItem {
     public void draw(GameProvider game, int x, int y, int blitoffset, boolean italic) {
         this.glyph.getProvider()
                 .draw(
+                        this.glyph,
+                        game,
+                        x,
+                        y,
+                        getWidth(),
+                        getHeight(),
+                        blitoffset,
+                        italic
+                );
+    }
+
+    @Override
+    public NativeTexture getTexture() {
+        return this.glyph.getProvider().getTexture(this.glyph);
+    }
+
+    @Override
+    public void drawBatched(GameProvider game, int x, int y, int blitoffset, boolean italic) {
+        this.glyph.getProvider()
+                .drawBatched(
                         this.glyph,
                         game,
                         x,

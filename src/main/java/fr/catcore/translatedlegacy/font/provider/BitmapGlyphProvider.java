@@ -129,4 +129,9 @@ public class BitmapGlyphProvider implements GlyphProvider {
     public void draw(Glyph glyph, GameProvider game, int x, int y, int width, int height, float blitOffset, boolean italic) {
         glyph.draw(game, fullTexture, x, y, width, height, blitOffset, italic);
     }
+
+    @Override
+    public NativeTexture getTexture(Glyph glyph) {
+        return fullTexture;
+    }
 }

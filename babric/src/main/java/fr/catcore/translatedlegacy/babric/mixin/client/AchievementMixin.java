@@ -28,7 +28,7 @@ public class AchievementMixin {
         this.stringId = j;
 
         LanguageManager.registerCallback(code -> {
-            ((StatAccessor)(Achievement)(Object) this).setName(class_629.method_2049("achievement." + this.stringId));
+            ((StatAccessor) this).setName(class_629.method_2049("achievement." + this.stringId));
         });
     }
 

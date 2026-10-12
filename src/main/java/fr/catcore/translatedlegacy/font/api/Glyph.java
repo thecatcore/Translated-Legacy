@@ -32,15 +32,26 @@ public interface Glyph {
     default void draw(GameProvider gameProvider, NativeTexture texture, int x, int y, int width, int height, float blitOffset, boolean italic) {
         texture.bind();
 
-        int textureWidth = texture.getWidth();
-        int textureHeight = texture.getHeight();
+        float x0 = (float) getXStart() / (float) texture.getWidth();
+        float x1 = (float) (getXStart() + getWidth()) / (float) texture.getWidth();
 
-        float x0 = (float) getXStart() / (float) textureWidth;
-        float x1 = (float) (getXStart() + getWidth()) / (float) textureWidth;
-
-        float y0 = (float) getYStart() / (float) textureHeight;
-        float y1 = (float) (getYStart() + getHeight()) / (float) textureHeight;
+        float y0 = (float) getYStart() / (float) texture.getHeight();
+        float y1 = (float) (getYStart() + getHeight()) / (float) texture.getHeight();
 
         gameProvider.draw(x, y, width, height, x0, y0, x1, y1, blitOffset, italic);
+    }
+
+    /**
+     * Adds this glyph's quad to an already-open batch. Caller is responsible for binding
+     * {@code texture} and for {@link GameProvider#beginGlyphBatch()}/{@link GameProvider#endGlyphBatch()}.
+     */
+    default void drawBatched(GameProvider gameProvider, NativeTexture texture, int x, int y, int width, int height, float blitOffset, boolean italic) {
+        float x0 = (float) getXStart() / (float) texture.getWidth();
+        float x1 = (float) (getXStart() + getWidth()) / (float) texture.getWidth();
+
+        float y0 = (float) getYStart() / (float) texture.getHeight();
+        float y1 = (float) (getYStart() + getHeight()) / (float) texture.getHeight();
+
+        gameProvider.drawBatchedQuad(x, y, width, height, x0, y0, x1, y1, blitOffset, italic);
     }
 }
