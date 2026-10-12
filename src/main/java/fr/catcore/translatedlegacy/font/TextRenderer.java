@@ -15,6 +15,7 @@ public class TextRenderer {
     private static final List<GlyphProvider> providers = new ArrayList<>();
 
     private static final Map<String, List<RenderableItem>> CACHED_TEXT = new AccessWeightedMap<>(20000, text -> {});
+    private static final Map<String, RenderableText> RENDERABLE_TEXT_CACHE = new AccessWeightedMap<>(8192, text -> {});
 
 
     public static int getSpaceWidth() {
@@ -114,27 +115,26 @@ public class TextRenderer {
     }
 
     private static List<RenderableItem> getTextImage(String text, TextInfo info) {
-        List<RenderableItem> images = new ArrayList<>();
+        String key = info.getStylePrefix() + text;
 
-        if (CACHED_TEXT.containsKey(info.getStylePrefix() + text)) {
-            return CACHED_TEXT.get(info.getStylePrefix() + text);
-        } else {
-            List<Glyph> glyphs = parseGlyphs(text);
-
-            List<RenderableItem> items = glyphs.stream().map(glyph -> {
-                if (info.style != null && info.style.random != null && info.style.random) {
-                    return new ObfuscatedGlyphRenderer(glyph);
-                } else {
-                    return new GlyphRenderer(glyph);
-                }
-            }).collect(Collectors.toList());
-
-            images.addAll(items);
-
-            CACHED_TEXT.put(info.getStylePrefix() + text, items);
+        List<RenderableItem> cached = CACHED_TEXT.get(key);
+        if (cached != null) {
+            return cached;
         }
 
-        return images;
+        List<Glyph> glyphs = parseGlyphs(text);
+
+        List<RenderableItem> items = glyphs.stream().map(glyph -> {
+            if (info.style != null && info.style.random != null && info.style.random) {
+                return new ObfuscatedGlyphRenderer(glyph);
+            } else {
+                return new GlyphRenderer(glyph);
+            }
+        }).collect(Collectors.toList());
+
+        CACHED_TEXT.put(key, items);
+
+        return items;
     }
 
     private static GlyphContainer getContainer(TextInfo info) {
@@ -160,16 +160,26 @@ public class TextRenderer {
     }
 
     private static RenderableText getRenderableText(String string) {
-        return new RenderableText(
+        RenderableText cached = RENDERABLE_TEXT_CACHE.get(string);
+        if (cached != null) {
+            return cached;
+        }
+
+        RenderableText renderableText = new RenderableText(
                 parseTextInfos(string)
                         .stream()
                         .map(TextRenderer::getContainer)
                         .collect(Collectors.toList())
         );
+
+        RENDERABLE_TEXT_CACHE.put(string, renderableText);
+
+        return renderableText;
     }
 
     public static void reload() {
         CACHED_TEXT.clear();
+        RENDERABLE_TEXT_CACHE.clear();
 
         providers.forEach(GlyphProvider::unload);
     }

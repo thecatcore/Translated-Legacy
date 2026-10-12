@@ -41,6 +41,28 @@ public abstract class TextRendererMixin {
     }
 
     /**
+     * Binary search for the largest prefix length of {@code toDraw} whose rendered width
+     * stays within {@code maxWidth}. getWidth() is monotonic non-decreasing as the prefix
+     * grows, so this finds the exact same break point as a linear character-by-character
+     * scan would, just in O(log n) calls instead of O(n).
+     */
+    private int findLineBreakIndex(String toDraw, int maxWidth) {
+        int lo = 1, hi = toDraw.length();
+
+        while (lo < hi) {
+            int mid = (lo + hi) >>> 1;
+
+            if (this.getWidth(toDraw.substring(0, mid)) > maxWidth) {
+                hi = mid;
+            } else {
+                lo = mid + 1;
+            }
+        }
+
+        return lo - 1;
+    }
+
+    /**
      * @author CatCore
      * @reason We don't want any of the original code to run. Fix multiline draw height
      */
@@ -64,8 +86,7 @@ public abstract class TextRendererMixin {
 
                 int lineBreakIndex;
                 for(; this.getWidth(toDraw) > k; toDraw = toDraw.substring(lineBreakIndex)) {
-                    for(lineBreakIndex = 0; this.getWidth(toDraw.substring(0, lineBreakIndex + 1)) <= k; ++lineBreakIndex) {
-                    }
+                    lineBreakIndex = findLineBreakIndex(toDraw, k);
 
                     if (!toDraw.substring(0, lineBreakIndex).trim().isEmpty()) {
                         j += fr.catcore.translatedlegacy.font.TextRenderer.draw(toDraw.substring(0, lineBreakIndex), i, j, l, false);
@@ -103,10 +124,8 @@ public abstract class TextRendererMixin {
                 toDraw = toDraw + segments[segmentIndex++] + " ";
             }
             while (this.getWidth(toDraw) > i) {
-                int lineBreakIndex = 0;
-                while (this.getWidth(toDraw.substring(0, lineBreakIndex + 1)) <= i) {
-                    ++lineBreakIndex;
-                }
+                int lineBreakIndex = findLineBreakIndex(toDraw, i);
+
                 if (toDraw.substring(0, lineBreakIndex).trim().length() > 0) {
                     height += fr.catcore.translatedlegacy.font.TextRenderer.getTextHeight(toDraw.substring(0, lineBreakIndex));
                 }
