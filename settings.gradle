@@ -9,8 +9,12 @@ pluginManagement {
             url = 'https://maven.glass-launcher.net/babric'
         }
         maven {
-            name = "legacy-fabric"
-            url = "https://repo.legacyfabric.net/repository/legacyfabric/"
+            name = 'Ornithe Releases'
+            url = 'https://maven.ornithemc.net/releases'
+        }
+        maven {
+            name = 'Ornithe Snapshots'
+            url = 'https://maven.ornithemc.net/snapshots'
         }
         mavenCentral()
         gradlePluginPortal()
