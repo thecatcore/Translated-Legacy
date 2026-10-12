@@ -20,7 +20,7 @@ public interface GameProvider {
     /**
      * Adds a quad to the currently open glyph batch. Does not bind a texture or flush on its own.
      */
-    void drawBatchedQuad(int x, int y, int width, int height, float u0, float v0, float u1, float v1, float blitOffset, boolean italic);
+    void drawBatchedQuad(float x, float y, float width, float height, float u0, float v0, float u1, float v1, float blitOffset, boolean italic);
 
     /**
      * Flushes the quads accumulated since {@link #beginGlyphBatch()} in a single draw call.

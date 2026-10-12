@@ -29,7 +29,7 @@ public interface GlyphProvider {
      */
     NativeTexture getTexture(Glyph glyph);
 
-    default void drawBatched(Glyph glyph, GameProvider game, int x, int y, int width, int height, float blitOffset, boolean italic) {
+    default void drawBatched(Glyph glyph, GameProvider game, float x, float y, float width, float height, float blitOffset, boolean italic) {
         glyph.drawBatched(game, getTexture(glyph), x, y, width, height, blitOffset, italic);
     }
 }

@@ -22,6 +22,12 @@ public class BitmapGlyph implements Glyph {
     }
 
     @Override
+    public float getInkRight() {
+        // The width includes the one column of spacing that follows the glyph
+        return Math.max(0, this.width - 1);
+    }
+
+    @Override
     public int getHeight() {
         return this.height;
     }

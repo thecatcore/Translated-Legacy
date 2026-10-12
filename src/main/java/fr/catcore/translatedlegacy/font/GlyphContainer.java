@@ -87,15 +87,18 @@ public class GlyphContainer {
                     if (texture != null) {
                         renderable.drawBatched(game, currentX + 1, currentY, blitOffset, style.italic);
                     }
-                    currentWidth++;
+                    // Combining marks take no space of their own, their base letter already got wider
+                    if (currentWidth > 0) currentWidth++;
                 }
 
-                if (hasDecorations && batchOpen) {
-                    game.endGlyphBatch();
-                    batchOpen = false;
-                }
+                if (hasDecorations && currentWidth > 0) {
+                    if (batchOpen) {
+                        game.endGlyphBatch();
+                        batchOpen = false;
+                    }
 
-                game.doDecorations(currentX, y, currentWidth, 9, style.strikethrough, style.underline);
+                    game.doDecorations(currentX, y, currentWidth, 9, Boolean.TRUE.equals(style.strikethrough), Boolean.TRUE.equals(style.underline));
+                }
             }
 
             currentX += currentWidth;

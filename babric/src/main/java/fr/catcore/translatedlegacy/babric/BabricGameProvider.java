@@ -30,14 +30,14 @@ public abstract class BabricGameProvider implements GameProvider {
     }
 
     @Override
-    public void drawBatchedQuad(int x, int y, int width, int height, float u0, float v0, float u1, float v1, float blitOffset, boolean italic) {
-        int italicOffset = italic ? 1 : 0;
+    public void drawBatchedQuad(float x, float y, float width, float height, float u0, float v0, float u1, float v1, float blitOffset, boolean italic) {
+        float italicOffset = italic ? 1 : 0;
 
         Tessellator tessellator = Tessellator.INSTANCE;
-        tessellator.vertex((float)x - (float) italicOffset, (float)(y + height), blitOffset, u0, v1);
-        tessellator.vertex((float)(x + width) - (float) italicOffset, (float)(y + height), blitOffset, u1, v1);
-        tessellator.vertex((float)(x + width) + (float) italicOffset, (float)y, blitOffset, u1, v0);
-        tessellator.vertex((float)x + (float) italicOffset, (float)y, blitOffset, u0, v0);
+        tessellator.vertex(x - italicOffset, y + height, blitOffset, u0, v1);
+        tessellator.vertex(x + width - italicOffset, y + height, blitOffset, u1, v1);
+        tessellator.vertex(x + width + italicOffset, y, blitOffset, u1, v0);
+        tessellator.vertex(x + italicOffset, y, blitOffset, u0, v0);
     }
 
     @Override

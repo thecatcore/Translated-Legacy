@@ -5,6 +5,7 @@ import fr.catcore.translatedlegacy.font.api.Glyph;
 import fr.catcore.translatedlegacy.font.api.GlyphProvider;
 import fr.catcore.translatedlegacy.font.renderable.*;
 import fr.catcore.translatedlegacy.util.AccessWeightedMap;
+import fr.catcore.translatedlegacy.util.TextUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -86,34 +87,6 @@ public class TextRenderer {
         return infos;
     }
 
-    private static List<Glyph> parseGlyphs(String text) {
-        List<Glyph> glyphs = new ArrayList<>();
-
-        for (int i = 0; i < text.length(); i++) {
-            char character = text.charAt(i);
-
-            GlyphProvider provider = getCharRenderer((char) character);
-
-            if (provider != null) {
-                if (!provider.isLoaded()) {
-                    try {
-                        provider.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (provider.isLoaded()) {
-                    Glyph glyph = provider.getGlyph((char) character);
-                    if (glyph != null) glyphs.add(glyph);
-                }
-            } else {
-            }
-        }
-
-        return glyphs;
-    }
-
     private static List<RenderableItem> getTextImage(String text, TextInfo info) {
         String key = info.getStylePrefix() + text;
 
@@ -122,19 +95,145 @@ public class TextRenderer {
             return cached;
         }
 
-        List<Glyph> glyphs = parseGlyphs(text);
+        boolean obfuscated = info.style != null && info.style.random != null && info.style.random;
+        List<RenderableItem> items = new ArrayList<>();
 
-        List<RenderableItem> items = glyphs.stream().map(glyph -> {
-            if (info.style != null && info.style.random != null && info.style.random) {
-                return new ObfuscatedGlyphRenderer(glyph);
-            } else {
-                return new GlyphRenderer(glyph);
+        int clusterStart = 0;
+
+        while (clusterStart < text.length()) {
+            int clusterEnd = clusterStart + 1;
+
+            while (clusterEnd < text.length() && TextUtils.continuesCluster(text.charAt(clusterEnd))) {
+                clusterEnd++;
             }
-        }).collect(Collectors.toList());
+
+            if (obfuscated) {
+                // Only the base letter: getObfuscated() may never find a random glyph as narrow as a mark
+                Glyph glyph = getVisibleGlyph(text.charAt(clusterStart));
+                if (glyph != null) items.add(new ObfuscatedGlyphRenderer(glyph));
+            } else {
+                addCluster(text, clusterStart, clusterEnd, items);
+            }
+
+            clusterStart = clusterEnd;
+        }
 
         CACHED_TEXT.put(key, items);
 
         return items;
+    }
+
+    private static Glyph getVisibleGlyph(char character) {
+        if (TextUtils.isBidiControl(character) || character == '\u200C' || character == '\u200D') return null;
+
+        return getGlyph(character);
+    }
+
+    /**
+     * Lays out one grapheme cluster: a base letter followed by the combining marks drawn on it.
+     * <p>
+     * Marks are positioned using the dotted circle the font drew them around (see
+     * {@link Glyph#getMarkCircleX()}): marks that take no space are centered on the base letter,
+     * spacing marks (most Indic vowel signs) are split at the circle's center, the half before it
+     * is put before the base letter and the half after it after the base letter.
+     */
+    private static void addCluster(String text, int start, int end, List<RenderableItem> items) {
+        char baseChar = text.charAt(start);
+        Glyph base = getVisibleGlyph(baseChar);
+
+        List<Glyph> marks = new ArrayList<>();
+        List<Character> markChars = new ArrayList<>();
+
+        for (int i = start + 1; i < end; i++) {
+            char c = text.charAt(i);
+            Glyph glyph = TextUtils.isCombiningMark(c) ? getVisibleGlyph(c) : null;
+
+            if (glyph != null) {
+                marks.add(glyph);
+                markChars.add(c);
+            }
+        }
+
+        if (base == null || TextUtils.isCombiningMark(baseChar) || marks.isEmpty()) {
+            // Nothing to combine: a lone letter, or marks with no letter to attach to
+            if (base != null) items.add(new GlyphRenderer(base));
+            for (Glyph mark : marks) items.add(new GlyphRenderer(mark));
+            return;
+        }
+
+        // A font's marks are drawn to fit its own letters, so take the letter from the marks' font if it has one
+        GlyphProvider markProvider = marks.get(0).getProvider();
+
+        if (base.getProvider() != markProvider && markProvider.provides(baseChar)) {
+            Glyph sameFontBase = markProvider.getGlyph(baseChar);
+            if (sameFontBase != null && sameFontBase.getWidth() > 0) base = sameFontBase;
+        }
+
+        float baseScale = base.getProvider().scalingFactor();
+        float baseLeft = base.getInkLeft() * baseScale;
+        float baseRight = base.getInkRight() * baseScale;
+        float baseAnchor = base.getAnchorX() * baseScale;
+
+        GlyphRenderer baseRenderer = new GlyphRenderer(base);
+        List<GlyphRenderer> parts = new ArrayList<>();
+        parts.add(baseRenderer);
+
+        float left = 0;
+        float right = baseRenderer.getWidth();
+
+        for (int i = 0; i < marks.size(); i++) {
+            Glyph mark = marks.get(i);
+            float scale = mark.getProvider().scalingFactor();
+            int circle = mark.getMarkCircleX();
+            boolean spacing = Character.getType(markChars.get(i)) == Character.COMBINING_SPACING_MARK;
+
+            if (circle < 0) {
+                if (spacing) {
+                    GlyphRenderer renderer = new GlyphRenderer(mark, right);
+                    parts.add(renderer);
+                    right += renderer.getWidth();
+                } else {
+                    parts.add(new GlyphRenderer(mark, baseAnchor - mark.getAnchorX() * scale));
+                }
+            } else if (!spacing) {
+                parts.add(new GlyphRenderer(mark, baseAnchor - (circle + 3) * scale));
+            } else {
+                int middle = circle + 3;
+                int width = mark.getWidth();
+
+                // The circle's left edge goes on the base letter's left edge...
+                float beforeX = baseLeft - circle * scale;
+                parts.add(new GlyphRenderer(mark, beforeX, 0, Math.min(middle, width)));
+
+                if (mark.getInkLeft() < circle) {
+                    left = Math.min(left, beforeX + mark.getInkLeft() * scale);
+                }
+
+                // ...and its right edge on the base letter's right edge
+                float afterX = baseRight - (circle + 6) * scale;
+
+                if (width > middle) {
+                    parts.add(new GlyphRenderer(mark, afterX, middle, width));
+                }
+
+                if (width > circle + 6) {
+                    right = Math.max(right, afterX + width * scale);
+                }
+            }
+        }
+
+        float shift = -(float) Math.floor(left);
+        int advance = (int) Math.ceil(right + shift);
+
+        for (GlyphRenderer part : parts) {
+            part.shift(shift);
+            part.setAdvance(0);
+        }
+
+        // Every part is drawn from the cluster's start, then the last one moves the pen past the whole cluster
+        parts.get(parts.size() - 1).setAdvance(advance);
+
+        items.addAll(parts);
     }
 
     private static GlyphContainer getContainer(TextInfo info) {
@@ -166,7 +265,7 @@ public class TextRenderer {
         }
 
         RenderableText renderableText = new RenderableText(
-                parseTextInfos(string)
+                BidiReorderer.toVisualOrder(parseTextInfos(string))
                         .stream()
                         .map(TextRenderer::getContainer)
                         .collect(Collectors.toList())

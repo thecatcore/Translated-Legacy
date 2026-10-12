@@ -2,6 +2,7 @@ package fr.catcore.translatedlegacy.babric.mixin.client.font;
 
 import fr.catcore.translatedlegacy.babric.TranslatedLegacyBabricClient;
 import fr.catcore.translatedlegacy.babric.mixin.client.GameOptionsAccessor;
+import fr.catcore.translatedlegacy.util.TextUtils;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.option.GameOptions;
@@ -41,102 +42,54 @@ public abstract class TextRendererMixin {
     }
 
     /**
-     * Binary search for the largest prefix length of {@code toDraw} whose rendered width
-     * stays within {@code maxWidth}. getWidth() is monotonic non-decreasing as the prefix
-     * grows, so this finds the exact same break point as a linear character-by-character
-     * scan would, just in O(log n) calls instead of O(n).
+     * @author CatCore
+     * @reason We don't want any of the original code to run. Fix multiline draw height,
+     * wrap at proper line break opportunities (Thai has no spaces between words) and never
+     * split a letter from its combining marks.
      */
-    private int findLineBreakIndex(String toDraw, int maxWidth) {
-        int lo = 1, hi = toDraw.length();
+    @Overwrite
+    public void method_1904(String string, int i, int j, int k, int l) {
+        for (String paragraph : string.split("\n")) {
+            int paragraphHeight = 0;
 
-        while (lo < hi) {
-            int mid = (lo + hi) >>> 1;
+            for (String line : TextUtils.wrapParagraph(paragraph, k, this::getWidth)) {
+                if (line.trim().isEmpty()) continue;
 
-            if (this.getWidth(toDraw.substring(0, mid)) > maxWidth) {
-                hi = mid;
-            } else {
-                lo = mid + 1;
+                int lineHeight = fr.catcore.translatedlegacy.font.TextRenderer.draw(line, i, j, l, false);
+                j += lineHeight;
+                paragraphHeight += lineHeight;
+            }
+
+            if (paragraphHeight < 8) {
+                j += fr.catcore.translatedlegacy.font.TextRenderer.getTextHeight(paragraph);
             }
         }
-
-        return lo - 1;
     }
 
     /**
      * @author CatCore
-     * @reason We don't want any of the original code to run. Fix multiline draw height
-     */
-    @Overwrite
-    public void method_1904(String string, int i, int j, int k, int l) {
-        String[] lines = string.split("\n");
-        if (lines.length > 1) {
-            for(int lineIndex = 0; lineIndex < lines.length; ++lineIndex) {
-                this.method_1904(lines[lineIndex], i, j, k, l);
-                j += this.method_1902(lines[lineIndex], k);
-            }
-
-        } else {
-            String[] segments = string.split(" ");
-            int segmentIndex = 0;
-
-            while(segmentIndex < segments.length) {
-                String toDraw;
-                for(toDraw = segments[segmentIndex++] + " "; segmentIndex < segments.length && this.getWidth(toDraw + segments[segmentIndex]) < k; toDraw = toDraw + segments[segmentIndex++] + " ") {
-                }
-
-                int lineBreakIndex;
-                for(; this.getWidth(toDraw) > k; toDraw = toDraw.substring(lineBreakIndex)) {
-                    lineBreakIndex = findLineBreakIndex(toDraw, k);
-
-                    if (!toDraw.substring(0, lineBreakIndex).trim().isEmpty()) {
-                        j += fr.catcore.translatedlegacy.font.TextRenderer.draw(toDraw.substring(0, lineBreakIndex), i, j, l, false);
-                    }
-                }
-
-                if (!toDraw.trim().isEmpty()) {
-                    j += fr.catcore.translatedlegacy.font.TextRenderer.draw(toDraw, i, j, l, false);
-                }
-            }
-
-        }
-    }
-
-    /**
-     * @author
-     * @reason
+     * @reason Must wrap exactly like {@link #method_1904(String, int, int, int, int)}
      */
     @Overwrite
     public int method_1902(String string, int i) {
-        String[] lines = string.split("\n");
-        if (lines.length > 1) {
-            int lineIndex = 0;
-            for (int j = 0; j < lines.length; ++j) {
-                lineIndex += this.method_1902(lines[j], i);
-            }
-            return lineIndex;
-        }
-        String[] segments = string.split(" ");
-        int segmentIndex = 0;
         int height = 0;
-        while (segmentIndex < segments.length) {
-            String toDraw = segments[segmentIndex++] + " ";
-            while (segmentIndex < segments.length && this.getWidth(toDraw + segments[segmentIndex]) < i) {
-                toDraw = toDraw + segments[segmentIndex++] + " ";
-            }
-            while (this.getWidth(toDraw) > i) {
-                int lineBreakIndex = findLineBreakIndex(toDraw, i);
 
-                if (toDraw.substring(0, lineBreakIndex).trim().length() > 0) {
-                    height += fr.catcore.translatedlegacy.font.TextRenderer.getTextHeight(toDraw.substring(0, lineBreakIndex));
-                }
-                toDraw = toDraw.substring(lineBreakIndex);
+        for (String paragraph : string.split("\n")) {
+            int paragraphHeight = 0;
+
+            for (String line : TextUtils.wrapParagraph(paragraph, i, this::getWidth)) {
+                if (line.trim().isEmpty()) continue;
+
+                paragraphHeight += fr.catcore.translatedlegacy.font.TextRenderer.getTextHeight(line);
             }
-            if (toDraw.trim().length() <= 0) continue;
-            height += fr.catcore.translatedlegacy.font.TextRenderer.getTextHeight(toDraw);
+
+            if (paragraphHeight < 8) {
+                paragraphHeight += fr.catcore.translatedlegacy.font.TextRenderer.getTextHeight(paragraph);
+            }
+
+            height += paragraphHeight;
         }
-        if (height < 8) {
-            height += fr.catcore.translatedlegacy.font.TextRenderer.getTextHeight(string);
-        }
+
         return height;
     }
 //    /**
