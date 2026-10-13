@@ -26,12 +26,12 @@ public abstract class MinecraftMixin {
                 : I18n.getTranslation("menu.loadingLevel");
     }
 
-    @ModifyArg(method = "prepareWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/ProgressRenderer;method_1796(Ljava/lang/String;)V", ordinal = 0))
+    @ModifyArg(method = "prepareWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/ProgressRenderer;progressStage(Ljava/lang/String;)V", ordinal = 0))
     public String method_2130$lang1(String string) {
         return I18n.getTranslation("menu.generatingTerrain");
     }
 
-    @ModifyArg(method = "prepareWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/ProgressRenderer;method_1796(Ljava/lang/String;)V", ordinal = 1))
+    @ModifyArg(method = "prepareWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/ProgressRenderer;progressStage(Ljava/lang/String;)V", ordinal = 1))
     public String method_2130$lang2(String string) {
         return I18n.getTranslation("menu.simulating");
     }

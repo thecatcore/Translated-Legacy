@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import fr.catcore.translatedlegacy.TranslatedLegacy;
 import fr.catcore.translatedlegacy.babric.mixin.TranslationStorageAccessor;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.resource.language.TranslationStorage;
 
@@ -52,6 +53,11 @@ public class LanguageManager {
             loadConfig(true);
 
             loadLanguage(DEFAULT_LANGUAGE);
+
+            if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
+                CURRENT_LANGUAGE_CODE = DEFAULT_LANGUAGE;
+            }
+
             loadLanguage(CURRENT_LANGUAGE_CODE);
 
             addMissingTranslations();

@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(WorldSaveConflictScreen.class)
-public class LevelSaveConflictScreenMixin {
+public class WorldSaveConflictScreenMixin {
 
     @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V"))
     public String init$lang(String string) {

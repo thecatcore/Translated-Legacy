@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(SignEditScreen.class)
-public class EditSignScreenMixin {
+public class SignEditScreenMixin {
 
     @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V"))
     public String init$lang(String string) {

@@ -5,38 +5,40 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "I18nMixin",
-    "LevelMixin",
-    "nostation.StatMixin",
+    "OpenScreenS2CPacketMixin",
     "TranslationStorageAccessor",
     "TranslationStorageMixin",
-    "inventory.ChestMixin",
+    "WorldMixin",
+    "inventory.ChestBlockEntityMixin",
     "inventory.DoubleInventoryMixin",
-    "inventory.MinecartMixin",
-    "inventory.PlayerInventoryMixin"
+    "inventory.MinecartEntityMixin",
+    "inventory.PlayerInventoryMixin",
+    "nostation.StatMixin"
   ],
   "client": [
-    "client.AchievementMixin",
+    "nostation.AchievementMixin",
     "client.AchievementsScreenMixin",
+    "client.ChatMessagePacketMixin",
     "client.ChatScreenMixin",
     "client.DeathScreenMixin",
-    "client.EditSignScreenMixin",
+    "client.GameMenuScreenMixin",
     "client.GameOptionsAccessor",
-    "client.LevelSaveConflictScreenMixin",
     "client.MinecraftMixin",
     "client.OptionsScreenMixin",
-    "client.PauseScreenMixin",
+    "client.SignEditScreenMixin",
+    "client.WorldSaveConflictScreenMixin",
     "client.container.CraftingScreenMixin",
     "client.container.DispenserScreenMixin",
     "client.container.FurnaceScreenMixin",
-    "client.container.PlayerInventoryScreenMixin",
+    "client.container.InventoryScreenMixin",
     "client.font.TextRendererMixin",
-    "client.gui.widget.TextboxMixin",
+    "client.gui.widget.TextFieldWidgetMixin",
     "client.screen.ScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "server": [
-    "server.ServerPlayerNetworkHandlerMixin"
+    "server.ServerPlayNetworkHandlerMixin"
   ]
 }

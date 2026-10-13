@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(InventoryScreen.class)
-public abstract class PlayerInventoryScreenMixin {
+public abstract class InventoryScreenMixin {
 
     @ModifyArg(
             method = "drawForeground",

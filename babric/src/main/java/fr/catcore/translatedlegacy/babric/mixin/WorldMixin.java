@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(World.class)
-public class LevelMixin {
+public class WorldMixin {
 
     @ModifyArg(method = "saveWithLoadingDisplay", index = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/LoadingDisplay;progressStartNoAbort(Ljava/lang/String;)V"))
     private String saveLevel$translate(String string) {

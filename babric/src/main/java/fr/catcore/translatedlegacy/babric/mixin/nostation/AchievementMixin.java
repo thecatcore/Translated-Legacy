@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.babric.mixin.client;
+package fr.catcore.translatedlegacy.babric.mixin.nostation;
 
 import fr.catcore.translatedlegacy.babric.accessor.StatAccessor;
 import fr.catcore.translatedlegacy.babric.language.LanguageManager;
@@ -19,7 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Achievement.class)
 public class AchievementMixin {
 
-    @Shadow private AchievementStatFormatter translationHelper;
+    @Shadow
+    private AchievementStatFormatter translationHelper;
     @Unique
     private String stringId;
 
