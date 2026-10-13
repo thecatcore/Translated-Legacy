@@ -2,7 +2,7 @@
     "providers": [
         {
             "type": "bitmap",
-            "file": "minecraft:font/nonlatin_european.png",
+            "file": "translated-legacy:font/nonlatin_european.png",
             "ascent": 7,
             "chars": [
                 "\u00a1\u2030\u00ad\u00b7\u20b4\u2260\u00bf\u00d7\u00d8\u00de\u04bb\u00f0\u00f8\u00fe\u0391\u0392",
@@ -76,7 +76,7 @@
         },
         {
             "type": "bitmap",
-            "file": "minecraft:font/accented.png",
+            "file": "translated-legacy:font/accented.png",
             "height": 12,
             "ascent": 10,
             "chars": [
@@ -159,7 +159,7 @@
         },
         {
             "type": "bitmap",
-            "file": "minecraft:font/ascii.png",
+            "file": "translated-legacy:font/ascii.png",
             "ascent": 7,
             "chars": [
                 "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
@@ -182,8 +182,8 @@
         },
         {
             "type": "legacy_unicode",
-            "sizes": "minecraft:font/glyph_sizes.bin",
-            "template": "minecraft:font/unicode_page_%s.png"
+            "sizes": "translated-legacy:font/glyph_sizes.bin",
+            "template": "translated-legacy:font/unicode_page_%s.png"
         }
     ]
 }

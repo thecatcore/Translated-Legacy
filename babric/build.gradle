@@ -1,5 +1,40 @@
-repositories {
+// Babric ecosystem: this project nests the common code and every babric subproject into a single mod.
+allprojects {
+	apply plugin: 'net.fabricmc.fabric-loom-remap'
+	apply plugin: 'babric-loom-extension'
+
+	repositories {
+		maven {
+			url = "https://maven.glass-launcher.net/snapshots"
+		}
+		maven {
+			url = "https://maven.glass-launcher.net/releases"
+		}
+	}
+
+	dependencies {
+		minecraft "com.mojang:minecraft:${project.minecraft_version}"
+		mappings "net.glasslauncher:biny:${project.biny_mappings}:v2"
+		modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
+
+		implementation "com.google.code.gson:gson:2.8.9"
+		implementation "blue.endless:jankson:1.2.1"
+	}
 }
 
-dependencies {
+subprojects {
+	dependencies {
+		api project(':common')
+	}
+}
+
+evaluationDependsOn(':common')
+evaluationDependsOnChildren()
+
+remapJar {
+	nestedJars.from project(':common').tasks.named('jar')
+
+	subprojects.each {
+		nestedJars.from it.tasks.named('remapJar')
+	}
 }

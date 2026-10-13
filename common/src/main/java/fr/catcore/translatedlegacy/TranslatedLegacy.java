@@ -54,7 +54,7 @@ public class TranslatedLegacy {
     }
 
     public static File getLangFile(String mcVersion, String code) {
-        File versionFolder = new File(CONFIG_FOLDER, mcVersion);
+        File versionFolder = new File(CONFIG_FOLDER, mcVersion + "/assets/minecraft/lang");
 
         boolean update = false;
 

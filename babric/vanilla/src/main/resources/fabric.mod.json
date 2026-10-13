@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "translated-legacy",
+  "id": "translated-legacy-babric",
   "version": "${version}",
 
-  "name": "Translated Legacy",
+  "name": "Translated Legacy Babric Compatibility Module",
   "description": "",
   "authors": [
     "Cat Core"
@@ -18,13 +18,16 @@
 
   "environment": "*",
   "entrypoints": {
-    "init": [
+    "main": [
+      "fr.catcore.translatedlegacy.babric.TranslatedLegacyBabric"
     ]
   },
   "mixins": [
+    "translated-legacy-babric.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": "*"
+    "fabricloader": "*",
+    "minecraft": "1.0.0-beta.7.3"
   }
 }

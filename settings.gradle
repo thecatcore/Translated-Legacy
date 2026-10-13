@@ -21,6 +21,23 @@ pluginManagement {
     }
 }
 
-include "babric"
-include "stapi"
-//include "dummy"
+rootProject.name = 'translated-legacy'
+
+// Minecraft agnostic code
+include 'common'
+
+// Babric ecosystem (b1.7.3)
+include 'babric'
+include 'babric:vanilla'
+include 'babric:stapi'
+
+// OrnitheMC ecosystem
+include 'ornithe'
+
+// Every other directory of ornithe/ with a gradle.properties is a versioned subproject,
+// named after the Minecraft range it supports (ex: ornithe/mc1.3.1-mc1.6.4)
+file('ornithe').eachDir { dir ->
+    if (dir.name != 'common' && new File(dir, 'gradle.properties').exists()) {
+        include "ornithe:${dir.name}"
+    }
+}

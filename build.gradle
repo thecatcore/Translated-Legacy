@@ -1,88 +1,33 @@
+buildscript {
+	dependencies {
+		// Used by ornithe to convert Minecraft version names into semantic versions
+		classpath "net.fabricmc:fabric-loader:${loader_version}"
+	}
+}
+
 plugins {
-	id 'java-library'
 	id "net.fabricmc.fabric-loom-remap" version "1.17-SNAPSHOT" apply false
 	id "ploceus" version "1.17-SNAPSHOT" apply false
 	id 'babric-loom-extension' version '1.17-SNAPSHOT' apply false
-	id 'maven-publish'
 }
 
-enum FabricKind {
-	UPSTREAM("net.fabricmc:yarn"),
-	BABRIC("net.glasslauncher:biny");
-
-	String mappingsGroup;
-
-	FabricKind(String mappingsGroup) {
-		this.mappingsGroup = mappingsGroup;
-	}
-}
-
-class VersionInfo {
-	String mc, mappings;
-	FabricKind kind;
-	List<String> projectNames;
-
-	VersionInfo(String mc, String mappings, FabricKind kind, String... projectNames) {
-		this.mc = mc;
-		this.mappings = mappings;
-		this.kind = kind;
-		this.projectNames = Arrays.asList(projectNames);
-	}
-
-	public static final VersionInfo[] VERSIONS = [
-			new VersionInfo("b1.7.3", "b1.7.3+e1fe071", FabricKind.BABRIC, "babric", "stapi"),
-			new VersionInfo("1.21.4", "8", FabricKind.UPSTREAM, "dummy"),
-	];
-
-	static VersionInfo getInfo(String projectName) {
-		for (def info in VERSIONS) {
-            if (projectName == info.mc || info.projectNames.contains(projectName)) {
-                return info
-            }
-        }
-        
-		return VERSIONS[0]
-	}
-}
-
-base.archivesName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
-
-allprojects {
-	def versionInfo = VersionInfo.getInfo(project.name);
-
+subprojects {
+	apply plugin: 'java-library'
 	apply plugin: 'maven-publish'
-	apply plugin: 'net.fabricmc.fabric-loom-remap'
 
-	if (versionInfo.kind == FabricKind.BABRIC) {
-		apply plugin: 'babric-loom-extension'
-	}
+	version = rootProject.mod_version
+	// Nested projects get their own group, otherwise :common and :ornithe:common would be considered the same module
+	group = project.parent == rootProject ? rootProject.maven_group : "${rootProject.maven_group}.${project.parent.name}"
 
-	version = rootProject.version
-	group = rootProject.group
+	// :babric:vanilla -> translated-legacy-babric-vanilla
+	base.archivesName = "${rootProject.archives_base_name}-${project.path.substring(1).replace(':', '-')}"
 
 	repositories {
 		maven {
-			url = "https://maven.glass-launcher.net/snapshots"
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
 		}
-		maven {
-			url = "https://maven.glass-launcher.net/releases"
-		}
-	}
-
-	loom {
-	}
-
-	dependencies {
-		minecraft "com.mojang:minecraft:$versionInfo.mc"
-		mappings "$versionInfo.kind.mappingsGroup:${versionInfo.mappings}:v2"
-		modImplementation "net.fabricmc:fabric-loader:$rootProject.loader_version"
-
-		if (versionInfo.kind == FabricKind.BABRIC) {
-			implementation "com.google.code.gson:gson:2.8.9"
-			implementation "blue.endless:jankson:1.2.1"
-		}
+		mavenCentral()
 	}
 
 	processResources {
@@ -91,9 +36,16 @@ allprojects {
 		filesMatching("fabric.mod.json") {
 			expand "version": project.version
 		}
+
+		// Every mod of the project shares the same icon
+		from(rootProject.file("common/src/main/resources")) {
+			include "assets/translated-legacy/icon.png"
+		}
+		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 	}
 
 	tasks.withType(JavaCompile).configureEach {
+		it.options.encoding = "UTF-8"
 		it.options.release = 8
 	}
 
@@ -106,45 +58,26 @@ allprojects {
 	}
 
 	jar {
-		from("LICENSE") {
+		from(rootProject.file("LICENSE")) {
 			rename { "${it}_${project.base.archivesName.get()}"}
 		}
 	}
-}
 
-dependencies {
-}
-
-subprojects {
-	project.base.archivesName = "${rootProject.base.archivesName.get()}-${project.name}"
-
-	dependencies {
-		api(project.dependencies.project(path: ":", configuration: 'namedElements'))
-	}
-}
-
-remapJar {
-	afterEvaluate {
-		subprojects.each {
-			// Include the jar from the sub project.
-			nestedJars.from project("${it.path}").tasks.getByName("remapJar")
+	// configure the maven publication
+	publishing {
+		publications {
+			mavenJava(MavenPublication) {
+				artifactId = project.base.archivesName.get()
+				from components.java
+			}
 		}
-	}
-}
 
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
+		// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+		repositories {
+			// Add repositories to publish to here.
+			// Notice: This block does NOT have the same function as the block in the top level.
+			// The repositories here will be used for publishing your artifact, not for
+			// retrieving dependencies.
 		}
-	}
-
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
 	}
 }
