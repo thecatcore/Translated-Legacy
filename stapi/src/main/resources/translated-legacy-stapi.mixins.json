@@ -3,7 +3,9 @@
   "package": "fr.catcore.translatedlegacy.stapi.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LanguageManagerMixin"
+    "LanguageManagerMixin",
+    "NetworkHandlerMixin",
+    "ServerVanillaCheckerMixin"
   ],
   "client": [
     "AMITextRendererMixin",
@@ -11,5 +13,8 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "server": [
+    "ServerPlayerEntityMixin"
+  ]
 }

@@ -57,20 +57,21 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.2'
 
     modImplementation ("net.modificationstation:StationAPI:${project.stapi_version}") {
+        exclude(module: 'fabric-loader')
         exclude(module: 'GlassConfigAPI')
         exclude(group: 'org.ow2.asm')
     }
 
-    modImplementation ("net.glasslauncher.mods:GlassConfigAPI:3.2.1") {
+    modImplementation ("net.glasslauncher.mods:GlassConfigAPI:3.2.5") {
         exclude(module: 'fabric-loader')
         exclude(group: 'org.ow2.asm')
     }
 
-    modImplementation("maven.modrinth:always-more-items:1.6.1")
+    modImplementation("maven.modrinth:always-more-items:1.10.4")
 
-    modImplementation ("com.github.paulevsGitch:BHCreative:${project.bhcreative_version}") {
-        transitive false
-    }
+//    modImplementation ("com.github.paulevsGitch:BHCreative:${project.bhcreative_version}") {
+//        transitive false
+//    }
 
-    modImplementation("maven.modrinth:spawn-eggs:1.11.0")
+//    modImplementation("maven.modrinth:spawn-eggs:1.11.0")
 }

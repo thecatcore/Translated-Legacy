@@ -1,5 +1,7 @@
 package fr.catcore.translatedlegacy.babric.mixin.inventory;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.inventory.DoubleInventory;
 import net.minecraft.inventory.Inventory;
@@ -11,13 +13,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DoubleInventory.class)
 public class DoubleInventoryMixin {
-
     @Shadow private String name;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     public void translateName(String string, Inventory arg, Inventory arg1, CallbackInfo ci) {
-        if (string.equals("Large chest")) {
-            this.name = I18n.getTranslation("container.chestDouble");
+        if (this.name.equals("Large chest")) {
+            String key = "container.chestDouble";
+
+            if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
+                this.name = key;
+            } else {
+                this.name = I18n.getTranslation(key);
+            }
         }
     }
 }
