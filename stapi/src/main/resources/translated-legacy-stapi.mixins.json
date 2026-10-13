@@ -15,6 +15,7 @@
     "defaultRequire": 1
   },
   "server": [
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "ServerPlayNetworkHandlerMixin"
   ]
 }

@@ -1,5 +1,8 @@
 package fr.catcore.translatedlegacy.babric.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.network.packet.s2c.play.OpenScreenS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,5 +21,11 @@ public class OpenScreenS2CPacketMixin {
     @Inject(method = "read", at = @At("TAIL"))
     private void tl$translateContainerName(DataInputStream par1, CallbackInfo ci) {
         this.name = I18n.getTranslation(this.name);
+    }
+
+    @Environment(EnvType.SERVER)
+    @Inject(method = "<init>(IILjava/lang/String;I)V", at = @At("TAIL"))
+    private void tl$translateContainerNameCtr(int screenHandlerId, int name, String size, int par4, CallbackInfo ci) {
+        if (!FabricLoader.getInstance().isModLoaded("translated-legacy-stapi")) this.name = I18n.getTranslation(this.name);
     }
 }
