@@ -1,6 +1,6 @@
 package fr.catcore.translatedlegacy.babric.mixin.inventory;
 
-import net.minecraft.class_629;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.player.PlayerInventory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -14,6 +14,6 @@ public class PlayerInventoryMixin {
      */
     @Overwrite
     public String getName() {
-        return class_629.method_2049("container.inventory");
+        return I18n.getTranslation("container.inventory");
     }
 }

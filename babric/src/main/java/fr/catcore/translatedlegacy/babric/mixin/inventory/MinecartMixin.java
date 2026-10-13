@@ -1,11 +1,11 @@
 package fr.catcore.translatedlegacy.babric.mixin.inventory;
 
-import net.minecraft.class_549;
-import net.minecraft.class_629;
+import net.minecraft.client.resource.language.I18n;
+import net.minecraft.entity.vehicle.MinecartEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(class_549.class)
+@Mixin(MinecartEntity.class)
 public class MinecartMixin {
 
     /**
@@ -14,6 +14,6 @@ public class MinecartMixin {
      */
     @Overwrite
     public String getName() {
-        return class_629.method_2049("container.minecart");
+        return I18n.getTranslation("container.minecart");
     }
 }

@@ -1,12 +1,12 @@
 package fr.catcore.translatedlegacy.babric.mixin.client.container;
 
-import net.minecraft.class_516;
-import net.minecraft.class_629;
+import net.minecraft.client.gui.screen.ingame.CraftingScreen;
+import net.minecraft.client.resource.language.I18n;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(class_516.class)
+@Mixin(CraftingScreen.class)
 public abstract class CraftingScreenMixin {
 
     @ModifyArg(
@@ -19,7 +19,7 @@ public abstract class CraftingScreenMixin {
             )
     )
     public String renderForeground$lang1(String string) {
-        return class_629.method_2049("container.crafting");
+        return I18n.getTranslation("container.crafting");
     }
 
     @ModifyArg(
@@ -32,6 +32,6 @@ public abstract class CraftingScreenMixin {
             )
     )
     public String renderForeground$lang2(String string) {
-        return class_629.method_2049("container.inventory");
+        return I18n.getTranslation("container.inventory");
     }
 }

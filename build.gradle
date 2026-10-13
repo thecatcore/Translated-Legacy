@@ -8,8 +8,7 @@ plugins {
 
 enum FabricKind {
 	UPSTREAM("net.fabricmc:yarn"),
-	LEGACY("net.legacyfabric:yarn"),
-	BABRIC("babric:barn");
+	BABRIC("net.glasslauncher:biny");
 
 	String mappingsGroup;
 
@@ -31,7 +30,7 @@ class VersionInfo {
 	}
 
 	public static final VersionInfo[] VERSIONS = [
-			new VersionInfo("b1.7.3", "9", FabricKind.BABRIC, "babric", "stapi"),
+			new VersionInfo("b1.7.3", "b1.7.3+e1fe071", FabricKind.BABRIC, "babric", "stapi"),
 			new VersionInfo("1.21.4", "8", FabricKind.UPSTREAM, "dummy"),
 	];
 
@@ -50,18 +49,13 @@ base.archivesName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-project.ext.lwjglVersion = "3.3.3"
-project.ext.lwjglNatives = "natives-linux"
-
 allprojects {
 	def versionInfo = VersionInfo.getInfo(project.name);
 
 	apply plugin: 'maven-publish'
 	apply plugin: 'fabric-loom'
 
-	if (versionInfo.kind == FabricKind.LEGACY) {
-		apply plugin: 'legacy-looming'
-	} else if (versionInfo.kind == FabricKind.BABRIC) {
+	if (versionInfo.kind == FabricKind.BABRIC) {
 		apply plugin: 'babric-loom-extension'
 	}
 
@@ -69,7 +63,12 @@ allprojects {
 	group = rootProject.group
 
 	repositories {
-
+		maven {
+			url = "https://maven.glass-launcher.net/snapshots"
+		}
+		maven {
+			url = "https://maven.glass-launcher.net/releases"
+		}
 	}
 
 	loom {
@@ -77,22 +76,13 @@ allprojects {
 
 	dependencies {
 		minecraft "com.mojang:minecraft:$versionInfo.mc"
-		mappings "$versionInfo.kind.mappingsGroup:$versionInfo.mc+build.${versionInfo.mappings}:v2"
+		mappings "$versionInfo.kind.mappingsGroup:${versionInfo.mappings}:v2"
 		modImplementation "net.fabricmc:fabric-loader:$rootProject.loader_version"
-
-		implementation("com.ibm.icu:icu4j:71.1")
 
 		if (versionInfo.kind == FabricKind.BABRIC) {
 			implementation "com.google.code.gson:gson:2.8.9"
 			implementation "blue.endless:jankson:1.2.1"
 		}
-
-//		implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
-
-//		implementation "org.lwjgl:lwjgl"
-//		implementation "org.lwjgl:lwjgl-harfbuzz:$lwjglVersion"
-//		runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
-//		runtimeOnly "org.lwjgl:lwjgl-harfbuzz::$lwjglNatives"
 	}
 
 	processResources {
@@ -104,8 +94,6 @@ allprojects {
 	}
 
 	tasks.withType(JavaCompile).configureEach {
-		// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-		// Loom also requires J17.
 		it.options.release = 8
 	}
 
@@ -125,7 +113,6 @@ allprojects {
 }
 
 dependencies {
-//	include(group: 'com.ibm.icu', name: 'icu4j', version: '71.1')
 }
 
 subprojects {

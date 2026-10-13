@@ -48,7 +48,7 @@ public abstract class TextRendererMixin {
      * split a letter from its combining marks.
      */
     @Overwrite
-    public void method_1904(String string, int i, int j, int k, int l) {
+    public void drawSplit(String string, int i, int j, int k, int l) {
         for (String paragraph : string.split("\n")) {
             int paragraphHeight = 0;
 
@@ -68,10 +68,10 @@ public abstract class TextRendererMixin {
 
     /**
      * @author CatCore
-     * @reason Must wrap exactly like {@link #method_1904(String, int, int, int, int)}
+     * @reason Must wrap exactly like {@link #drawSplit(String, int, int, int, int)}
      */
     @Overwrite
-    public int method_1902(String string, int i) {
+    public int splitAndGetHeight(String string, int i) {
         int height = 0;
 
         for (String paragraph : string.split("\n")) {

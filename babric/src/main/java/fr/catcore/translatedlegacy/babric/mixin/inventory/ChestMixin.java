@@ -1,11 +1,11 @@
 package fr.catcore.translatedlegacy.babric.mixin.inventory;
 
-import net.minecraft.class_225;
-import net.minecraft.class_629;
+import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.client.resource.language.I18n;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(class_225.class)
+@Mixin(ChestBlockEntity.class)
 public class ChestMixin {
 
     /**
@@ -14,6 +14,6 @@ public class ChestMixin {
      */
     @Overwrite
     public String getName() {
-        return class_629.method_2049("container.chest");
+        return I18n.getTranslation("container.chest");
     }
 }

@@ -23,7 +23,7 @@ public class TranslationStorageMixin {
     }
 
     @Environment(EnvType.CLIENT)
-    @Inject(method = "method_995", cancellable = true, at = @At("HEAD"))
+    @Inject(method = "getClientTranslation", cancellable = true, at = @At("HEAD"))
     public void tl$method_995(String key, CallbackInfoReturnable<String> cir) {
         cir.setReturnValue(LanguageManager.CURRENT_LANGUAGE.method_995(key));
     }

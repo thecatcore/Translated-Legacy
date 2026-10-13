@@ -3,7 +3,6 @@ package fr.catcore.translatedlegacy.babric.language;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.ibm.icu.text.Bidi;
 import fr.catcore.translatedlegacy.babric.mixin.TranslationStorageAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
