@@ -4,13 +4,21 @@
   "plugin": "net.ornithemc.conditionalmixin.mixin.ConditionalMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "AchievementsMixin",
+    "AchievementStatMixin",
+    "LocaleMixin",
+    "StatsMixin"
   ],
   "client": [
+    "client.AchievementsScreenMixin",
     "client.ChatMessagePacketMixin",
+    "client.ChatScreenMixin",
     "client.GameOptionsMixin",
     "client.LanguageManagerMixin",
     "client.OpenInventoryMenuPacketMixin",
     "client.OptionsScreenMixin",
+    "client.SignEditScreenMixin",
+    "client.StatsScreen_GeneralStatsListWidgetMixin",
     "client.TextFieldWidgetMixin",
     "client.TextRendererMixin"
   ],

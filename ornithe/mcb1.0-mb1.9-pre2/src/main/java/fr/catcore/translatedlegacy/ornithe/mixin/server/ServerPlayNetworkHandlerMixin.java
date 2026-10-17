@@ -49,4 +49,9 @@ public class ServerPlayNetworkHandlerMixin implements TranslationRecipient {
     private int allowMoreCharactersInChat(String instance, int ch) {
         return TextUtils.isCharacterAllowed(ch);
     }
+
+    @Redirect(method = "handleSignBlockEntityUpdate", at = @At(value = "INVOKE", target = "Ljava/lang/String;indexOf(I)I", remap = false))
+    private int allowMoreCharactersOnSigns(String instance, int ch) {
+        return TextUtils.isCharacterAllowed(ch);
+    }
 }
