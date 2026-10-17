@@ -63,6 +63,8 @@ public class TranslatedLegacy {
     public static File getLangFile(String mcVersion, String code) {
         File versionFolder = new File(getLangsFolder(mcVersion), "assets/minecraft/lang");
 
+        if (!versionFolder.exists()) versionFolder.mkdirs();
+
         boolean update = false;
 
         File langFile = new File(versionFolder, code + ".json");

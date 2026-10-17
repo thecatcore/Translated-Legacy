@@ -1,4 +1,3 @@
-import groovy.json.JsonOutput
 import net.fabricmc.loader.impl.game.minecraft.McVersionLookup
 
 // OrnitheMC ecosystem: this project nests the common code, ornithe common
@@ -10,7 +9,7 @@ import net.fabricmc.loader.impl.game.minecraft.McVersionLookup
 //   feather_build (optional): defaults to the one from ornithe/gradle.properties
 //   raven_build, sparrow_build, nests_build (optional, also with client_/server_ prefix)
 //   environment (optional): client or server, for Minecraft versions with split jars
-// Its fabric.mod.json is generated, and includes translated-legacy-ornithe-<name>.mixins.json if present.
+// Its fabric.mod.json is generated into src/main/resources by generateModJson, and includes translated-legacy-ornithe-<name>.mixins.json if present.
 
 def versionedProjects = subprojects.findAll { it.name != 'common' }
 
@@ -26,6 +25,7 @@ configure([project] + versionedProjects) {
 		minecraft "com.mojang:minecraft:${project.minecraft_version}"
 		mappings ploceus.featherMappings(project.feather_build)
 		modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
+		implementation("net.ornithemc:conditional-mixin:1.0.0")
 
 		ploceus.dependOsl(project.osl_version)
 
@@ -34,7 +34,7 @@ configure([project] + versionedProjects) {
 }
 
 configure(versionedProjects) {
-	def modId = "${rootProject.archives_base_name}-ornithe"
+	def ornitheModId = "${rootProject.archives_base_name}-ornithe"
 
 	loom {
 		if (project.findProperty('environment') == 'client') {
@@ -76,50 +76,51 @@ configure(versionedProjects) {
 		api project(':ornithe')
 	}
 
-	def generateModJson = tasks.register('generateModJson') {
-		def outputDir = layout.buildDirectory.dir('generated/modJson')
-		def mixinConfig = "${modId}.mixins.json"
-		def hasMixins = project.file("src/main/resources/${mixinConfig}").exists()
-		def environment = project.findProperty('environment') ?: '*'
+	// Same as the OSL workspace: the fabric.mod.json is generated into src/main/resources
+	// and committed, the task runs as part of build (or manually with generateModJson)
+	def generateModJson = tasks.register('generateModJson', net.fabricmc.loom.task.FabricModJsonV1Task) {
+		outputFile = project.file("src/main/resources/fabric.mod.json")
+
+		def mixinConfig = "${ornitheModId}.mixins.json"
 		def minMc = project.min_mc_version
 		def maxMc = project.max_mc_version
-		def mcDependency = ">=${normalizeMcVersion(minMc)} <=${normalizeMcVersion(maxMc)}"
 
-		inputs.property 'version', project.version
-		inputs.property 'environment', environment
-		inputs.property 'range', mcDependency
-		inputs.property 'hasMixins', hasMixins
-		outputs.dir outputDir
+		json {
+			modId = ornitheModId
+			version = "${project.version}"
+			name = "Translated Legacy Ornithe ${minMc} - ${maxMc}"
+			description = ""
 
-		doLast {
-			def json = [
-					schemaVersion: 1,
-					id           : modId,
-					version      : version,
-					name         : "Translated Legacy Ornithe ${minMc} - ${maxMc}",
-					description  : "",
-					authors      : ["Cat Core"],
-					contact      : [
-							issues : "https://github.com/thecatcore/Translated-Legacy/issues",
-							sources: "https://github.com/thecatcore/Translated-Legacy"
-					],
-					license      : "CC0-1.0",
-					icon         : "assets/translated-legacy/icon.png",
-					environment  : environment,
-					mixins       : hasMixins ? [mixinConfig] : [],
-					depends      : [
-							fabricloader                     : "*",
-							minecraft                        : mcDependency
-					]
+			author "Cat Core"
+			contactInformation = [
+					"issues" : "https://github.com/thecatcore/Translated-Legacy/issues",
+					"sources": "https://github.com/thecatcore/Translated-Legacy"
 			]
+			licenses = ["CC0-1.0"]
+			icon "assets/translated-legacy/icon.png"
 
-			def file = outputDir.get().file('fabric.mod.json').asFile
-			file.parentFile.mkdirs()
-			file.text = JsonOutput.prettyPrint(JsonOutput.toJson(json)) + "\n"
+			if (project.hasProperty('entrypoint_init')) {
+				entrypoint 'init', project.entrypoint_init
+			}
+
+			if (project.hasProperty('entrypoint_client_init')) {
+				entrypoint 'client-init', project.entrypoint_client_init
+			}
+
+			if (project.hasProperty('entrypoint_server_init')) {
+				entrypoint 'server-init', project.entrypoint_server_init
+			}
+
+			environment = project.findProperty('environment') ?: '*'
+
+			if (project.file("src/main/resources/${mixinConfig}").exists()) {
+				mixin mixinConfig
+			}
+
+			depends "fabricloader", "*"
+			depends "minecraft", ">=${normalizeMcVersion(minMc)} <=${normalizeMcVersion(maxMc)}"
 		}
 	}
-
-	sourceSets.main.resources.srcDir(generateModJson)
 }
 
 static String normalizeMcVersion(String name) {

@@ -14,7 +14,9 @@
   "license": "CC0-1.0",
   "icon": "assets/translated-legacy/icon.png",
   "environment": "*",
-  "mixins": [],
+  "mixins": [
+    "translated-legacy.mixins.json"
+  ],
   "depends": {
     "fabricloader": "*"
   },
