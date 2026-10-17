@@ -17,5 +17,10 @@
   "mixins": [],
   "depends": {
     "fabricloader": "*"
+  },
+  "entrypoints": {
+    "client-init": [
+      "fr.catcore.translatedlegacy.ornithe.common.LanguagePackSource::init"
+    ]
   }
 }

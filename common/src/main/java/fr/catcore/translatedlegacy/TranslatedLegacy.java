@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 
 public class TranslatedLegacy {
     public static final File CONFIG_FOLDER = FabricLoader.getInstance().getConfigDir().resolve("translated-legacy").toFile();
@@ -53,15 +54,16 @@ public class TranslatedLegacy {
         }
     }
 
+    public static File getLangsFolder(String mcVersion) {
+        File versionFolder = new File(CONFIG_FOLDER, mcVersion);
+        if (!versionFolder.exists()) versionFolder.mkdirs();
+        return versionFolder;
+    }
+
     public static File getLangFile(String mcVersion, String code) {
-        File versionFolder = new File(CONFIG_FOLDER, mcVersion + "/assets/minecraft/lang");
+        File versionFolder = new File(getLangsFolder(mcVersion), "assets/minecraft/lang");
 
         boolean update = false;
-
-        if (!versionFolder.exists()) {
-            update = true;
-            versionFolder.mkdirs();
-        }
 
         File langFile = new File(versionFolder, code + ".json");
 
@@ -89,6 +91,11 @@ public class TranslatedLegacy {
                         StandardCopyOption.REPLACE_EXISTING);
 
                 inputStream.close();
+
+                if (Files.readAllLines(langFile.toPath()).get(0).startsWith("Not Found")) {
+                    Files.delete(langFile.toPath());
+                    Files.write(langFile.toPath(), "{}".getBytes(), StandardOpenOption.CREATE);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

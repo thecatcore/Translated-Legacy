@@ -28,11 +28,13 @@ configure([project] + versionedProjects) {
 		modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
 
 		ploceus.dependOsl(project.osl_version)
+
+		api project(':common')
 	}
 }
 
 configure(versionedProjects) {
-	def modId = "${rootProject.archives_base_name}-ornithe-${project.name}"
+	def modId = "${rootProject.archives_base_name}-ornithe"
 
 	loom {
 		if (project.findProperty('environment') == 'client') {
@@ -107,8 +109,7 @@ configure(versionedProjects) {
 					mixins       : hasMixins ? [mixinConfig] : [],
 					depends      : [
 							fabricloader                     : "*",
-							minecraft                        : mcDependency,
-							"translated-legacy-ornithe-common": "*"
+							minecraft                        : mcDependency
 					]
 			]
 
