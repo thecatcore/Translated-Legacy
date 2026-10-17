@@ -17,7 +17,6 @@ public class GameOptionsMixin {
     private void tl$loadLanguage(CallbackInfo ci, @Local String[] strings) {
         if (strings[0].equals("lang")) {
             Localization.getLanguageManager().setSelectedLanguage(strings[1]);
-            Localization.reloadLocale();
         }
     }
 
