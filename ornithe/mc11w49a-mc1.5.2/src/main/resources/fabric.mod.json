@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "translated-legacy-ornithe",
+  "version": "2.1.0",
+  "environment": "*",
+  "mixins": [
+    "translated-legacy-ornithe.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "\u003e\u003d1.1-alpha.11.49.a \u003c\u003d1.5.2"
+  },
+  "name": "Translated Legacy Ornithe 11w49a - 1.5.2",
+  "description": "",
+  "authors": [
+    "Cat Core"
+  ],
+  "contact": {
+    "issues": "https://github.com/thecatcore/Translated-Legacy/issues",
+    "sources": "https://github.com/thecatcore/Translated-Legacy"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/translated-legacy/icon.png"
+}

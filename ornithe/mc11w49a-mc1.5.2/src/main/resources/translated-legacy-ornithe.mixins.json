@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "fr.catcore.translatedlegacy.ornithe.mixin",
+  "plugin": "net.ornithemc.conditionalmixin.mixin.ConditionalMixinPlugin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "client.LanguageOptionsScreen_LanguageSelectionListWidgetMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "server": [
+  ]
+}
