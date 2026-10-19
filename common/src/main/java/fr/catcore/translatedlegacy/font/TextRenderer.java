@@ -43,50 +43,6 @@ public class TextRenderer {
         return null;
     }
 
-    private static List<TextInfo> parseTextInfos(String text) {
-        List<TextInfo> infos = new ArrayList<>();
-
-        StringBuilder currentText = new StringBuilder();
-        Style currentStyle = null;
-
-        for (int i = 0; i < text.length(); i++) {
-            char character = text.charAt(i);
-
-            if (character == 167 && text.length() > i+1) {
-                Character modifier = text.charAt(i+1);
-
-                Style newStyle = Style.VANILLA.get(modifier);
-
-                if (newStyle == null) {
-                    newStyle = Style.VANILLA.get('r');
-                }
-
-                i += 1;
-
-                if (currentText.length() > 0) {
-                    infos.add(new TextInfo(currentText.toString(), currentStyle));
-                    currentText = new StringBuilder();
-                }
-
-                if (currentStyle != null) {
-                    currentStyle = currentStyle.append(newStyle);
-                } else {
-                    currentStyle = newStyle;
-                }
-
-                continue;
-            }
-
-            currentText.append(character);
-        }
-
-        if (currentText.length() > 0) {
-            infos.add(new TextInfo(currentText.toString(), currentStyle));
-        }
-
-        return infos;
-    }
-
     private static List<RenderableItem> getTextImage(String text, TextInfo info) {
         String key = info.getStylePrefix() + text;
 
@@ -265,7 +221,7 @@ public class TextRenderer {
         }
 
         RenderableText renderableText = new RenderableText(
-                BidiReorderer.toVisualOrder(parseTextInfos(string))
+                BidiReorderer.toVisualOrder(game.parseText(string))
                         .stream()
                         .map(TextRenderer::getContainer)
                         .collect(Collectors.toList())
@@ -285,8 +241,6 @@ public class TextRenderer {
 
     public static int draw(String string, int x, int y, int color, boolean flag) {
         if (string == null || string.isEmpty()) return 8;
-
-        Style.init();
 
         RenderableText renderableText = getRenderableText(string);
 

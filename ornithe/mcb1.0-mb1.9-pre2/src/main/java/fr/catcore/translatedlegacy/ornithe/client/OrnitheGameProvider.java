@@ -1,6 +1,8 @@
 package fr.catcore.translatedlegacy.ornithe.client;
 
+import fr.catcore.translatedlegacy.font.TextInfo;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
+import fr.catcore.translatedlegacy.ornithe.common.TextComponentParser;
 import net.minecraft.client.render.vertex.Tesselator;
 import net.ornithemc.osl.lifecycle.api.client.MinecraftInstance;
 import net.ornithemc.osl.resource.loader.api.resource.manager.ResourceManager;
@@ -8,11 +10,17 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class OrnitheGameProvider implements GameProvider {
     @Override
     public boolean anaglyph3d() {
         return MinecraftInstance.get().options.anaglyph;
+    }
+
+    @Override
+    public List<TextInfo> parseText(String text) {
+        return TextComponentParser.parse(text);
     }
 
     @Override

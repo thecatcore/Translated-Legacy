@@ -1,10 +1,18 @@
 package fr.catcore.translatedlegacy.font.api;
 
+import fr.catcore.translatedlegacy.font.TextInfo;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public interface GameProvider {
     boolean anaglyph3d();
+
+    /**
+     * Splits a string containing formatting codes into runs of identically styled text, in logical order.
+     */
+    List<TextInfo> parseText(String text);
 
     default void draw(int x, int y, int width, int height, float blitOffset, boolean italic) {
         draw(x, y, width, height, 0, 0, 1, 1, blitOffset, italic);

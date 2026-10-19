@@ -1,9 +1,13 @@
 package fr.catcore.translatedlegacy.babric;
 
+import fr.catcore.translatedlegacy.babric.font.FormattingCodeParser;
+import fr.catcore.translatedlegacy.font.TextInfo;
 import fr.catcore.translatedlegacy.font.api.GameProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.render.Tessellator;
 import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 public abstract class BabricGameProvider implements GameProvider {
     private final Minecraft minecraft;
@@ -15,6 +19,11 @@ public abstract class BabricGameProvider implements GameProvider {
     @Override
     public boolean anaglyph3d() {
         return minecraft.options.anaglyph3d;
+    }
+
+    @Override
+    public List<TextInfo> parseText(String text) {
+        return FormattingCodeParser.parse(text);
     }
 
     @Override
