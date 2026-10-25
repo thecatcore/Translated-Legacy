@@ -26,7 +26,7 @@ public class LanguageManagerMixin {
             PacketBuffer buffer = PacketBuffers.make();
             buffer.writeString(this.selectedLanguage);
 
-            ClientPlayNetworking.send(NetworkingHelper.PACKET_ID, buffer);
+            ClientPlayNetworking.send(NetworkingHelper.UPDATE_ID, buffer);
         }
     }
 
@@ -36,7 +36,7 @@ public class LanguageManagerMixin {
             PacketBuffer buffer = PacketBuffers.make();
             buffer.writeString(this.selectedLanguage);
 
-            ClientPlayNetworking.send(NetworkingHelper.PACKET_ID, buffer);
+            ClientPlayNetworking.send(NetworkingHelper.UPDATE_ID, buffer);
         }
     }
 }

@@ -14,5 +14,8 @@
     "defaultRequire": 1
   },
   "server": [
-  ]
+  ],
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  }
 }

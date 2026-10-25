@@ -7,8 +7,10 @@ import com.google.gson.JsonObject;
 import fr.catcore.translatedlegacy.font.TextRenderer;
 import fr.catcore.translatedlegacy.font.provider.BitmapGlyphProvider;
 import fr.catcore.translatedlegacy.font.provider.LegacyUnicodeProvider;
+import net.ornithemc.osl.core.api.util.NamespacedIdentifier;
 import net.ornithemc.osl.core.api.util.NamespacedIdentifiers;
 import net.ornithemc.osl.resource.loader.api.client.ClientResourceLoaderEvents;
+import net.ornithemc.osl.resource.loader.api.client.resource.reload.AssetsReloaders;
 import net.ornithemc.osl.resource.loader.api.resource.Resource;
 import net.ornithemc.osl.resource.loader.api.resource.manager.ResourceManager;
 import net.ornithemc.osl.resource.loader.api.resource.reload.ResourceReloadListener;
@@ -23,7 +25,9 @@ public class FontReloader implements ResourceReloadListener {
         ClientResourceLoaderEvents.INIT_RESOURCE_MANAGER.register(resourceManager -> {
             TextRenderer.setGameProvider(new OrnitheGameProvider());
             registerGlyphProviders(resourceManager);
-            resourceManager.addReloader(new FontReloader());
+            NamespacedIdentifier reloaderId = NamespacedIdentifiers.from("translated-legacy", "font");
+            resourceManager.registerReloader(reloaderId, new FontReloader());
+            resourceManager.registerReloaderDependencies(reloaderId, AssetsReloaders.BEFORE_VANILLA);
         });
     }
 

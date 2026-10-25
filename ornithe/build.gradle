@@ -42,6 +42,10 @@ configure(versionedProjects) {
 		} else if (project.findProperty('environment') == 'server') {
 			serverOnlyMinecraftJar()
 		}
+
+		runs.configureEach {
+			generateRunConfig = true
+		}
 	}
 
 	dependencies {
@@ -73,7 +77,9 @@ configure(versionedProjects) {
 			serverNests ploceus.nests(project.server_nests_build, 'server')
 		}
 
-		api project(':ornithe')
+		api(project(':ornithe')) {
+			transitive = false
+		}
 	}
 
 	// Same as the OSL workspace: the fabric.mod.json is generated into src/main/resources
