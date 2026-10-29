@@ -8,7 +8,7 @@
       "fr.catcore.translatedlegacy.ornithe.ClientInit"
     ],
     "server-init": [
-      "fr.catcore.translatedlegacy.ornithe.ServerNetworking::init"
+      "fr.catcore.translatedlegacy.ornithe.common.ServerNetworking::init"
     ]
   },
   "mixins": [

@@ -5,15 +5,25 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "LanguageManagerMixin",
-    "SimpleLanguageMetadataSerializerMixin",
-    "LocaleMixin"
+    "LocaleMixin",
+    "SimpleLanguageMetadataSerializerMixin"
   ],
   "client": [
+    "client.ChatMessagePacketMixin",
+    "client.ChatScreenMixin",
+    "client.DisconnectPacketMixin",
+    "client.OpenInventoryMenuPacketMixin",
+    "client.SignEditScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "server": [
+    "server.ChatMessagePacketMixin",
+    "server.DisconnectPacketMixin",
+    "server.OpenInventoryMenuPacketMixin",
+    "server.ServerPlayerEntityMixin",
+    "server.ServerPlayNetworkHandlerMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.0"

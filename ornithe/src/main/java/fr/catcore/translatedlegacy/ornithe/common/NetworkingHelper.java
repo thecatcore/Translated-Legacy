@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.ornithe;
+package fr.catcore.translatedlegacy.ornithe.common;
 
 import net.ornithemc.osl.core.api.util.NamespacedIdentifier;
 import net.ornithemc.osl.core.api.util.NamespacedIdentifiers;

@@ -11,14 +11,9 @@
   ],
   "client": [
     "client.AchievementsScreenMixin",
-    "client.ChatMessagePacketMixin",
-    "client.ChatScreenMixin",
-    "client.DisconnectPacketMixin",
     "client.GameOptionsMixin",
     "client.LanguageManagerMixin",
-    "client.OpenInventoryMenuPacketMixin",
     "client.OptionsScreenMixin",
-    "client.SignEditScreenMixin",
     "client.StatsScreen_GeneralStatsListWidgetMixin",
     "client.TextFieldWidgetMixin",
     "client.TextRendererMixin",
@@ -28,11 +23,6 @@
     "defaultRequire": 1
   },
   "server": [
-    "server.ChatMessagePacketMixin",
-    "server.DisconnectPacketMixin",
-    "server.OpenInventoryMenuPacketMixin",
-    "server.ServerPlayerEntityMixin",
-    "server.ServerPlayNetworkHandlerMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.0"

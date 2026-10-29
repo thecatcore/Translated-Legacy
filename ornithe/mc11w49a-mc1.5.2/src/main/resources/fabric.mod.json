@@ -3,6 +3,14 @@
   "id": "translated-legacy-ornithe",
   "version": "2.1.0",
   "environment": "*",
+  "entrypoints": {
+    "client-init": [
+      "fr.catcore.translatedlegacy.ornithe.ClientInit"
+    ],
+    "server-init": [
+      "fr.catcore.translatedlegacy.ornithe.common.ServerNetworking::init"
+    ]
+  },
   "mixins": [
     "translated-legacy-ornithe.mixins.json"
   ],

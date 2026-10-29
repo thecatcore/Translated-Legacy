@@ -1,6 +1,6 @@
 package fr.catcore.translatedlegacy.ornithe;
 
-import fr.catcore.translatedlegacy.ornithe.client.ClientNetworking;
+import fr.catcore.translatedlegacy.ornithe.common.ClientNetworking;
 import fr.catcore.translatedlegacy.ornithe.client.FontReloader;
 import net.ornithemc.osl.entrypoints.api.client.ClientModInitializer;
 

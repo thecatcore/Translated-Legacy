@@ -1,6 +1,6 @@
 package fr.catcore.translatedlegacy.ornithe.mixin.client;
 
-import fr.catcore.translatedlegacy.ornithe.NetworkingHelper;
+import fr.catcore.translatedlegacy.ornithe.common.NetworkingHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.ornithemc.osl.localization.api.language.Language;

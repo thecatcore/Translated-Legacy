@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.ornithe.access;
+package fr.catcore.translatedlegacy.ornithe.common.access;
 
 import net.ornithemc.osl.networking.api.PacketBuffer;
 import net.ornithemc.osl.text.api.TextComponent;

@@ -1,6 +1,6 @@
-package fr.catcore.translatedlegacy.ornithe;
+package fr.catcore.translatedlegacy.ornithe.common;
 
-import fr.catcore.translatedlegacy.ornithe.access.TranslationRecipient;
+import fr.catcore.translatedlegacy.ornithe.common.access.TranslationRecipient;
 import net.minecraft.server.network.handler.ServerPlayNetworkHandler;
 import net.ornithemc.osl.networking.api.PacketBuffer;
 import net.ornithemc.osl.networking.api.PacketBuffers;
@@ -17,7 +17,6 @@ public class ServerNetworking {
         });
 
         ServerConnectionEvents.PLAY_READY.register(context -> {
-            System.out.println(ServerPlayNetworking.isPlayReady(context.player(), NetworkingHelper.PING_ID));
             PacketBuffer buffer = PacketBuffers.make();
             buffer.writeByte(0);
             ServerPlayNetworking.send(context.player(), NetworkingHelper.PING_ID, buffer);

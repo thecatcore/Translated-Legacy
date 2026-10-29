@@ -1,6 +1,6 @@
-package fr.catcore.translatedlegacy.ornithe.mixin.client;
+package fr.catcore.translatedlegacy.ornithe.common.mixin.client;
 
-import fr.catcore.translatedlegacy.ornithe.NetworkingHelper;
+import fr.catcore.translatedlegacy.ornithe.common.NetworkingHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.network.packet.OpenInventoryMenuPacket;

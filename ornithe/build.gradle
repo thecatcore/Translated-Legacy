@@ -77,7 +77,7 @@ configure(versionedProjects) {
 			serverNests ploceus.nests(project.server_nests_build, 'server')
 		}
 
-		api(project(':ornithe')) {
+		api(project(path: ':ornithe', configuration: "namedElements")) {
 			transitive = false
 		}
 	}
