@@ -23,6 +23,7 @@
     "server.DisconnectPacketMixin",
     "server.OpenInventoryMenuPacketMixin",
     "server.ServerPlayerEntityMixin",
+    "server.ServerPlayNetworkHandler_ChatHandlerMixin",
     "server.ServerPlayNetworkHandlerMixin"
   ],
   "mixinextras": {
