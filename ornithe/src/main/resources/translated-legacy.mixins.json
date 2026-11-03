@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "package": "fr.catcore.translatedlegacy.ornithe.common.mixin",
+  "plugin": "net.ornithemc.conditionalmixin.mixin.ConditionalMixinPlugin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "LanguageManagerMixin",
+    "LocaleMixin",
+    "SimpleLanguageMetadataSerializerMixin"
+  ],
+  "client": [
+    "client.ChatMessagePacketMixin",
+    "client.ChatScreenMixin",
+    "client.DisconnectPacketMixin",
+    "client.OpenInventoryMenuPacketMixin",
+    "client.SignEditScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "server": [
+    "server.ChatMessagePacketMixin",
+    "server.DisconnectPacketMixin",
+    "server.OpenInventoryMenuPacketMixin",
+    "server.ServerPlayerEntityMixin",
+    "server.ServerPlayNetworkHandler_ChatHandlerMixin",
+    "server.ServerPlayNetworkHandlerMixin"
+  ],
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  }
+}

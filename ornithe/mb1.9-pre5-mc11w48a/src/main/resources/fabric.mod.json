@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "translated-legacy-ornithe",
+  "version": "2.1.0",
+  "environment": "*",
+  "entrypoints": {
+    "client-init": [
+      "fr.catcore.translatedlegacy.ornithe.ClientInit"
+    ],
+    "server-init": [
+      "fr.catcore.translatedlegacy.ornithe.common.ServerNetworking::init"
+    ]
+  },
+  "mixins": [
+    "translated-legacy-ornithe.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "\u003e\u003d1.0.0-beta.9.0.5 \u003c\u003d1.1-alpha.11.48.a"
+  },
+  "name": "Translated Legacy Ornithe b1.9-pre5 - 11w48a",
+  "description": "",
+  "authors": [
+    "Cat Core"
+  ],
+  "contact": {
+    "issues": "https://github.com/thecatcore/Translated-Legacy/issues",
+    "sources": "https://github.com/thecatcore/Translated-Legacy"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/translated-legacy/icon.png"
+}

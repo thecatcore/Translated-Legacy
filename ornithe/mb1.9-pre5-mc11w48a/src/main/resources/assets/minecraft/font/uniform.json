@@ -1,0 +1,9 @@
+{
+    "providers": [
+        {
+            "type": "legacy_unicode",
+            "sizes": "translated-legacy:font/glyph_sizes.bin",
+            "template": "translated-legacy:font/unicode_page_%s.png"
+        }
+    ]
+}

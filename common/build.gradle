@@ -1,0 +1,8 @@
+// Minecraft agnostic code, shared by every ecosystem.
+// Loom isn't applied here, the runtime libraries are provided by the game or the loader.
+dependencies {
+	compileOnly "net.fabricmc:fabric-loader:${rootProject.loader_version}"
+	compileOnly "org.lwjgl.lwjgl:lwjgl:2.9.3"
+	compileOnly "com.google.code.gson:gson:2.8.9"
+	compileOnly "org.jetbrains:annotations:24.1.0"
+}
