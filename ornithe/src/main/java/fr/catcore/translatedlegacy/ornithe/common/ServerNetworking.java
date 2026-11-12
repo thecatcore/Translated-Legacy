@@ -1,6 +1,6 @@
 package fr.catcore.translatedlegacy.ornithe.common;
 
-import fr.catcore.translatedlegacy.ornithe.common.access.TranslationRecipient;
+import fr.catcore.translatedlegacy.language.TranslationRecipient;
 import net.minecraft.server.network.handler.ServerPlayNetworkHandler;
 import net.ornithemc.osl.networking.api.PacketBuffer;
 import net.ornithemc.osl.networking.api.PacketBuffers;

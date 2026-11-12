@@ -18,8 +18,7 @@
     "translated-legacy.mixins.json"
   ],
   "depends": {
-    "fabricloader": "*",
-    "osl": ">=0.23.0"
+    "fabricloader": "*"
   },
   "entrypoints": {
     "client-init": [

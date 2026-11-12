@@ -6,7 +6,6 @@
   "mixins": [
   ],
   "client": [
-    "client.LanguageManagerMixin",
     "client.ServerPlayNetworkHandlerMixin",
     "client.LanguageOptionsScreen_LanguageSelectionListWidgetMixin",
     "client.SignEditScreenMixin"

@@ -3,7 +3,7 @@ package fr.catcore.translatedlegacy.ornithe.common.mixin.server;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import fr.catcore.translatedlegacy.ornithe.common.NetworkingHelper;
 import fr.catcore.translatedlegacy.ornithe.common.access.TranslatablePacket;
-import fr.catcore.translatedlegacy.ornithe.common.access.TranslationRecipient;
+import fr.catcore.translatedlegacy.language.TranslationRecipient;
 import fr.catcore.translatedlegacy.util.TextUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
