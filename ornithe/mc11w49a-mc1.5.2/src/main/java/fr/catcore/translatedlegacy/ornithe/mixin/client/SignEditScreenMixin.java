@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import fr.catcore.translatedlegacy.ornithe.common.NetworkingHelper;
 import fr.catcore.translatedlegacy.util.TextUtils;
-import net.minecraft.client.gui.screen.inventory.menu.SignEditScreen;
+import net.minecraft.client.gui.screen.game.SignEditScreen;
 import net.ornithemc.conditionalmixin.annotations.Conditional;
 import net.ornithemc.conditionalmixin.annotations.Version;
 import net.ornithemc.osl.lifecycle.api.client.MinecraftInstance;

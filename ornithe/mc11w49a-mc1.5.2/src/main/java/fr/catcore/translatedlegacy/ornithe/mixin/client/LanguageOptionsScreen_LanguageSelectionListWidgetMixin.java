@@ -8,9 +8,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.TreeMap;
 
-@Mixin(targets = "net.minecraft.client.gui.screen.options.LanguageOptionsScreen__LanguageSelectionListWidget")
+@Mixin(targets = "net.minecraft.client.gui.screen.menu.options.LanguageOptionsScreen__LanguageSelectionListWidget")
 public class LanguageOptionsScreen_LanguageSelectionListWidgetMixin {
-    @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/locale/Language;getLanguageNames()Ljava/util/TreeMap;"))
+    @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/locale/Language;getLanguages()Ljava/util/TreeMap;"))
     private TreeMap<String, String> tl$dynamicLanguageList(Language instance) {
         TreeMap<String, String> map = new TreeMap<>();
 

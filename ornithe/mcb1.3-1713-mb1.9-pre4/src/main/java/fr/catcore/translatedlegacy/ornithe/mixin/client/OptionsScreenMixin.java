@@ -2,7 +2,7 @@ package fr.catcore.translatedlegacy.ornithe.mixin.client;
 
 import fr.catcore.translatedlegacy.ornithe.client.language.LanguageScreen;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.options.OptionsScreen;
+import net.minecraft.client.gui.screen.menu.options.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.ornithemc.osl.localization.api.L10n;
 import org.spongepowered.asm.mixin.Mixin;
