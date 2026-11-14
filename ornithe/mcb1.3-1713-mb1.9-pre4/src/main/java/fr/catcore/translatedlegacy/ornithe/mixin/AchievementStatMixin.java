@@ -13,6 +13,7 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+@Conditional(minecraftVersion = @Version(">=b1.4-1507"))
 @Mixin(AchievementStat.class)
 public class AchievementStatMixin {
     @Conditional(minecraftVersion = @Version(">=b1.5"))
