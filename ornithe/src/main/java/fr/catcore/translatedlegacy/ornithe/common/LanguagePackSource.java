@@ -35,7 +35,7 @@ public class LanguagePackSource implements ResourcePackRepository.Source {
                 "language-pack",
                 true,
                 true,
-                PackPosition.BOTTOM
+                PackPosition.TOP
         ));
     }
 }
