@@ -16,5 +16,8 @@
   "server": [
     "ServerPlayerEntityMixin",
     "ServerPlayNetworkHandlerMixin"
-  ]
+  ],
+  "mixinextras": {
+    "minVersion": "0.5.4"
+  }
 }

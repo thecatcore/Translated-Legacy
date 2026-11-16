@@ -123,7 +123,7 @@ configure(versionedProjects) {
 				mixin mixinConfig
 			}
 
-			depends "fabricloader", "*"
+			depends "fabricloader", ">=${rootProject.loader_version}"
 			depends "minecraft", ">=${normalizeMcVersion(minMc)} <=${normalizeMcVersion(maxMc)}"
 		}
 	}
