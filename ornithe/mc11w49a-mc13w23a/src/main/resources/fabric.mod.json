@@ -16,9 +16,9 @@
   ],
   "depends": {
     "fabricloader": "*",
-    "minecraft": "\u003e\u003d1.1-alpha.11.49.a \u003c\u003d1.5.2"
+    "minecraft": "\u003e\u003d1.1-alpha.11.49.a \u003c\u003d1.6-alpha.13.23.a"
   },
-  "name": "Translated Legacy Ornithe 11w49a - 1.5.2",
+  "name": "Translated Legacy Ornithe 11w49a - 13w23a",
   "description": "",
   "authors": [
     "Cat Core"

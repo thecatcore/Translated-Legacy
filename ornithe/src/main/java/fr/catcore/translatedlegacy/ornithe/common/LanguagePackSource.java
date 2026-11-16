@@ -34,8 +34,8 @@ public class LanguagePackSource implements ResourcePackRepository.Source {
                 new LanguagePack(TranslatedLegacy.getLangsFolder(MinecraftVersion.resolve().gameVersion()).toPath()),
                 "language-pack",
                 true,
-                false,
-                PackPosition.TOP
+                true,
+                PackPosition.BOTTOM
         ));
     }
 }

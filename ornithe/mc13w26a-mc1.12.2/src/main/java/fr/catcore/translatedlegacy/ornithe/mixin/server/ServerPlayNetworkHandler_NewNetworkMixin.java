@@ -1,0 +1,78 @@
+package fr.catcore.translatedlegacy.ornithe.mixin.server;
+
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import fr.catcore.translatedlegacy.language.TranslationRecipient;
+import fr.catcore.translatedlegacy.ornithe.ModernNetworkUtils;
+import fr.catcore.translatedlegacy.ornithe.common.NetworkingHelper;
+import fr.catcore.translatedlegacy.ornithe.common.access.TranslatablePacket;
+import fr.catcore.translatedlegacy.util.TextUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.server.entity.living.player.ServerPlayerEntity;
+import net.minecraft.server.network.handler.ServerPlayNetworkHandler;
+import net.ornithemc.conditionalmixin.annotations.Conditional;
+import net.ornithemc.conditionalmixin.annotations.Version;
+import net.ornithemc.osl.networking.api.PacketBuffer;
+import net.ornithemc.osl.networking.api.PacketBuffers;
+import net.ornithemc.osl.networking.api.server.ServerPlayNetworking;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Environment(EnvType.SERVER)
+@Conditional(minecraftVersion = @Version(">=13w41a <=1.7.10"))
+@Mixin(ServerPlayNetworkHandler.class)
+public abstract class ServerPlayNetworkHandler_NewNetworkMixin implements TranslationRecipient {
+    @Shadow
+    public ServerPlayerEntity player;
+    @Unique
+    private String language;
+
+    @Override
+    public void tl$setLanguage(String language) {
+        this.language = language;
+    }
+
+    @Override
+    public String tl$getLanguage() {
+        return language;
+    }
+
+    @Override
+    public boolean tl$pretranslate() {
+        return language == null;
+    }
+
+    @Inject(method = "sendPacket", at = @At("HEAD"))
+    private void tl$handleTranslatablePackets(Packet packet, CallbackInfo ci) {
+        if (packet instanceof TranslatablePacket) {
+            TranslatablePacket translatablePacket = (TranslatablePacket) packet;
+            if (translatablePacket.requiresPacket()) {
+                if (!tl$pretranslate()) {
+                    PacketBuffer buffer = PacketBuffers.make();
+                    buffer.writeInt(ModernNetworkUtils.getPacketId(packet));
+                    translatablePacket.writeCustomPacket(buffer);
+
+                    ServerPlayNetworking.send(player, NetworkingHelper.TRANSLATE_ID, buffer);
+                }
+            } else {
+                if (tl$pretranslate()) {
+                    translatablePacket.preTranslate();
+                } else {
+                    translatablePacket.makeTranslatable();
+                }
+            }
+        }
+    }
+
+    @Conditional(minecraftVersion = @Version("<13w42a"))
+    @Redirect(method = "handleSignUpdate", at = @At(value = "INVOKE", target = "Ljava/lang/String;indexOf(I)I", remap = false))
+    private int allowMoreCharactersInSign(String instance, int ch) {
+        return TextUtils.isCharacterAllowed(ch);
+    }
+}

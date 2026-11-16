@@ -13,7 +13,6 @@ import net.ornithemc.osl.lifecycle.api.client.MinecraftInstance;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-//@Conditional(minecraftVersion = @Version(">=12w18a"))
 @Conditional(minecraftVersion = @Version(">=12w24a"))
 @Environment(EnvType.CLIENT)
 @Mixin(ServerPlayNetworkHandler.class)

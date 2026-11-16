@@ -24,8 +24,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.SERVER)
+@Conditional(minecraftVersion = @Version("<13w41a"))
 @Mixin(ServerPlayNetworkHandler.class)
-public abstract class ServerPlayNetworkHandlerMixin implements TranslationRecipient {
+public abstract class ServerPlayNetworkHandler_OldNetworkMixin implements TranslationRecipient {
     @Shadow
     private ServerPlayerEntity player;
 
@@ -33,17 +34,17 @@ public abstract class ServerPlayNetworkHandlerMixin implements TranslationRecipi
     private String language;
 
     @Override
-    public void setLanguage(String language) {
+    public void tl$setLanguage(String language) {
         this.language = language;
     }
 
     @Override
-    public String getLanguage() {
+    public String tl$getLanguage() {
         return language;
     }
 
     @Override
-    public boolean pretranslate() {
+    public boolean tl$pretranslate() {
         return language == null;
     }
 
@@ -52,7 +53,7 @@ public abstract class ServerPlayNetworkHandlerMixin implements TranslationRecipi
         if (packet instanceof TranslatablePacket) {
             TranslatablePacket translatablePacket = (TranslatablePacket) packet;
             if (translatablePacket.requiresPacket()) {
-                if (!pretranslate()) {
+                if (!tl$pretranslate()) {
                     PacketBuffer buffer = PacketBuffers.make();
                     buffer.writeInt(packet.getId());
                     translatablePacket.writeCustomPacket(buffer);
@@ -60,7 +61,7 @@ public abstract class ServerPlayNetworkHandlerMixin implements TranslationRecipi
                     ServerPlayNetworking.send(player, NetworkingHelper.TRANSLATE_ID, buffer);
                 }
             } else {
-                if (pretranslate()) {
+                if (tl$pretranslate()) {
                     translatablePacket.preTranslate();
                 } else {
                     translatablePacket.makeTranslatable();

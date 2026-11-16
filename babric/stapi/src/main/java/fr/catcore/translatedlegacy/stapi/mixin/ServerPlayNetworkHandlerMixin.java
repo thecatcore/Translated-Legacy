@@ -17,23 +17,23 @@ public abstract class ServerPlayNetworkHandlerMixin implements TranslationRecipi
     private String languageCode;
 
     @Override
-    public String getLanguage() {
+    public String tl$getLanguage() {
         return languageCode;
     }
 
     @Override
-    public void setLanguage(String language) {
+    public void tl$setLanguage(String language) {
         this.languageCode = language;
     }
 
     @Override
-    public boolean pretranslate() {
+    public boolean tl$pretranslate() {
         return languageCode == null;
     }
 
     @Inject(method = "sendPacket", at = @At(value = "HEAD"))
     private void tl$delegateTranslation(Packet par1, CallbackInfo ci) {
-        if (this.pretranslate()) {
+        if (this.tl$pretranslate()) {
             if (par1 instanceof OpenScreenS2CPacket openScreenS2CPacket) {
                 openScreenS2CPacket.name = I18n.getTranslation(openScreenS2CPacket.name);
             }

@@ -18,7 +18,7 @@ public class ServerPlayerEntityMixin {
     @WrapOperation(method = "sendMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resource/language/TranslationStorage;get(Ljava/lang/String;)Ljava/lang/String;"))
     private String tl$fixServerMessagesTranslation(TranslationStorage instance, String s, Operation<String> original) {
         // Translated Legacy handle translation keys on the client side
-        if (!((TranslationRecipient) this.networkHandler).pretranslate()) {
+        if (!((TranslationRecipient) this.networkHandler).tl$pretranslate()) {
             return s;
         }
 

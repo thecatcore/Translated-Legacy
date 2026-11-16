@@ -20,6 +20,6 @@ public class ServerVanillaCheckerMixin {
         Map<String, String> clientMods = new HashMap<>();
         for (int i = 1; i < message.strings.length; i += 2)
             clientMods.put(message.strings[i], message.strings[i + 1]);
-        if (clientMods.containsKey("translated-legacy")) ((TranslationRecipient) ((ServerPlayerEntity) player).networkHandler).setLanguage("en_us");
+        if (clientMods.containsKey("translated-legacy")) ((TranslationRecipient) ((ServerPlayerEntity) player).networkHandler).tl$setLanguage("en_us");
     }
 }

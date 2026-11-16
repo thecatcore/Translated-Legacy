@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Collections;
 
 @Environment(EnvType.SERVER)
+@Conditional(minecraftVersion = @Version("<13w41a"))
 @Mixin(OpenInventoryMenuPacket.class)
 public class OpenInventoryMenuPacketMixin implements TranslatablePacket {
 

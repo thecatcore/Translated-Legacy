@@ -13,7 +13,7 @@ public class ServerNetworking {
         ServerPlayNetworking.registerListener(NetworkingHelper.UPDATE_ID, (context, buffer) -> {
             ServerPlayNetworkHandler networkHandler = context.networkHandler();
             String language = buffer.readString();
-            ((TranslationRecipient) networkHandler).setLanguage(language);
+            ((TranslationRecipient) networkHandler).tl$setLanguage(language);
         });
 
         ServerConnectionEvents.PLAY_READY.register(context -> {

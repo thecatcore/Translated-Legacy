@@ -1,7 +1,7 @@
 package fr.catcore.translatedlegacy.language;
 
 public interface TranslationRecipient {
-    void setLanguage(String language);
-    String getLanguage();
-    boolean pretranslate();
+    void tl$setLanguage(String language);
+    String tl$getLanguage();
+    boolean tl$pretranslate();
 }

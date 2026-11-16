@@ -4,12 +4,15 @@ import fr.catcore.translatedlegacy.ornithe.common.access.TranslatablePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.network.packet.ChatMessagePacket;
+import net.ornithemc.conditionalmixin.annotations.Conditional;
+import net.ornithemc.conditionalmixin.annotations.Version;
 import net.ornithemc.osl.networking.api.PacketBuffer;
 import net.ornithemc.osl.text.api.TextComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import java.util.Collections;
 
 @Environment(EnvType.SERVER)
+@Conditional(minecraftVersion = @Version("<13w21a"))
 @Mixin(ChatMessagePacket.class)
 public class ChatMessagePacketMixin implements TranslatablePacket {
     private TextComponent text;

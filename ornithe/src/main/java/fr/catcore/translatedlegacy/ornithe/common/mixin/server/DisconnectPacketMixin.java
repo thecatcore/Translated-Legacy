@@ -4,6 +4,8 @@ import fr.catcore.translatedlegacy.ornithe.common.access.TranslatablePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.network.packet.DisconnectPacket;
+import net.ornithemc.conditionalmixin.annotations.Conditional;
+import net.ornithemc.conditionalmixin.annotations.Version;
 import net.ornithemc.osl.localization.api.L10n;
 import net.ornithemc.osl.networking.api.PacketBuffer;
 import net.ornithemc.osl.text.api.TextComponent;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Collections;
 
 @Environment(EnvType.SERVER)
+@Conditional(minecraftVersion = @Version("<13w41a"))
 @Mixin(DisconnectPacket.class)
 public class DisconnectPacketMixin implements TranslatablePacket {
     @Unique

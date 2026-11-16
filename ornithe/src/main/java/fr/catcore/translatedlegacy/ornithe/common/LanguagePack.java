@@ -41,4 +41,9 @@ public class LanguagePack extends DirectoryResourcePack {
 
         return null;
     }
+
+    @Override
+    public String getName() {
+        return "Language Pack";
+    }
 }

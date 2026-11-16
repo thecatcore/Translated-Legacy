@@ -13,7 +13,7 @@ import net.ornithemc.osl.text.api.TextComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Conditional(minecraftVersion = @Version(">=12w16a"))
+@Conditional(minecraftVersion = @Version(">=12w16a <13w21a"))
 @Environment(EnvType.SERVER)
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin implements MessageConsumer {

@@ -13,6 +13,7 @@ import net.ornithemc.osl.text.api.TextComponents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+@Conditional(minecraftVersion = @Version("<13w21a"))
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin {
     @Conditional(minecraftVersion = @Version(">=b1.6.5"))
