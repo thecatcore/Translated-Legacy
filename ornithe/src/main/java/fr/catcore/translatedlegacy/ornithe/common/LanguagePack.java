@@ -43,6 +43,13 @@ public class LanguagePack extends DirectoryResourcePack {
     }
 
     @Override
+    public InputStream getResource(String pathName) throws IOException {
+        if (pathName.equals("pack.mcmeta")) pathName = "../" + pathName;
+
+        return super.getResource(pathName);
+    }
+
+    @Override
     public String getName() {
         return "Language Pack";
     }

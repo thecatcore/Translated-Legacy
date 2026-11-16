@@ -8,7 +8,6 @@
   "client": [
     "client.LanguageManagerMixin",
     "client.LanguageMetadataSerializerMixin",
-    "client.LanguageOptionsScreen_LanguageSelectionListWidgetMixin",
     "client.OpenInventoryMenuS2CPacketMixin",
     "client.ServerPlayNetworkHandlerMixin",
     "client.SignEditScreenMixin"
@@ -18,7 +17,9 @@
   },
   "server": [
     "server.OpenInventoryMenuS2CPacketMixin",
-    "server.ServerPlayerEntityMixin",
     "server.ServerPlayNetworkHandler_NewNetworkMixin"
-  ]
+  ],
+  "mixinextras": {
+    "minVersion": "0.5.4"
+  }
 }

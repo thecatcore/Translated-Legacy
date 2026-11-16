@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 public class LanguageManagerMixin {
     @WrapOperation(method = "reload(Ljava/util/List;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resource/pack/ResourcePack;getMetadataSection(Lnet/minecraft/client/resource/metadata/ResourceMetadataSerializers;Ljava/lang/String;)Lnet/minecraft/client/resource/metadata/ResourceMetadataSection;"))
     private ResourceMetadataSection tl$disableDefaultLanguages(ResourcePack instance, ResourceMetadataSerializers resourceMetadataSerializers, String s, Operation<ResourceMetadataSection> original) {
-        System.out.println(instance + " " + instance.getName());
+        if (instance.getName().equals("Default")) return null;
+
         return original.call(instance, resourceMetadataSerializers, s);
     }
 }

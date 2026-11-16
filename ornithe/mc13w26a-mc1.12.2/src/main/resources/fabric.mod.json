@@ -15,7 +15,7 @@
     "translated-legacy-ornithe.mixins.json"
   ],
   "depends": {
-    "fabricloader": "*",
+    "fabricloader": "\u003e\u003d0.19.3",
     "minecraft": "\u003e\u003d1.6-alpha.13.26.a \u003c\u003d1.12.2"
   },
   "name": "Translated Legacy Ornithe 13w26a - 1.12.2",
