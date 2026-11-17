@@ -1,52 +1,52 @@
 package fr.catcore.translatedlegacy.ornithe.common;
 
-import net.ornithemc.osl.resource.loader.api.resource.ResourceMetadata;
-import net.ornithemc.osl.resource.loader.api.resource.pack.ResourcePackMetadata;
-import net.ornithemc.osl.resource.loader.impl.ResourceLoader;
-import net.ornithemc.osl.resource.loader.impl.resource.JsonResourceMetadata;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import net.ornithemc.osl.resource.loader.api.resource.ResourceType;
 import net.ornithemc.osl.resource.loader.impl.resource.pack.DirectoryResourcePack;
 import net.ornithemc.osl.resource.loader.impl.resource.pack.ResourcePacks;
-import net.ornithemc.osl.resource.loader.impl.resource.pack.SimpleResourcePackMetadata;
-import net.ornithemc.osl.text.api.TextComponents;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.Objects;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 public class LanguagePack extends DirectoryResourcePack {
+    private static final Gson GSON = new GsonBuilder().create();
+
     public LanguagePack(Path directory) {
         super(directory);
     }
 
     @Override
-    public <T> T getMetadata(String name, ResourceMetadata.Section.Serializer<T> serializer) throws IOException {
-        InputStream resource = this.getResource("../" + METADATA_FILE);
-
-        if (Objects.equals(name, ResourcePackMetadata.SECTION.name()) && serializer == ResourcePackMetadata.SECTION.serializer()) {
-            return (T) new SimpleResourcePackMetadata(ResourcePacks.getSupportedFormat(), TextComponents.literal("A pack containing backported languages files"));
+    public InputStream getResource(String pathName) throws IOException {
+        boolean meta = false;
+        if (pathName.equals("pack.mcmeta")) {
+            pathName = "../" + pathName;
+            meta = true;
         }
 
-        if (resource != null) {
-            try {
-                ResourceMetadata metadata = JsonResourceMetadata.fromInputStream(resource);
+        InputStream stream = super.getResource(pathName);
+        if (meta) {
+            try(Reader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))) {
+                JsonObject metadata = GSON.fromJson(reader, JsonObject.class);
+                JsonObject info = new JsonObject();
+                info.addProperty("description", "A pack containing backported languages files");
+                info.addProperty("pack_format", ResourcePacks.getSupportedFormat());
+                metadata.add("pack", info);
 
-                if (metadata != null) {
-                    return metadata.getSection(name, serializer);
-                }
-            } catch (Exception e) {
-                ResourceLoader.LOGGER.error("Could not load " + this.getName() + " " + name + " metadata", e);
+                return new ByteArrayInputStream(GSON.toJson(metadata).getBytes(StandardCharsets.UTF_8));
             }
         }
-
-        return null;
+        return stream;
     }
 
     @Override
-    public InputStream getResource(String pathName) throws IOException {
-        if (pathName.equals("pack.mcmeta")) pathName = "../" + pathName;
-
-        return super.getResource(pathName);
+    protected Map<ResourceType, Set<String>> findNamespaces() {
+        return Collections.singletonMap(ResourceType.CLIENT_ASSETS, Collections.singleton("minecraft"));
     }
 
     @Override

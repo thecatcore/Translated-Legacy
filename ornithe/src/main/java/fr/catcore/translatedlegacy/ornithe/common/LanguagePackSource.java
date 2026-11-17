@@ -13,12 +13,13 @@ import net.ornithemc.osl.resource.loader.api.resource.repository.ResourcePackSum
 import java.util.function.Consumer;
 
 public class LanguagePackSource implements ResourcePackRepository.Source {
+    private static final boolean LANG_IN_REPORT = MinecraftVersion.resolve().compareTo("1.6.2-091847") >= 0;
 
     public static void init() {
         ClientResourceLoaderEvents.INIT_RESOURCE_PACK_REPOSITORY.register((consumer) -> {
             consumer.addSource(new LanguagePackSource());
         });
-        MinecraftClientEvents.START.register(minecraft -> {
+        if (!LANG_IN_REPORT) MinecraftClientEvents.START.register(minecraft -> {
             minecraft.addCrashListener((report, section) -> section.addDetail("Current Language", () -> {
                 Language language = L10n.getLanguage();
                 return language != null ? language.name() + " (" + language.region() + ")" : "Unknown";
