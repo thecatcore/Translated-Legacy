@@ -214,6 +214,9 @@ public class LanguageManager {
     public static void registerCallback(LanguageSwitchCallback callback) {
         CALLBACKS.add(callback);
     }
+    public static void removeCallback(LanguageSwitchCallback callback) {
+        CALLBACKS.remove(callback);
+    }
 
     public static void registerFolderToModid(String folder, String modid) {
         if (modid != null) {

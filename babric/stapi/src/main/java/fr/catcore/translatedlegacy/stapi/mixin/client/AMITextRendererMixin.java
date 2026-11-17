@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.stapi.mixin;
+package fr.catcore.translatedlegacy.stapi.mixin.client;
 
 import fr.catcore.translatedlegacy.font.TextRenderer;
 import net.glasslauncher.mods.alwaysmoreitems.gui.AMITextRenderer;

@@ -1,9 +1,11 @@
-package fr.catcore.translatedlegacy.babric.mixin;
+package fr.catcore.translatedlegacy.stapi.mixin.client;
 
+import fr.catcore.translatedlegacy.babric.NetworkingHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.OpenScreenS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -13,19 +15,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.DataInputStream;
 
+@Environment(EnvType.CLIENT)
 @Mixin(OpenScreenS2CPacket.class)
-public class OpenScreenS2CPacketMixin {
+public abstract class OpenScreenS2CPacketMixin extends Packet {
     @Shadow
     public String name;
 
     @Inject(method = "read", at = @At("TAIL"))
     private void tl$translateContainerName(DataInputStream par1, CallbackInfo ci) {
+        if (NetworkingHelper.packetTranslations.containsKey(this.getRawId())) this.name = NetworkingHelper.packetTranslations.remove(this.getRawId())[0];
         this.name = I18n.getTranslation(this.name);
-    }
-
-    @Environment(EnvType.SERVER)
-    @Inject(method = "<init>(IILjava/lang/String;I)V", at = @At("TAIL"))
-    private void tl$translateContainerNameCtr(int screenHandlerId, int name, String size, int par4, CallbackInfo ci) {
-        if (!FabricLoader.getInstance().isModLoaded("translated-legacy-stapi")) this.name = I18n.getTranslation(this.name);
     }
 }

@@ -1,4 +1,4 @@
-package fr.catcore.translatedlegacy.stapi.mixin;
+package fr.catcore.translatedlegacy.stapi.mixin.client;
 
 import fr.catcore.translatedlegacy.babric.mixin.client.GameOptionsAccessor;
 import fr.catcore.translatedlegacy.stapi.TranslatedLegacyStAPI;
