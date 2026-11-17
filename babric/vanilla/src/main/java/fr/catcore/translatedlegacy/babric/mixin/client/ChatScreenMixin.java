@@ -1,17 +1,19 @@
 package fr.catcore.translatedlegacy.babric.mixin.client;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import fr.catcore.translatedlegacy.babric.NetworkingHelper;
 import fr.catcore.translatedlegacy.util.TextUtils;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.gui.screen.Screen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ChatScreen.class)
-public class ChatScreenMixin {
+public class ChatScreenMixin extends Screen {
 
-    @Redirect(method = "keyPressed", at = @At(value = "INVOKE", target = "Ljava/lang/String;indexOf(I)I"))
-    public int fixCharInput(String instance, int ch) {
-        return TextUtils.isCharacterAllowed(ch);
+    @WrapOperation(method = "keyPressed", at = @At(value = "INVOKE", target = "Ljava/lang/String;indexOf(I)I"))
+    public int fixCharInput(String instance, int ch, Operation<Integer> original) {
+        return (NetworkingHelper.serverSupportsUnicode || !minecraft.isWorldRemote()) ? TextUtils.isCharacterAllowed(ch) : original.call(instance, ch);
     }
 }

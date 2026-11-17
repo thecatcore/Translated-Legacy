@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "I18nMixin",
-    "OpenScreenS2CPacketMixin",
     "TranslationStorageAccessor",
     "TranslationStorageMixin",
     "WorldMixin",
@@ -18,7 +17,6 @@
   "client": [
     "nostation.AchievementMixin",
     "client.AchievementsScreenMixin",
-    "client.ChatMessagePacketMixin",
     "client.ChatScreenMixin",
     "client.DeathScreenMixin",
     "client.GameMenuScreenMixin",

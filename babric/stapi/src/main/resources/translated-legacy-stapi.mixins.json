@@ -3,19 +3,24 @@
   "package": "fr.catcore.translatedlegacy.stapi.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LanguageManagerMixin",
-    "ServerVanillaCheckerMixin"
+    "LanguageManagerMixin"
   ],
   "client": [
-    "AMITextRendererMixin",
-    "TextRendererMixin"
+    "client.AMITextRendererMixin",
+    "client.TextRendererMixin",
+    "client.ChatMessagePacketMixin",
+    "client.DisconnectPacketMixin",
+    "client.OpenScreenS2CPacketMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "server": [
-    "ServerPlayerEntityMixin",
-    "ServerPlayNetworkHandlerMixin"
+    "server.ChatMessagePacketMixin",
+    "server.DisconnectPacketMixin",
+    "server.OpenScreenS2CPacketMixin",
+    "server.ServerPlayerEntityMixin",
+    "server.ServerPlayNetworkHandlerMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.4"

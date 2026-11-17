@@ -20,6 +20,9 @@
   "entrypoints": {
     "stationapi:event_bus_client": [
       "fr.catcore.translatedlegacy.stapi.listener.ReloadListener"
+    ],
+    "stationapi:event_bus": [
+      "fr.catcore.translatedlegacy.stapi.listener.PacketListener"
     ]
   },
   "mixins": [
