@@ -13,7 +13,11 @@
     "client.ChatScreenMixin",
     "client.DisconnectPacketMixin",
     "client.OpenInventoryMenuPacketMixin",
-    "client.SignEditScreenMixin"
+    "client.SignEditScreenMixin",
+    "client.translations.AchievementsScreenMixin",
+    "client.translations.GameMenuScreenMixin",
+    "client.translations.SignEditScreenMixin",
+    "client.translations.WorldSaveConflictScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

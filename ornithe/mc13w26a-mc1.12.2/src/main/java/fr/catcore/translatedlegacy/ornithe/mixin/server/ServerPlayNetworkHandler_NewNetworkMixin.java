@@ -1,6 +1,5 @@
 package fr.catcore.translatedlegacy.ornithe.mixin.server;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import fr.catcore.translatedlegacy.language.TranslationRecipient;
 import fr.catcore.translatedlegacy.ornithe.ModernNetworkUtils;
 import fr.catcore.translatedlegacy.ornithe.common.NetworkingHelper;

@@ -5,10 +5,10 @@ import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import fr.catcore.translatedlegacy.ornithe.client.language.LanguageScreen;
+import fr.catcore.translatedlegacy.ornithe.common.TranslationHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.menu.options.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.ornithemc.osl.localization.api.L10n;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class OptionsScreenMixin extends Screen {
     @Inject(method = "init", at = @At("RETURN"))
     public void init$langButton(CallbackInfo ci) {
-        this.buttons.add(new ButtonWidget(999, this.width / 2 - 155, this.height / 6 + 120 + 12, 150, 20, L10n.get("options.language")));
+        this.buttons.add(new ButtonWidget(999, this.width / 2 - 155, this.height / 6 + 120 + 12, 150, 20, TranslationHelper.get("backport.options.language", "options.language")));
     }
 
     @Definition(id = "ButtonWidget", type = ButtonWidget.class)

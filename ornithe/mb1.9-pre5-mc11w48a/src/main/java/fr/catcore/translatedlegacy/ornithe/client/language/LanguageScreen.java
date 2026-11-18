@@ -1,5 +1,6 @@
 package fr.catcore.translatedlegacy.ornithe.client.language;
 
+import fr.catcore.translatedlegacy.ornithe.common.TranslationHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ListWidget;
@@ -52,8 +53,8 @@ public class LanguageScreen extends Screen {
     public void render(int i, int j, float f) {
         this.list.render(i, j, f);
 
-        this.drawCenteredString(this.textRenderer, L10n.get("options.language"), this.width / 2, 16, 16777215);
-        this.drawCenteredString(this.textRenderer, L10n.get("options.languageWarning"), this.width / 2, this.height - 26, 8421504);
+        this.drawCenteredString(this.textRenderer, TranslationHelper.get("backport.options.language", "options.language"), this.width / 2, 16, 16777215);
+        this.drawCenteredString(this.textRenderer, TranslationHelper.get("backport.options.languageWarning", "options.languageWarning"), this.width / 2, this.height - 26, 8421504);
         super.render(i, j, f);
     }
 
