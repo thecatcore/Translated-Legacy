@@ -15,12 +15,12 @@
     "nostation.StatMixin"
   ],
   "client": [
-    "nostation.AchievementMixin",
     "client.AchievementsScreenMixin",
     "client.ChatScreenMixin",
     "client.DeathScreenMixin",
     "client.GameMenuScreenMixin",
     "client.GameOptionsAccessor",
+    "client.GameOptionsMixin",
     "client.MinecraftMixin",
     "client.OptionsScreenMixin",
     "client.SignEditScreenMixin",
@@ -31,7 +31,8 @@
     "client.container.InventoryScreenMixin",
     "client.font.TextRendererMixin",
     "client.gui.widget.TextFieldWidgetMixin",
-    "client.screen.ScreenAccessor"
+    "client.screen.ScreenAccessor",
+    "nostation.AchievementMixin"
   ],
   "injectors": {
     "defaultRequire": 1

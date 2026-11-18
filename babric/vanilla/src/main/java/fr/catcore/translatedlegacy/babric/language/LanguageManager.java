@@ -50,7 +50,7 @@ public class LanguageManager {
                 ));
             }
 
-            loadConfig(true);
+            loadLegacyConfig();
 
             loadLanguage(DEFAULT_LANGUAGE);
 
@@ -69,30 +69,20 @@ public class LanguageManager {
         }
     }
 
-    private static void loadConfig(boolean loadFile) {
+    private static void loadLegacyConfig() {
         Path configDir = TranslatedLegacy.CONFIG_FOLDER.toPath();
 
-        if (!configDir.toFile().exists()) configDir.toFile().mkdir();
+        if (!configDir.toFile().exists()) return;
 
         File configPath = configDir.resolve("config-b1.7.3.json").toFile();
 
-        if (configPath.exists() && loadFile) {
+        if (configPath.exists()) {
             try {
                 FileReader fileReader = new FileReader(configPath);
                 JsonObject object = GSON.fromJson(fileReader, JsonObject.class);
                 CURRENT_LANGUAGE_CODE = object.has("code") ? object.get("code").getAsString() : DEFAULT_LANGUAGE;
                 fileReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
-                configPath.createNewFile();
-                FileWriter fileWriter = new FileWriter(configPath);
-                JsonObject object = new JsonObject();
-                object.addProperty("code", CURRENT_LANGUAGE_CODE);
-                fileWriter.write(GSON.toJson(object));
-                fileWriter.close();
+                Files.delete(configPath.toPath());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -188,8 +178,6 @@ public class LanguageManager {
         CODE_TO_STORAGE.get(DEFAULT_LANGUAGE).clear();
 
         CURRENT_LANGUAGE_CODE = newCode;
-
-        loadConfig(false);
 
         loadLanguage(DEFAULT_LANGUAGE);
         loadLanguage(CURRENT_LANGUAGE_CODE);
