@@ -16,17 +16,17 @@ public class GameMenuScreenMixin {
 
     @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V", ordinal = 0))
     public String init$lang1(String string) {
-        return I18n.getTranslation("menu.returnToMenu");
+        return I18n.getTranslation("backport.menu.returnToMenu");
     }
 
     @Inject(method = "init", at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;text:Ljava/lang/String;", opcode = Opcodes.PUTFIELD, shift = At.Shift.AFTER))
     public void init$lang2(CallbackInfo ci) {
-        ((ButtonWidget)((ScreenAccessor)this).getButtons().get(0)).text = I18n.getTranslation("menu.disconnect");
+        ((ButtonWidget)((ScreenAccessor)this).getButtons().get(0)).text = I18n.getTranslation("backport.menu.disconnect");
     }
 
     @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V", ordinal = 1))
     public String init$lang3(String string) {
-        return I18n.getTranslation("menu.returnToGame");
+        return I18n.getTranslation("backport.menu.returnToGame");
     }
 
     @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V", ordinal = 2))
@@ -41,6 +41,6 @@ public class GameMenuScreenMixin {
 
     @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/GameMenuScreen;drawCenteredTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"))
     public String render$lang2(String string) {
-        return I18n.getTranslation("menu.game");
+        return I18n.getTranslation("backport.menu.game");
     }
 }

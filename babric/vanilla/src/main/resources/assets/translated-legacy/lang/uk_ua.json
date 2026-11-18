@@ -11,6 +11,11 @@
   "container.furnace": "Піч",
   "container.chestDouble": "Велика скриня",
 
+  "backport.menu.returnToMenu": "Зберегти й вийти",
+  "backport.menu.disconnect": "Від'єднатися",
+  "backport.menu.returnToGame": "Повернутися до гри",
+  "backport.menu.game": "Ігрове меню",
+
   "_comment_2": "b1.7.3 only translations",
   "menu.savingLevel": "Збереження",
   "deathScreen.respawn": "Відродитися",
@@ -23,9 +28,5 @@
   "menu.generatingTerrain": "Завантаження місцевості",
   "menu.simulating": "Трішки наповнюємо світ життям",
   "menu.respawning": "Відродження",
-  "menu.returnToMenu": "Зберегти й вийти",
-  "menu.disconnect": "Від'єднатися",
-  "menu.returnToGame": "Повернутися до гри",
   "menu.saving": "Збереження..",
-  "menu.game": "Ігрове меню"
 }

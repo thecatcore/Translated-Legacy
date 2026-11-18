@@ -1,5 +1,6 @@
 package fr.catcore.translatedlegacy.babric.language;
 
+import fr.catcore.translatedlegacy.babric.TranslationHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.EntryListWidget;
@@ -50,9 +51,8 @@ public class LanguageScreen extends Screen {
     public void render(int i, int j, float f) {
         this.list.render(i, j, f);
 
-        TranslationStorage var4 = TranslationStorage.getInstance();
-        this.drawCenteredTextWithShadow(this.textRenderer, var4.get("options.language"), this.width / 2, 16, 16777215);
-        this.drawCenteredTextWithShadow(this.textRenderer, var4.get("options.languageWarning"), this.width / 2, this.height - 26, 8421504);
+        this.drawCenteredTextWithShadow(this.textRenderer, TranslationHelper.get("backport.options.language", "options.language"), this.width / 2, 16, 16777215);
+        this.drawCenteredTextWithShadow(this.textRenderer, TranslationHelper.get("backport.options.languageWarning", "options.languageWarning"), this.width / 2, this.height - 26, 8421504);
         super.render(i, j, f);
     }
 

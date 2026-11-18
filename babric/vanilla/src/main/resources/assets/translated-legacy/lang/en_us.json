@@ -11,6 +11,11 @@
   "container.furnace": "Furnace",
   "container.chestDouble": "Large chest",
 
+  "backport.menu.returnToMenu": "Save and quit to title",
+  "backport.menu.disconnect": "Disconnect",
+  "backport.menu.returnToGame": "Back to game",
+  "backport.menu.game": "Game menu",
+
   "_comment_2": "b1.7.3 only translations",
   "menu.savingLevel": "Saving level",
   "deathScreen.respawn": "Respawn",
@@ -23,9 +28,5 @@
   "menu.generatingTerrain": "Building terrain",
   "menu.simulating": "Simulating world for a bit",
   "menu.respawning": "Respawning",
-  "menu.returnToMenu": "Save and quit to title",
-  "menu.disconnect": "Disconnect",
-  "menu.returnToGame": "Back to game",
-  "menu.saving": "Saving level..",
-  "menu.game": "Game menu"
+  "menu.saving": "Saving level.."
 }
