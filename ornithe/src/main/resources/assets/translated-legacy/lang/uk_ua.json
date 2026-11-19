@@ -3,5 +3,9 @@
   "backport.menu.returnToMenu": "Зберегти й вийти",
   "backport.menu.disconnect": "Від'єднатися",
   "backport.menu.returnToGame": "Повернутися до гри",
-  "backport.menu.game": "Ігрове меню"
+  "backport.menu.game": "Ігрове меню",
+  "backport.deathScreen.respawn": "Відродитися",
+  "backport.deathScreen.title": "Кінець гри!",
+  "backport.deathScreen.score": "Рахунок",
+  "backport.sign.edit": "Редагувати текст таблички"
 }

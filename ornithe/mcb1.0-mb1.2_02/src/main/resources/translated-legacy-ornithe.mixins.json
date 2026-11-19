@@ -10,7 +10,8 @@
     "client.GameOptionsMixin",
     "client.LanguageManagerMixin",
     "client.OptionsScreenMixin",
-    "client.TextRendererMixin"
+    "client.TextRendererMixin",
+    "client.translations.DeathScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -17,4 +17,9 @@ public class SignEditScreenMixin extends Screen {
     public String init$lang(String string) {
         return L10n.get("gui.done");
     }
+
+    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/game/SignEditScreen;drawCenteredString(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"))
+    public String render$lang(String string) {
+        return L10n.get("backport.sign.edit") + ":";
+    }
 }

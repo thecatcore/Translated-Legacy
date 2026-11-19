@@ -43,11 +43,12 @@ public class GameMenuScreenMixin {
         return L10n.get("menu.options");
     }
 
-//    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/GameMenuScreen;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"))
-//    public String render$lang1(String string) {
-//        return I18n.getTranslation("menu.saving");
-//    }
-//
+    @Conditional(minecraftVersion = @Version("<12w18a"))
+    @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/menu/GameMenuScreen;drawString(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"))
+    public String render$lang1(String string) {
+        return L10n.get("menu.savingLevelLong");
+    }
+
 
     @Conditional(minecraftVersion = @Version("<13w47a"))
     @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/menu/GameMenuScreen;drawCenteredString(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"))

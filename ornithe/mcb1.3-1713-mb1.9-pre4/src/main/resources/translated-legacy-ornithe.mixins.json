@@ -17,7 +17,8 @@
     "client.StatsScreen_GeneralStatsListWidgetMixin",
     "client.TextFieldWidgetMixin",
     "client.TextRendererMixin",
-    "client.ToastGuiMixin"
+    "client.ToastGuiMixin",
+    "client.translations.DeathScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

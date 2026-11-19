@@ -6,5 +6,8 @@
   "container.furnace": "Furnace",
   "container.chest": "Chest",
   "container.minecart": "Minecart",
-  "container.chestDouble": "Large chest"
+  "container.chestDouble": "Large chest",
+
+  "_comment_2": "pre 12w18a translations",
+  "menu.savingLevelLong": "Saving level.."
 }
