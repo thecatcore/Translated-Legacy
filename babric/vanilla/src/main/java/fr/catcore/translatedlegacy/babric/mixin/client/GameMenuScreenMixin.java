@@ -36,7 +36,7 @@ public class GameMenuScreenMixin {
 
     @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/GameMenuScreen;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"))
     public String render$lang1(String string) {
-        return I18n.getTranslation("menu.saving");
+        return I18n.getTranslation("menu.savingLevelLong");
     }
 
     @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/GameMenuScreen;drawCenteredTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"))

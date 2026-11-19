@@ -26,6 +26,6 @@ public class SignEditScreenMixin extends Screen {
 
     @ModifyArg(method = "render", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/SignEditScreen;drawCenteredTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"))
     public String render$lang(String string) {
-        return I18n.getTranslation("sign.edit");
+        return I18n.getTranslation("backport.sign.edit") + ":";
     }
 }

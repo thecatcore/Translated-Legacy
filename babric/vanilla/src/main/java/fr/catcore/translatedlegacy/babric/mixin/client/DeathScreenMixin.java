@@ -11,12 +11,12 @@ public class DeathScreenMixin {
 
     @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V", ordinal = 0))
     public String init$lang1(String string) {
-        return I18n.getTranslation("deathScreen.respawn");
+        return I18n.getTranslation("backport.deathScreen.respawn");
     }
 
     @ModifyArg(method = "init", index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;<init>(IIILjava/lang/String;)V", ordinal = 1))
     public String init$lang2(String string) {
-        return I18n.getTranslation("deathScreen.titleScreen");
+        return I18n.getTranslation("deathScreen.titleMenu");
     }
 
     @ModifyArg(method = "render", index = 1, at = @At(
@@ -25,7 +25,7 @@ public class DeathScreenMixin {
             ordinal = 0
     ))
     public String render$lang1(String string) {
-        return I18n.getTranslation("deathScreen.title");
+        return I18n.getTranslation("backport.deathScreen.title");
     }
 
     @ModifyArg(method = "render", index = 1, at = @At(
@@ -34,6 +34,6 @@ public class DeathScreenMixin {
             ordinal = 1
     ))
     public String render$lang2(String string) {
-        return I18n.getTranslation("deathScreen.score") + ": §e" + string.replace("Score: &e", "");
+        return  string.replace("Score", I18n.getTranslation("backport.deathScreen.score")).replace("&e", "§e");
     }
 }
