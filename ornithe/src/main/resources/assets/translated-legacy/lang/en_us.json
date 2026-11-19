@@ -8,6 +8,11 @@
   "backport.deathScreen.title": "Game over!",
   "backport.deathScreen.score": "Score",
   "backport.sign.edit": "Edit sign message",
+  "backport.menu.generatingLevel": "Generating level",
+  "backport.menu.generatingTerrain": "Building terrain",
+  "backport.menu.loadingLevel": "Loading level",
+  "backport.menu.respawning": "Respawning",
+  "backport.menu.simulating": "Simulating world for a bit",
   "backport.container.brewing": "Brewing Stand",
   "backport.container.creative": "Item selection",
   "backport.container.enchant": "Enchant"

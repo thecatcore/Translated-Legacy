@@ -7,5 +7,10 @@
   "backport.deathScreen.respawn": "Відродитися",
   "backport.deathScreen.title": "Кінець гри!",
   "backport.deathScreen.score": "Рахунок",
-  "backport.sign.edit": "Редагувати текст таблички"
+  "backport.sign.edit": "Редагувати текст таблички",
+  "backport.menu.generatingLevel": "Створення світу",
+  "backport.menu.generatingTerrain": "Завантаження місцевості",
+  "backport.menu.loadingLevel": "Завантаження світу",
+  "backport.menu.respawning": "Відродження",
+  "backport.menu.simulating": "Трішки наповнюємо світ життям"
 }

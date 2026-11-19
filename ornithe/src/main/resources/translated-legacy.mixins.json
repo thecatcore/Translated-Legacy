@@ -6,7 +6,8 @@
   "mixins": [
     "LanguageManagerMixin",
     "LocaleMixin",
-    "SimpleLanguageMetadataSerializerMixin"
+    "SimpleLanguageMetadataSerializerMixin",
+    "translations.WorldMixin"
   ],
   "client": [
     "client.ChatMessagePacketMixin",
@@ -25,6 +26,7 @@
     "client.translations.FurnaceScreenMixin",
     "client.translations.GameMenuScreenMixin",
     "client.translations.MinecartEntityMixin",
+    "client.translations.MinecraftMixin",
     "client.translations.PlayerInventoryMixin",
     "client.translations.SignEditScreenMixin",
     "client.translations.SurvivalInventoryScreenMixin",

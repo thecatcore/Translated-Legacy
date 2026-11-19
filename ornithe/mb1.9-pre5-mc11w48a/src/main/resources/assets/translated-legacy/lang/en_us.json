@@ -9,7 +9,9 @@
   "container.chest": "Chest",
   "container.minecart": "Minecart",
   "container.chestDouble": "Large chest",
+  "menu.savingChunks": "Saving chunks",
 
   "_comment_2": "pre 12w18a translations",
-  "menu.savingLevelLong": "Saving level.."
+  "menu.savingLevelLong": "Saving level..",
+  "menu.savingLevel": "Saving level"
 }

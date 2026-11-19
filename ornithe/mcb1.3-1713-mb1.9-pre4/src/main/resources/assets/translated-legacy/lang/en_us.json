@@ -9,9 +9,11 @@
   "container.chest": "Chest",
   "container.minecart": "Minecart",
   "container.chestDouble": "Large chest",
+  "menu.savingChunks": "Saving chunks",
 
   "_comment_2": "pre 12w18a translations",
   "menu.savingLevelLong": "Saving level..",
+  "menu.savingLevel": "Saving level",
 
   "_comment_3": "pre b1.9-pre2 translations",
   "deathScreen.titleMenu": "Title menu"
