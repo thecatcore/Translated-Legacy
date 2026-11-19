@@ -19,14 +19,15 @@
   "backport.deathScreen.title": "Game over!",
   "backport.deathScreen.score": "Score",
   "backport.sign.edit": "Edit sign message",
+  "backport.menu.generatingLevel": "Generating level",
+  "backport.menu.generatingTerrain": "Building terrain",
+  "backport.menu.loadingLevel": "Loading level",
+  "backport.menu.respawning": "Respawning",
+  "backport.menu.simulating": "Simulating world for a bit",
+  "backport.menu.switchingLevel": "Switching level",
 
   "_comment_2": "b1.7.3 only translations",
   "deathScreen.titleMenu": "Title menu",
   "menu.savingLevelLong": "Saving level..",
-  "menu.savingLevel": "Saving level",
-  "menu.generatingLevel": "Generating level",
-  "menu.loadingLevel": "Loading level",
-  "menu.generatingTerrain": "Building terrain",
-  "menu.simulating": "Simulating world for a bit",
-  "menu.respawning": "Respawning"
+  "menu.savingLevel": "Saving level"
 }

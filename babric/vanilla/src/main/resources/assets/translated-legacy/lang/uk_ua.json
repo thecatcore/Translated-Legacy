@@ -19,14 +19,14 @@
   "backport.deathScreen.title": "Кінець гри!",
   "backport.deathScreen.score": "Рахунок",
   "backport.sign.edit": "Редагувати текст таблички",
+  "backport.menu.generatingLevel": "Створення світу",
+  "backport.menu.generatingTerrain": "Завантаження місцевості",
+  "backport.menu.loadingLevel": "Завантаження світу",
+  "backport.menu.respawning": "Відродження",
+  "backport.menu.simulating": "Трішки наповнюємо світ життям",
 
   "_comment_2": "b1.7.3 only translations",
   "deathScreen.titleMenu": "Початковий екран",
   "menu.savingLevelLong": "Збереження..",
-  "menu.savingLevel": "Збереження",
-  "menu.generatingLevel": "Створення світу",
-  "menu.loadingLevel": "Завантаження світу",
-  "menu.generatingTerrain": "Завантаження місцевості",
-  "menu.simulating": "Трішки наповнюємо світ життям",
-  "menu.respawning": "Відродження"
+  "menu.savingLevel": "Збереження"
 }
