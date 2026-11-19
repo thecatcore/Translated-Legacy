@@ -8,9 +8,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Conditional(minecraftVersion = @Version(">=b1.5 <13w47a"))
+@Conditional(minecraftVersion = @Version(">=b1.5 <1.4.4"))
 @Mixin(AchievementsScreen.class)
-public class AchievementsScreenMixin {
+public class AchievementsScreenMixin_Old {
 
     @ModifyArg(method = "setTitle", index = 0, at = @At(
             value = "INVOKE",

@@ -15,5 +15,6 @@
   "backport.menu.simulating": "Simulating world for a bit",
   "backport.container.brewing": "Brewing Stand",
   "backport.container.creative": "Item selection",
-  "backport.container.enchant": "Enchant"
+  "backport.container.enchant": "Enchant",
+  "backport.menu.switchingLevel": "Switching level"
 }

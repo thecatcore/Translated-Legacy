@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+@Conditional(minecraftVersion = @Version("<1.2"))
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
     @Conditional(minecraftVersion = @Version(">=b1.8-pre2 <11w49a"))

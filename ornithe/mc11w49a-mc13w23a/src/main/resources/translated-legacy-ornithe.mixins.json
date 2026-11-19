@@ -6,9 +6,10 @@
   "mixins": [
   ],
   "client": [
-    "client.ServerPlayNetworkHandlerMixin",
     "client.LanguageOptionsScreen_LanguageSelectionListWidgetMixin",
-    "client.SignEditScreenMixin"
+    "client.ServerPlayNetworkHandlerMixin",
+    "client.SignEditScreenMixin",
+    "client.translations.AchievementsScreenMixin_New"
   ],
   "injectors": {
     "defaultRequire": 1

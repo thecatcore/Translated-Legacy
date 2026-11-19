@@ -10,7 +10,8 @@
     "client.LanguageMetadataSerializerMixin",
     "client.OpenInventoryMenuS2CPacketMixin",
     "client.ServerPlayNetworkHandlerMixin",
-    "client.SignEditScreenMixin"
+    "client.SignEditScreenMixin",
+    "client.translations.AchievementsScreenMixin_New"
   ],
   "injectors": {
     "defaultRequire": 1

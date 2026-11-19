@@ -15,7 +15,7 @@
     "client.DisconnectPacketMixin",
     "client.OpenInventoryMenuPacketMixin",
     "client.SignEditScreenMixin",
-    "client.translations.AchievementsScreenMixin",
+    "client.translations.AchievementsScreenMixin_Old",
     "client.translations.BrewingStandScreenMixin",
     "client.translations.ChestBlockEntityMixin",
     "client.translations.CraftingTableScreenMixin",
