@@ -7,6 +7,7 @@ import net.ornithemc.osl.localization.api.L10n;
 import net.ornithemc.osl.localization.api.language.Language;
 import net.ornithemc.osl.resource.loader.api.client.ClientResourceLoaderEvents;
 import net.ornithemc.osl.resource.loader.api.resource.pack.PackPosition;
+import net.ornithemc.osl.resource.loader.api.resource.repository.PackSourcePosition;
 import net.ornithemc.osl.resource.loader.api.resource.repository.ResourcePackRepository;
 import net.ornithemc.osl.resource.loader.api.resource.repository.ResourcePackSummary;
 
@@ -17,7 +18,7 @@ public class LanguagePackSource implements ResourcePackRepository.Source {
 
     public static void init() {
         ClientResourceLoaderEvents.INIT_RESOURCE_PACK_REPOSITORY.register((consumer) -> {
-            consumer.addSource(new LanguagePackSource());
+            consumer.addSource(new LanguagePackSource(), PackSourcePosition.FIRST);
         });
         if (!LANG_IN_REPORT) MinecraftClientEvents.START.register(minecraft -> {
             minecraft.addCrashListener((report, section) -> section.addDetail("Current Language", () -> {
@@ -35,8 +36,8 @@ public class LanguagePackSource implements ResourcePackRepository.Source {
                 new LanguagePack(TranslatedLegacy.getLangsFolder(MinecraftVersion.resolve().gameVersion()).toPath()),
                 "language-pack",
                 true,
-                true,
-                PackPosition.TOP
+                false,
+                PackPosition.BOTTOM
         ));
     }
 }
