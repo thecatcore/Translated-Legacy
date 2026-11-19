@@ -7,6 +7,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.network.packet.s2c.play.OpenScreenS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,12 +18,15 @@ import java.util.Objects;
 @Mixin(OpenScreenS2CPacket.class)
 public class OpenScreenS2CPacketMixin implements TranslatablePacket {
 
+    @Shadow
+    public String name;
     private String titleKey;
 
     @Inject(method = "<init>(IILjava/lang/String;I)V", at = @At("RETURN"))
     private void tl$wrapDisplayName$old(int i, int j, String string, int k, CallbackInfo ci) {
         if (!Objects.equals(I18n.getTranslation(string), string)) {
             titleKey = string;
+            name = I18n.getTranslation(string);
         }
     }
 

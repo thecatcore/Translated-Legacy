@@ -7,18 +7,22 @@
   ],
   "client": [
     "client.AMITextRendererMixin",
-    "client.TextRendererMixin",
     "client.ChatMessagePacketMixin",
     "client.DisconnectPacketMixin",
-    "client.OpenScreenS2CPacketMixin"
+    "client.OpenScreenS2CPacketMixin",
+    "client.TextRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "server": [
     "server.ChatMessagePacketMixin",
+    "server.ChestBlockEntityMixin",
     "server.DisconnectPacketMixin",
+    "server.DoubleInventoryMixin",
+    "server.MinecartEntityMixin",
     "server.OpenScreenS2CPacketMixin",
+    "server.PlayerInventoryMixin",
     "server.ServerPlayerEntityMixin",
     "server.ServerPlayNetworkHandlerMixin"
   ],

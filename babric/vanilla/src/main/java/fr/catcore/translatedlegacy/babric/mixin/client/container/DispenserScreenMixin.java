@@ -1,7 +1,7 @@
 package fr.catcore.translatedlegacy.babric.mixin.client.container;
 
+import fr.catcore.translatedlegacy.babric.TranslationHelper;
 import net.minecraft.client.gui.screen.ingame.DispenserScreen;
-import net.minecraft.client.resource.language.I18n;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -19,7 +19,7 @@ public abstract class DispenserScreenMixin {
             )
     )
     public String renderForeground$lang1(String string) {
-        return I18n.getTranslation("container.dispenser");
+        return TranslationHelper.get("backport.container.dispenser", "container.dispenser");
     }
 
     @ModifyArg(
@@ -32,6 +32,6 @@ public abstract class DispenserScreenMixin {
             )
     )
     public String renderForeground$lang2(String string) {
-        return I18n.getTranslation("container.inventory");
+        return TranslationHelper.get("backport.container.inventory", "container.inventory");
     }
 }

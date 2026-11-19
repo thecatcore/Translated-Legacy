@@ -15,8 +15,16 @@
     "client.OpenInventoryMenuPacketMixin",
     "client.SignEditScreenMixin",
     "client.translations.AchievementsScreenMixin",
+    "client.translations.ChestBlockEntityMixin",
+    "client.translations.CraftingTableScreenMixin",
+    "client.translations.DispenserScreenMixin",
+    "client.translations.DoubleInventoryMixin",
+    "client.translations.FurnaceScreenMixin",
     "client.translations.GameMenuScreenMixin",
+    "client.translations.MinecartEntityMixin",
+    "client.translations.PlayerInventoryMixin",
     "client.translations.SignEditScreenMixin",
+    "client.translations.SurvivalInventoryScreenMixin",
     "client.translations.WorldSaveConflictScreenMixin"
   ],
   "injectors": {
@@ -28,7 +36,11 @@
     "server.OpenInventoryMenuPacketMixin",
     "server.ServerPlayerEntityMixin",
     "server.ServerPlayNetworkHandler_ChatHandlerMixin",
-    "server.ServerPlayNetworkHandler_OldNetworkMixin"
+    "server.ServerPlayNetworkHandler_OldNetworkMixin",
+    "server.translations.ChestBlockEntityMixin",
+    "server.translations.DoubleInventoryMixin",
+    "server.translations.MinecartEntityMixin",
+    "server.translations.PlayerInventoryMixin"
   ],
   "mixinextras": {
     "minVersion": "0.5.4"

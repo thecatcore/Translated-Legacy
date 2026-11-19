@@ -8,10 +8,6 @@
     "TranslationStorageAccessor",
     "TranslationStorageMixin",
     "WorldMixin",
-    "inventory.ChestBlockEntityMixin",
-    "inventory.DoubleInventoryMixin",
-    "inventory.MinecartEntityMixin",
-    "inventory.PlayerInventoryMixin",
     "nostation.StatMixin"
   ],
   "client": [
@@ -32,6 +28,10 @@
     "client.font.TextRendererMixin",
     "client.gui.widget.TextFieldWidgetMixin",
     "client.screen.ScreenAccessor",
+    "client.inventory.ChestBlockEntityMixin",
+    "client.inventory.MinecartEntityMixin",
+    "client.inventory.PlayerInventoryMixin",
+    "client.inventory.DoubleInventoryMixin",
     "nostation.AchievementMixin"
   ],
   "injectors": {

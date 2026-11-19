@@ -12,6 +12,7 @@ import java.util.Map;
 public class NetworkingHelper {
     public static final boolean INVENTORY_NAME_PACKET_LIMIT = MinecraftVersion.resolve().compareTo("b1.8-pre2") >= 0;
     public static final boolean DISCONNECT_PACKET_LIMIT = MinecraftVersion.resolve().compareTo("b1.5") >= 0;
+    public static final boolean SCREEN_NAME_IS_KEY = MinecraftVersion.resolve().compareTo("12w04a") >= 0;
 
     public static NamespacedIdentifier UPDATE_ID = ChannelRegistry.register(NamespacedIdentifiers.from("translated-legacy", "update"), false, true);
     public static NamespacedIdentifier PING_ID = ChannelRegistry.register(NamespacedIdentifiers.from("translated-legacy", "ping"), true, false);
