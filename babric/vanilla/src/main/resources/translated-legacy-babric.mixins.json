@@ -26,12 +26,13 @@
     "client.container.FurnaceScreenMixin",
     "client.container.InventoryScreenMixin",
     "client.font.TextRendererMixin",
+    "client.gui.widget.EntryListWidgetMixin",
     "client.gui.widget.TextFieldWidgetMixin",
-    "client.screen.ScreenAccessor",
     "client.inventory.ChestBlockEntityMixin",
+    "client.inventory.DoubleInventoryMixin",
     "client.inventory.MinecartEntityMixin",
     "client.inventory.PlayerInventoryMixin",
-    "client.inventory.DoubleInventoryMixin",
+    "client.screen.ScreenAccessor",
     "nostation.AchievementMixin"
   ],
   "injectors": {

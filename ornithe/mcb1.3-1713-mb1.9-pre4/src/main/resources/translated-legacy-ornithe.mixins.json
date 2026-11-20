@@ -13,6 +13,7 @@
     "client.AchievementsScreenMixin",
     "client.GameOptionsMixin",
     "client.LanguageManagerMixin",
+    "client.ListWidgetMixin",
     "client.OptionsScreenMixin",
     "client.StatsScreen_GeneralStatsListWidgetMixin",
     "client.TextFieldWidgetMixin",

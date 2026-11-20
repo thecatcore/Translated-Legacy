@@ -176,6 +176,19 @@ public abstract class ListWidget {
                 this.mouseYStart = (float)mouseY;
             }
         } else {
+            while (Mouse.next()) {
+                int var7 = Mouse.getEventDWheel();
+                if (var7 != 0) {
+                    if (var7 > 0) {
+                        var7 = -1;
+                    } else if (var7 < 0) {
+                        var7 = 1;
+                    }
+
+                    this.scrollAmount += (float)(var7 * this.entryHeight / 2);
+                }
+            }
+
             this.mouseYStart = -1.0F;
         }
 
