@@ -145,4 +145,9 @@ public class OldTranslationStorage {
     private boolean hasKey(String key) {
         return this.translations.containsKey(key);
     }
+
+    @Override
+    public String toString() {
+        return name + " (" + region + ")";
+    }
 }
