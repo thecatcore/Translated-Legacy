@@ -1,0 +1,11 @@
+# Backported translations, do not translate, only used as fallbacks
+options.language=Language
+options.languageWarning=Translations may not be 100%% complete or accurate.
+container.inventory=Inventory
+container.crafting=Crafting
+container.dispenser=Dispenser
+container.furnace=Furnace
+container.chest=Chest
+container.minecart=Minecart
+container.chestDouble=Large chest
+menu.savingChunks=Saving chunks

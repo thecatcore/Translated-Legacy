@@ -1,0 +1,25 @@
+# Backported translations, do not translate, only used as fallbacks
+backport.menu.returnToMenu=Save and quit to title
+backport.menu.disconnect=Disconnect
+backport.menu.returnToGame=Back to game
+backport.menu.game=Game menu
+backport.deathScreen.respawn=Respawn
+backport.deathScreen.title=Game over!
+backport.deathScreen.score=Score
+backport.sign.edit=Edit sign message
+backport.menu.generatingLevel=Generating level
+backport.menu.generatingTerrain=Building terrain
+backport.menu.loadingLevel=Loading level
+backport.menu.respawning=Respawning
+backport.menu.simulating=Simulating world for a bit
+backport.menu.switchingLevel=Switching level
+backport.container.brewing=Brewing Stand
+backport.container.creative=Item selection
+backport.container.enchant=Enchant
+backport.multiplayer.status.cannot_resolve=Can't resolve hostname
+backport.multiplayer.status.no_connection=(no connection)
+backport.multiplayer.status.client_out_of_date=Client out of date!
+backport.multiplayer.status.server_out_of_date=Server out of date!
+backport.selectServer.hiddenAddress=(Hidden)
+backport.multiplayer.status.cannot_connect=Can't connect to server
+backport.multiplayer.status.pinging=Pinging...
