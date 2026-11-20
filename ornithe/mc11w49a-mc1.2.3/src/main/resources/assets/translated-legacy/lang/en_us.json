@@ -1,0 +1,15 @@
+{
+  "_comment_1": "Backported translations (do not translate)",
+  "container.inventory": "Inventory",
+  "container.crafting": "Crafting",
+  "container.dispenser": "Dispenser",
+  "container.furnace": "Furnace",
+  "container.chest": "Chest",
+  "container.minecart": "Minecart",
+  "container.chestDouble": "Large chest",
+  "menu.savingChunks": "Saving chunks",
+
+  "_comment_2": "pre 12w18a translations",
+  "menu.savingLevelLong": "Saving level..",
+  "menu.savingLevel": "Saving level"
+}

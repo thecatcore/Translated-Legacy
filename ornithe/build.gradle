@@ -88,6 +88,7 @@ configure(versionedProjects) {
 		outputFile = project.file("src/main/resources/fabric.mod.json")
 
 		def mixinConfig = "${ornitheModId}.mixins.json"
+		def classTweaker = "${ornitheModId}.classtweaker"
 		def minMc = project.min_mc_version
 		def maxMc = project.max_mc_version
 
@@ -121,6 +122,9 @@ configure(versionedProjects) {
 
 			if (project.file("src/main/resources/${mixinConfig}").exists()) {
 				mixin mixinConfig
+			}
+			if (project.file("src/main/resources/${classTweaker}").exists()) {
+				accessWidener.set(classTweaker)
 			}
 
 			depends "fabricloader", ">=${rootProject.loader_version}"

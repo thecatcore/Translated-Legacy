@@ -6,6 +6,7 @@
   "mixins": [
     "translated-legacy-ornithe.mixins.json"
   ],
+  "accessWidener": "translated-legacy-ornithe.classtweaker",
   "depends": {
     "fabricloader": "\u003e\u003d0.19.3",
     "minecraft": "\u003e\u003d1.13-alpha.17.43.a \u003c\u003d1.14-alpha.19.5.a"

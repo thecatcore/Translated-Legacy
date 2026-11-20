@@ -1,0 +1,4 @@
+classTweaker	v1	named
+
+accessible class net/minecraft/client/gui/screen/menu/options/LanguageOptionsScreen$C_07646499
+accessible field net/minecraft/client/gui/screen/menu/options/LanguageOptionsScreen languageManager Lnet/minecraft/client/resource/language/LanguageManager;

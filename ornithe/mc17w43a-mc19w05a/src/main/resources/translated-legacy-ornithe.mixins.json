@@ -6,7 +6,9 @@
   "mixins": [
   ],
   "client": [
-    "client.LanguageManagerMixin"
+    "client.LanguageManagerMixin",
+    "client.LanguageOptionScreenEntryMixin",
+    "client.LanguageOptionsScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
