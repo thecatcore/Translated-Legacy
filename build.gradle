@@ -6,9 +6,9 @@ buildscript {
 }
 
 plugins {
-	id "net.fabricmc.fabric-loom-remap" version "1.17-SNAPSHOT" apply false
-	id "ploceus" version "1.17-SNAPSHOT" apply false
-	id 'babric-loom-extension' version '1.17-SNAPSHOT' apply false
+	id "net.fabricmc.fabric-loom-remap" version "1.19-SNAPSHOT" apply false
+	id "ploceus" version "1.19-SNAPSHOT" apply false
+	id 'babric-loom-extension' version '1.19-SNAPSHOT' apply false
 }
 
 subprojects {
