@@ -9,7 +9,9 @@
     "client.LanguageManagerMixin",
     "client.LanguageMetadataSerializerMixin",
     "client.LanguageOptionScreenEntryMixin",
-    "client.LanguageOptionsScreenMixin"
+    "client.LanguageOptionsScreenMixin",
+    "client.translations.ServerListEntryWidgetPingMixin",
+    "client.translations.ServerListWidgetMixin"
   ],
   "injectors": {
     "defaultRequire": 1

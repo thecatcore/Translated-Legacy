@@ -13,6 +13,8 @@
     "client.ChatMessagePacketMixin",
     "client.ChatScreenMixin",
     "client.DisconnectPacketMixin",
+    "client.translations.OldServerListWidgetMixin",
+    "client.translations.OldServerListWidgetPingThreadMixin",
     "client.OpenInventoryMenuPacketMixin",
     "client.SignEditScreenMixin",
     "client.translations.AchievementsScreenMixin_Old",

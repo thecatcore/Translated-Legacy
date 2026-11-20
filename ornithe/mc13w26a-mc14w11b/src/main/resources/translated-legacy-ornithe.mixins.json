@@ -13,7 +13,9 @@
     "client.OpenInventoryMenuS2CPacketMixin",
     "client.ServerPlayNetworkHandlerMixin",
     "client.SignEditScreenMixin",
-    "client.translations.AchievementsScreenMixin_New"
+    "client.translations.AchievementsScreenMixin_New",
+    "client.translations.ServerListEntryWidgetPingMixin",
+    "client.translations.ServerListWidgetMixin"
   ],
   "injectors": {
     "defaultRequire": 1

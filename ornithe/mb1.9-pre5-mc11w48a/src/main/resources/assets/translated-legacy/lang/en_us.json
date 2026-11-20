@@ -13,5 +13,10 @@
 
   "_comment_2": "pre 12w18a translations",
   "menu.savingLevelLong": "Saving level..",
-  "menu.savingLevel": "Saving level"
+  "menu.savingLevel": "Saving level",
+
+  "_comment_4": "pre 13w41a translations",
+  "multiplayer.status.polling": "Polling..",
+  "multiplayer.status.cannot_reach": "Can't reach server",
+  "multiplayer.status.communication_error": "Communication error"
 }

@@ -16,5 +16,12 @@
   "backport.container.brewing": "Brewing Stand",
   "backport.container.creative": "Item selection",
   "backport.container.enchant": "Enchant",
-  "backport.menu.switchingLevel": "Switching level"
+  "backport.menu.switchingLevel": "Switching level",
+  "backport.multiplayer.status.cannot_resolve": "Can't resolve hostname",
+  "backport.multiplayer.status.no_connection": "(no connection)",
+  "backport.multiplayer.status.client_out_of_date": "Client out of date!",
+  "backport.multiplayer.status.server_out_of_date": "Server out of date!",
+  "backport.selectServer.hiddenAddress": "(Hidden)",
+  "backport.multiplayer.status.cannot_connect": "Can't connect to server",
+  "backport.multiplayer.status.pinging": "Pinging..."
 }
