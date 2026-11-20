@@ -1,0 +1,13 @@
+{
+  "_comment_2": "pre 12w18a translations",
+  "menu.savingLevelLong": "Sauvegarde du niveau..",
+  "menu.savingLevel": "Sauvegarde du niveau",
+
+  "_comment_3": "pre b1.9-pre2 translations",
+  "deathScreen.titleMenu": "Menu des titres",
+
+  "_comment_4": "pre 13w41a translations",
+  "multiplayer.status.polling": "Sondage..",
+  "multiplayer.status.cannot_reach": "Impossible d'atteindre le serveur",
+  "multiplayer.status.communication_error": "Erreur de communication"
+}
